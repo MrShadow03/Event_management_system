@@ -1,0 +1,2 @@
+<link href="{{ asset('assets/admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/admin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
