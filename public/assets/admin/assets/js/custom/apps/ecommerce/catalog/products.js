@@ -10,7 +10,7 @@ var KTAppEcommerceProducts = function () {
     var initDatatable = function () {
         // Init datatable --- more info on datatables: https://datatables.net/manual/
         datatable = $(table).DataTable({
-            "info": false,
+            "info": true,
             'order': [],
             'pageLength': 10,
             'columnDefs': [
@@ -42,11 +42,12 @@ var KTAppEcommerceProducts = function () {
             if(value === 'all'){
                 value = '';
             }
-            datatable.column(6).search(value).draw();
+            console.log(value);
+            datatable.column(5).search(value ? '^' + value + '$' : '', true, false).draw();
         });
     }
 
-    // Delete cateogry
+    // Delete category
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-product-filter="delete_row"]');
@@ -64,11 +65,11 @@ var KTAppEcommerceProducts = function () {
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + productName + "?",
+                    text: "Are you sure you want to archive " + productName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
-                    confirmButtonText: "Yes, delete!",
+                    confirmButtonText: "Yes, archive!",
                     cancelButtonText: "No, cancel",
                     customClass: {
                         confirmButton: "btn fw-bold btn-danger",
@@ -77,7 +78,7 @@ var KTAppEcommerceProducts = function () {
                 }).then(function (result) {
                     if (result.value) {
                         Swal.fire({
-                            text: "You have deleted " + productName + "!.",
+                            text: "You have archived " + productName + "!.",
                             icon: "success",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -85,12 +86,14 @@ var KTAppEcommerceProducts = function () {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
                         }).then(function () {
-                            // Remove current row
-                            datatable.row($(parent)).remove().draw();
+                            // get the product id from data-product-id
+                            const productId = parent.querySelector('[data-product-id]').getAttribute('data-product-id');
+                            // send to the delete route
+                            window.location.href = `/admin/product/archive/${productId}`;
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: productName + " was not deleted.",
+                            text: productName + " was not archived.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",

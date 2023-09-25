@@ -15,7 +15,7 @@ class Category extends Model
         'updated_at',
     ];
 
-    public function projects(){
-        return $this->hasMany(Project::class);
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }

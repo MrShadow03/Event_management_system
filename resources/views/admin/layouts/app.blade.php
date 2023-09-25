@@ -24,16 +24,14 @@
                 <div class="d-flex flex-column flex-column-fluid">
 
                     <!--begin::Toolbar-->
-                    @section('toolbar')
-                    @show
+                    @yield('toolbar')
                     <!--end::Toolbar-->
 
                     <!--begin::Content-->
                     <div id="kt_app_content" class="app-content  flex-column-fluid ">
 
                         <!--begin::Content container-->
-                        @section('content')
-                        @show
+                        @yield('content')
                         <!--end::Content container-->
                     </div>
                     <!--end::Content-->
@@ -48,21 +46,18 @@
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-semibold me-1">2023&copy;</span>
-                            <a href="https://keenthemes.com/" target="_blank"
-                                class="text-gray-800 text-hover-primary">Keenthemes</a>
+                            <a href="https://pepplobd.com/" target="_blank"
+                                class="text-gray-800 text-hover-primary">Pepplo BD Ltd</a>
                         </div>
                         <!--end::Copyright-->
 
                         <!--begin::Menu-->
                         <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                            <li class="menu-item"><a href="https://keenthemes.com/" target="_blank"
+                            <li class="menu-item"><a href="https://pepplobd.com/" target="_blank"
                                     class="menu-link px-2">About</a></li>
 
-                            <li class="menu-item"><a href="https://devs.keenthemes.com/" target="_blank"
+                            <li class="menu-item"><a href="https://beta.pepplobd.com/" target="_blank"
                                     class="menu-link px-2">Support</a></li>
-
-                            <li class="menu-item"><a href="https://1.envato.market/EA4JP" target="_blank"
-                                    class="menu-link px-2">Purchase</a></li>
                         </ul>
                         <!--end::Menu-->
                     </div>
@@ -81,11 +76,10 @@
     <!--end::Page-->
 </div>
 
-@include('admin.partials.drawers')
+@yield('drawers')
 
 @include('admin.partials.scrolltop')
 
-{{-- @include('admin.layouts.modals') --}}
 @yield('exclusive_modals')
 
 @include('admin.partials.footer')

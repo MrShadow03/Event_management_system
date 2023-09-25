@@ -41,13 +41,13 @@ class CategoryController extends Controller{
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request){
-        //check if category has projects
+        //check if category has products
         $category = Category::find($request->id);
         
-        $hasProjects = $category->projects()->count();
+        $hasProduct = $category->products()->count();
         $isDefault = $category->id == 1;
 
-        if($hasProjects || $isDefault){
+        if($hasProduct || $isDefault){
             return redirect()->back()->with('error', 'Category cannot be deleted');
         }
 

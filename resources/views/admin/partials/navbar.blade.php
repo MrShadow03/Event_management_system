@@ -610,7 +610,7 @@
     <div class="app-navbar-item ms-1 ms-md-3" id="kt_header_user_menu_toggle">
         <!--begin::Menu wrapper-->
         <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <img src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" alt="user">
+            <img class="object-fit-contain" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" alt="user">
         </div>
 
         <!--begin::User account menu-->
@@ -620,7 +620,7 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}">
+                        <img class="object-fit-contain" alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}">
                     </div>
                     <!--end::Avatar-->
 
@@ -651,7 +651,7 @@
             </div>
             <!--end::Menu item-->
 
-            <!--begin::Menu item-->
+            {{-- <!--begin::Menu item-->
             <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
                 <a href="#" class="menu-link px-5">
                     <span class="menu-title">Inbox</span>
@@ -678,7 +678,7 @@
                 </div>
                 <!--end::Menu sub-->
             </div>
-            <!--end::Menu item-->
+            <!--end::Menu item--> --}}
 
             <!--begin::Menu separator-->
             <div class="separator my-2"></div>
@@ -695,12 +695,4 @@
         <!--end::Menu wrapper-->
     </div>
     <!--end::User menu-->
-
-    <!--begin::Header menu toggle-->
-    <div class="app-navbar-item d-lg-none ms-2 me-n2" title="Show header menu">
-        <div class="btn btn-flex btn-icon btn-active-color-primary w-30px h-30px" id="kt_app_header_menu_toggle">
-            <i class="ki-duotone ki-element-4 fs-1"><span class="path1"></span><span class="path2"></span></i>
-        </div>
-    </div>
-    <!--end::Header menu toggle-->
 </div>
