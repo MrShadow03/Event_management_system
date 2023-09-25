@@ -8,7 +8,7 @@
 	<!-- Title of Site -->
 	@yield('meta')
 	<!-- Favicons -->
-	<link rel="icon" type="image/png" href="{{ asset('assets/website/img/favicon-1.png') }}">
+	<link rel="icon" type="image/png" href="{{ asset('assets/website/assets/img/favicon.png') }}">
 	@include('website.partials.styles')
     @yield('exclusive-styles')
 </head>

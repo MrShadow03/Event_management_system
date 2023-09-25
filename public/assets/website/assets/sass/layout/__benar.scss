@@ -1,0 +1,36 @@
+.benar_box{
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 80vh;
+    z-index: -1;
+    margin-bottom: 50rem;
+    &::after{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+        z-index: 999 !important;
+        background-image: linear-gradient(#00000096, rgba(139, 119, 3, 0.274), #00000062);
+    }
+    .benar_items{
+        width: 100%;
+        height: 100%;
+        img{
+            width: 100%;
+            height: 100%; 
+            object-fit: cover;
+        }
+    }
+   
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical>.swiper-pagination-bullets {
+    right: 50% !important;
+    height: fit-content;
+    top: 80% !important;
+}

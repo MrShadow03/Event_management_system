@@ -1,0 +1,332 @@
+.catering_sec{
+    width: 65%;
+    margin:auto;
+    .catering_sec_text{
+        width: 100%;
+        height: 4.5rem;
+        margin: 3rem 0;
+        background-color: $blue;
+        text-align: center;
+        color: $white;
+        padding: 1rem 0;
+        font-size: 1.3rem;
+    }
+    .jamai_sec{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 3rem;
+        img{
+            width: 38%;
+            height: 35rem;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+        .jamai_sec_text{
+            width: 20%;
+            display: flex;
+            flex-wrap: wrap;
+            .jamai_manu{
+                width: 100%;
+                font-size: 1.5rem;
+                padding: 0.5rem 0;
+                h2{
+                    width: 100%;
+                    font-size: 1.8rem;
+                    text-align: center;
+                    border: 2px solid $black_light;
+                    padding: 0.9rem;
+                }
+            }
+
+        }
+    }
+    .biye_holud_sec{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1.5rem 0;
+        padding-bottom: 3rem;
+        .biye_holud_sec_text{
+            width: 30%;
+            display: flex;
+            flex-wrap: wrap;
+            .biye_holud_manu{
+                width: 100%;
+                font-size: 1.5rem;
+                padding: 1rem 0;
+                h2{
+                    width: 100%;
+                    font-size: 1.8rem;
+                    text-align: center;
+                    border: 2px solid $black_light;
+                    padding: 0.9rem;
+                }
+            }
+
+        }
+        img{
+            width: 60%;
+            height: 40rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+    }
+    .bibidho_items_sec{
+        width: 100%;
+        padding-bottom: 3rem;
+        .bibidho_items_list1{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-bottom: 4rem;
+            .bibidho_items_text{
+                width: 19%;
+                display: flex;
+                flex-wrap: wrap;
+                .bibidho_items_manu{
+                    width: 100%;
+                    font-size: 1.5rem;
+                    padding: 1rem 0;
+                    h2{
+                        width: 100%;
+                        font-size: 1.8rem;
+                        text-align: center;
+                        border: 2px solid $black_light;
+                        padding: 0.9rem;
+                    }
+                }
+            }
+        }
+        .card_items_list{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            img{
+                width: 30%;
+                height: 25rem;
+                border-radius: 0.5rem;
+                object-fit: cover;
+            }
+            .card_text{
+                width: 18%;
+                display: flex;
+                flex-wrap: wrap;
+                .card_manu{
+                    width: 100%;
+                    font-size: 1.5rem;
+                    padding: 0.5rem 0;
+                    h2{
+                        width: 100%;
+                        font-size: 1.8rem;
+                        text-align: center;
+                        border: 2px solid $black_light;
+                        padding: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+    .driver_items_sec{
+        width: 100%;
+        margin-bottom: 3rem;
+        .card_items_list{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            img{
+                width: 30%;
+                height: 25rem;
+                border-radius: 0.5rem;
+                object-fit: cover;
+            }
+            .card_text{
+                width: 18%;
+                display: flex;
+                flex-wrap: wrap;
+                .card_manu{
+                    width: 100%;
+                    font-size: 1.5rem;
+                    padding: 0.5rem 0;
+                    h2{
+                        width: 100%;
+                        font-size: 1.8rem;
+                        text-align: center;
+                        border: 2px solid $black_light;
+                        padding: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+}
+//responsive----------
+@media only screen and (max-width: 1820px) {
+.catering_sec{
+    width: 70%;
+    margin: auto;
+}
+}
+@media only screen and (max-width: 1720px) {
+    .catering_sec{
+        width: 80%;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 1620px) {
+    .catering_sec{
+        width: 85%;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 1520px) {
+    .catering_sec{
+        width: 90%;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 1320px) {
+    .catering_sec{
+        width: 95%;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 1220px) {
+    .catering_sec{
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+}
+@media only screen and (max-width: 1120px) {
+    .catering_sec{
+
+        .catering_sec_text{
+
+        }
+        .jamai_sec{
+            img{
+                width: 38%;
+                height: 30rem;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 920px) {
+    .catering_sec{
+
+        .catering_sec_text{
+
+        }
+        .jamai_sec{
+            img{
+                width: 38%;
+                height: 30rem;
+            }
+        }
+        .biye_holud_sec{
+            img{
+                width: 60%;
+                height: 40rem;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 720px) {
+    .catering_sec{
+
+        .catering_sec_text{
+
+        }
+        .jamai_sec{
+            display: flex;
+            flex-direction: column;
+            img{
+                width: 100%;
+                height: 30rem;
+            }
+            .jamai_sec_text{
+                width: 100%;
+                padding: 2rem 0;
+
+            }
+        }
+        .biye_holud_sec{
+            .biye_holud_sec_text{
+                width: 100%;
+            }
+            img{
+                width: 100%;
+                height: 40rem;
+            }
+        }
+        .bibidho_items_sec{
+            .bibidho_items_list1{
+                display: flex;
+                flex-direction: column;
+                .bibidho_items_text{
+                    width: 100%;
+                }
+            }
+            .card_items_list{
+                display: flex;
+                flex-direction: column;
+                img{
+                    width: 100%;
+                    height: 40rem;
+                }
+                .card_text{
+                    width: 100%;
+                }
+            }
+        }
+        .driver_items_sec{
+            .card_items_list{
+                display: flex;
+                flex-direction: column;
+                img{
+                    width: 100%;
+                    height: 40rem;
+                }
+                .card_text{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 520px) {
+    .catering_sec{
+
+        .jamai_sec{
+            img{
+                width: 100%;
+                height: 20rem;
+            }
+        }
+        .biye_holud_sec{
+            img{
+                width: 100%;
+                height: 30rem;
+            }
+        }
+        .bibidho_items_sec{
+            .card_items_list{
+                display: flex;
+                flex-direction: column;
+                img{
+                    width: 100%;
+                    height: 30rem;
+                }
+            }
+        }
+        .driver_items_sec{
+            .card_items_list{
+                img{
+                    width: 100%;
+                    height: 30rem;
+                }
+            }
+        }
+    }
+}

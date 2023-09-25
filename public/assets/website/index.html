@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa Event Management</title>
+    <link rel="shortcut icon" href="assets/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/font/fontawame/css/all.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+    <!-- SEARCH BOX -->
+    <div class="search_box">
+        <div class="input_area">
+            <input type="text" placeholder="Search for product">
+            <i class="fa-solid fa-x"></i>
+        </div>
+        <p>Start typing to see products you are looking for.</p>
+    </div>
+    <!-- CART BOX -->
+    <div class="cart_box">
+        <div class="cart_head">
+            <h2>Shopping cart</h2>
+            <div class="cart_bars">
+                <i class="fa-solid fa-x"></i>
+                <p>close</p>
+            </div>
+        </div>
+        <p>No products in the cart.</p>
+    </div>
+    <!-- Side Nav -->
+    <div class="main_side_nav">
+        <div class="side_nav_box">
+            <div class="side_nav">
+                <div class="nav_close">
+                    <div class="bars">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p>Close</p>
+                    </div>
+                </div>
+                <div class="nav_search">
+                    <form action="">
+                        <input type="text" placeholder="Search for products">
+                        <i class="navsearch_icon fa-solid fa-magnifying-glass"></i>
+                    </form>
+                </div>
+                <ul class="tab_wrap">
+                    <li class="tab_wrap_items">
+                        <input type="radio" id="tab_1" name="tab" checked />
+                        <label for="tab_1">
+                            MENU
+                        </label>
+                        <div class="tab_wrap_nav">
+                            <ul class="tab_wrap_nav_box">
+                                <li class="tab_wrap_nav_items"><a href="">HOME</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">EVENT MANAGMENT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CATERING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">BOOK YOUR VENUE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">LOGISTIC RENTAL</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WORKSHOP</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FASHION & FURNITURE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">ABOUT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CONTACT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WISHLIST</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tab_wrap_items">
+                        <input type="radio" id="tab_2" name="tab"/>
+                        <label for="tab_2">
+                            CATEGORIES
+                        </label>
+                        <div class="tab_wrap_nav">
+                            <ul class="tab_wrap_nav_box">
+                                <li class="tab_wrap_nav_items"><a href="">ARTIFICIAL TREE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CENTERPIECES</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHAIR</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHAIR RIBBON</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHANDELIER</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CLOTH</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FLOWER VASE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FOUNTAIN</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">HANGING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">HEAD TABLE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">LIGHTING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">METAL</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">PLATFORM</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">SHOWPIECE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">SOFA</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE & TOOLS</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE RUNNER</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE TOP</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">UMBRELLA</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WALKWAY</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WOOD DESIGN</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">EXTRA</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- HEADER -->
+    <header class="header">
+        <!-- Nav Menu Logo Here -->
+        <div id="mainNav_area">
+            <div class="logo_top"><img src="assets/img/Logo.png" alt=""></div>
+            <nav class="navigation">
+                <div class="logo_nav">
+                    <div class="nav_bars">
+                        <i class="fa-solid fa-bars"></i>
+                        <h2>MENU</h2>
+                    </div>
+                    <a href="{{ route('home') }}">
+                        <img src="assets/img/Logo.png" alt="">
+                    </a>
+                </div>
+                <ul class="nav_area">
+                    <li><a href="{{ route('home') }}">HOME</a></li>
+                    <li><a href="{{ route('event') }}">EVENT MANAGEMENT</a></li>
+                    <li><a href="{{ route('catering') }}">CATERING</a></li>
+                    <li><a href="#">BOOK YOUR VENUE</a></li>
+                    <li><a href="{{ route('logistics') }}">LOGISTIC RENTAL</a></li>
+                    <li><a href="{{ route('workshop') }}">WORKSHOP</a></li>
+                    <li><a href="#">FASHOIN & FURNITURE</a></li>
+                    <li><a href="{{ route('about') }}">ABOUT</a></li>
+                    <li><a href="{{ route('contact') }}">CONTACT</a></li>
+                </ul>
+                <div class="social_link">
+                    <div class="search">
+                        <span id="search_bars"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <div class="cart">
+                        <span id="cart_btn"><i class="fa-solid fa-cart-shopping"></i></span>
+                    </div>
+                    <div class="signIn">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+      <!-- BENAR START HERE -->
+        <div class="benar_box swiper">
+            <div class="swiper-wrapper">
+                <div class="benar_items swiper-slide">
+                    <img src="assets/img/benar1.jpg" alt="">
+                </div>
+                <div class="benar_items swiper-slide">
+                    <img src="assets/img/Lifestyle.png" alt="">
+                </div>
+                <div class="benar_items swiper-slide">
+                    <img src="assets/img/catering.jpg" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </header>
+    
+    <!-- MAIN BODY  -->
+    <div class="container_fluid">
+        <div class="aro_img"></div>
+        <div class="custom_title1">
+            <h2>EVENT MANAGEMENT<span class="border"></span></h2>
+            <p class="desc">We are thrilled to offer a variety of events and gatherings for you to enjoy. Our goal is to provide a welcoming and enjoyable atmosphere where you can connect with others and make lasting memories.</p>
+        </div>
+        <!-- EVENT -->
+        <div class="event">
+           <div class="eventCard_md">
+                <div class="img_area">
+                    <img src="https://maaevent.com/wp-content/uploads/2023/07/Mushira-Fahad-1-614x800.jpg" alt="">
+                </div>
+                <div class="custom_title2">
+                    <h2>Wedding Reception</h2>
+                    <p>We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.</p>
+                    <a class="btn_black" href="#">VIEW</a>
+                </div>
+           </div>
+           <div class="eventCard_sm">
+                <div class="custom_title2">
+                    <h2>Lifestyle Occasions</h2>
+                    <p>We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.</p>
+                    <a class="btn_black" href="#">VIEW</a>
+                </div>
+                <div class="img_area">
+                    <img src="assets/img/Lifestyle.png" alt="">
+                </div>
+            </div>
+
+            <div class="eventCard_sm">
+                <div class="img_area">
+                    <img src="assets/img/corporate-02.png" alt="">
+                </div>
+                <div class="custom_title2">
+                    <h2>Lifestyle Occasions</h2>
+                    <p>We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.</p>
+                    <a class="btn_black" href="#">VIEW</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATERING -->
+         <div class="catering">
+            <div class="catering_slider left_side">
+                <div class="img_area img_left swiper">
+                    <div class="swiper-wrapper">
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="custom_title2">
+                    <h2>Catering</h2>
+                    <p>Welcome to our catering services, where we turn your special moments into culinary masterpieces. Our team of passionate chefs and experienced event planners is dedicated to creating a memorable dining experience for you and your guests.</p>
+                    <a class="btn_black" href="#">VIEW</a>
+                </div>
+            </div>
+            <div class="catering_slider right_side">
+                <div  class="img_area img_right swiper">
+                    <div class="swiper-wrapper">
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                        <div class="img swiper-slide">
+                            <img src="assets/img/catering.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="custom_title2">
+                    <h2>Book Your Venue</h2>
+                    <p>Looking for the perfect venue for your next event? Let our event management company take care of it! With our expertise & extensive network of venues, we’ll help you find the ideal space to bring your event to life. Book your venue with us today & get ready for an experience!</p>
+                    <a class="btn_black" href="#">VIEW</a>
+                </div>
+            </div>
+        </div>
+        <!-- VIDEOS  -->
+         <div class="video">
+            <div class="custom_title1">
+                <h2>OUR VIDEOS</h2>
+                <p class="desc">Here you’ll find videos that highlight some of our most popular rental products, including tents, tables and chairs, audio and visual equipment, and more. You’ll see our equipment being set up and used at real events, giving you a better understanding of what to expect when you rent from us.</p>
+            </div>
+            <div class="videos">
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/FT6QMCRqS2E" title="Wedding Ceremony of Sabbir &amp; Anika | Date : 06-10-2022 |Venue: Sena Malancha" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/YJXGwt_LCa8" title="Ahona &amp; Murad&#39;s Holud | 8th September, 2022 | Army Officers Club |" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/-B_yj0dat-4" title="Wedding Reception of Razin &amp; Naomi | 17-02-2022 | MP Hostel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/aksGnMvngn8" title="Reception of Laiba &amp; Shovon | Date : 07/08/2022 | Venue: Army Golf Garden , Dhaka Canton." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/YMkEuHk-JDI" title="Wedding Reception of Fema &amp; Showrov | Date : 27/07/2022 | Venue: MP Hostel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="items">
+                    <iframe src="https://www.youtube.com/embed/xtqU9PLQ3no" title="Wedding Reception of Athina &amp; Rahil | Date : 25/07/2022 | Venue: Hotel Pan Pacific Sonargaon, Dhaka" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="btn_area">
+                <a class="btn_black" href="#">VIEW</a>
+            </div>
+        </div>
+        <!-- CLIENTS -->
+        <div class="clients">
+            <div class="custom_title1">
+                <h2>Our Happy Clients!</h2>
+            </div>
+            <div id="client_slider" class="owl-carousel">
+                <div class="clients_card">
+                    <img src="assets/img/Logo.png" alt="">
+                    <div class="reting">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                    <h4>Tayba Jannat</h4>
+                </div>
+                <div class="clients_card">
+                    <img src="assets/img/Logo.png" alt="">
+                    <div class="reting">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                    <h4>Tayba Jannat</h4>
+                </div>
+                <div class="clients_card">
+                    <img src="assets/img/Logo.png" alt="">
+                    <div class="reting">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                    <h4>Tayba Jannat</h4>
+                </div>
+                <div class="clients_card">
+                    <img src="assets/img/Logo.png" alt="">
+                    <div class="reting">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                    <h4>Tayba Jannat</h4>
+                </div>
+                <div class="clients_card">
+                    <img src="assets/img/Logo.png" alt="">
+                    <div class="reting">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                    <h4>Tayba Jannat</h4>
+                </div>
+            </div>
+        </div>
+        <!-- FOLLOWUS -->
+        <div class="followUs">
+            <div class="custom_title2">
+                <h2>Follow & Review Us</h2>
+                <p>We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.</p>
+                <div class="social_btn_sm">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="social_btn_lg">
+                <a class="btn_lg Facebook" href="#">Facebook Review</a>
+                <a class="btn_lg google" href="#">Google Review</a>
+            </div>
+        </div>
+        <!-- FOOTER END SECTION -->
+         <footer>
+            <div class="footer_area">
+                <div class="address">
+                    <img src="assets/img/Logo.png" alt="">
+                    <span><i class="fa-solid fa-paper-plane"></i> Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212</span>
+                    <span><i class="fa-solid fa-mobile-screen-button"></i><a href="#"></a>+880 1671-711933</span>
+                    <span><i class="fa-solid fa-envelope"></i><a href="#">maaeventmanagementbd@gmail.com</a></span>
+                    <div class="footer_social_btn">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="import_link">
+                    <div class="item_area">
+                        <h2>IMPORTANT LINK</h2>
+                        <ul>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Book Your Venue</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Workshop</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Catering</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Career</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="item_area">
+                        <h2>USEFUL LINKSK</h2>
+                        <ul>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Product Rental Policy</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Delivery and Shipping</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Terms and Conditions</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Return and Refund</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">Privacy Policy</a></li>
+                            <li><i class="fa-solid fa-circle"></i><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="map">
+                    <h2>WE ARE VERY NEAR TO YOU</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259504026561!2d90.41494447533775!3d23.809369478630117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c715f2121e7d%3A0xf7d351b7edb1d903!2sMaa%20Event%20Management%20and%20Catering!5e0!3m2!1sen!2sbd!4v1695360704361!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="copyright">
+                <span>&copy; Copyright - 2023 - Maa Event | All Rights Reseved | Desingned & Developed by <a href="#"> Pepplo BD</a></span>
+            </div>
+        </footer>
+
+    </div>
+
+
+    
+
+    
+
+
+
+
+    <script src="./assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <script src="./assets/js/custom.js"></script>
+</body>
+</html>

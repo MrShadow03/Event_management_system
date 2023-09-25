@@ -1,0 +1,60 @@
+@media only screen and (max-width:1440px){
+
+}
+
+
+@media only screen and (max-width:1440px){
+    .contact_area{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width:1024px){
+    .contact_area{
+        width: 95% !important;
+        flex-direction: column;
+        padding: 4rem 0;
+    }
+    .info_box{
+        display: block;
+        width: 100%;
+    }
+    .forn_box{
+        display: block;
+        width: 100%;
+        &::after{
+           display: none;
+        }
+    }
+}
+
+@media only screen and (max-width:768px){
+    .info_box{
+        iframe {
+            height: 20rem !important;
+        }
+    }
+    .forn_box{
+        .input_group{
+            flex-direction: column;
+            .input{
+                display: block;
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

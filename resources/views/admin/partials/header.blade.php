@@ -13,7 +13,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="" />
-    <link rel="shortcut icon" href="{{ asset('assets/website/img/logos/cropped-Favicon-180x180.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/website/assets/img/favicon.png') }}">
 
     <!--begin::Fonts(mandatory for all pages)-->
     @include('admin.partials.fonts')

@@ -231,7 +231,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-danger">No products found!</td>
+                        <td colspan="8" class="text-center text-danger">No products found!</td>
+                        <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
@@ -271,7 +272,7 @@
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
                     <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.category.store') }}" method="POST">
+                        action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <!--begin::Heading-->
@@ -299,6 +300,66 @@
                             </div>
                         </div>
                         <!--end::Input group-->
+
+                        <!--begin::Input group row-->
+                        <div class="row">
+                            <!--begin::Image input-->
+                            <div class="mb-10 fv-row">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Category Image</span>
+                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                        title="Image for the single project section.">
+                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </label>
+                                <div class="image-input image-input-outline" data-kt-image-input="true">
+                                    <!--begin::Image preview wrapper-->
+                                    <div class="image-input-wrapper w-125px h-150px" style="background-image: url({{ asset('/assets/admin/assets/media/placeholder/banner.webp') }}); background-position: 50% 50%;">
+                                    </div>
+                                    <!--end::Image preview wrapper-->
+
+                                    <!--begin::Edit button-->
+                                    <label
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Change Category image">
+                                        <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span
+                                                class="path2"></span></i>
+
+                                        <!--begin::Inputs-->
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
+                                        <input type="hidden" name="avatar_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Edit button-->
+
+                                    <!--begin::Cancel button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Cancel Category image">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </span>
+                                    <!--end::Cancel button-->
+
+                                    <!--begin::Remove button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Remove Category image">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </span>
+                                    <!--end::Remove button-->
+                                </div>
+                                <div class="form-text">Allowed file types: png, jpg, jpeg, webp.</div>
+                            </div>
+                            <!--end::Image input-->
+                        </div>
+                        <!--end::Input group row-->
 
                         <!--begin::Actions-->
                         <div class="text-center">
@@ -346,7 +407,7 @@
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
                     <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.category.update') }}" method="POST">
+                        action="{{ route('admin.category.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" name="id" id="editCategoryId">
@@ -375,6 +436,66 @@
                             </div>
                         </div>
                         <!--end::Input group-->
+
+                        <!--begin::Input group row-->
+                        <div class="row">
+                            <!--begin::Image input-->
+                            <div class="mb-10 fv-row">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Category Image</span>
+                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                        title="Image for the single project section.">
+                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </label>
+                                <div class="image-input image-input-outline" data-kt-image-input="true">
+                                    <!--begin::Image preview wrapper-->
+                                    <div class="image-input-wrapper w-125px h-150px" id="editCategoryImagePreview" style="background-image: url({{ asset('/assets/admin/assets/media/placeholder/banner.webp') }}); background-position: 50% 50%;">
+                                    </div>
+                                    <!--end::Image preview wrapper-->
+
+                                    <!--begin::Edit button-->
+                                    <label
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Change Category image">
+                                        <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span
+                                                class="path2"></span></i>
+
+                                        <!--begin::Inputs-->
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
+                                        <input type="hidden" name="avatar_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Edit button-->
+
+                                    <!--begin::Cancel button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Cancel Category image">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </span>
+                                    <!--end::Cancel button-->
+
+                                    <!--begin::Remove button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Remove Category image">
+                                        <i class="ki-outline ki-cross fs-3"></i>
+                                    </span>
+                                    <!--end::Remove button-->
+                                </div>
+                                <div class="form-text">Allowed file types: png, jpg, jpeg, webp.</div>
+                            </div>
+                            <!--end::Image input-->
+                        </div>
+                        <!--end::Input group row-->
 
                         <!--begin::Actions-->
                         <div class="text-center">
@@ -904,14 +1025,7 @@
                     <div class="d-flex align-items-sm-center mb-7">
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
-                            <span class="symbol-label bg-light-danger">
-                                <i class="ki-duotone ki-note fs-2x text-danger">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                    <span class="path4"></span>
-                                </i>
-                            </span>
+                            <img src="{{ asset('storage').'/'.$category->image }}" alt=""/>
                         </div>
                         <!--end::Symbol-->
 
@@ -922,7 +1036,7 @@
                                 <span class="text-muted fw-semibold d-block fs-7">{{  $category->product_count }} Product{{  $category->product_count > 1 ? 's' : '' }}</span>
                             </div>
                             <div class="my-2">
-                                <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" title="Some info about it's function!" data-bs-toggle="modal" data-bs-target="#category_update_modal" onclick="inputCategoryData({{ json_encode($category) }})">
+                                <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" title="Some info about it's function!" data-bs-toggle="modal" data-bs-target="#category_update_modal" onclick="inputCategoryData({{ json_encode($category) }}, '{{ asset('storage') }}')">
                                     <i class="ki-duotone ki-pencil fs-2">
                                         <span class="path1"></span>
                                         <span class="path2"></span>
@@ -984,10 +1098,11 @@
             $('#editProductCategory').select2().trigger('change');
         }
 
-        function inputCategoryData(data) {
+        function inputCategoryData(data, storagePath) {
             // change the form title
             $('#editCategoryId').val(data.id);
             $('#editCategoryName').val(data.name);
+            $('#editCategoryImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')' );
         }
     </script>
 @endsection

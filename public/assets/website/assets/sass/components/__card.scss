@@ -1,0 +1,1140 @@
+.card_1{
+    width: 24%;
+    height: 37rem;
+    &:hover{
+        .raw_items_image{
+            .image_items_icon_box{
+                position: absolute;
+                bottom: 1rem;
+                right: 0;
+                left: 0;
+                margin: auto;
+                opacity: 1;
+            }
+        }
+    }
+    .raw_items_image{
+        width: 100%;
+        height: 32rem;
+        position: relative;
+        overflow: hidden;
+        .image_sec{
+            width: 100%;
+            height: 100%;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .image_items_icon_box{
+            position: absolute;
+            bottom: -5rem;
+            right: 0;
+            left: 0;
+            margin: auto;
+            width: 65%;
+            height: 4.5rem;
+            background-color: rgba(255, 255, 255, 0.938);
+            color: $black_light;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            opacity: 0;
+            transition: 0.4s;
+            .image_items_icon{
+                font-size: 2rem;
+                cursor: pointer;
+                color: $black_light;
+                a[title]{
+                    background-color: rgba(0, 0, 0, 0.884);
+                }
+            }
+        }
+    }
+    .raw_items_text{
+        width: 100%;
+        height: 5rem;
+        text-align: center;
+        font-size: 1.5rem;
+        p{
+            padding-top: 1rem;
+            color: $black_light;
+            transition: 0.3s;
+            cursor: pointer;
+            &:hover{
+                color: rgb(131, 129, 129);
+            }
+        }
+        span{
+            color:$blue;
+            font-weight: bold;
+        }
+    }
+}
+//Responsive----------card_1 Start
+@media only screen and (max-width: 1060px) {
+    .card_1{
+        width: 23%;
+        height: 37rem;
+        &:hover{
+            .raw_items_image{
+                .image_items_icon_box{
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 0;
+                    left: 0;
+                    margin: auto;
+                    opacity: 1;
+                }
+            }
+        }
+        .raw_items_image{
+            width: 100%;
+            height: 32rem;
+            position: relative;
+            overflow: hidden;
+            .image_sec{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .image_items_icon_box{
+                position: absolute;
+                bottom: -5rem;
+                right: 0;
+                left: 0;
+                margin: auto;
+                width: 65%;
+                height: 4.5rem;
+                background-color: rgba(255, 255, 255, 0.938);
+                color: $black_light;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1rem;
+                opacity: 0;
+                transition: 0.4s;
+                .image_items_icon{
+                    font-size: 2rem;
+                    cursor: pointer;
+                    color: $black_light;
+                    a[title]{
+                        background-color: rgba(0, 0, 0, 0.884);
+                    }
+                }
+            }
+        }
+        .raw_items_text{
+            width: 100%;
+            height: 5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            p{
+                padding-top: 1rem;
+                color: $black_light;
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(131, 129, 129);
+                }
+            }
+            span{
+                color:$blue;
+                font-weight: bold;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 760px) {
+    .card_1{
+        width: 32%;
+        height: 37rem;
+        &:hover{
+            .raw_items_image{
+                .image_items_icon_box{
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 0;
+                    left: 0;
+                    margin: auto;
+                    opacity: 1;
+                }
+            }
+        }
+        .raw_items_image{
+            width: 100%;
+            height: 32rem;
+            position: relative;
+            overflow: hidden;
+            .image_sec{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .image_items_icon_box{
+                position: absolute;
+                bottom: -5rem;
+                right: 0;
+                left: 0;
+                margin: auto;
+                width: 65%;
+                height: 4.5rem;
+                background-color: rgba(255, 255, 255, 0.938);
+                color: $black_light;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1rem;
+                opacity: 0;
+                transition: 0.4s;
+                .image_items_icon{
+                    font-size: 2rem;
+                    cursor: pointer;
+                    color: $black_light;
+                    a[title]{
+                        background-color: rgba(0, 0, 0, 0.884);
+                    }
+                }
+            }
+        }
+        .raw_items_text{
+            width: 100%;
+            height: 5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            p{
+                padding-top: 1rem;
+                color: $black_light;
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(131, 129, 129);
+                }
+            }
+            span{
+                color:$blue;
+                font-weight: bold;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 560px) {
+    .card_1{
+        width: 48%;
+        height: 37rem;
+        &:hover{
+            .raw_items_image{
+                .image_items_icon_box{
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 0;
+                    left: 0;
+                    margin: auto;
+                    opacity: 1;
+                }
+            }
+        }
+        .raw_items_image{
+            width: 100%;
+            height: 32rem;
+            position: relative;
+            overflow: hidden;
+            .image_sec{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .image_items_icon_box{
+                position: absolute;
+                bottom: -5rem;
+                right: 0;
+                left: 0;
+                margin: auto;
+                width: 65%;
+                height: 4.5rem;
+                background-color: rgba(255, 255, 255, 0.938);
+                color: $black_light;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1rem;
+                opacity: 0;
+                transition: 0.4s;
+                .image_items_icon{
+                    font-size: 2rem;
+                    cursor: pointer;
+                    color: $black_light;
+                    a[title]{
+                        background-color: rgba(0, 0, 0, 0.884);
+                    }
+                }
+            }
+        }
+        .raw_items_text{
+            width: 100%;
+            height: 5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            p{
+                padding-top: 1rem;
+                color: $black_light;
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(131, 129, 129);
+                }
+            }
+            span{
+                color:$blue;
+                font-weight: bold;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 360px) {
+    .card_1{
+        width: 100%;
+        height: 37rem;
+        &:hover{
+            .raw_items_image{
+                .image_items_icon_box{
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 0;
+                    left: 0;
+                    margin: auto;
+                    opacity: 1;
+                }
+            }
+        }
+        .raw_items_image{
+            width: 100%;
+            height: 32rem;
+            position: relative;
+            overflow: hidden;
+            .image_sec{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .image_items_icon_box{
+                position: absolute;
+                bottom: -5rem;
+                right: 0;
+                left: 0;
+                margin: auto;
+                width: 65%;
+                height: 4.5rem;
+                background-color: rgba(255, 255, 255, 0.938);
+                color: $black_light;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 1rem;
+                opacity: 0;
+                transition: 0.4s;
+                .image_items_icon{
+                    font-size: 2rem;
+                    cursor: pointer;
+                    color: $black_light;
+                    a[title]{
+                        background-color: rgba(0, 0, 0, 0.884);
+                    }
+                }
+            }
+        }
+        .raw_items_text{
+            width: 100%;
+            height: 5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            p{
+                padding-top: 1rem;
+                color: $black_light;
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover{
+                    color: rgb(131, 129, 129);
+                }
+            }
+            span{
+                color:$blue;
+                font-weight: bold;
+            }
+        }
+    }
+}
+//Responsive----------card_1 End
+
+
+.card_2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .cart_image{
+        width: 48%;
+        height: 100%;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .cart_text{
+        width: 48%;
+        p{
+            font-size: 2rem;
+            font-weight: bold;
+            padding-bottom: 1.5rem;
+        }
+        span{
+            font-size: 2rem;
+            font-weight: bold;
+            color: $blue;
+        }
+        .form_box{
+            width: 100%;
+            .form_items{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 2rem 0;
+                .label_text{
+                    width: 100%;
+                    color: rgb(129, 123, 123);
+                    font-size: 1.5rem;
+                    padding: 1rem 0;
+                }
+                .pickup_date{
+                    width: 68%;
+                    border: 1px solid;
+                    padding: 1rem 0.5rem;
+                    border: 1px solid $border;
+                }
+                .pickup_time{
+                    width: 28%;
+                    border: 1px solid;
+                    padding: 1rem 0.5rem;
+                    border: 1px solid $border;
+                }
+            }
+            button{
+                margin-top: 7rem;
+            }
+        }
+        .cart_wishlist{
+            width: 100%;
+            padding: 2rem 0;
+            border-bottom: 1px solid $border;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            &:hover{
+                color: rgb(189, 179, 179);
+            }
+        }
+        .category{
+            padding: 2rem 0;
+            ul{
+                li{
+                    display: flex;
+                    gap: 0 0.5rem;
+                    p{
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        font-size: 1.5rem;
+                        color: $black_light;
+                        transition: 0.4s;
+                        &:hover{
+                            color: rgb(189, 179, 179);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+//Responsive----------card_2 Start
+@media only screen and (max-width: 760px) {
+    .card_2{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 0;
+        .cart_image{
+            width: 100%;
+            height: 100%;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .cart_text{
+            width: 100%;
+            p{
+                font-size: 2rem;
+                font-weight: bold;
+                padding-bottom: 1.5rem;
+            }
+            span{
+                font-size: 2rem;
+                font-weight: bold;
+                color: $blue;
+            }
+            .form_box{
+                width: 100%;
+                .form_items{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 2rem 0;
+                    .label_text{
+                        width: 100%;
+                        color: rgb(129, 123, 123);
+                        font-size: 1.5rem;
+                        padding: 1rem 0;
+                    }
+                    .pickup_date{
+                        width: 68%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                    .pickup_time{
+                        width: 28%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                }
+                button{
+                    margin-top: 7rem;
+                }
+            }
+            .cart_wishlist{
+                width: 100%;
+                padding: 2rem 0;
+                border-bottom: 1px solid $border;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: 0.3s;
+                font-weight: bold;
+                &:hover{
+                    color: rgb(189, 179, 179);
+                }
+            }
+            .category{
+                padding: 2rem 0;
+                ul{
+                    li{
+                        display: flex;
+                        gap: 0 0.5rem;
+                        p{
+                            font-size: 1.5rem;
+                        }
+                        a{
+                            font-size: 1.5rem;
+                            color: $black_light;
+                            transition: 0.4s;
+                            &:hover{
+                                color: rgb(189, 179, 179);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+//Responsive----------card_2 End
+
+
+.model_card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .cart_image{
+        width: 49%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        &:hover{
+            .view_details{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                opacity: 1;
+            }
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .view_details{
+            width: 100%;
+            height: 4rem;
+            font-size: 1.8rem;
+            background-color: $blue;
+            text-align: center;
+            position: absolute;
+            bottom: -6rem ;
+            left: 0;
+            color: $white;
+            padding: 1rem 0;
+            transition: 0.4s;
+            opacity: 0;
+        }
+    }
+    .cart_text{
+        width: 49%;
+        height: 100%;
+        padding: 2rem 0;
+        overflow-y: scroll;
+        &::-webkit-scrollbar{
+            width: 0.3rem;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: $white;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: $border;
+        }
+        .cart_text_main{
+            font-size: 2rem;
+            font-weight: bold;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .model_cart_close{
+                border: none;
+                outline: none;
+                background-color: $white;
+                cursor: pointer;
+                font-size: 1.8rem;
+            }
+        }
+        span{
+            font-size: 2rem;
+            font-weight: bold;
+            color: $blue;
+        }
+        .form_box{
+            width: 100%;
+            .form_items{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+                .label_text{
+                    width: 100%;
+                    color: rgb(129, 123, 123);
+                    font-size: 1.5rem;
+                    padding: 1rem 0;
+                }
+                .pickup_date{
+                    width: 68%;
+                    border: 1px solid;
+                    padding: 1rem 0.5rem;
+                    border: 1px solid $border;
+                }
+                .pickup_time{
+                    width: 28%;
+                    border: 1px solid;
+                    padding: 1rem 0.5rem;
+                    border: 1px solid $border;
+                }
+            }
+            button{
+                margin-top: 1rem;
+            }
+        }
+        .cart_wishlist{
+            width: 100%;
+            padding: 2rem 0;
+            margin: 2rem 0;
+            border-bottom: 1px solid $border;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            &:hover{
+                color: rgb(189, 179, 179);
+            }
+        }
+        .category{
+            padding: 0.5rem 0;
+            ul{
+                li{
+                    display: flex;
+                    gap:0.5rem;
+                    padding: 0.5rem 0;
+                    p{
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        font-size: 1.5rem;
+                        color: $black_light;
+                        transition: 0.4s;
+                        &:hover{
+                            color: rgb(189, 179, 179);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+//Responsive----------model_card Start
+@media only screen and (max-width: 1920px) {
+    .model_card{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        .cart_image{
+            width: 49%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            &:hover{
+                .view_details{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 1;
+                }
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+            .view_details{
+                width: 100%;
+                height: 4rem;
+                font-size: 1.8rem;
+                background-color: $blue;
+                text-align: center;
+                position: absolute;
+                bottom: -6rem ;
+                left: 0;
+                color: $white;
+                padding: 1rem 0;
+                transition: 0.4s;
+                opacity: 0;
+            }
+        }
+        .cart_text{
+            width: 49%;
+            height: 100%;
+            padding: 2rem 0;
+            overflow-y: scroll;
+            &::-webkit-scrollbar{
+                width: 0.3rem;
+            }
+            &::-webkit-scrollbar-track{
+                background-color: $white;
+            }
+            &::-webkit-scrollbar-thumb{
+                background-color: $border;
+            }
+            .cart_text_main{
+                font-size: 2rem;
+                font-weight: bold;
+                padding-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .model_cart_close{
+                    border: none;
+                    outline: none;
+                    background-color: $white;
+                    cursor: pointer;
+                    font-size: 1.8rem;
+                }
+            }
+            span{
+                font-size: 2rem;
+                font-weight: bold;
+                color: $blue;
+            }
+            .form_box{
+                width: 100%;
+                .form_items{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem 0;
+                    .label_text{
+                        width: 100%;
+                        color: rgb(129, 123, 123);
+                        font-size: 1.5rem;
+                        padding: 1rem 0;
+                    }
+                    .pickup_date{
+                        width: 68%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                    .pickup_time{
+                        width: 28%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                }
+                button{
+                    margin-top: 1rem;
+                }
+            }
+            .cart_wishlist{
+                width: 100%;
+                padding: 1rem 0;
+                border-bottom: 1px solid $border;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: 0.3s;
+                font-weight: bold;
+                &:hover{
+                    color: rgb(189, 179, 179);
+                }
+            }
+            .category{
+                padding: 0.5rem 0;
+                ul{
+                    li{
+                        display: flex;
+                        gap:0.5rem;
+                        padding: 0.5rem 0;
+                        p{
+                            font-size: 1.5rem;
+                        }
+                        a{
+                            font-size: 1.5rem;
+                            color: $black_light;
+                            transition: 0.4s;
+                            &:hover{
+                                color: rgb(189, 179, 179);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1360px) {
+    .model_card{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        .cart_image{
+            width: 49%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            &:hover{
+                .view_details{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 1;
+                }
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+            .view_details{
+                width: 100%;
+                height: 4rem;
+                font-size: 1.8rem;
+                background-color: $blue;
+                text-align: center;
+                position: absolute;
+                bottom: -6rem ;
+                left: 0;
+                color: $white;
+                padding: 1rem 0;
+                transition: 0.4s;
+                opacity: 0;
+            }
+        }
+        .cart_text{
+            width: 49%;
+            height: 100%;
+            padding: 2rem 0;
+            overflow-y: scroll;
+            &::-webkit-scrollbar{
+                width: 0.3rem;
+            }
+            &::-webkit-scrollbar-track{
+                background-color: $white;
+            }
+            &::-webkit-scrollbar-thumb{
+                background-color: $border;
+            }
+            .cart_text_main{
+                font-size: 2rem;
+                font-weight: bold;
+                padding-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .model_cart_close{
+                    border: none;
+                    outline: none;
+                    background-color: $white;
+                    cursor: pointer;
+                    font-size: 1.8rem;
+                }
+            }
+            span{
+                font-size: 2rem;
+                font-weight: bold;
+                color: $blue;
+            }
+            .form_box{
+                width: 100%;
+                .form_items{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem 0;
+                    .label_text{
+                        width: 100%;
+                        color: rgb(129, 123, 123);
+                        font-size: 1.5rem;
+                        padding: 0.5rem 0;
+                    }
+                    .pickup_date{
+                        width: 68%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                    .pickup_time{
+                        width: 28%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                }
+                button{
+                    margin-top: 1rem;
+                }
+            }
+            .cart_wishlist{
+                width: 100%;
+                padding: 2rem 0;
+                margin: 2rem 0;
+                border-bottom: 1px solid $border;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: 0.3s;
+                font-weight: bold;
+                &:hover{
+                    color: rgb(189, 179, 179);
+                }
+            }
+            .category{
+                padding: 0.5rem 0;
+                ul{
+                    li{
+                        display: flex;
+                        gap: 0 0.5rem;
+                        padding: 1rem 0;
+                        p{
+                            font-size: 1.5rem;
+                        }
+                        a{
+                            font-size: 1.5rem;
+                            color: $black_light;
+                            transition: 0.4s;
+                            &:hover{
+                                color: rgb(189, 179, 179);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 860px) {
+    .model_card{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: scroll;
+        &::-webkit-scrollbar{
+            width: 0.3rem;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: $white;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: $border;
+        }
+        .cart_image{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            &:hover{
+                .view_details{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 1;
+                }
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+            .view_details{
+                width: 100%;
+                height: 4rem;
+                font-size: 1.5rem;
+                background-color: $blue;
+                text-align: center;
+                position: absolute;
+                bottom: -6rem ;
+                left: 0;
+                color: $white;
+                padding: 1rem 0;
+                transition: 0.4s;
+                opacity: 0;
+            }
+        }
+        .cart_text{
+            width: 100%;
+            height: 100%;
+            padding: 2rem 0;
+            .cart_text_main{
+                font-size: 1.7rem;
+                font-weight: bold;
+                padding-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .model_cart_close{
+                    border: none;
+                    outline: none;
+                    background-color: $white;
+                    cursor: pointer;
+                    font-size: 1.5rem;
+                }
+            }
+            span{
+                font-size: 1.7rem;
+                font-weight: bold;
+                color: $blue;
+            }
+            .form_box{
+                width: 100%;
+                .form_items{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem 0;
+                    .label_text{
+                        width: 100%;
+                        color: rgb(129, 123, 123);
+                        font-size: 1.3rem;
+                        padding: 0.5rem 0;
+                    }
+                    .pickup_date{
+                        width: 68%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                    .pickup_time{
+                        width: 28%;
+                        border: 1px solid;
+                        padding: 1rem 0.5rem;
+                        border: 1px solid $border;
+                    }
+                }
+                button{
+                    margin-top: 1rem;
+                }
+            }
+            .cart_wishlist{
+                width: 100%;
+                padding: 2rem 0;
+                margin: 2rem 0;
+                border-bottom: 1px solid $border;
+                font-size: 1.3rem;
+                cursor: pointer;
+                transition: 0.3s;
+                font-weight: bold;
+                &:hover{
+                    color: rgb(189, 179, 179);
+                }
+            }
+            .category{
+                padding: 0.5rem 0;
+                ul{
+                    li{
+                        display: flex;
+                        gap: 0 0.5rem;
+                        padding: 1rem 0;
+                        p{
+                            font-size: 1.3rem;
+                        }
+                        a{
+                            font-size: 1.3rem;
+                            color: $black_light;
+                            transition: 0.4s;
+                            &:hover{
+                                color: rgb(189, 179, 179);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+//Responsive----------model_card End

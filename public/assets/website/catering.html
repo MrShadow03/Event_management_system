@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa Event Management</title>
+    <link rel="shortcut icon" href="assets/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/font/fontawame/css/all.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./assets/css/lightbox.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+    <!-- SEARCH BOX -->
+    <div class="search_box">
+        <div class="input_area">
+            <input type="text" placeholder="Search for product">
+            <i class="fa-solid fa-x"></i>
+        </div>
+        <p>Start typing to see products you are looking for.</p>
+    </div>
+    <!-- CART BOX -->
+    <div class="cart_box">
+        <div class="cart_head">
+            <h2>Shopping cart</h2>
+            <div class="cart_bars">
+                <i class="fa-solid fa-x"></i>
+                <p>close</p>
+            </div>
+        </div>
+        <p>No products in the cart.</p>
+    </div>
+    <!-- Side Nav -->
+    <div class="main_side_nav">
+        <div class="side_nav_box">
+            <div class="side_nav">
+                <div class="nav_close">
+                    <div class="bars">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p>Close</p>
+                    </div>
+                </div>
+                <div class="nav_search">
+                    <form action="">
+                        <input type="text" placeholder="Search for products">
+                        <i class="navsearch_icon fa-solid fa-magnifying-glass"></i>
+                    </form>
+                </div>
+                <ul class="tab_wrap">
+                    <li class="tab_wrap_items">
+                        <input type="radio" id="tab_1" name="tab" checked />
+                        <label for="tab_1">
+                            MENU
+                        </label>
+                        <div class="tab_wrap_nav">
+                            <ul class="tab_wrap_nav_box">
+                                <li class="tab_wrap_nav_items"><a href="">HOME</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">EVENT MANAGMENT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CATERING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">BOOK YOUR VENUE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">LOGISTIC RENTAL</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WORKSHOP</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FASHION & FURNITURE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">ABOUT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CONTACT</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WISHLIST</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tab_wrap_items">
+                        <input type="radio" id="tab_2" name="tab"/>
+                        <label for="tab_2">
+                            CATEGORIES
+                        </label>
+                        <div class="tab_wrap_nav">
+                            <ul class="tab_wrap_nav_box">
+                                <li class="tab_wrap_nav_items"><a href="">ARTIFICIAL TREE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CENTERPIECES</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHAIR</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHAIR RIBBON</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CHANDELIER</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">CLOTH</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FLOWER VASE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">FOUNTAIN</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">HANGING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">HEAD TABLE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">LIGHTING</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">METAL</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">PLATFORM</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">SHOWPIECE</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">SOFA</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE & TOOLS</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE RUNNER</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">TABLE TOP</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">UMBRELLA</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WALKWAY</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">WOOD DESIGN</a></li>
+                                <li class="tab_wrap_nav_items"><a href="">EXTRA</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- HEADER -->
+    <header class="page_nav">
+        <!-- Nav Menu Logo Here -->
+        <div id="mainNav_area">
+            <nav class="navigation">
+                <div class="logo_nav">
+                    <div class="nav_bars">
+                        <i class="fa-solid fa-bars"></i>
+                        <h2>MENU</h2>
+                    </div>
+                    <a href="{{ route('home') }}">
+                        <img src="assets/img/Logo.png" alt="">
+                    </a>
+                </div>
+                <ul class="nav_area">
+                    <li><a href="{{ route('home') }}">HOME</a></li>
+                    <li><a href="{{ route('event') }}">EVENT MANAGEMENT</a></li>
+                    <li><a href="{{ route('catering') }}">CATERING</a></li>
+                    <li><a href="#">BOOK YOUR VENUE</a></li>
+                    <li><a href="{{ route('logistics') }}">LOGISTIC RENTAL</a></li>
+                    <li><a href="{{ route('workshop') }}">WORKSHOP</a></li>
+                    <li><a href="#">FASHOIN & FURNITURE</a></li>
+                    <li><a href="{{ route('about') }}">ABOUT</a></li>
+                    <li><a href="{{ route('contact') }}">CONTACT</a></li>
+                </ul>
+                <div class="social_link">
+                    <div class="search">
+                        <span id="search_bars"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <div class="cart">
+                        <span id="cart_btn"><i class="fa-solid fa-cart-shopping"></i></span>
+                    </div>
+                    <div class="signIn">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- MAIN BODY  -->
+    <div class="container_fluid">
+
+        <div class="catering_sec">
+            <div class="catering_sec_text">
+                <h2>বরের ডিস্</h2>
+            </div>
+            <div class="jamai_sec">
+                <img src="./assets/img/Bor-dish-01-maaevent.jpg" alt="">
+                <ul class="jamai_sec_text">
+                    <li class="jamai_manu"><h2>জামাই স্পেশাল ডিস</h2></li>
+                    <li class="jamai_manu">১) আস্ত খাসি</li>
+                    <li class="jamai_manu">২) আস্ত খাসির রোষ্ট</li>
+                    <li class="jamai_manu">৩) আস্ত মোরগ</li>
+                    <li class="jamai_manu">৪) ইলিশ স্মোক</li>
+                    <li class="jamai_manu">৫) কোরাল স্মক</li>
+                    <li class="jamai_manu">৬) চিকেন/বিফ সাসলিক</li>
+                    <li class="jamai_manu">৭) ফুড কাভিং</li>
+                    <li class="jamai_manu">৮) সিজনাল ফল</li>
+                </ul>
+                <img src="./assets/img/Bor-dish-02-maaevent.jpg" alt="">
+            </div>
+            <div class="catering_sec_text">
+                <h2>বিয়ে এবং গায়ে হলুদের প্যাকেজ সমূহ</h2>
+            </div>
+            <div class="biye_holud_sec">
+                <ul class="biye_holud_sec_text">
+                    <li class="biye_holud_manu"><h2>প্যাকেজ-১</h2></li>
+                    <li class="biye_holud_manu">১) শাহী মাটন তেহারী/ শাহী বিফ তেহারী</li>
+                    <li class="biye_holud_manu">২) জালি কাবাব</li>
+                    <li class="biye_holud_manu">৩) চিকেন চাইনিজ ভেজিটেবল</li>
+                    <li class="biye_holud_manu">৪) পিস সালাদ/পনির সালাদ/রাইতা সালাদ</li>
+                    <li class="biye_holud_manu">৫) মিনারেল ওয়াটার</li>
+                    <li class="biye_holud_manu">৬) কোক/স্প্রাইট/বোরহানী (মিনারেল ওয়াটার)</li>
+                    <li class="biye_holud_manu">৭) চটপটি/ফুচকা</li>
+                    <li class="biye_holud_manu">৮) রেশমী জিলাপী</li>
+                    <li class="biye_holud_manu">৯) কফি</li>
+                    <li class="biye_holud_manu">১০) শাহী পান বক্স (টুথপিক সহ), টিসু, লিক্যুয়েড সোপ, টাওয়াল</li>
+                </ul>
+                <ul class="biye_holud_sec_text">
+                    <li class="biye_holud_manu"><h2>প্যাকেজ-২</h2></li>
+                    <li class="biye_holud_manu">১) শাহী মাটন তেহারী/ শাহী বিফ তেহারী</li>
+                    <li class="biye_holud_manu">২) জালি কাবাব</li>
+                    <li class="biye_holud_manu">৩) পিস সালাদ/পনির সালাদ/রাইতা সালাদ ।</li>
+                    <li class="biye_holud_manu">৪) মিনারেল ওয়াটার</li>
+                    <li class="biye_holud_manu">৫) কোক/স্প্রাইট/বোরহানী (মিনারেল ওয়াটার)</li>
+                    <li class="biye_holud_manu">৬) চটপটি/ফুচকা</li>
+                    <li class="biye_holud_manu">৭) রেশমী জিলাপী</li>
+                    <li class="biye_holud_manu">৮) ভাপা পিঠা</li>
+                    <li class="biye_holud_manu">৯) চিতই পিঠা</li>
+                    <li class="biye_holud_manu">১০) কফি</li>
+                    <li class="biye_holud_manu">১১) শাহী পান বক্স (টুথপিক সহ), টিসু, লিক্যুয়েড সোপ, টাওয়াল</li>
+                </ul>
+                <ul class="biye_holud_sec_text">
+                    <li class="biye_holud_manu"><h2>প্যাকেজ-৩</h2></li>
+                    <li class="biye_holud_manu">১) শাহী মোরগ পোলাও (চিনিগুড়া)</li>
+                    <li class="biye_holud_manu">২) চিকেন চাইনিজ ভেজিটেবল</li>
+                    <li class="biye_holud_manu">৩) কোপ্তা কারী</li>
+                    <li class="biye_holud_manu">৪) পিস সালাদ/পনির সালাদ/রাইতা সালাদ</li>
+                    <li class="biye_holud_manu">৫) মিনারেল ওয়াটার</li>
+                    <li class="biye_holud_manu">৬) কোক/স্প্রাইট/বোরহানী (মিনারেল ওয়াটার)</li>
+                    <li class="biye_holud_manu">৭) চটপটি/ফুচকা</li>
+                    <li class="biye_holud_manu">৮) রেশমী জিলাপী</li>
+                    <li class="biye_holud_manu">৯) কফি</li>
+                    <li class="biye_holud_manu">১০) শাহী পান বক্স (টুথপিক সহ), টিসু, লিক্যুয়েড সোপ, টাওয়াল</li>
+                </ul>
+                <ul class="biye_holud_sec_text">
+                    <li class="biye_holud_manu"><h2>প্যাকেজ-৪</h2></li>
+                    <li class="biye_holud_manu">১) শাহী বিফ বিরিয়ানী (বাসমতি/চিনিগুড়া)</li>
+                    <li class="biye_holud_manu">২) জালি কাবাব/ সামি কাবাব/ টিক্কা কাবাব</li>
+                    <li class="biye_holud_manu">৩) পিস সালাদ/ পনির সালাদ/ রাইতা সালাদ</li>
+                    <li class="biye_holud_manu">৪) মিনারেল ওয়াটার</li>
+                    <li class="biye_holud_manu">৫) কোক/স্প্রাইট/বোরহানী (মিনারেল ওয়াটার)</li>
+                    <li class="biye_holud_manu">৬) চটপটি/ফুচকা</li>
+                    <li class="biye_holud_manu">৭) রেশমী জিলাপী</li>
+                    <li class="biye_holud_manu">৮) কফি</li>
+                    <li class="biye_holud_manu">৯) শাহী পান বক্স (টুথপিক সহ), টিসু, লিক্যুয়েড সোপ, টাওয়াল</li>
+                </ul>
+                <img src="./assets/img/Platter-maaevent.jpg" alt="">
+            </div>
+            <div class="catering_sec_text">
+                <h2>বিবিধ আইটেম সমূহ</h2>
+            </div>
+            <div class="bibidho_items_sec">
+                <div class="bibidho_items_list1">
+                    <ul class="bibidho_items_text">
+                        <li class="bibidho_items_manu"><h2>ডিম</h2></li>
+                        <li class="bibidho_items_manu">১) সিদ্ধ ডিম</li>
+                        <li class="bibidho_items_manu">২) ডিম ভাজি</li>
+                        <li class="bibidho_items_manu">৩) ডিম পোচ</li>
+                        <li class="bibidho_items_manu">৪) ডিমের কোরমা</li>
+                    </ul>
+                    <ul class="bibidho_items_text">
+                        <li class="bibidho_items_manu"><h2>সালাদ</h2></li>
+                        <li class="bibidho_items_manu">১) পিস সালাদ</li>
+                        <li class="bibidho_items_manu">২) মিক্স সালাদ</li>
+                        <li class="bibidho_items_manu">৩) রাইতা সালাদ</li>
+                        <li class="bibidho_items_manu">৪) ফ্রুটস্ সালাদ</li>
+                        <li class="bibidho_items_manu">৫) পনির সালাদ</li>
+                    </ul>
+                    <ul class="bibidho_items_text">
+                        <li class="bibidho_items_manu"><h2>বেভারেজ</h2></li>
+                        <li class="bibidho_items_manu">১) কোমল পানীয়</li>
+                        <li class="bibidho_items_manu">২) শাহী শরবত</li>
+                        <li class="bibidho_items_manu">৩) পানি</li>
+                        <li class="bibidho_items_manu">৪) চা এবং কফি</li>
+                        <li class="bibidho_items_manu">৫) মৌসুমী ফলের শরবত</li>
+                    </ul>
+                    <ul class="bibidho_items_text">
+                        <li class="bibidho_items_manu"><h2>স্পেশাল বোরহানি</h2></li>
+                        <li class="bibidho_items_manu">১) বোরহানী (স্পাইসি)</li>
+                        <li class="bibidho_items_manu">২) বোরহানী (মিষ্টি এবং টক)</li>
+                        <li class="bibidho_items_manu">৩) শাহী লাবাং</li>
+                    </ul>
+                    <ul class="bibidho_items_text">
+                        <li class="bibidho_items_manu"><h2>স্পেশাল চাটনী</h2></li>
+                        <li class="bibidho_items_manu">১) আলু বোখারার চাটনী</li>
+                        <li class="bibidho_items_manu">২) কিসমিসের চাটনী</li>
+                    </ul>
+                </div>
+                <div class="card_items_list">
+                    <img src="./assets/img/Dessert-01-maaevent.jpg" alt="">
+                    <ul class="card_text">
+                        <li class="card_manu"><h2>ডেজার্ট আইটেম</h2></li>
+                        <li class="card_manu">১) শাহী জর্দা</li>
+                        <li class="card_manu">২) শাহী ফিল্মী</li>
+                        <li class="card_manu">৩) শাহী টুকরা</li>
+                        <li class="card_manu">৪) শাহী লাউ এর ফিন্নী</li>
+                        <li class="card_manu">৫) ডিম বাটার পুডিং</li>
+                        <li class="card_manu">৬) ফ্রুট কাষ্টার্ড</li>
+                        <li class="card_manu">৭) গোলাপ জামন+মালাই বুন্দিয়া</li>
+                    </ul>
+                    <ul class="card_text">
+                        <li class="card_manu"><h2>অন্যান্য আইটেম</h2></li>
+                        <li class="card_manu">১) রেশমী জিলাপি</li>
+                        <li class="card_manu">২) ফুসকা</li>
+                        <li class="card_manu">৩) চটপটি</li>
+                        <li class="card_manu">৪) ভাপা পিঠা</li>
+                        <li class="card_manu">৫) চিতই পিঠা</li>
+                        <li class="card_manu">৬) ফাষ্ট ফুড</li>
+                    </ul>
+                    <img src="./assets/img/Dessert-02-maaevent.jpg" alt="">
+                </div>
+            </div>
+            <div class="catering_sec_text">
+                <h2>ড্রাইভার প্যাকেজ সমূহ</h2>
+            </div>
+            <div class="driver_items_sec">
+                <div class="card_items_list">
+                    <img src="./assets/img/Kacchi.jpg" alt="">
+                    <ul class="card_text">
+                        <li class="card_manu"><h2>মেনু-১</h2></li>
+                        <li class="card_manu">১) কাচ্চি বিরিয়ানী</li>
+                        <li class="card_manu">২) জালি কাবাব</li>
+                        <li class="card_manu">৩) মিনারেল ওয়াটার (৫০০ মিলি)।</li>
+                        <li class="card_manu">৪) সফট ড্রিংকস</li>
+                        <li class="card_manu">৫) বক্স এবং ব্যাগ</li>
+                    </ul>
+                    <ul class="card_text">
+                        <li class="card_manu"><h2>মেনু-২</h2></li>
+                        <li class="card_manu">১) শাহী মোরগ পোলাও</li>
+                        <li class="card_manu">২) জালি কাবাব</li>
+                        <li class="card_manu">৩) বয়েল ডিম</li>
+                        <li class="card_manu">৪) সফট ড্রিংকস</li>
+                        <li class="card_manu">৫) বক্স এবং ব্যাগ</li>
+                    </ul>
+                    <img src="./assets/img/Morog-Pollao.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    <!-- Catering Section End -->
+    <!-- FOOTER END SECTION -->
+    <footer>
+        <div class="footer_area">
+            <div class="address">
+                <img src="assets/img/Logo.png" alt="">
+                <span><i class="fa-solid fa-paper-plane"></i> Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212</span>
+                <span><i class="fa-solid fa-mobile-screen-button"></i><a href="#"></a>+880 1671-711933</span>
+                <span><i class="fa-solid fa-envelope"></i><a href="#">maaeventmanagementbd@gmail.com</a></span>
+                <div class="footer_social_btn">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="import_link">
+                <div class="item_area">
+                    <h2>IMPORTANT LINK</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Book Your Venue</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Workshop</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Catering</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Career</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="item_area">
+                    <h2>USEFUL LINKSK</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Product Rental Policy</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Delivery and Shipping</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Terms and Conditions</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Return and Refund</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">Privacy Policy</a></li>
+                        <li><i class="fa-solid fa-circle"></i><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="map">
+                <h2>WE ARE VERY NEAR TO YOU</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259504026561!2d90.41494447533775!3d23.809369478630117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c715f2121e7d%3A0xf7d351b7edb1d903!2sMaa%20Event%20Management%20and%20Catering!5e0!3m2!1sen!2sbd!4v1695360704361!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="copyright">
+            <span>&copy; Copyright - 2023 - Maa Event | All Rights Reseved | Desingned & Developed by <a href="#"> Pepplo BD</a></span>
+        </div>
+    </footer>
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="./assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+<script src="./assets/js/owl.carousel.min.js"></script>
+<script src="./assets/js/swiper-bundle.min.js"></script>
+<script src="./assets/js/lightbox-plus-jquery.js"></script>
+<script src="./assets/js/custom.js"></script>
+</body>
+</html>

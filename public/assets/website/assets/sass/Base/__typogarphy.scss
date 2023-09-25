@@ -1,0 +1,122 @@
+@font-face {
+    font-family: title1;
+    src: url(../../font/Cinzel-Medium.ttf);
+}
+
+@font-face {
+    font-family: title2;
+    src: url(../font/Fuggles-Regular.ttf);
+}
+
+
+@font-face {
+    font-family: pera;
+    src: url(../font/EBGaramond-Regular.ttf);
+}
+
+
+@font-face {
+    font-family: peraItalic;
+    src: url(../font/OperatorMono-MediumItalic.otf);
+}
+
+// 1st title
+.custom_title1{
+    padding: 2.5rem 0;
+    text-align: center;
+    h2{
+        font-size: 3rem;
+        font-family: title1;
+        color: $title1;
+        font-weight: 400;
+        position: relative;
+        &::after {
+            position: absolute;
+            content: "";
+            width: 13rem;
+            height: .4rem;
+            border-radius: .5rem;
+            background: $border;
+            bottom: -4rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+            box-shadow: 0px 0px 1px $black;
+        }
+    }
+    
+   .desc{
+        font-size: 1.4rem;
+        font-family: peraItalic;
+        width: 35%;
+        margin: 2rem auto;
+        margin-top: 7rem;
+        line-height: 2.6rem;
+   }
+}
+// 2nd title
+.custom_title2{
+    h2{
+        font-size: 5rem;
+        font-family: title2;
+        font-weight: 600;
+        opacity: .9;
+        position: relative;
+        
+        &::after {
+            position: absolute;
+            content: "";
+            width: 14rem;
+            height: .5rem;
+            background: $border;
+            border-radius: .5rem;
+            bottom: -2rem;
+            left: 0;
+            box-shadow: 0px 0px 1px $black;
+        }
+    }
+    p{
+        margin-top: 4rem;
+        margin-bottom: 1.6rem;
+        font-size: 1.8rem;
+        font-family:  pera;
+        text-transform: uppercase;
+        font-weight: 100;
+        line-height: 3.5rem;
+        opacity: .9;
+    }
+}
+
+
+
+@media only screen and (max-width:1024px){
+    .custom_title1{
+        .desc{
+            width: 90% !important;
+        }
+    }
+
+    .custom_title2{
+        h2{
+            font-size: 4.5rem;
+            
+        }
+        p{
+            margin-top: 4rem;
+            font-size: 1.7rem;
+            line-height: 2.8rem;
+        }
+    }
+}
+
+@media only screen and (max-width:600px){
+    .custom_title1{
+        h2{
+            font-size: 2.6rem;
+        }
+        .desc{
+            width: 100% !important;
+        }
+    }
+    
+}

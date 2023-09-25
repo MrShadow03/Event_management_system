@@ -7,8 +7,8 @@ use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BannerController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
@@ -19,6 +19,8 @@ use App\Http\Controllers\ClientMessageController;
 use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\CompanyHistoryController;
 use App\Http\Controllers\Website\MessageController;
+use App\Http\Controllers\website\ProductCategoryController;
+use App\Http\Controllers\website\ProductController as WebsiteProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,48 +32,53 @@ use App\Http\Controllers\Website\MessageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/createSymlink', function(){
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($targetFolder, $linkFolder);
+});
 
 Route::get('/', function () {
-    return redirect('/login');
-    // return view('website.pages.home');
+    return view('website.pages.home');
 })->name('home');
 
-// Route::get('/about', function () {
-//     return view('website.pages.about');
-// })->name('about');
+Route::get('/about', function () {
+    return view('website.pages.about');
+})->name('about');
 
-// Route::get('/services', function () {
-//     return view('website.pages.services');
-// })->name('services');
+Route::get('/cart', function () {
+    return view('website.pages.cart');
+})->name('cart');
 
-// Route::get('/service', function () {
-//     return view('website.pages.service_single');
-// })->name('service');
+Route::get('/catering', function () {
+    return view('website.pages.catering');
+})->name('catering');
 
-// Route::get('/products', function () {
-//     return view('website.pages.products');
-// })->name('products');
+Route::get('/contact', function () {
+    return view('website.pages.contact');
+})->name('contact');
 
-// Route::get('/product', function () {
-//     return view('website.pages.product_single');
-// })->name('product');
+Route::get('/event', function () {
+    return view('website.pages.event');
+})->name('event');
 
-// Route::group(['prefix' => '/contact'], function(){
-//     Route::get('/', [MessageController::class, 'index'])->name('contact');
-//     Route::post('/store', [MessageController::class, 'store'])->name('contact.store');
-// });
+Route::get('/logistics', [ProductCategoryController::class, 'index'])->name('logistics');
 
-// Route::get('/quote', function () {
-//     return view('website.pages.quote');
-// })->name('quote');
+Route::get('/products/{id}', [WebsiteProductController::class, 'index'])->name('products');
+
+Route::get('/workshop', function () {
+    return view('website.pages.workshop');
+})->name('workshop');
 
 
+Route::get('/createCategories', [CategoryController::class, 'createCategories']);
 
 //admin routes
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], function(){
 
     Route::get('/dashboard', function () {
-        return view('admin.pages.dashboard');
+        return redirect()->route('admin.products');
+        // return view('admin.pages.dashboard');
     })->name('dashboard');
 
     // Route::get('/pages', [PageController::class, 'index'])->name('pages');

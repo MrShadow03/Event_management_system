@@ -1,0 +1,112 @@
+.contact_area{
+    width: 70%;
+    margin: 7rem auto;
+    padding: 4rem;
+    display: flex;
+    gap: 10%;
+}
+
+.info_box{
+    width: 55rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    h2{
+        font-size: 1.6rem;
+        opacity: .8;
+        margin-bottom: 2rem;
+    }
+    span, a{
+        font-size: 1.6rem;
+        color: $black;
+        font-family: title1;
+        font-weight: 500;
+        i{
+            font-size: 1.3rem;
+            padding: .5rem 1rem;
+            color: $black_light;
+        }
+    }
+
+    .social_btn{
+        padding: 1rem 0;
+        a{
+            padding: .6rem .7rem !important;
+            background-color: #4E69A2;
+            border-radius: .3rem;
+            margin-right: .4rem;
+            display: inline-block;
+            transition: .15s;
+            &:hover{
+                transform: scale(.9);
+            }
+            &:nth-child(2){
+                background-color: #33AAF3;
+            }
+            &:nth-child(3){
+                background-color: #D23635;
+            }
+            i{
+                color: $white;
+                font-size: 1.4rem;
+                padding: 0;
+            }
+        }
+    }
+    iframe {
+        width: 100%;
+        height: 28rem;
+        margin-top: 1rem;
+    }
+
+}
+
+
+.forn_box{
+    width: 55rem;
+    position: relative;
+    &::after{
+        position: absolute;
+        content: "";
+        top: 0;
+        left:  -11.5%;
+        height: 100%;
+        width: 1px;
+        background-color: #ddd;
+    }
+    h2{
+       font-size: 1.7rem;
+       opacity: .9; 
+    }
+    form{
+        .input_group{
+            margin: 2rem 0;
+            display: flex;
+            gap: 2.5rem;
+            .input{
+                width: 49%;
+                input{
+                    display: block;
+                    width: 100%;
+                    padding: 1rem .5rem;
+                    font-size: 1.7rem;
+                    border: 1px solid #ddd;
+                }
+            }
+        }
+        label{
+            display: block;
+            font-size: 1.5rem;
+            color: $black_light;
+            opacity: .9;
+            margin: 1rem 0;
+        }
+        textarea{
+            width: 100%;
+            display: block;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            border: 1px solid #ddd;
+        }
+    }
+}

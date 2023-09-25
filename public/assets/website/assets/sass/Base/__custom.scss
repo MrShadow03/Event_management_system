@@ -1,0 +1,44 @@
+.container {
+    width: 70%;
+    margin: auto;
+}
+
+.container_fluid {
+    width: 100%;
+    margin: auto;
+}
+
+
+.aro_img{
+    height: 8rem;
+    width: 100%;
+    margin-top: -4%;
+    z-index: 999;
+    background: $white;
+    border-radius: 50% 50% 0% 0%;
+    position: absolute;
+}
+
+@media only screen and (max-width:1220px) {
+    .aro_img{
+        margin-top: -5%;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+    .aro_img{
+        margin-top: -7%;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .aro_img{
+        height: 6rem;
+        margin-top: -12%;
+    }
+}
+@media only screen and (max-width:767px) {
+    .aro_img{
+        margin-top: -13%;
+    }
+}

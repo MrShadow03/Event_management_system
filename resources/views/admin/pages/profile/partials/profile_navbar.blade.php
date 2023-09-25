@@ -39,7 +39,7 @@
                 </div>
                 <!--end::Title-->
 
-                <!--begin::Stats-->
+                {{-- <!--begin::Stats-->
                 <div class="d-flex flex-wrap flex-stack">
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-column flex-grow-1 pe-8">
@@ -107,7 +107,7 @@
                     </div>
                     <!--end::Progress-->
                 </div>
-                <!--end::Stats-->
+                <!--end::Stats--> --}}
             </div>
             <!--end::Info-->
         </div>

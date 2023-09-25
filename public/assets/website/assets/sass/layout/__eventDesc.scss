@@ -1,0 +1,118 @@
+.event{
+    width: 70%;
+    margin: auto;
+    background-color: $white;
+}
+
+.eventCard_md{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    .img_area{
+        width: 55rem;
+        height: 70rem;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .custom_title2{
+        width: 52rem;
+    }
+}
+
+
+.eventCard_sm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    .img_area{
+        width: 55rem;
+        height: 56rem;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    .custom_title2{
+        width: 52rem;
+    }
+}
+
+@media only screen and (max-width:1440px) {
+    .event{
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+    .event{
+        width: 98%;
+    }
+    .eventCard_md{
+        .img_area{
+            width: 50rem;
+            height: 60rem;
+        }
+    }
+    .eventCard_sm{
+        .img_area{
+            width: 50rem;
+            height: 50rem;
+        }
+    }
+}
+@media only screen and (max-width:768px) {
+    .event{
+        width: 98%;
+    }
+    .eventCard_md{
+        .img_area{
+            width: 50rem;
+            height: 45rem;
+        }
+    }
+    .eventCard_sm{
+        .img_area{
+            width: 50rem;
+            height: 50rem;
+        }
+    }
+}
+
+@media only screen and (max-width:760px) {
+    .event{
+        width: 98%;
+    }
+    .eventCard_md{
+        flex-direction: column;
+        gap: 2rem;
+        .img_area{
+            width: 95%;
+            height: 40rem;
+        }
+        .custom_title2{
+            width: 95%;
+        }
+    }
+    .eventCard_sm{
+        flex-direction: column-reverse;
+        
+        &:nth-child(3) {
+           flex-direction: column;
+        }
+        margin-bottom: 2rem;
+        .img_area{
+            width: 95%;
+            height: 38rem;
+        }
+        .custom_title2{
+            width: 95%;
+        }
+    }
+}

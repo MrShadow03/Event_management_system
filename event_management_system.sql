@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 08:28 AM
+-- Generation Time: Sep 25, 2023 at 10:13 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -57,6 +57,7 @@ INSERT INTO `banners` (`id`, `title`, `description`, `image`, `video`, `status`,
 CREATE TABLE `categories` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT 'category/default.png',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -65,9 +66,30 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Others', '2023-08-16 12:31:23', '2023-09-22 06:09:11'),
-(6, 'Centerpiece', '2023-09-22 06:07:10', '2023-09-22 06:07:10');
+INSERT INTO `categories` (`id`, `name`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Default', 'category/default.png', '2023-08-16 12:31:23', '2023-09-25 18:39:51'),
+(9, 'Artificial Tree', 'category/9UIBuWXHrbpiTlXLN1CQYsxkvabyNSNY08Aj66bl.png', '2023-09-25 18:42:55', '2023-09-25 18:49:09'),
+(10, 'Centerpieces', 'category/TSFQwayd1IHjiwqU4JoWBKk1JpIy7Ap6MTsAPVTO.png', '2023-09-25 18:42:55', '2023-09-25 18:49:17'),
+(11, 'Chair', 'category/tX8oPkAXU3i7g3jjHcBTWYhKC1CZJI150KAKD3j9.png', '2023-09-25 18:42:55', '2023-09-25 18:49:24'),
+(12, 'Chair Ribbon', 'category/0lS8oHyKU8HqagAQQvocNI0MyevM6uRqZaIQrKXh.png', '2023-09-25 18:42:55', '2023-09-25 18:49:32'),
+(13, 'Chandelier', 'category/ZBLAUI43rg9QDFSAZ1tqeLAacDVptHhDId30xkzn.png', '2023-09-25 18:42:55', '2023-09-25 18:49:43'),
+(14, 'Cloth', 'category/qsg04AkbOgKzEp93Wi3YuqXgYVvBpdsHpuaJLzdC.png', '2023-09-25 18:42:55', '2023-09-25 18:49:51'),
+(15, 'Extra', 'category/EZDUjBTSiR3TgMgSFA8a2PTT66Q6fYUqtn3os4jV.png', '2023-09-25 18:42:55', '2023-09-25 18:49:58'),
+(16, 'Flower Vase', 'category/xnG2V8BbHDIoqWkAV12dPGzAFipVEO0B6F2EW0Sh.png', '2023-09-25 18:42:55', '2023-09-25 18:50:06'),
+(17, 'Fountain', 'category/bWet27IgMNxHKNPB3KC3Rq9jZzrhpvc8TDD6vIT8.png', '2023-09-25 18:42:55', '2023-09-25 18:50:13'),
+(18, 'Hanging', 'category/1Exh63BX0AeV6JtTni8whNECT7hXNXJUpBjFqgZZ.png', '2023-09-25 18:42:55', '2023-09-25 18:50:21'),
+(19, 'Head Table', 'category/8yoc8w8sg3hle6xJoDsrWRdAHbG8cz3qn512rcMK.png', '2023-09-25 18:42:55', '2023-09-25 18:50:30'),
+(20, 'Lighting', 'category/7wdIGRYqHszJ4bCyUX3kMYvo6UUHhIRm8KvuQYCO.png', '2023-09-25 18:42:55', '2023-09-25 18:50:39'),
+(21, 'Metal', 'category/Yb5JnbWQjt9jEE9izrLvNmxht8SFUAgj0YkGdoz0.png', '2023-09-25 18:42:55', '2023-09-25 18:50:47'),
+(22, 'Platform', 'category/B1fgIm3UrjFeADapPHe3JK7ELXo8d65cemRW64fu.png', '2023-09-25 18:42:55', '2023-09-25 18:50:58'),
+(23, 'Showpiece', 'category/QAvuG7e0nu2fNUX3T1e0iSX91Kjaz56pdfBgCDTx.png', '2023-09-25 18:42:55', '2023-09-25 18:51:06'),
+(24, 'Sofa', 'category/ffTGRlFFr3zRkWI8EDf84qfNitN5mdZ5af9kSPtb.png', '2023-09-25 18:42:55', '2023-09-25 18:51:13'),
+(25, 'Table & Tools', 'category/iY20E1CJObIgNZ1sI7oyIRW3r6hZOXHbtRMloU1i.png', '2023-09-25 18:42:55', '2023-09-25 18:51:22'),
+(26, 'Table Runner', 'category/cJdmIB64qBga1OLsjtatp2YcMwyQFLoOPX9y6td6.png', '2023-09-25 18:42:55', '2023-09-25 18:51:30'),
+(27, 'Table Top', 'category/3yeY3IVBAwsvbgYPcKqBNYrQDdOKcS28YkoBGyO0.png', '2023-09-25 18:42:55', '2023-09-25 18:51:37'),
+(28, 'Umbrella', 'category/vYpMn3pzHrECZ2iUw7fJkUSb2a52jZ2j8eqdVtdx.png', '2023-09-25 18:42:55', '2023-09-25 18:51:45'),
+(29, 'Walkway', 'category/5nowviQjmaj4rdt4RuSH4fgm62DruGZZfjAGWI5U.png', '2023-09-25 18:42:55', '2023-09-25 18:51:54'),
+(30, 'Wood Design', 'category/Tz3PwUXtuyyeCG0oFS3pOcmOgkEEFzZ9Vp0QQ0cJ.png', '2023-09-25 18:42:55', '2023-09-25 18:52:02');
 
 -- --------------------------------------------------------
 
@@ -174,21 +196,21 @@ CREATE TABLE `company_details` (
 --
 
 INSERT INTO `company_details` (`id`, `detail_name`, `detail_value`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'name', 'Maa Event Management', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(2, 'email', 'pepplo.const@gmail.com', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(3, 'phone', '0123456789', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(4, 'address', '123, ABC Street, XYZ City, Country', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(5, 'logo', 'other/NxX95fyKSUomn3JdncbddePsoRMdvCG0jginbhK7.png', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
+(1, 'name', 'Maa Event Management', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(2, 'email', 'maaeventmanagementbd@gmail.com', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(3, 'phone', '+880 1671-711933', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(4, 'address', 'Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(5, 'logo', 'other/NxX95fyKSUomn3JdncbddePsoRMdvCG0jginbhK7.png', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
 (6, 'favicon', 'favicon.png', 1, '2023-08-19 07:54:35', '2023-08-19 07:54:35'),
-(7, 'facebook', 'https://www.facebook.com/', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(8, 'twitter', 'https://twitter.com/', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(9, 'linkedin', 'https://www.linkedin.com/', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(10, 'youtube', 'https://www.youtube.com/', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(11, 'map', '<iframe width=\"425\" height=\"350\" src=\"https://www.openstreetmap.org/export/embed.html?bbox=90.3647267818451%2C22.695857592363215%2C90.37180781364442%2C22.70049970348932&amp;layer=mapnik\"></iframe>', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(12, 'CEO_name', 'Abdullah ibn Muhammad', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(13, 'CEO_image', 'other/3qfM8UxfASWNd1XO3fKVBgoCgXGON87u5Nbqc4Gq.jpg', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(14, 'CEO_message', 'The speed curve defines the TIME an animation uses to change from one set of CSS styles to another.', 1, '2023-08-19 07:54:35', '2023-09-22 05:39:27'),
-(15, 'whatsapp', '0123456789', 1, '2023-08-20 13:21:48', '2023-09-22 05:39:27');
+(7, 'facebook', 'https://www.facebook.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(8, 'twitter', 'https://twitter.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(9, 'linkedin', 'https://www.linkedin.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(10, 'youtube', 'https://www.youtube.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(11, 'map', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259504026561!2d90.41494447533775!3d23.809369478630117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c715f2121e7d%3A0xf7d351b7edb1d903!2sMaa%20Event%20Management%20and%20Catering!5e0!3m2!1sen!2sbd!4v1695360704361!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(12, 'CEO_name', 'MD Sumon Baly', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(13, 'CEO_image', 'other/r17jUK5WcPa7R8TCgAj0qm2Bqn7dnmctHmrxuaMP.jpg', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(14, 'CEO_message', 'Maaevent.com is the Largest & Most Loved 360 degree wedding solution provider’s platform in Bangladesh. Starting in 2021, we are running our operations with a view to serving our clients as an all-in-one purchasing platform. Where you can find the best wedding vendors with their Creation, Idea and tons of trusted reviews at the click of a Reviews Description. Whether you are looking for hiring wedding planners or top photographers or for just some ideas and inspirations for your upcoming wedding, Maaevent.com can help you solve your wedding planning tasks through its unique features. With a shortlist feature, a unique checklist facility, inspirational photo gallery, blog and many more- you won’t need to spend hours planning a great wedding. We help our customers to purchase their desired products from the most renowned brands from both home and abroad at most affordable rates. You are able to compare and choose suitable products from thousands of options, depending on quality, style, design and cost, just in a few clicks. Moreover, we help wedding planners and businesses to reach their customers for maximum sales. Be it pre-wedding occasions like engagement, Holud, Mehedi Night, Gala Night or post-wedding reception ceremonies, we got it all covered.', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(15, 'whatsapp', '+880 1671-711933', 1, '2023-08-20 13:21:48', '2023-09-25 19:44:10');
 
 -- --------------------------------------------------------
 
@@ -511,7 +533,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 6, 'CP-01', 'Golden Candle Centerpiece', '2.5x1.25', 4, 'pcs', 500, 'product/2PLyJFFBN4upBuz7Yw5k17a1WwfO5VDewnWXhD4k.jpg', 1, '2023-09-23 10:38:50', '2023-09-24 10:00:23', NULL);
+(6, 9, 'AT-5', 'Banyan Tree', '4', 5, 'pcs', 500, 'product/8gwjdP3ClcnmvlaDdSHmgjokKWJwLgcLr3VskGsA.jpg', 1, '2023-09-25 19:34:20', '2023-09-25 19:34:20', NULL),
+(7, 9, 'AT-10', 'Banyan Tree', '3.5', 5, 'pcs', 500, 'product/Nss3Gk7Ihp0ThZYWAqeL8uwLdS1cNMRt7RtWN35k.jpg', 1, '2023-09-25 19:35:01', '2023-09-25 19:46:34', NULL),
+(8, 9, 'AT-2', 'Betel Nut', '1.5x1x4', 5, 'pcs', 500, 'product/Oy8c7PcAowOGPLlKvq11VzdpZ2taQYl1jXavlpxz.jpg', 1, '2023-09-25 19:35:59', '2023-09-25 19:35:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -630,7 +654,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mr Shadow', 'rj.rafi35@gmail.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, '2023-08-20 17:58:10');
+(1, 'Mr Shadow', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, '2023-09-25 19:41:48');
 
 -- --------------------------------------------------------
 
@@ -926,7 +950,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `client_messages`
@@ -1004,7 +1028,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `quotes`

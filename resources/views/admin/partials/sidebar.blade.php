@@ -3,7 +3,7 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="index-2.html" class="d-flex mt-3">
+        <a href="#" class="d-flex mt-3">
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" class="h-25px app-sidebar-logo-default">
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" class="h-20px app-sidebar-logo-minimize">
             {{-- <p class="fs-4 fw-bold ms-2 ls-3 text-white">PEPPLO<span class="fw-light">BD</span></p> --}}

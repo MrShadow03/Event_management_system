@@ -1,0 +1,1189 @@
+.event_management{
+    width: 100%;
+    .event_management_title{
+        width: 100%;
+        text-align: center;
+        padding: 5rem 0;
+        h2{
+            font-size: 3.5rem;
+        }
+        p{
+            width: 35%;
+            margin:1.5rem auto;
+            font-size: 1.5rem;
+            line-height: 28px;
+        }
+    }
+    .wedding_receptio_sec{
+        width: 100%;
+        height: 55rem;
+        position: relative;
+        background-image: url(../img/event_banner.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        span{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8057356e;
+            z-index: 9999;
+        }
+        .wedding_receptio_items{
+            position: absolute;
+            top: 4rem;
+            left: 25rem;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 999999;
+            .wedding_receptio_img{
+                width: 30%;
+                img{
+                    width: 50rem;
+                }
+            }
+            .wedding_receptio_text{
+                width: 45%;
+                padding: 5rem 0;
+                h2{
+                    font-size: 4.5rem;
+                    color: $white;
+                }
+                p{
+                    width: 100%;
+                    margin:1.5rem auto;
+                    font-size: 1.8rem;
+                    color: $white;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+    .lifestyle_occasion_sec{
+        width: 100%;
+        height: 55rem;
+        position: relative;
+        background-image: url(../img/desktop-wallpaper-event-management.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        span{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #2f6dc991;
+            z-index: 9999;
+        }
+        .lifestyle_occasion_items{
+            position: absolute;
+            top: 4rem;
+            right: 60rem;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 99999;
+            .lifestyle_occasion_img{
+                width: 30%;
+                img{
+                    width: 50rem;
+                }
+            }
+            .lifestyle_occasion_text{
+                width: 100%;
+                padding: 5rem 0;
+                h2{
+                    font-size: 4.5rem;
+                    color: $white;
+                }
+                p{
+                    width: 100%;
+                    margin:1.5rem auto;
+                    font-size: 1.8rem;
+                    color: $white;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+    .corporate_events_sec{
+        width: 100%;
+        height: 55rem;
+        position: relative;
+        background-image: url(../img/event_banner.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        span{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8057356e;
+            z-index: 9999;
+        }
+        .corporate_events_items{
+            position: absolute;
+            top: 9rem;
+            left: 25rem;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 99999;
+            .corporate_events_img{
+                width: 30%;
+                img{
+                    width: 50rem;
+                }
+            }
+            .corporate_events_text{
+                width: 45%;
+                padding: 5rem 0;
+                h2{
+                    font-size: 4.5rem;
+                    color: $white;
+                }
+                p{
+                    width: 100%;
+                    margin:1.5rem auto;
+                    font-size: 1.8rem;
+                    color: $white;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+}
+//Responsive----------
+@media only screen and (max-width: 1920px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 35%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 55rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 25rem;
+                width: 60%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 55rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 60rem;
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 55rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 9rem;
+                left: 25rem;
+                width: 70%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1720px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 35%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 55rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 25rem;
+                width: 65%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 55rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 60rem;
+                width: 45%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 55rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 9rem;
+                left: 25rem;
+                width: 75%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1520px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 35%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 55rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 20rem;
+                width: 70%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 55rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 55rem;
+                width: 45%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 55rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 9rem;
+                left: 20rem;
+                width: 80%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1420px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 35%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 55rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 15rem;
+                width: 75%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 55rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 50rem;
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 55rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 9rem;
+                left: 15rem;
+                width: 85%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1320px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 35%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 55rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 5rem;
+                width: 75%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 50rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 55rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 40rem;
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 45rem;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 55rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 9rem;
+                left: 10rem;
+                width: 85%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 45rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1020px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 80%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 40rem;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 4rem;
+                left: 0;
+                width: 100%;
+                padding: 0 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .wedding_receptio_img{
+                    width: 30%;
+                    img{
+                        width: 40rem;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 40rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 4rem;
+                right: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding:0 3rem ;
+                .lifestyle_occasion_img{
+                    width: 30%;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 50%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 40rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding:0 3rem ;
+                .corporate_events_img{
+                    width: 30%;
+                    img{
+                        width: 35rem;
+                    }
+                }
+                .corporate_events_text{
+                    width: 45%;
+                    padding: 5rem 0;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 720px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 65%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 70rem;
+            padding: 2rem 0;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                padding: 0 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                .wedding_receptio_img{
+                    width: 100%;
+                    text-align: center;
+                    img{
+                        width: 70%;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 70rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column-reverse;
+                .lifestyle_occasion_img{
+                    width:100%;
+                    text-align: center;
+                    margin-left: 6rem;
+                    img{
+                        width: 70%;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 60rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                padding:0 2rem ;
+                .corporate_events_img{
+                    width: 100%;
+                    text-align: center;
+                    margin-left: 5rem;
+                    img{
+                        width: 70%;
+                    }
+                }
+                .corporate_events_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 620px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 0;
+            h2{
+                font-size: 3.5rem;
+            }
+            p{
+                width: 65%;
+                margin:1.5rem auto;
+                font-size: 1.5rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 70rem;
+            padding: 2rem 0;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                padding: 0 2rem;
+                .wedding_receptio_img{
+                    width: 100%;
+                    text-align: center;
+                    img{
+                        width: 80%;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 70rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                width: 100%;
+                .lifestyle_occasion_img{
+                    width: 100%;
+                    text-align: center;
+                    margin-left: 6rem;
+                    img{
+                        width: 90% !important;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 60rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                .corporate_events_img{
+                    width: 100%;
+                    text-align: center;
+                    margin-left: 5rem;
+                    img{
+                        width:80% !important;
+                    }
+                }
+                .corporate_events_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 420px) {
+    .event_management{
+        width: 100%;
+        .event_management_title{
+            width: 100%;
+            padding: 5rem 1.5rem;
+            h2{
+                font-size: 2.5rem;
+            }
+            p{
+                width: 100%;
+                margin:1.5rem auto;
+                font-size: 1.3rem;
+            }
+        }
+        .wedding_receptio_sec{
+            width: 100%;
+            height: 60rem;
+            padding: 2rem 0;
+            .wedding_receptio_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                padding: 0 2rem;
+                .wedding_receptio_img{
+                    width: 100%;
+                    text-align: center;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .wedding_receptio_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 2.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.3rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .lifestyle_occasion_sec{
+            width: 100%;
+            height: 62rem;
+            .lifestyle_occasion_items{
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                width: 100%;
+                .lifestyle_occasion_img{
+                    width: 100%;
+                    text-align: center;
+                    margin-left: 2rem;
+                    img{
+                        width: 100% !important;
+                    }
+                }
+                .lifestyle_occasion_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .corporate_events_sec{
+            width: 100%;
+            height: 57rem;
+            .corporate_events_items{
+                position: absolute;
+                top: 1rem;
+                left: 0;
+                width: 100%;
+                .corporate_events_img{
+                    width: 100%;
+                    text-align: center;
+                    margin-left: 3rem;
+                    img{
+                        width:100% !important;
+                    }
+                }
+                .corporate_events_text{
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    text-align: center;
+                    h2{
+                        font-size: 3.5rem;
+                    }
+                    p{
+                        width: 100%;
+                        margin:1.5rem auto;
+                        font-size: 1.5rem;
+                    }
+                    a{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
