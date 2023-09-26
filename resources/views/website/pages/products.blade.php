@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="raw_items_text">
-                                    <p>{{ $product->name }}</p>
+                                    <a href="{{ route('product', $product->id) }}">{{ $product->name }}</a>
                                     <span>৳ {{ $product->rental_price }}</span>
                                 </div>
                             </div>

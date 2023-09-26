@@ -22,21 +22,11 @@ use App\Http\Controllers\Website\MessageController;
 use App\Http\Controllers\website\ProductCategoryController;
 use App\Http\Controllers\website\ProductController as WebsiteProductController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::get('/createSymlink', function(){
-    $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
-    symlink($targetFolder, $linkFolder);
-});
+// Route::get('/createSymlink', function(){
+//     $targetFolder = storage_path('app/public');
+//     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+//     symlink($targetFolder, $linkFolder);
+// });
 
 Route::get('/', function () {
     return view('website.pages.home');
@@ -46,9 +36,9 @@ Route::get('/about', function () {
     return view('website.pages.about');
 })->name('about');
 
-Route::get('/cart', function () {
-    return view('website.pages.cart');
-})->name('cart');
+Route::get('/product/{id}', function () {
+    return view('website.pages.product_single');
+})->name('product');
 
 Route::get('/catering', function () {
     return view('website.pages.catering');
