@@ -1,10 +1,10 @@
 .workshop_area{
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: center center;
     flex-wrap: wrap;
     gap: 2rem;
-    width: 70%;
+    width: 67%;
     margin: auto;
     .workshop_card{
         width: 30rem;
@@ -46,8 +46,8 @@
 @media only screen and (max-width:768px) {
     .workshop_area{
         width: 90%;
-        gap: 2%;
-        padding: 0;
+        gap: 1rem;
+        padding: 3rem 0;
         .workshop_card{
             width: 20rem;
             height: 23rem;

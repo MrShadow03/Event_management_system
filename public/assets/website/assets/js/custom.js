@@ -30,6 +30,26 @@ var swiper = new Swiper(".benar_box", {
     },
   });
 
+  $('.related_products_items').owlCarousel({
+    items:3,
+    margin:20,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+    
+});
+
 
 // ** CLIENTS slider
 $('#client_slider').owlCarousel({
@@ -52,26 +72,6 @@ $('#client_slider').owlCarousel({
     
 });
 
-$('.related_products_items').owlCarousel({
-    items:3,
-    margin:20,
-    autoplay: true,
-    autoplayTimeout: 4000,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        768:{
-            items:2
-        },
-        1000:{
-            items:4
-        }
-    }
-    
-});
-    
 
 
 })
