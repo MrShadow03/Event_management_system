@@ -14,19 +14,17 @@ var swiper = new Swiper(".benar_box", {
   });
 
 //   HOME PAGE CARD IMAGE SLIDER
-  var swiper = new Swiper(".img_left", {
+  var swiper_catering = new Swiper(".img_left", {
     loop: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+    pagination: {
+        el: ".swiper-pagination1",
+        clickable: true,
     },
   });
 
-  var swiper = new Swiper(".img_right", {
-    loop: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+  var swiper_event = new Swiper(".img_right", {
+    pagination: {
+        el: ".swiper-pagination2",
     },
   });
 
@@ -57,7 +55,7 @@ $('#client_slider').owlCarousel({
     margin:20,
     autoplay: true,
     autoplayTimeout: 4000,
-    nav:true,
+    nav:false,
     responsive:{
         0:{
             items:1

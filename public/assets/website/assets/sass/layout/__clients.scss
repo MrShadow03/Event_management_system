@@ -48,16 +48,17 @@
         }
     }
     p{
-        font-size: 1.7rem;
-        font-family: pera;
-        line-height: 2.3rem;
+        font-size: 1.6rem;
+        font-family: 'Playfair Display', serif;
+        line-height: 2.6rem;
         opacity: .9;
-        margin-bottom: 1.5rem;
+        margin-block: 2rem;
     }
     h4{
-        font-size: 1.7rem;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
         opacity: .8;
-        font-family: sans-serif;
+        font-weight: 700;
     }
  
 }
@@ -95,6 +96,7 @@
 
 .owl-dots{
     text-align: center;
+    margin-top: 4rem;
 }
 .owl-carousel button.owl-dot{
     border: 1px solid #363636;

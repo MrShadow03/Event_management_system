@@ -1,3 +1,24 @@
+.btn-grad {
+    background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371  51%, #FF5F6D  100%);
+    padding: 1.8rem 6rem;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    font-family: 'roboto';   
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 700; 
+    box-shadow: 0 0 20px #eee;
+    border-radius: 5px;
+
+    &:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+  }
 .btn_black{
     width: 22rem;
     padding: 1.5rem .5rem;

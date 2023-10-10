@@ -4,6 +4,9 @@
         display: flex;
         justify-content: center;
     }
+    p{
+        font-size: 1.6rem !important;
+    }
 }
 
 .videos{
@@ -12,6 +15,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    margin-top: 10rem;
     .items {
         width: 39rem;
         height: 22rem;

@@ -9,16 +9,18 @@
         width: 45%;
         p{
             font-size: 1.4rem;
-            font-family: peraItalic;
+            font-family: 'Playfair Display', serif;
             margin: 1.5rem auto;
-            margin-top: 7rem;
-            line-height: 2.6rem;
+            margin-top: 3rem;
+            line-height: 2.4rem;
+            opacity: .7;
         }
         .social_btn_sm{
+            margin-top: 3rem;
             a {
                 display: inline-block;
                 padding: 1rem;
-                background: $black;
+                background: #272727;
                 margin: 0 .3rem;
                 border-radius: .4rem;
                 transition: .25s;
