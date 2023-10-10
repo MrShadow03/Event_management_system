@@ -1,6 +1,10 @@
 .clients{
-    padding: 4rem 0;
-    background-color: $colorBG2;
+    margin-top: 6rem;
+    padding: 3rem 0;
+    background-color: $colorBG;
+    .custom_title1{
+        padding-top: 0;
+    }
 }
 
 #client_slider {

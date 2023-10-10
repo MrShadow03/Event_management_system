@@ -17,14 +17,15 @@ var swiper = new Swiper(".benar_box", {
   var swiper_catering = new Swiper(".img_left", {
     loop: true,
     pagination: {
-        el: ".swiper-pagination1",
+        el: ".swiper-pagination",
         clickable: true,
     },
   });
 
   var swiper_event = new Swiper(".img_right", {
     pagination: {
-        el: ".swiper-pagination2",
+        el: ".swiper-pagination",
+        clickable: true,
     },
   });
 

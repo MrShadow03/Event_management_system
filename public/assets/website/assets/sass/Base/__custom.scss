@@ -31,7 +31,9 @@
     z-index: 1;
     background-color: aliceblue;
 }
-
+.swiper-pagination-bullet{
+    background-color: hotpink;
+}
 @media only screen and (max-width:1220px) {
     .aro_img{
         margin-top: -5%;

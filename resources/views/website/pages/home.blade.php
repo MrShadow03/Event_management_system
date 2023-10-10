@@ -100,8 +100,7 @@
                         <img src="{{ asset('./assets/website/assets/img/catering.jpg') }}" alt="">
                     </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
             <div class="custom_title2">
                 <h2>Catering</h2>
@@ -122,8 +121,7 @@
                         <img src="{{ asset('./assets/website/assets/img/catering.jpg') }}" alt="">
                     </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
             <div class="custom_title2">
                 <h2>Book Your Venue</h2>

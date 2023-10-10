@@ -42,10 +42,11 @@
         position: absolute;
         content: "";
         right: -20%;
-        top: 0;
-        height: 100%;
+        top: 20%;
+        height: 50%;
         width: .1rem;
-        background-color: #e6b66e;
+        background-color: #aaa5a2;
+        opacity: .5;
     }
     .custom_title2{
         height: 33rem;
