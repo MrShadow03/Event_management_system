@@ -40,6 +40,7 @@ class ProductController extends Controller
             'category_id' => 'required | exists:categories,id',
             'product_code' => 'required',
             'dimension' => 'nullable',
+            'color' => 'nullable',
             'stock' => 'nullable',
             'rental_price' => 'nullable',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
@@ -50,6 +51,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->product_code = $request->product_code;
         $product->dimension = $request->dimension;
+        $product->color = $request->color;
         $product->stock = $request->stock;
         $product->rental_price = $request->rental_price;
         $product->image = $this->uploadImage('image', 'product');
@@ -74,6 +76,7 @@ class ProductController extends Controller
             'category_id' => 'required | exists:categories,id',
             'product_code' => 'required',
             'dimension' => 'nullable',
+            'color' => 'nullable',
             'stock' => 'nullable',
             'rental_price' => 'nullable',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
@@ -84,6 +87,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->product_code = $request->product_code;
         $product->dimension = $request->dimension;
+        $product->color = $request->color;
         $product->stock = $request->stock;
         $product->rental_price = $request->rental_price;
         $product->image = $this->updateImage('image', 'product', $product->image);

@@ -603,7 +603,10 @@
                                         <span class="required">Product code</span>
                                     </label>
                                     <!--end::Label-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="AB-12" name="product_code" required>
+                                    @php
+                                        $productCodePrefix = $lastProduct ? explode('-', $lastProduct->product_code)[0] : 'AB';
+                                    @endphp
+                                    <input type="text" class="form-control form-control-solid" placeholder="AB-12" value="{{ $productCodePrefix }}-" name="product_code" required>
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                 </div>
                                 <!--end::Input group-->
@@ -654,6 +657,19 @@
                                 <!--end::Input group-->
                             </div>
                         </div>
+
+                         <!--begin::Input group-->
+                         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span>Color</span>
+                            </label>
+                            <!--end::Label-->
+
+                            <input type="text" class="form-control form-control-solid" placeholder="Product color" name="color">
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <!--end::Input group-->
 
                         <!--begin::Input group row-->
                         <div class="row">
@@ -874,6 +890,19 @@
                             </div>
                         </div>
 
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span>Color</span>
+                            </label>
+                            <!--end::Label-->
+
+                            <input type="text" id="editProductColor" class="form-control form-control-solid" placeholder="Product color" value="{{ $lastProduct->color ?? '' }}" name="color">
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <!--end::Input group-->
+
                         <!--begin::Input group row-->
                         <div class="row">
                             <!--begin::Image input-->
@@ -1092,6 +1121,7 @@
             $('#editProductRentalPrice').val(data.rental_price);
             $('#editProductDimension').val(data.dimension);
             $('#editProductStock').val(data.stock);
+            $('#editProductColor').val(data.color);
             $('#editImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')');
 
             // select the category in the select2
