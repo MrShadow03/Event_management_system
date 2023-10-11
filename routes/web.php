@@ -22,11 +22,11 @@ use App\Http\Controllers\Website\MessageController;
 use App\Http\Controllers\website\ProductCategoryController;
 use App\Http\Controllers\website\ProductController as WebsiteProductController;
 
-// Route::get('/createSymlink', function(){
-//     $targetFolder = storage_path('app/public');
-//     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
-//     symlink($targetFolder, $linkFolder);
-// });
+Route::get('/createSymlink', function(){
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+    symlink($targetFolder, $linkFolder);
+});
 
 Route::get('/', function () {
     return view('website.pages.home');
