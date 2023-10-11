@@ -562,7 +562,7 @@
                             </label>
                             <!--end::Label-->
 
-                            <input type="text" class="form-control form-control-solid" placeholder="Product name" name="name" required >
+                            <input type="text" class="form-control form-control-solid" placeholder="Product name" value="{{ $lastProduct->name ?? '' }}" name="name" required >
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->
@@ -586,7 +586,7 @@
                                 <div class="overflow-hidden flex-grow-1">
                                     <select data-dropdown-parent="#modal_new_product" class="form-select form-select-solid rounded-start-0" name="category_id" data-control="select2" data-placeholder="Select a category" required>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" @selected( $category->id == 1 )>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" @selected( $lastProduct && $category->name === $lastProduct->category->name )>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -617,7 +617,7 @@
                                     </label>
                                     <!--end::Label-->
         
-                                    <input type="number" class="form-control form-control-solid" name="rental_price" required>
+                                    <input type="number" class="form-control form-control-solid" name="rental_price" value="{{ $lastProduct->rental_price ?? '' }}" required>
                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                 </div>
                                 <!--end::Input group-->

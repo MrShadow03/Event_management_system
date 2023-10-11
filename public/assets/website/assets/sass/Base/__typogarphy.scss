@@ -20,77 +20,79 @@
     src: url(../font/OperatorMono-MediumItalic.otf);
 }
 
+.heading-xl{
+    font-size: 6rem;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+    background: linear-gradient(90deg,#aa2060 0%, #0a1631 60%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.heading-lg{
+    font-size: 4rem;
+    font-family: 'MonteCarlo', cursive;
+    opacity: .9;
+    background: linear-gradient(108.7deg, rgb(223, 3, 127) 0%, rgb(39, 0, 74) 60%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.heading-md{
+    font-size: 2.4rem;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+    background: linear-gradient(90deg,#aa2060 0%, #0a1631 60%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.para-lg{
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 3rem;
+    opacity: .9;
+}
+.para-md{
+    font-size: 1.6rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 2.6rem;
+    opacity: .8;
+}
+.para-sm{
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 2.4rem;
+    opacity: .8;
+}
 // 1st title
 .custom_title1{
     padding-top: 9rem;
     text-align: center;
     h2{
-        font-size: 6rem;
-        font-family: 'DM Serif Display', serif;
-        font-weight: 700;
         position: relative;
-        background: linear-gradient(90deg,#aa2060 0%, #0a1631 60%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
         display: inline-block;
-        // &::after {
-        //     position: absolute;
-        //     content: "";
-        //     width: 13rem;
-        //     height: .4rem;
-        //     bottom: -4rem;
-        //     left: 0;
-        //     right: 0;
-        //     margin: auto;
-        //     box-shadow: 0px 0px 1px $black;
-        // }
     }
     
    .desc{
-        font-size: 2rem;
-        font-family: 'Playfair Display', serif;
-        width: 35%;
         text-align: center;
         margin-top: 3rem;
         margin-inline: auto;
-        line-height: 3rem;
-        opacity: .9;
+        width: 35%;
    }
 }
  
 // 2nd title
 .custom_title2{
     h2{
-        font-size: 4rem;
-        font-family: 'MonteCarlo', cursive;
-        opacity: .9;
         position: relative;
-        background: linear-gradient(108.7deg, rgb(223, 3, 127) 0%, rgb(39, 0, 74) 60%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
         display: inline-block;
         padding-right: 1rem;
-        
-        // &::after {
-        //     position: absolute;
-        //     content: "";
-        //     width: 14rem;
-        //     height: .5rem;
-        //     background: $border;
-        //     border-radius: .5rem;
-        //     bottom: -2rem;
-        //     left: 0;
-        //     box-shadow: 0px 0px 1px $black;
-        // }
     }
     p{
-        font-size: 1.6rem;
-        font-family: 'Playfair Display', serif;
         text-align: left;
         margin-top: 2rem;
         margin-inline: auto;
-        line-height: 2.6rem;
-        opacity: .8;
         margin-bottom: 10rem;
     }
 }

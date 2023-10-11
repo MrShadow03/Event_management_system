@@ -18,6 +18,7 @@ class ProductController extends Controller
         $products = Product::with('category')->get();
         $categories = Category::all();
         $sectionData = Section::where('name', 'products')->first();
+        $lastProduct = Product::with('category')->orderBy('id', 'desc')->first() ?? null;
 
         //include product count for each category
         foreach ($categories as $category) {
@@ -27,6 +28,7 @@ class ProductController extends Controller
             'products' => $products,
             'categories' => $categories,
             'sectionData' => $sectionData,
+            'lastProduct' => $lastProduct,
         ]);
     }
     /**
