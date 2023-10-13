@@ -40,6 +40,8 @@ Route::get('/product/{id}', function () {
     return view('website.pages.product_single');
 })->name('product');
 
+Route::get('/products/{id}', [WebsiteProductController::class, 'index'])->name('products');
+
 Route::get('/catering', function () {
     return view('website.pages.catering');
 })->name('catering');
@@ -54,7 +56,6 @@ Route::get('/event', function () {
 
 Route::get('/logistics', [ProductCategoryController::class, 'index'])->name('logistics');
 
-Route::get('/products/{id}', [WebsiteProductController::class, 'index'])->name('products');
 
 Route::get('/workshop', function () {
     return view('website.pages.workshop');

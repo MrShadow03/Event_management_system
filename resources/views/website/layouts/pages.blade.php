@@ -6,7 +6,7 @@
 		<!-- Navbar Start -->
 		@include('website.partials.drawers')
 		<header class="page_nav">
-			@include('website.partials.navbar')
+			@yield('nav')
 		</header>
 		<!-- Navbar End -->
 		<!-- Main Content Start -->

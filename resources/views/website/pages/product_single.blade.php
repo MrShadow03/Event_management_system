@@ -8,6 +8,10 @@
     <title>Cart</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
 <div class="main_cart_section">
     <div class="cart_section">

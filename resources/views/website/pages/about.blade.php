@@ -8,6 +8,10 @@
     <title>About Us</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
 <div class="container_fluid">
     <div class="about_rea">

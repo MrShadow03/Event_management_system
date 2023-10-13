@@ -8,6 +8,10 @@
     <title>Contact</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
     <!-- MAIN BODY  -->
     <div class="contact_area">

@@ -6,7 +6,7 @@
 		<!-- Navbar Start -->
 		@include('website.partials.drawers')
 		<header class="header">
-			@include('website.partials.navbar')
+			@yield('nav')
 			@yield('banner')
 		</header>
 		<!-- Navbar End -->

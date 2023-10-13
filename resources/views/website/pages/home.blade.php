@@ -18,6 +18,10 @@
     <meta property="og:type" content="website">
 @endsection
 
+@section('nav')
+    <x-nav :transparent="true" />
+@endsection
+
 @section('main-content')
 
     <!-- BANNER -->
@@ -31,10 +35,10 @@
         <div class="benar_box swiper">
             <div class="swiper-wrapper">
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/benar1.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/banner-slide1.jpg') }}" alt="">
                 </div>
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/Lifestyle.png') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/banner-slide2.jpg') }}" alt="">
                 </div>
                 <div class="benar_items swiper-slide">
                     <img src="{{ asset('./assets/website/assets/img/catering.jpg') }}" alt="">
@@ -44,9 +48,16 @@
         </div>
     @endsection
     <div class="aro_img">
-        <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(255, 255, 255, 1)" offset="0%"></stop><stop stop-color="rgba(255, 255, 255, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,60L80,55C160,50,320,40,480,45C640,50,800,70,960,70C1120,70,1280,50,1440,36.7C1600,23,1760,17,1920,25C2080,33,2240,57,2400,68.3C2560,80,2720,80,2880,66.7C3040,53,3200,27,3360,28.3C3520,30,3680,60,3840,65C4000,70,4160,50,4320,46.7C4480,43,4640,57,4800,60C4960,63,5120,57,5280,56.7C5440,57,5600,63,5760,55C5920,47,6080,23,6240,25C6400,27,6560,53,6720,55C6880,57,7040,33,7200,21.7C7360,10,7520,10,7680,23.3C7840,37,8000,63,8160,75C8320,87,8480,83,8640,75C8800,67,8960,53,9120,48.3C9280,43,9440,47,9600,40C9760,33,9920,17,10080,13.3C10240,10,10400,20,10560,23.3C10720,27,10880,23,11040,25C11200,27,11360,33,11440,36.7L11520,40L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg>
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 1920.5 93.6" style="enable-background:new 0 0 1920.5 93.6;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#FFFFFF;}
+            </style>
+            <path class="st0" d="M1920.2,92.6H0.2c0-77.1,0,52.3,0-24.8C277.7,28.5,599.3,0.4,956.9,0.2c360.3-0.2,684.2,28.1,963.3,67.5
+                C1920.2,144.9,1920.2,15.4,1920.2,92.6z"/>
+        </svg>
     </div>
-    <div class="custom_title1">
+    <div class="custom_title1" style="margin-top: 2rem;">
         <h2 class="heading-xl">Maa Event Management<span class="border"></span></h2>
         <p class="para-lg desc">We are thrilled to offer a variety of events and gatherings for you to enjoy. Our goal is to provide a welcoming and enjoyable atmosphere where you can connect with others and make lasting memories.</p>
     </div>

@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-// BENAR SLIDER 
 var swiper = new Swiper(".benar_box", {
     direction: "vertical",
     pagination: {
@@ -13,7 +11,6 @@ var swiper = new Swiper(".benar_box", {
       },
   });
 
-//   HOME PAGE CARD IMAGE SLIDER
   var swiper_catering = new Swiper(".img_left", {
     loop: true,
     pagination: {
@@ -78,11 +75,14 @@ $('#client_slider').owlCarousel({
 
 
 
-// HEADER EFECT BY SCROLL
-window.onscroll = function() {headerScroll()};
+// Header fixed
+window.onscroll = function() 
+{ 
+    headerScroll()
+};
 
 function headerScroll() {
-    if (document.body.scrollTop > 78 || document.documentElement.scrollTop > 78) {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         document.getElementById("mainNav_area").classList.add('active_nav');
     } else {
         document.getElementById("mainNav_area").classList.remove('active_nav');

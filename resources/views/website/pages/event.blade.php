@@ -8,6 +8,10 @@
     <title>Event Organization</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
 <!-- Event Management Section Start -->
 <div class="event_management">

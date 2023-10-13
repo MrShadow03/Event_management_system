@@ -47,6 +47,20 @@
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
+.heading-sm{
+    font-size: 1.6rem;
+    font-family: 'Roboto', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    font-weight: 500;
+    opacity: .9;
+    color: $black;
+}
+.heading-xs{
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    opacity: .9;
+    color: $black;
+}
 .para-lg{
     font-size: 2rem;
     font-family: 'Playfair Display', serif;
@@ -67,7 +81,6 @@
 }
 // 1st title
 .custom_title1{
-    padding-top: 9rem;
     text-align: center;
     h2{
         position: relative;

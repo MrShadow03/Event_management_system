@@ -8,6 +8,10 @@
     <title>Logistic Rentals</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
 <div class="main_page_wrapper">
     <div class="container">
@@ -23,7 +27,7 @@
                         @continue
                     @endif
                     <li class="single_list">
-                        <a href="{{ route('products', $category->id) }}">
+                        <a href="{{ route('products', ['id' => $category->id]) }}">
                             <img src="{{ asset('storage').'/'.$category->image }}" alt="">
                             <p>{{ $category->name }}</p>
                         </a>

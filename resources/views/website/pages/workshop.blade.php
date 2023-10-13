@@ -8,6 +8,10 @@
     <title>Workshop</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
     <div class="workshop_area">
         <a class="workshop_card" href="assets/img/workshop1.jpg" data-lightbox="workshop" data-title="item1">

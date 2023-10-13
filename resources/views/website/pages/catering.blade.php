@@ -8,6 +8,10 @@
     <title>Catering</title>
 @endsection
 
+@section('nav')
+    <x-nav />
+@endsection
+
 @section('main-content')
 <div class="catering_sec">
     <div class="catering_sec_text">
