@@ -33,6 +33,8 @@ class ProductController extends Controller
                 $products->orderBy('rental_price', 'asc');
             }elseif($request->order_by == 'price-desc'){
                 $products->orderBy('rental_price', 'desc');
+            }else{
+                $products->orderBy('name', 'asc');
             }
         }
 
@@ -58,6 +60,22 @@ class ProductController extends Controller
                 'order_by' => $request->order_by,
                 'limit' => $request->limit,
             ]
+        ]);
+    }
+
+    public function show($id){
+        $product = Product::with('category')->where('id', $id)->first();
+        $related_products = Product::where('category_id', $product->category_id)->where('id', '!=', $id)->limit(10)->get();
+        $uniqueColors = Product::where('name', $product->name)->where('color', '!=', $product->color)->distinct('color')->get();
+        $uniqueDimensions = Product::where('name', $product->name)->where('dimension', '!=', $product->dimension)->distinct('dimension')->get();
+               
+        return view('website.pages.product_single',[
+            'product' => $product,
+            'related_products' => $related_products,
+            'variations' => [
+                'colors' => $uniqueColors,
+                'dimensions' => $uniqueDimensions,
+            ],
         ]);
     }
 }

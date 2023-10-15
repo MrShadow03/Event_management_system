@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 class ProductCategoryController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        $categories = Category::with('products')->get();
         return view('website.pages.logistics', [
-            'categories' => $categories,]
+            'categories' => $categories,
+            ]
         );
     }
 }

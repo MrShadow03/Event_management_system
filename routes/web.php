@@ -22,11 +22,11 @@ use App\Http\Controllers\Website\MessageController;
 use App\Http\Controllers\website\ProductCategoryController;
 use App\Http\Controllers\website\ProductController as WebsiteProductController;
 
-Route::get('/createSymlink', function(){
-    $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
-    symlink($targetFolder, $linkFolder);
-});
+// Route::get('/createSymlink', function(){
+//     $targetFolder = storage_path('app/public');
+//     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
+//     symlink($targetFolder, $linkFolder);
+// });
 
 Route::get('/', function () {
     return view('website.pages.home');
@@ -36,11 +36,9 @@ Route::get('/about', function () {
     return view('website.pages.about');
 })->name('about');
 
-Route::get('/product/{id}', function () {
-    return view('website.pages.product_single');
-})->name('product');
-
 Route::get('/products/{id}', [WebsiteProductController::class, 'index'])->name('products');
+
+Route::get('/product/{id}', [WebsiteProductController::class, 'show'])->name('product');
 
 Route::get('/catering', function () {
     return view('website.pages.catering');

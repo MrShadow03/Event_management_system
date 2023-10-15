@@ -1,6 +1,6 @@
 .container {
-    width: 70%;
-    margin: auto;
+    width: 1344px;
+    margin: 0 auto;
 }
 
 .container_fluid {
@@ -8,7 +8,6 @@
     margin: auto;
     padding-top: 6rem;
 }
-
 
 .aro_img{
     width: 100%;
@@ -39,6 +38,9 @@
     background-color: rgb(255, 23, 178);
 }
 
+.bg-white{
+    background-color: #fff !important;
+}
 
 
 .swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical > .swiper-pagination-bullets {
