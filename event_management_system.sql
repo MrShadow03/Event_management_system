@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 08:22 AM
+-- Generation Time: Oct 17, 2023 at 01:07 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -236,6 +236,30 @@ INSERT INTO `company_histories` (`id`, `milestone`, `description`, `date`, `imag
 (1, 'Started Company', 'Aliquam sit amet massa quis augue porta consequat eu eu lectus. Praesent a ipsum a sem tristique.\r\n\r\nAliquam sit amet massa quis augue porta consequat eu eu lectus. Praesent a ipsum a sem tristique. Aliquam sit amet massa quis augue porta consequat eu eu lectus. Praesent a ipsum a sem tristique.', '2018-07-25', 'gallery/pgdnjtLiUPaVH8Pq4cFCLDQdNrrLRVz3TXVikuEN.jpg', 1, '2023-08-18 12:05:23', '2023-08-18 11:45:07'),
 (2, 'Opening Office', 'Aliquam sit amet massa quis augue porta consequat eu eu lectus. Praesent a ipsum a sem tristique', '2020-08-12', 'gallery/default.webp', 1, '2023-08-18 12:06:51', '2023-08-18 12:06:51'),
 (3, 'Some Milestone', NULL, '2020-07-30', 'gallery/3Y98bWowDgOt6LEVw9icniFymfov15544jCwLaze.jpg', 1, '2023-08-21 12:52:07', '2023-08-18 12:07:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Mohammad Hijab', 'mhijab@gmail.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -765,7 +789,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mr Shadow', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'Q6lHmMwK8iwB4NHN6cYZeT1h1zWcOzbmkA3f3enWeqpZTEOYcdn8lppX6HyL', NULL, '2023-09-25 19:41:48');
+(1, 'Mr Shadow', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'FdKkW4YpOlQg2A8oE1lgXTIs2l5Hs5HpVTqUQRDff76EMJpM1lzvij2jJheB', NULL, '2023-09-25 19:41:48');
 
 -- --------------------------------------------------------
 
@@ -935,6 +959,13 @@ ALTER TABLE `company_histories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customer_email` (`email`);
+
+--
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -1080,6 +1111,12 @@ ALTER TABLE `company_details`
 --
 ALTER TABLE `company_histories`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`

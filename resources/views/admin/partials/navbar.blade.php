@@ -685,7 +685,7 @@
             <!--end::Menu separator-->
 
             <!--begin::Menu item-->
-            <form action="{{ route('logout') }}" method="POST" class="menu-item px-5">
+            <form action="{{ route('admin.logout') }}" method="POST" class="menu-item px-5">
                 @csrf
                 <button type="submit" class="btn btn-sm btn-danger px-5 ml-2 d-block"><i class="bi bi-box-arrow-right fs-4 me-2"></i> Sign Out</button>
             </form>

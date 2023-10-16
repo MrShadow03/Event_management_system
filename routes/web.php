@@ -148,6 +148,13 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
 
 });
 
+//customer routes
+Route::group(['prefix' => '/customer', 'as' => 'customer.', 'middleware' => ['auth:customer']], function(){
+    Route::get('/dashboard', function () {
+        return view('customer.pages.dashboard');
+    })->name('dashboard');
+});
 
 // require __DIR__.'/statics.php';
-require __DIR__.'/auth.php';
+require __DIR__.'/admin_auth.php';
+require __DIR__.'/customer_auth.php';
