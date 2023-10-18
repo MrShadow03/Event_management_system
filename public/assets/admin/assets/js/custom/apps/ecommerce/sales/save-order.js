@@ -322,12 +322,8 @@ var KTAppEcommerceSalesSaveOrder = function () {
     // Public methods
     return {
         init: function () {
-
             initSaveOrder();
             handleSearchDatatable();
-            handleShippingForm();
-            handleProductSelect();
-            handleSubmit();
         }
     };
 }();

@@ -62,6 +62,40 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+                @can('create customer')
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.customers')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.customers') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-profile-user fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                                <span class="path4"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Customers</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                @endcan
+                @can('create order')
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.rentals')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.rentals') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-handcart fs-2">
+                            </i>
+                        </span>
+                        <span class="menu-title">Rentals</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                @endcan
             </div>
             <!--end::Menu-->
         </div>

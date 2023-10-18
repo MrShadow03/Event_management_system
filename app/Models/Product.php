@@ -19,4 +19,12 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function rentals(){
+        return $this->hasMany(Rental::class);
+    }
+
+    public function repairs(){
+        return $this->hasMany(Repair::class);
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 trait ImageHandling {
 
-    public function uploadImage($inputFileName, $dict, $defaultImageName = 'default.webp'){
+    public function uploadImage($inputFileName, $dict){
         //check if has image
         $hasImageInput = request()->hasFile($inputFileName);
         if($hasImageInput){
@@ -19,29 +19,29 @@ trait ImageHandling {
             return $path;
         }
         //return default image path
-        return $dict . '/' . $defaultImageName;
+        return $dict . '/' . 'default.png';
     }
 
-    public function deleteOldImage($inputFileName, $oldImage = null, $defaultImageName = 'default.webp'){
+    public function deleteOldImage($inputFileName, $oldImage = null){
         //check if has new image or default image
         $hasImageInput = request()->hasFile($inputFileName);
         $hasImageInDatabase = $oldImage != null;
         $oldImageName = $hasImageInDatabase ? explode('/', $oldImage)[1] : null;
-        $isDefaultImage = $oldImageName && $oldImageName == $defaultImageName;
+        $isDefaultImage = $oldImageName && explode('/', $oldImageName)[0] == 'default';
         //if has new image then delete old image if not default image
         if($hasImageInput && !$isDefaultImage){
             Storage::disk('public')->delete($oldImage);
         }
     }
 
-    public function updateImage($inputFileName, $dict, $oldImage = null, $defaultImageName = 'default.webp'){
+    public function updateImage($inputFileName, $dict, $oldImage = null){
         $hasImageInput = request()->hasFile($inputFileName);
         $hasImageInDatabase = $oldImage != null;
 
         // Delete the old image and upload the new one if a new image is provided
         if ($hasImageInput) {
-            $this->deleteOldImage($inputFileName, $oldImage, $defaultImageName);
-            return $this->uploadImage($inputFileName, $dict, $defaultImageName);
+            $this->deleteOldImage($inputFileName, $oldImage);
+            return $this->uploadImage($inputFileName, $dict);
         }
 
         // If there is no new image but an old one exists, return the old image
@@ -50,6 +50,6 @@ trait ImageHandling {
         }
 
         // Return the default image path if no new image or old image
-        return $dict . '/' . $defaultImageName;
+        return $dict . '/' . 'default.png';
     }
 }

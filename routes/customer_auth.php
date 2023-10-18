@@ -32,8 +32,12 @@ Route::group(['middleware' => ['guest:customer'], 'prefix' => 'customer/', 'as' 
                 ->name('password.store');
 });
 
-Route::middleware(['auth:customer'])->group(function () {
-    Route::post('customer/logout', [AuthenticatedSessionController::class, 'destroy'])->name('customer.logout');
+Route::group(['middleware' => ['auth:customer'], 'prefix' => 'customer/', 'as' => 'customer.'],function () {
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::get('/dashboard', function () {
+        return view('customer.pages.dashboard');
+    })->name('dashboard');
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //             ->name('verification.notice');
 

@@ -31,9 +31,17 @@
                 <div class="cart">
                     <span id="cart_btn"><i class="fa-solid fa-cart-shopping"></i></span>
                 </div>
-                <a href="/admin/login" class="signIn">
+                @guest('customer')
+                <a href="{{ route('customer.login') }}" class="signIn">
                     <span><i class="fa-solid fa-user"></i></span>
                 </a>
+                @endguest
+                @auth('customer')
+                <a href="{{ route('customer.dashboard') }}" class="signIn">
+                    <span>{{ Auth::guard('customer')->user()->name }}</span>
+                </a>
+                @endauth
+
             </div>
         </div>
     </nav>

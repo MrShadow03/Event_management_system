@@ -15,7 +15,7 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->latest()->get();
         $categories = Category::all();
         $sectionData = Section::where('name', 'products')->first();
         $lastProduct = Product::with('category')->orderBy('id', 'desc')->first() ?? null;

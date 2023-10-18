@@ -1,4 +1,3 @@
-<!-- FILEPATH: /d:/Software/Projects/Laravel/Event_management_system/resources/views/customer/pages/dashboard.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>

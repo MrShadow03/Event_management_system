@@ -7,18 +7,13 @@ use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\WorkforceController;
-use App\Http\Controllers\ClientMessageController;
-use App\Http\Controllers\CompanyDetailController;
-use App\Http\Controllers\CompanyHistoryController;
-use App\Http\Controllers\Website\MessageController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\website\ProductCategoryController;
 use App\Http\Controllers\website\ProductController as WebsiteProductController;
 
@@ -27,6 +22,7 @@ use App\Http\Controllers\website\ProductController as WebsiteProductController;
 //     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage';
 //     symlink($targetFolder, $linkFolder);
 // });
+Route::get('/createRole', [RolePermissionController::class, 'createRole']);
 
 Route::get('/', function () {
     return view('website.pages.home');
@@ -70,25 +66,8 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         // return view('admin.pages.dashboard');
     })->name('dashboard');
 
-    // Route::get('/pages', [PageController::class, 'index'])->name('pages');
-    // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
-    // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');
-    // Route::get('/page/section/change-status/{id}', [PageController::class, 'changeSectionStatus'])->name('page.section.change-status');
     
     Route::patch('/section/update', [SectionController::class, 'update'])->name('section.update');
-
-    // Route::get('/banners', [BannerController::class, 'index'])->name('banners');
-    // Route::post('/banner/store', [BannerController::class, 'store'])->name('banner.store');
-    // Route::patch('/banner/update', [BannerController::class, 'update'])->name('banner.update');
-    // Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
-    // Route::patch('/banner/change-status/{id}', [BannerController::class, 'changeStatus'])->name('banner.change-status');
-    
-    // Route::get('/services', [ServiceController::class, 'index'])->name('services');
-    // Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
-    // Route::patch('/service/update', [ServiceController::class, 'update'])->name('service.update');
-    // Route::patch('/service/update-section', [ServiceController::class, 'updateSection'])->name('service.update-section');
-    // Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
-    // Route::patch('/service/change-status/{id}', [ServiceController::class, 'changeStatus'])->name('service.change-status');
     
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
@@ -102,6 +81,42 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::patch('/category/update', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+    Route::get('/customer/{customer}', [CustomerController::class, 'show'])->name('customer.show');
+    Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::patch('/customer/update', [CustomerController::class, 'update'])->name('customer.update');
+    Route::delete('/customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+    
+    Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
+    Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
+    Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
+    
+    //profile routes
+    Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
+        Route::get('/overview', [ProfileController::class, 'index'])->name('overview');
+        Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
+        Route::patch('/update', [ProfileController::class, 'update'])->name('update');
+        Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
+        Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+    });
+
+    // Route::get('/pages', [PageController::class, 'index'])->name('pages');
+    // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
+    // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');
+    // Route::get('/page/section/change-status/{id}', [PageController::class, 'changeSectionStatus'])->name('page.section.change-status');
+
+    // Route::get('/banners', [BannerController::class, 'index'])->name('banners');
+    // Route::post('/banner/store', [BannerController::class, 'store'])->name('banner.store');
+    // Route::patch('/banner/update', [BannerController::class, 'update'])->name('banner.update');
+    // Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
+    // Route::patch('/banner/change-status/{id}', [BannerController::class, 'changeStatus'])->name('banner.change-status');
+    
+    // Route::get('/services', [ServiceController::class, 'index'])->name('services');
+    // Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
+    // Route::patch('/service/update', [ServiceController::class, 'update'])->name('service.update');
+    // Route::patch('/service/update-section', [ServiceController::class, 'updateSection'])->name('service.update-section');
+    // Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+    // Route::patch('/service/change-status/{id}', [ServiceController::class, 'changeStatus'])->name('service.change-status');
     // Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks');
     // Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
     // Route::patch('/feedback/update', [FeedbackController::class, 'update'])->name('feedback.update');
@@ -130,14 +145,6 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     // Route::delete('/company-history/delete/{id}', [CompanyHistoryController::class, 'destroy'])->name('company-history.destroy');
     // Route::patch('/company-history/change-status/{id}', [CompanyHistoryController::class, 'changeStatus'])->name('company-history.change-status');
     
-    //profile routes
-    Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
-        Route::get('/overview', [ProfileController::class, 'index'])->name('overview');
-        Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
-        Route::patch('/update', [ProfileController::class, 'update'])->name('update');
-        Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
-        Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
-    });
     
     // //Messages Routes
     // Route::group(['prefix' => '/inbox', 'as' => 'inbox.'], function(){
@@ -146,13 +153,6 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     //     Route::get('/message/important/{id}', [ClientMessageController::class, 'toggleImportant'])->name('message.important');
     // });
 
-});
-
-//customer routes
-Route::group(['prefix' => '/customer', 'as' => 'customer.', 'middleware' => ['auth:customer']], function(){
-    Route::get('/dashboard', function () {
-        return view('customer.pages.dashboard');
-    })->name('dashboard');
 });
 
 // require __DIR__.'/statics.php';
