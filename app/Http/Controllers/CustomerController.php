@@ -13,7 +13,7 @@ class CustomerController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        $customers = Customer::latest()->get();
+        $customers = Customer::with('rentals', 'invoices')->latest()->get();
 
         return view('admin.pages.customer.customers', [
             'customers' => $customers,

@@ -165,7 +165,7 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin:: Avatar -->
                                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                        <a href="../../user-management/users/view.html">
+                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}">
                                             <div class="symbol-label">
                                                 {{ $rental->customer->name[0] }}
                                             </div>
@@ -175,7 +175,7 @@
 
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="../../user-management/users/view.html"
+                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}"
                                             class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->customer->name }}</a>
                                         <!--end::Title-->
                                     </div>
@@ -209,7 +209,7 @@
                                     data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="details.html" class="menu-link px-3">
+                                        <a href="#invoice" class="menu-link px-3">
                                             View
                                         </a>
                                     </div>
@@ -217,7 +217,7 @@
 
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="edit-order.html" class="menu-link px-3">
+                                        <a href="#edit" class="menu-link px-3">
                                             Edit
                                         </a>
                                     </div>
@@ -225,9 +225,9 @@
 
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3"
+                                        <a href="#decline" class="menu-link px-3"
                                             data-kt-ecommerce-order-filter="delete_row">
-                                            Delete
+                                            Decline
                                         </a>
                                     </div>
                                     <!--end::Menu item-->

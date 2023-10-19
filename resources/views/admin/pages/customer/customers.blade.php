@@ -195,7 +195,7 @@
                                     data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="../../customers/view.html" class="menu-link px-3">
+                                        <a href="{{ route('admin.customer.show', $customer->id) }}" class="menu-link px-3">
                                             View
                                         </a>
                                     </div>
@@ -205,7 +205,7 @@
                                     <div class="menu-item px-3">
                                         <a href="#" class="menu-link px-3"
                                             data-kt-customer-table-filter="delete_row">
-                                            Delete
+                                            Deactive
                                         </a>
                                     </div>
                                     <!--end::Menu item-->

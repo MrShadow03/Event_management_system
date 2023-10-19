@@ -151,7 +151,7 @@
                             <!--begin::Details item-->
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Latest Transaction</div>
-                            <div class="text-gray-600"><a href="../sales/details.html"
+                            <div class="text-gray-600"><a href="#"
                                     class="text-gray-600 text-hover-primary">#14534</a> </div>
                             <!--begin::Details item-->
                         </div>
@@ -271,7 +271,7 @@
                                     <tbody class="fs-6 fw-semibold text-gray-600">
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#15626</a>
                                             </td>
                                             <td>
@@ -286,7 +286,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#15920</a>
                                             </td>
                                             <td>
@@ -301,7 +301,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14497</a>
                                             </td>
                                             <td>
@@ -316,7 +316,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14348</a>
                                             </td>
                                             <td>
@@ -331,7 +331,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14457</a>
                                             </td>
                                             <td>
@@ -346,7 +346,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14678</a>
                                             </td>
                                             <td>
@@ -361,7 +361,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14753</a>
                                             </td>
                                             <td>
@@ -376,7 +376,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#15913</a>
                                             </td>
                                             <td>
@@ -391,7 +391,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="../sales/details.html"
+                                                <a href="#"
                                                     class="text-gray-600 text-hover-primary mb-1">#14892</a>
                                             </td>
                                             <td>

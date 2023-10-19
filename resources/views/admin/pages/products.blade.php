@@ -152,7 +152,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Thumbnail-->
                                 <a href="#" class="symbol symbol-50px">
-                                    <span class="symbol-label" style="background-image:url({{ asset('storage'.'/'.$product->image) }});"></span>
+                                    <img src="{{ asset('storage'.'/'.$product->image) }}" alt="{{ $product->name }} image" loading="lazy" />
                                 </a>
                                 <!--end::Thumbnail-->
         
@@ -165,7 +165,7 @@
                             </div>
                         </td>
                         <td class="text-end pe-0">
-                            <span>{{ $product->category->name }}</span>
+                            <span class="font-bn">{{ $product->category->name }}</span>
                         </td>
                         <td class="text-end pe-0">
                             <span>{{ $product->product_code }}</span>
