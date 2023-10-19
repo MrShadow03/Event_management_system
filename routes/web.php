@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RentalController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
@@ -91,6 +92,8 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
     Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
     
+    Route::get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
+
     //profile routes
     Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
         Route::get('/overview', [ProfileController::class, 'index'])->name('overview');

@@ -25,7 +25,7 @@ var KTCustomerViewPaymentTable = function () {
             "pageLength": 5,
             "lengthChange": false,
             'columnDefs': [
-                { orderable: false, targets: 4 }, // Disable ordering on column 5 (actions)
+                { orderable: false, targets: 3 }, // Disable ordering on column 5 (actions)
             ]
         });
     }

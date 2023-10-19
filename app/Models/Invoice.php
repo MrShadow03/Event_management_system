@@ -21,4 +21,8 @@ class Invoice extends Model
     public function customer(){
         return $this->belongsTo(Customer::class);
     }
+
+    public function products(){
+        return $this->hasManyThrough(Product::class, Rental::class);
+    }
 }

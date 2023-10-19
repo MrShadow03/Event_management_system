@@ -249,7 +249,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title">
-                                    <h2>Transaction History</h2>
+                                    <h2>Invoices & Rents</h2>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -261,149 +261,29 @@
                                 <table class="table align-middle table-row-dashed gy-5" id="kt_table_customers_payment">
                                     <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                         <tr class="text-start text-muted text-uppercase gs-0">
-                                            <th class="min-w-100px">order No.</th>
+                                            <th class="min-w-100px">Invoice No.</th>
                                             <th>Status</th>
-                                            <th>Amount</th>
-                                            <th class="min-w-100px">Rewards</th>
-                                            <th class="min-w-100px">Date</th>
+                                            <th>Order Count</th>
+                                            <th class="min-w-100px">Issued On</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fs-6 fw-semibold text-gray-600">
+                                        @foreach ($customer->invoices as $invoice)
                                         <tr>
                                             <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#15626</a>
+                                                <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-600 text-hover-primary mb-1">#{{ $invoice->id }}</a>
                                             </td>
                                             <td>
-                                                <span class="badge badge-light-success">Successful</span>
+                                                <span class="badge badge-light-success">Rented</span>
                                             </td>
                                             <td>
-                                                $1,200.00 </td>
+                                                {{ $invoice->rentals->count() }}
+                                            </td>
                                             <td>
-                                                120 </td>
-                                            <td>
-                                                14 Dec 2020, 8:43 pm </td>
+                                                {{ $invoice->created_at->format('d M Y') }}
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#15920</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-success">Successful</span>
-                                            </td>
-                                            <td>
-                                                $79.00 </td>
-                                            <td>
-                                                7 </td>
-                                            <td>
-                                                01 Dec 2020, 10:12 am </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14497</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-success">Successful</span>
-                                            </td>
-                                            <td>
-                                                $5,500.00 </td>
-                                            <td>
-                                                550 </td>
-                                            <td>
-                                                12 Nov 2020, 2:01 pm </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14348</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-warning">Pending</span>
-                                            </td>
-                                            <td>
-                                                $880.00 </td>
-                                            <td>
-                                                88 </td>
-                                            <td>
-                                                21 Oct 2020, 5:54 pm </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14457</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-success">Successful</span>
-                                            </td>
-                                            <td>
-                                                $7,650.00 </td>
-                                            <td>
-                                                765 </td>
-                                            <td>
-                                                19 Oct 2020, 7:32 am </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14678</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-success">Successful</span>
-                                            </td>
-                                            <td>
-                                                $375.00 </td>
-                                            <td>
-                                                37 </td>
-                                            <td>
-                                                23 Sep 2020, 12:38 am </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14753</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-success">Successful</span>
-                                            </td>
-                                            <td>
-                                                $129.00 </td>
-                                            <td>
-                                                12 </td>
-                                            <td>
-                                                11 Sep 2020, 3:18 pm </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#15913</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-danger">Rejected</span>
-                                            </td>
-                                            <td>
-                                                $450.00 </td>
-                                            <td>
-                                                45 </td>
-                                            <td>
-                                                03 Sep 2020, 1:08 am </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#"
-                                                    class="text-gray-600 text-hover-primary mb-1">#14892</a>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-light-warning">Pending</span>
-                                            </td>
-                                            <td>
-                                                $8,700.00 </td>
-                                            <td>
-                                                870 </td>
-                                            <td>
-                                                01 Sep 2020, 4:58 pm </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <!--end::Table-->

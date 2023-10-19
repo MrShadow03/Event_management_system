@@ -209,7 +209,7 @@
                                     data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#invoice" class="menu-link px-3">
+                                        <a href="{{ route('admin.invoice.show', $rental->invoice->id) }}" class="menu-link px-3">
                                             View
                                         </a>
                                     </div>
