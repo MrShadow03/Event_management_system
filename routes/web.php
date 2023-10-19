@@ -14,8 +14,8 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RolePermissionController;
-use App\Http\Controllers\website\ProductCategoryController;
-use App\Http\Controllers\website\ProductController as WebsiteProductController;
+use App\Http\Controllers\Website\ProductCategoryController;
+use App\Http\Controllers\Website\ProductController as WebsiteProductController;
 
 // Route::get('/createSymlink', function(){
 //     $targetFolder = storage_path('app/public');
