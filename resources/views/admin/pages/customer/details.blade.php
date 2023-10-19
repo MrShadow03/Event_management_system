@@ -94,18 +94,16 @@
                         <div class="d-flex flex-center flex-column mb-5">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-150px symbol-circle mb-7">
-                                <img src="{{ asset('./assets/admin/assets/media/avatars/300-1.jpg') }}" alt="image">
+                                <div class="symbol-label display-5 fw-semibold text-success bg-light-success">{{ $customer->name[0] }}</div>
                             </div>
                             <!--end::Avatar-->
 
                             <!--begin::Name-->
-                            <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">
-                                Max Smith </a>
+                            <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{ $customer->name }}</a>
                             <!--end::Name-->
 
                             <!--begin::Email-->
-                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">
-                                max@kt.com </a>
+                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">{{ $customer->email }}</a>
                             <!--end::Email-->
                         </div>
                         <!--end::Summary-->
@@ -117,7 +115,7 @@
                             </div>
 
                             <!--begin::Badge-->
-                            <div class="badge badge-light-info d-inline">Premium user</div>
+                            <div class="badge badge-light-info d-inline">user</div>
                             <!--begin::Badge-->
                         </div>
                         <!--end::Details toggle-->
@@ -150,10 +148,6 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <!--begin::Details item-->
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Language</div>
-                            <div class="text-gray-600">English</div>
                             <!--begin::Details item-->
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Latest Transaction</div>
