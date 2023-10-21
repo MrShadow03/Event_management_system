@@ -46,6 +46,7 @@ class RentalController extends Controller
         $products = Product::with('rentals')->get();
 
         $newOrdersStartDate = $startDate;
+
         $rentedOrders = Rental::where('status', 'rented')
             ->where('ending_date', '<', $newOrdersStartDate)
             ->get();
@@ -56,7 +57,7 @@ class RentalController extends Controller
                 ->sum('quantity');
         }
 
-        $latestInvoiceId = Invoice::latest()->first()->id ?? 1300;
+        $latestInvoiceId = Invoice::max('id') ?? 1300;
 
         return view('admin.pages.rental.create', [
             'customer' => $customer,
@@ -69,22 +70,32 @@ class RentalController extends Controller
     }
 
     public function store(Request $request){
+        /**
+         * @var Illuminate\Http\Request $request
+         */
         $request->validate([
             'customer_id' => 'required | exists:customers,id',
             'invoice_id' => 'required',
             'start_date' => 'required',
             'return_date' => 'required',
             'number_of_days' => 'required',
+            'paid' => 'nullable',
+            'vat_percentage' => 'nullable',
+            'discount' => 'nullable',
+            'subtotal' => 'required',
+            'grand_total' => 'required',
             'products' => 'required | array',
         ]);
 
-        // For each product create a rental and update the stock
+        $request->paid = $request->paid ?? 0;
+        $request->vat_percentage = $request->vat_percentage ?? 0;
+        $request->discount = $request->discount ?? 0;
+
+
+        // For each product create a rental with the status pending approval
         foreach ($request->products as $product_id => $value){
-            // Update the stock
+            // get the quantity
             $quantity = $value['quantity'];
-            $product = Product::find($product_id);
-            $product->stock -= $quantity;
-            $product->save();
 
             // Create a rental
             $rental = new Rental();
@@ -95,7 +106,7 @@ class RentalController extends Controller
             $rental->ending_date = $request->return_date;
             $rental->number_of_days = $request->number_of_days;
             $rental->quantity = $quantity;
-            $rental->status = 'rented';
+            $rental->status = 'pending approval';
             $rental->save();
         }
 
@@ -104,9 +115,18 @@ class RentalController extends Controller
         $invoice->id = $request->invoice_id;
         $invoice->customer_id = $request->customer_id;
         $invoice->user_id = auth()->user()->id;
+        $invoice->subtotal = $request->subtotal;
+        $invoice->vat_percentage = $request->vat_percentage;
+        $invoice->paid = $request->paid;
+        $invoice->discount = $request->discount;
+        $invoice->grand_total = $request->grand_total;
+        $invoice->status = 'pending approval';
         $invoice->save();
 
-        return redirect()->route('admin.rentals')->with('success','Rental created successfully');
+        $grandTotal = $request->subtotal + ($request->subtotal * $request->vat_percentage / 100) - $request->discount - $request->paid;
+        
+
+        return redirect()->route('admin.rentals')->with('success','Rental created successfully and is pending approval from the admin with and grand total: ' . $grandTotal . ' BDT'); 
     }
 
     protected function parseDateRange($dateString) {

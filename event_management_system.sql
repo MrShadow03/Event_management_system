@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 09:33 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 21, 2023 at 04:48 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -266,7 +266,8 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1200, 'Mohammad Hijab', 'mhijab@gmail.com', '01766555213', NULL, '22/8/A, Block-B, Mirpur Road Shamoli, Dhaka-1207, Bangladesh', 'customers/default.png', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
-(1201, 'Gary Medina', 'vepyleqawy@mailinator.com', '01755666213', 'Ayala Bolton Traders', 'Fuga Esse beatae qu', 'customers/Il8aqvoENWlAT61fuA6AnQgMaMv53TvvIbKP3VG2.jpg', NULL, '$2y$10$RVsVdVPyrfkei95gEyvbO.sMU/DwrupfvCQuazAXIuc3w3D7IjPMy', NULL, '2023-10-18 06:31:43', '2023-10-18 06:31:43');
+(1201, 'Gary Medina', 'vepyleqawy@mailinator.com', '01755666213', 'Ayala Bolton Traders', 'Fuga Esse beatae qu', 'customers/Il8aqvoENWlAT61fuA6AnQgMaMv53TvvIbKP3VG2.jpg', NULL, '$2y$10$RVsVdVPyrfkei95gEyvbO.sMU/DwrupfvCQuazAXIuc3w3D7IjPMy', NULL, '2023-10-18 06:31:43', '2023-10-18 06:31:43'),
+(1202, 'Aimee Martin', 'gedibad@mailinator.com', '01978194331', 'Holden Miller Trading', 'N. H avenue, Barishal, Bangladesh', 'customers/default.png', NULL, '$2y$10$D65GvZh4ZIvAzMPMMZYjeuyb0h0r1ZN69aigAD4eSM9ty/2w/ZT.W', NULL, '2023-10-20 10:10:28', '2023-10-20 10:10:28');
 
 -- --------------------------------------------------------
 
@@ -386,7 +387,12 @@ CREATE TABLE `invoices` (
   `id` bigint(20) NOT NULL,
   `customer_id` bigint(20) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL,
+  `subtotal` int(11) NOT NULL,
+  `vat_percentage` float DEFAULT 0,
+  `paid` int(11) DEFAULT 0,
+  `discount` float DEFAULT 0,
+  `grand_total` int(11) NOT NULL,
+  `status` varchar(100) DEFAULT '''pending approval''',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -395,11 +401,8 @@ CREATE TABLE `invoices` (
 -- Dumping data for table `invoices`
 --
 
-INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `total`, `created_at`, `updated_at`) VALUES
-(1301, 1200, 1, NULL, '2023-10-18 19:28:06', '2023-10-18 19:28:06'),
-(1302, 1201, 1, NULL, '2023-10-18 20:01:05', '2023-10-18 20:01:05'),
-(1303, 1200, 1, NULL, '2023-10-18 20:01:57', '2023-10-18 20:01:57'),
-(1304, 1201, 1, NULL, '2023-10-19 06:17:10', '2023-10-19 06:17:10');
+INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `status`, `created_at`, `updated_at`) VALUES
+(1305, 1202, 1, 2000, 15, 1500, 200, 600, 'rented', '2023-10-20 10:17:19', '2023-10-20 15:51:29');
 
 -- --------------------------------------------------------
 
@@ -665,8 +668,8 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (14, 9, 'AB-55', 'Product -5', '3*7', 'Red', 56, 'pcs', 550, 'product/yV20zz2jYNflYMug2XvaFMI1kA7T34THhJyGdbVi.jpg', 1, '2023-10-11 08:36:52', '2023-10-11 12:43:06', '2023-10-11 12:43:06'),
 (15, 10, 'AB-44', 'Product -8', '3*7', 'Red', 66, 'pcs', 550, 'product/kF9zn8i4JSPlEi09W35QA0Ap6C6IP5oMn0PPlDqa.jpg', 1, '2023-10-11 08:40:11', '2023-10-11 12:43:44', '2023-10-11 12:43:44'),
 (16, 10, 'AB-44', 'Product -33', '3*7', 'Red', 3, 'pcs', 550, 'product/SxsUNK94LeoHZOBcRtHr6H7khW2YaRWuqHfa4wRr.jpg', 1, '2023-10-11 08:40:39', '2023-10-11 12:43:48', '2023-10-11 12:43:48'),
-(21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 4, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-15 08:56:46', NULL),
-(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', 9, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-12 05:18:05', NULL),
+(21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 7, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-20 15:51:29', NULL),
+(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', 12, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-12 05:18:05', NULL),
 (23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 8, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-12 04:56:07', NULL),
 (24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 10, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-12 04:57:45', NULL),
 (25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 40, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-12 05:16:43', NULL),
@@ -675,7 +678,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (28, 10, 'CP-8', 'Clear Acrylic Centre Piece', '2 x 2', NULL, 6, 'pcs', 2000, 'product/pSOdrjwR90CdIeDgb4uXDSUFwAzZSJNejdcCSprS.jpg', 1, '2023-10-12 05:25:14', '2023-10-12 05:25:14', NULL),
 (29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 25, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-12 05:26:41', NULL),
 (30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 23, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-12 07:34:35', NULL),
-(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-12 07:36:04', NULL),
+(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 33, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-12 07:36:04', NULL),
 (32, 10, 'CP-', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/klUL7s7PQGRbtf6qlMklsmcz7q4XVMOE6tMurCFI.jpg', 1, '2023-10-12 07:36:44', '2023-10-12 07:39:09', '2023-10-12 07:39:09'),
 (33, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/wPmPkMRLqDxxh2qX4zF9hBYn3cTIxsprcUrgT9Kk.jpg', 1, '2023-10-12 07:37:57', '2023-10-12 07:39:22', '2023-10-12 07:39:22'),
 (34, 10, 'CP-12', 'Straight Box Medium Centre Piece 3 Layer', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/WO0zjFHBTkxJ8Py8yhOK4Vy6xBXwfZ2F0GdeOJvB.jpg', 1, '2023-10-12 07:40:49', '2023-10-12 07:40:49', NULL),
@@ -768,7 +771,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (121, 16, 'FV-6', 'Roman Flower Vase', NULL, 'White', 9, 'pcs', 500, 'product/CqTQQLOvP4M27MesAmZMxw69tkzsLFqMXSxVG5jD.jpg', 1, '2023-10-13 09:35:00', '2023-10-13 09:35:00', NULL),
 (122, 16, 'FV-7', 'Thin Fiber Flower Vase', NULL, 'Golden', 16, 'pcs', 500, 'product/ap21wYCaUqe7eSAaEUVDRLbBAuARhh6hUBbup5fr.jpg', 1, '2023-10-15 03:52:35', '2023-10-15 03:52:35', NULL),
 (123, 16, 'FV-8', 'Jar Shape Flower Vase', NULL, 'Golden', 6, 'pcs', 500, 'product/HP3shoSHmDdZyrw3ugrWxqLTnUdggu6Tt6nzR3dM.jpg', 1, '2023-10-15 03:53:35', '2023-10-15 03:53:35', NULL),
-(124, 16, 'FV-9', 'Elephant Teeth Flower Vase', NULL, 'Golden', 2, 'pcs', 1000, 'product/FknqWB0j5ukYxGj6SFSwRCM6OqLhLMvoaDQWNLMV.jpg', 1, '2023-10-15 03:54:24', '2023-10-15 03:54:24', NULL),
+(124, 16, 'FV-9', 'Elephant Teeth Flower Vase', NULL, 'Golden', 4, 'pcs', 1000, 'product/FknqWB0j5ukYxGj6SFSwRCM6OqLhLMvoaDQWNLMV.jpg', 1, '2023-10-15 03:54:24', '2023-10-15 03:54:24', NULL),
 (125, 16, 'FV-10', 'Wooden Flower Vase', 'Tall & Short', 'White', 12, 'pcs', 200, 'product/3i5ZzWJzr6F5phymlJSfru7KI8B5gXlAaSPpIcDL.png', 1, '2023-10-15 03:55:52', '2023-10-15 03:55:52', NULL),
 (126, 16, 'FV-12', 'Wooden Flower Vase', 'Tall & Short', 'White', 3, 'pcs', 100, 'product/Phf6jt1HmET6BkN1Lz9EI1Jhe5bzu0q2kvl5EHif.jpg', 1, '2023-10-15 03:57:13', '2023-10-15 03:57:13', NULL),
 (127, 16, 'FV-13', 'Wooden Box Flower Vase', 'Large, Medium & Small', 'Wooden', 11, 'pcs', 200, 'product/Z6D2TUpmBvLwJfgnZhfdPzijR8VLgyco2OPhsS84.png', 1, '2023-10-15 03:58:12', '2023-10-15 03:58:12', NULL),
@@ -908,13 +911,7 @@ CREATE TABLE `rentals` (
 --
 
 INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 1200, 21, 1301, 1, 'rented', '2023-10-20 00:00:00', '2023-10-27 00:00:00', 7, '2023-10-18 19:28:06', '2023-10-18 19:28:06', NULL),
-(4, 1200, 22, 1301, 1, 'rented', '2023-10-20 00:00:00', '2023-10-27 00:00:00', 7, '2023-10-18 19:28:06', '2023-10-18 19:28:06', NULL),
-(5, 1201, 21, 1302, 1, 'rented', '2023-10-28 00:00:00', '2023-10-31 00:00:00', 3, '2023-10-18 20:01:05', '2023-10-18 20:01:05', NULL),
-(6, 1200, 21, 1303, 3, 'rented', '2023-11-01 00:00:00', '2023-11-11 00:00:00', 10, '2023-10-18 20:01:57', '2023-10-18 20:01:57', NULL),
-(7, 1200, 31, 1303, 4, 'rented', '2023-11-01 00:00:00', '2023-11-11 00:00:00', 10, '2023-10-18 20:01:57', '2023-10-18 20:01:57', NULL),
-(8, 1201, 22, 1304, 2, 'rented', '2023-10-01 00:00:00', '2023-10-07 00:00:00', 6, '2023-10-19 06:17:10', '2023-10-19 06:17:10', NULL),
-(9, 1201, 124, 1304, 2, 'rented', '2023-10-01 00:00:00', '2023-10-07 00:00:00', 6, '2023-10-19 06:17:10', '2023-10-19 06:17:10', NULL);
+(15, 1202, 21, 1305, 2, 'rented', '2023-11-01 00:00:00', '2023-11-03 00:00:00', 2, '2023-10-20 10:17:19', '2023-10-20 15:51:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -1464,7 +1461,7 @@ ALTER TABLE `company_histories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1202;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1203;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -1500,7 +1497,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1305;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1306;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1548,7 +1545,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `repairs`

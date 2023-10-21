@@ -106,7 +106,7 @@
                             <option></option>
                             <option value="all">All</option>
                             <option value="rented">Rented</option>
-                            <option value="Completed">Completed</option>
+                            <option value="pending approval">Pending Approval</option>
                             <option value="Denied">Denied</option>
                             <option value="Expired">Expired</option>
                             <option value="Failed">Failed</option>
@@ -366,7 +366,8 @@
             altInput: true,
             altFormat: "F j, Y",
             dateFormat: "Y-m-d",
-            mode: "range"
+            mode: "range",
+            minDate: "today",
         });
     </script>
 @endsection

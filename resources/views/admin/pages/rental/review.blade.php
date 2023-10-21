@@ -83,14 +83,14 @@
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
         <!--begin::Form-->
-        <form id="kt_ecommerce_edit_order_form" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.rental.store') }}" method="POST">
+        <form id="kt_ecommerce_edit_order_form" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.rentals.review.update') }}" method="POST">
             @csrf
-            @method('POST')
-            <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-            <input type="hidden" name="invoice_id" value="{{ $invoice_id }}">
-            <input type="hidden" name="number_of_days" value="{{ $number_of_days }}">
-            <input type="hidden" name="start_date" value="{{ $start_date }}">
-            <input type="hidden" name="return_date" value="{{ $return_date }}">
+            @method('PATCH')
+            <input type="hidden" name="customer_id" value="{{ $invoice->customer->id }}">
+            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+            <input type="hidden" name="number_of_days" value="{{ $invoice->rentals[0]->number_of_days }}">
+            <input type="hidden" name="start_date" value="{{ $invoice->rentals[0]->starting_date }}">
+            <input type="hidden" name="return_date" value="{{ $invoice->rentals[0]->ending_date }}">
             
             <!--begin::Aside column-->
             <div class="w-100 d-flex flex-column gap-8 flex-lg-row-auto w-lg-300px mb-7 me-7 me-lg-10">
@@ -236,11 +236,11 @@
                         <div class="d-flex flex-column gap-10">
                             <!--begin::Search products-->
                             <div class="d-flex align-items-center position-relative mb-n7 ">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span
-                                        class="path1"></span><span class="path2"></span></i> <input type="text"
-                                    data-kt-ecommerce-edit-order-filter="search"
-                                    class="form-control form-control-solid w-100 w-lg-50 ps-12"
-                                    placeholder="Search Products" />
+                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                                <input id="productSearchInput" type="text" data-kt-ecommerce-edit-order-filter="search" class="form-control form-control-solid w-100 w-lg-50 ps-12" placeholder="Search Products" />
                             </div>
                             <!--end::Search products-->
 
@@ -256,6 +256,9 @@
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                     @foreach ($products as $product)
+                                    @php
+                                        $requested_quantity = $invoice->rentals->where('product_id', $product->id)->first()->quantity ?? 0;
+                                    @endphp
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center"
@@ -294,7 +297,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" value="0"/>
+                                            <input type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" value="{{ $requested_quantity }}"/>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -306,7 +309,7 @@
                             <div class="separator"></div>
                             <!--end::Separator-->
 
-                            <div id="product_table_wrapper" class="d-none">
+                            <div id="product_table_wrapper" class="">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -318,48 +321,67 @@
                                             </tr>
                                         </thead>
                                         <tbody id="product_row_wrapper">
+                                            @foreach ($invoice->rentals as $rental)
+                                            <tr id="product_row_{{ $rental->product->id }}">
+                                                <td>{{ $rental->product->name }}</td>
+                                                <td class="cursor-pointer text-hover-primary text-style-hover-underline" onclick="searchProduct(this)">{{ $rental->product->product_code }}</td>
+                                                <td>
+                                                    {{ $rental->quantity }}
+                                                    <input type="hidden" id="productInput{{ $rental->product->id }}" name="products[{{ $rental->product->id }}][quantity]" value="{{ $rental->quantity }}">
+                                                </td>
+                                                <td class="text-end">{{ $rental->quantity * $rental->product->rental_price * $number_of_days }}</td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot id="product_footer">
                                             <tr class="border-top border-gray-200">
                                                 <td colspan="3" class="text-end">Sub Total</td>
-                                                <td id="subTotalRow" class="text-end">0</td>
+                                                <td id="subTotalRow" class="text-end">{{ $invoice->subtotal }} <input type="hidden" id="subTotalInput" name="subtotal" value="{{ $invoice->subtotal }}" /></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end">VAT (%)</td>
                                                 <td class="text-end" id="vatPercentageRow">
-                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="0">
+                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="{{ $invoice->vat_percentage }}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end">Paid (TK)</td>
                                                 <td class="text-end" id="paidRow">
-                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="0">
+                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="{{ $invoice->paid }}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end">Discount (TK)</td>
                                                 <td class="text-end" id="discountRow">
-                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="0">
+                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="{{ $invoice->discount }}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end">Grand Total</td>
-                                                <td id="grandTotalRow" class="text-end">0</td>
+                                                <td id="grandTotalRow" class="text-end">{{ $invoice->grand_total }} <input type="hidden" id="grandTotalInput" name="grand_total" value="{{ $invoice->grand_total }}" /> </td>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <!--begin::Button-->
-                                    <a href="{{ route('admin.rentals') }}" id="kt_ecommerce_edit_order_cancel" class="btn btn-light me-5">
+                                    <a href="{{ route('admin.rentals.approve') }}" id="kt_ecommerce_edit_order_cancel" class="btn btn-light me-5">
                                         Cancel
                                     </a>
                                     <!--end::Button-->
                         
                                     <!--begin::Button-->
-                                    <button type="submit" id="kt_ecommerce_edit_order_submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-danger me-5">
                                         <span class="indicator-label">
-                                            Proceed
+                                            Decline
+                                        </span>
+                                    </button>
+                                    <!--end::Button-->
+
+                                    <!--begin::Button-->
+                                    <button type="submit" id="kt_ecommerce_edit_order_submit" class="btn btn-success">
+                                        <span class="indicator-label">
+                                            Approve
                                         </span>
                                         <span class="indicator-progress">
                                             Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
@@ -413,7 +435,7 @@
 
                     productRow.innerHTML = `
                         <td>${product.name}</td>
-                        <td>${product.product_code}</td>
+                        <td class="cursor-pointer text-hover-primary text-style-hover-underline" onclick="searchProduct(this)">${product.product_code}</td>
                         <td>
                             ${productInput.value}
                             <input type="hidden" id="productInput${product.id}" name="products[${product.id}][quantity]" value="${productInput.value}">
@@ -468,10 +490,16 @@
             const paid = parseInt(paidInput.value) || 0;
             const discount = parseInt(discountInput.value) || 0;
 
-            const grandTotal = subTotal + (subTotal * vatPercentage / 100) - discount - paid;
+            const grandTotal = Math.round(subTotal + (subTotal * vatPercentage / 100) - discount - paid);
 
             grandTotalRow.innerHTML = `${grandTotal} <input type="hidden" id="grandTotalInput" name="grand_total" value="${grandTotal}">`;
 
+        }
+
+        function searchProduct(productCode){
+            const productSearchInput = document.getElementById('productSearchInput');
+            productSearchInput.value = productCode.innerText;
+            productSearchInput.dispatchEvent(new Event('keyup'));
         }
     </script>
 @endsection

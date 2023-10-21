@@ -14,6 +14,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RentalReturnController;
+use App\Http\Controllers\RentalApprovalController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\Website\ProductCategoryController;
 use App\Http\Controllers\Website\ProductController as WebsiteProductController;
@@ -92,6 +94,13 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
     Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
     
+    Route::get('/rentals/approve', [RentalApprovalController::class, 'index'])->name('rentals.approve');
+    Route::get('/rentals/approve/{invoice}', [RentalApprovalController::class, 'edit'])->name('rentals.review');
+    Route::patch('/rentals/review', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
+
+    Route::get('/rentals/returns', [RentalReturnController::class, 'index'])->name('rentals.returns');
+    Route::get('/rentals/returns/{invoice}', [RentalReturnController::class, 'show'])->name('rentals.return.products');
+
     Route::get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
 
     //profile routes
