@@ -37,6 +37,9 @@ class RentalReturnController extends Controller
         //get the rentals with product
         $rentals = Rental::where('invoice_id', $invoice->id)->with('product')->get();
 
+        //load customer to invoice
+        $invoice->load('customer');
+
         return view('admin.pages.rental.return.rentals', [
             'invoice' => $invoice,
             'rentals' => $rentals,

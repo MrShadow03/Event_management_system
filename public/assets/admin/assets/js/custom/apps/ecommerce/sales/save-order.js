@@ -8,6 +8,7 @@ var KTAppEcommerceSalesSaveOrder = function () {
 
     // Private functions
     const initSaveOrder = () => {
+
         // Init flatpickr
         $('#kt_ecommerce_edit_order_date').flatpickr({
             altInput: true,
