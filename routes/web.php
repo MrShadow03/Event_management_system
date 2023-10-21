@@ -16,6 +16,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RentalReturnController;
 use App\Http\Controllers\RentalApprovalController;
+use App\Http\Controllers\RentalDispatchController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\Website\ProductCategoryController;
 use App\Http\Controllers\Website\ProductController as WebsiteProductController;
@@ -97,6 +98,13 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::get('/rentals/approve', [RentalApprovalController::class, 'index'])->name('rentals.approve');
     Route::get('/rentals/approve/{invoice}', [RentalApprovalController::class, 'edit'])->name('rentals.review');
     Route::patch('/rentals/review', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
+    Route::patch('/rentals/return/accept', [RentalApprovalController::class, 'acceptReturn'])->name('rentals.return.accept');
+    Route::patch('/rentals/return/repair', [RentalApprovalController::class, 'sendToRepair'])->name('rentals.return.repair');
+    
+    Route::get('/rentals/dispatch', [RentalDispatchController::class, 'index'])->name('rentals.dispatch');
+    Route::get('/rentals/dispatch/{invoice}/orders', [RentalDispatchController::class, 'show'])->name('rentals.dispatch.orders');
+    Route::get('rentals/dispatch/{rental}', [RentalDispatchController::class, 'update'])->name('rentals.dispatch.update');
+
 
     Route::get('/rentals/returns', [RentalReturnController::class, 'index'])->name('rentals.returns');
     Route::get('/rentals/returns/{invoice}', [RentalReturnController::class, 'show'])->name('rentals.return.products');
@@ -107,6 +115,8 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
         Route::get('/overview', [ProfileController::class, 'index'])->name('overview');
         Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
+        Route::get('/advance', [ProfileController::class, 'advance'])->name('advance');
+        Route::patch('/advance/update', [ProfileController::class, 'updateAdvance'])->name('advance.update');
         Route::patch('/update', [ProfileController::class, 'update'])->name('update');
         Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
         Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');

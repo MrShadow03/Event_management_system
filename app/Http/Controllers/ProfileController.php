@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\PaymentMethod;
 use App\Traits\ImageHandling;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,6 +29,50 @@ class ProfileController extends Controller
         return view('admin.pages.profile.overview', [
             'details' => $formattedDetails
         ]);
+    }
+    
+    public function advance(){
+        $companyDetails = CompanyDetail::all();
+
+        $formattedDetails = [];
+        foreach ($companyDetails as $details) {
+            $formattedDetails = $details->formatted_details;
+        }
+
+        $payment_methods = PaymentMethod::all();
+
+        return view('admin.pages.profile.advance', [
+            'payment_methods' => $payment_methods,
+            'details' => $formattedDetails,
+        ]);
+    }
+
+    public function updateAdvance(Request $request){
+        $validation = $request->validate([
+            'product_VAT' => 'required|numeric',
+            'bkash_primary' => 'nullable|string|max:255',
+            'bkash_secondary' => 'nullable|string|max:255',
+            'nagad_primary' => 'nullable|string|max:255',
+            'nagad_secondary' => 'nullable|string|max:255',
+        ]);
+
+        //update the product_VAT
+        CompanyDetail::where('detail_name', 'product_VAT')->update([
+            'detail_value' => $validation['product_VAT']
+        ]);
+
+        //update the payment_methods
+        PaymentMethod::where('name', 'bkash')->update([
+            'primary_number' => $validation['bkash_primary'],
+            'secondary_number' => $validation['bkash_secondary'],
+        ]);
+
+        PaymentMethod::where('name', 'nagad')->update([
+            'primary_number' => $validation['nagad_primary'],
+            'secondary_number' => $validation['nagad_secondary'],
+        ]);
+
+        return Redirect::back()->with('success', 'Advance settings updated successfully');
     }
 
     public function edit(){

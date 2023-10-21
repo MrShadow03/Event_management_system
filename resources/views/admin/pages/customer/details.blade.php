@@ -274,7 +274,15 @@
                                                 <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-600 text-hover-primary mb-1">#{{ $invoice->id }}</a>
                                             </td>
                                             <td>
-                                                <span class="badge badge-light-success">Rented</span>
+                                                @if($invoice->status == 'retured')
+                                                    <span class="badge badge-light-success">Returned</span>
+                                                @elseif($invoice->status == 'unpaid')
+                                                    <span class="badge badge-light-danger">Unpaid {{ $invoice->grand_total }}</span>
+                                                @elseif($invoice->status == 'partial')
+                                                    <span class="badge badge-light-warning">Partial</span>
+                                                @else
+                                                    <span class="badge badge-light-primary">{{ $invoice->status }}</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $invoice->rentals->count() }}

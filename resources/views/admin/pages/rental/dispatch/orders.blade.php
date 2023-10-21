@@ -39,7 +39,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Add Order
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Dispatch Orders
                 </h1>
                 <!--end::Title-->
 
@@ -67,7 +67,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">New Rental</li>
+                    <li class="breadcrumb-item text-muted">Dispatch</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -122,20 +122,20 @@
                                 <!--end::Label-->
 
                                 <!--begin::Auto-generated ID-->
-                                <div class="fw-bold fs-3">{{ $rentals->first()->number_of_days }}</div>
+                                <div class="fw-bold fs-3">{{ $invoice->rentals->first()->number_of_days }}</div>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="fv-row">
                                 <!--begin::Label-->
-                                <div class="fw-bold mt-5">Due Date</div>
+                                <div class="fw-bold mt-5">Order Start Date</div>
                                 <!--end::Label-->
 
                                 <!--begin::Auto-generated ID-->
                                 <div class="text-gray-600">
-                                    {{ Carbon\Carbon::parse($rentals->first()->ending_date)->format('d M, Y') }}
-                                    <span class="badge badge-danger ms-2">{{ Carbon\Carbon::parse($rentals->first()->ending_date)->diffForHumans() }}</span>
+                                    {{ Carbon\Carbon::parse($invoice->rentals->first()->starting_date)->format('d M, Y') }}
+                                    <span class="badge badge-info ms-2">{{ Carbon\Carbon::parse($invoice->rentals->first()->starting_date)->diffForHumans() }}</span>
                                 </div>
                                 <!--end::Input-->
                             </div>
@@ -238,13 +238,14 @@
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-200px">Product</th>
+                                        <th>Order ID</th>
                                         <th>SKU</th>
                                         <th>Qty</th>
                                         <th class="min-w-200px text-end">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                    @foreach ($rentals as $rental)
+                                    @foreach ($invoice->rentals as $rental)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center"
@@ -271,6 +272,9 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="fw-bold fs-6">#{{ $rental->id }}</div>
+                                        </td>
+                                        <td>
                                             <div class="fw-bold fs-6">{{ $rental->product->product_code }}</div>
                                         </td>
                                         <td>
@@ -278,13 +282,14 @@
                                         </td>
                                         <td class="text-end">
                                             <div class="d-flex gap-2 justify-content-end">
-                                                <a href="#" onclick="placeFormData({{ $rental->id }})" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#product_return_modal">
-                                                    <i class="ki-duotone ki-tablet-ok">
+                                                <a href="{{ route('admin.rentals.dispatch.update', $rental->id) }}" class="btn btn-sm btn-success">
+                                                    <i class="ki-duotone ki-delivery fs-1">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
                                                         <span class="path3"></span>
+                                                        <span class="path4"></span>
                                                     </i>
-                                                    Accept
+                                                    Dispatch
                                                 </a>
                                             </div>
                                         </td>
@@ -305,107 +310,6 @@
     </div>
 @endsection
 <!--end::Main Content-->
-
-@section('exclusive_modals')
-<!--begin::Product Return modal-->
-<div class="modal fade" id="product_return_modal" tabindex="-1" aria-hidden="true">
-    <!--begin::Modal dialog-->
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <!--begin::Modal content-->
-        <div class="modal-content rounded">
-            <!--begin::Modal header-->
-            <div class="modal-header pb-0 border-0 justify-content-end">
-                <!--begin::Close-->
-                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                </div>
-                <!--end::Close-->
-            </div>
-            <!--begin::Modal header-->
-
-            <!--begin::Modal body-->
-            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                <!--begin:Form-->
-                <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                    action="{{ route('admin.rentals.return.accept') }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <!--begin::Heading-->
-                    <div class="mb-13 text-center">
-                        <!--begin::Title-->
-                        <h5 class="mb-3">Accept Product Return</h5>
-                        <!--end::Title-->
-                    </div>
-                    <!--end::Heading-->
-
-                    <!--begin::Input group-->
-                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                        <label class="fs-6 fw-semibold mb-4 d-block">
-                            <span>Send to repair</span>
-                            <span class="ms-1" data-bs-toggle="tooltip"
-                                title="Send some products to repair">
-                                <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
-                        </label>
-                        <!--begin::Alert-->
-                        <div class="alert alert-dismissible bg-light-info border border-dashed border-info d-flex flex-column flex-sm-row mb-5">
-                            <!--begin::Icon-->
-                            <i class="ki-duotone ki-information-5 fs-1 text-info me-4 mb-5 mb-sm-0">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                                <span class="path3"></span>
-                            </i>
-                            <!--end::Icon-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-column pe-0 pe-sm-10">
-                                <!--begin::Content-->
-                                <span class="text-info">If no product need repair, keep the value as 0.</span>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <!--end::Alert-->
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">
-                                <i class="ki-solid ki-wrench fs-1">
-                                </i>
-                            </span>
-                            <input type="number" id="productAcceptQuantity" name="repair_quantity" class="form-control" value="0"/>
-                            <input type="hidden" id="productAcceptRentalId" name="rental_id"/>
-                        </div>
-                    </div>
-
-                    <!--begin::Actions-->
-                    <div class="text-center">
-                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
-                            Cancel
-                        </button>
-
-                        <button type="submit" class="btn btn-success">
-                            <span class="indicator-label">
-                                Accept
-                            </span>
-                            <span class="indicator-progress">
-                                Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                            </span>
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                </form>
-                <!--end:Form-->
-            </div>
-            <!--end::Modal body-->
-        </div>
-        <!--end::Modal content-->
-    </div>
-    <!--end::Modal dialog-->
-</div>
-<!--end::Product Return modal-->
-@endsection
 
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
@@ -745,10 +649,6 @@
         KTUtil.onDOMContentLoaded(function () {
             KTAppEcommerceSalesSaveOrder.init();
         });
-
-        function placeFormData(rentalId) {
-            document.getElementById('productAcceptRentalId').value = rentalId;
-        }
     </script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->

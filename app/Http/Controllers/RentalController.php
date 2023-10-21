@@ -84,12 +84,14 @@ class RentalController extends Controller
             'discount' => 'nullable',
             'subtotal' => 'required',
             'grand_total' => 'required',
+            'due' => 'nullable',
             'products' => 'required | array',
         ]);
 
         $request->paid = $request->paid ?? 0;
         $request->vat_percentage = $request->vat_percentage ?? 0;
         $request->discount = $request->discount ?? 0;
+        $request->due = $request->due ?? 0;
 
 
         // For each product create a rental with the status pending approval
@@ -120,6 +122,7 @@ class RentalController extends Controller
         $invoice->paid = $request->paid;
         $invoice->discount = $request->discount;
         $invoice->grand_total = $request->grand_total;
+        $invoice->due = $request->due;
         $invoice->status = 'pending approval';
         $invoice->save();
 

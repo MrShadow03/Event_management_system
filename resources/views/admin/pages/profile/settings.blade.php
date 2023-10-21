@@ -658,31 +658,6 @@
                     <!--end::Action-->
                 </div>
                 <!--end::Password-->
-
-
-                <!--begin::Notice-->
-                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed  p-6">
-                    <!--begin::Icon-->
-                    <i class="ki-duotone ki-shield-tick fs-2tx text-primary me-4"><span class="path1"></span><span class="path2"></span></i> <!--end::Icon-->
-
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
-                        <!--begin::Content-->
-                        <div class="mb-3 mb-md-0 fw-semibold">
-                            <h4 class="text-gray-900 fw-bold">Secure Your Account</h4>
-
-                            <div class="fs-6 text-gray-700 pe-7">Two-factor authentication adds an extra layer of security to your account. To log in, in addition you'll need to provide a 6 digit code</div>
-                        </div>
-                        <!--end::Content-->
-
-                        <!--begin::Action-->
-                        <a href="#" class="btn btn-primary px-6 align-self-center text-nowrap" data-bs-toggle="modal" data-bs-target="#kt_modal_two_factor_authentication">
-                            Enable </a>
-                        <!--end::Action-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Notice-->
             </div>
             <!--end::Card body-->
         </div>

@@ -35,7 +35,7 @@ class RentalReturnController extends Controller
         }
 
         //get the rentals with product
-        $rentals = Rental::where('invoice_id', $invoice->id)->with('product')->get();
+        $rentals = Rental::where('invoice_id', $invoice->id)->where('status', '!=', 'returned')->with('product')->get();
 
         //load customer to invoice
         $invoice->load('customer');

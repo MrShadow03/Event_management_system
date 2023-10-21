@@ -187,10 +187,7 @@
                                     <tbody class="fw-semibold text-gray-600">
                                         @php
                                             $total = 0;
-                                            $vat = 15;
-                                            $discount = 0;
                                         @endphp
-                                        {{-- {{ dd($invoice->rentals[0]->product->image) }} --}}
                                         @foreach ($invoice->rentals as $rental)
                                         <tr>
                                             <td>
@@ -220,40 +217,32 @@
                                         </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="3" class="text-end">
-                                                Subtotal
-                                            </td>
-                                            <td class="text-end">
-                                                {{ $total }}
-                                            </td>
+                                            <td colspan="3" class="text-end">Subtotal</td>
+                                            <td class="text-end">{{ $invoice->subtotal }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-end">Discount</td>
+                                            <td class="text-end">{{ $invoice->discount }}</td>
                                         </tr>
                                         @php
-                                            $discountedTotal = $total - $discount;
-                                            $vat = ($discountedTotal * $vat) / 100;
+                                            $discountedTotal = $invoice->subtotal - $invoice->discount;
+                                            $vatAmaount = $discountedTotal * $invoice->vat_percentage / 100;
                                         @endphp
                                         <tr>
-                                            <td colspan="3" class="text-end">
-                                                VAT (15%)
-                                            </td>
-                                            <td class="text-end">
-                                                {{ $vat }}
-                                            </td>
+                                            <td colspan="3" class="text-end">VAT ({{ $invoice->vat_percentage }}%)</td>
+                                            <td class="text-end">{{ $vatAmaount }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-end">
-                                                Discount TK
-                                            </td>
-                                            <td class="text-end">
-                                                {{ $discount }}
-                                            </td>
+                                            <td colspan="3" class="fs-3 text-dark fw-bold text-end">Grand Total</td>
+                                            <td class="text-dark fs-3 fw-bolder text-end">{{ $invoice->grand_total }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="fs-3 text-dark fw-bold text-end">
-                                                Grand Total
-                                            </td>
-                                            <td class="text-dark fs-3 fw-bolder text-end">
-                                                {{ $discountedTotal + $vat }}
-                                            </td>
+                                            <td colspan="3" class="fs-4 text-dark fw-bold text-end">Paid</td>
+                                            <td class="text-dark fs-4 fw-bolder text-end">{{ $invoice->paid }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="fs-4 text-dark fw-bold text-end">Due</td>
+                                            <td class="text-dark fs-4 fw-bolder text-end">{{ $invoice->due }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

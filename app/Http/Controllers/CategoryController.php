@@ -18,6 +18,12 @@ class CategoryController extends Controller{
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
         ]);
 
+        // if the category name already exists then return error
+        $category = Category::where('name', $request->name)->first();
+        if($category){
+            return redirect()->back()->with('error', 'Category already exists');
+        }
+
         $category = new Category();
         $category->name = $request->name;
         $category->image = $this->uploadImage('image', 'category', 'default.png');
@@ -35,6 +41,12 @@ class CategoryController extends Controller{
             'name' => 'required|string|max:255',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
         ]);
+
+        // if the category name already exists then return error
+        $category = Category::where('name', $request->name)->first();
+        if($category && $category->id != $request->id){
+            return redirect()->back()->with('error', 'Category already exists');
+        }
 
         $category = Category::find($request->id);
         $category->name = $request->name;

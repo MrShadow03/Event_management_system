@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Rental;
+use App\Models\Repair;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Customer;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RentalApprovalController extends Controller{
@@ -49,7 +50,7 @@ class RentalApprovalController extends Controller{
 
         $newOrdersStartDate = $startDate;
 
-        $rentedOrders = Rental::where('status', 'rented')
+        $rentedOrders = Rental::whereIn('status', ['approved','rented'])
             ->where('ending_date', '<', $newOrdersStartDate)
             ->get();
 
@@ -90,12 +91,14 @@ class RentalApprovalController extends Controller{
             'discount' => 'nullable',
             'subtotal' => 'required',
             'grand_total' => 'required',
+            'due' => 'nullable',
             'products' => 'required | array',
         ]);
 
         $request->paid = $request->paid ?? 0;
         $request->vat_percentage = $request->vat_percentage ?? 0;
         $request->discount = $request->discount ?? 0;
+        $request->due = $request->due ?? 0;
 
 
         // For each product create a rental with the status pending approval
@@ -114,7 +117,7 @@ class RentalApprovalController extends Controller{
             // if the rental exists update it else create it
             if($rental){
                 $rental->quantity = $quantity;
-                $rental->status = 'rented';
+                $rental->status = 'approved';
                 $rental->save();
             }else{
                 $rental = new Rental();
@@ -125,7 +128,7 @@ class RentalApprovalController extends Controller{
                 $rental->ending_date = $request->return_date;
                 $rental->number_of_days = $request->number_of_days;
                 $rental->quantity = $quantity;
-                $rental->status = 'rented';
+                $rental->status = 'approved';
                 $rental->save();
             }
         }
@@ -138,12 +141,13 @@ class RentalApprovalController extends Controller{
         $invoice->paid = $request->paid;
         $invoice->discount = $request->discount;
         $invoice->grand_total = $request->grand_total;
-        $invoice->status = 'rented';
+        $invoice->due = $request->due;
+        $invoice->status = 'approved';
         $invoice->save();
 
         // change the status of remaining rentals to declined
         $declinedRentals = Rental::where('invoice_id', $request->invoice_id)
-            ->where('status', '!=', 'rented')
+            ->where('status', '!=', 'approved')
             ->get();
 
         if($declinedRentals->count() == 0){
@@ -156,5 +160,55 @@ class RentalApprovalController extends Controller{
         }
 
         return redirect()->route('admin.rentals')->with('success','Rental created successfully and is pending approval from the admin'); 
+    }
+
+    public function acceptReturn(Request $request){
+        $this->validate($request, [
+            'rental_id' => 'required | exists:rentals,id',
+            'repair_quantity' => 'nullable | numeric | min:0',
+        ]);
+
+        $repairQuantity = $request->repair_quantity ?? 0;
+        $rental = Rental::find($request->rental_id);
+        $invoice = Invoice::find($rental->invoice_id);
+        $product = Product::find($rental->product_id);
+
+        if($repairQuantity > $rental->quantity){
+            return redirect()->back()->with('error', 'The repair quantity cannot be more than the rented quantity');
+        }
+
+        if($product == null){
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        if($repairQuantity){
+            // create a new repair order
+            $repair =  new Repair();
+            $repair->product_id = $product->id;
+            $repair->rental_id = $rental->id;
+            $repair->quantity = $request->repair_quantity;
+            $repair->save();
+        }
+
+        // update the rental status
+        $rental->status = 'returned';
+        $rental->save();
+
+        // update the stock
+        $returnedQuantity = $rental->quantity - $repairQuantity;
+        $product->stock += $returnedQuantity;
+        $product->save();
+
+        // check if all the rentals in the invoice are returned
+        $hasUnreturnedRentals = Rental::where('invoice_id', $invoice->id)->where('status', '!=', 'returned')->exists();
+        if($hasUnreturnedRentals){
+            return redirect()->back()->with('success', 'Product returned successfully');
+        }
+
+        // update the invoice status
+        $invoice->status = 'returned';
+        $invoice->save();
+
+        return redirect()->route('admin.rentals.returns')->with('success', 'Product returned successfully. All the products in the invoice have been returned');
     }
 }

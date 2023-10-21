@@ -39,7 +39,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Approve Rentals 
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Dispatch Orders 
                 </h1>
                 <!--end::Title-->
 
@@ -57,7 +57,7 @@
                     <!--end::Item-->
 
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Rental Approvals</li>
+                    <li class="breadcrumb-item text-muted">Dispatch</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -98,26 +98,6 @@
                         </button>
                     </div>
                     <!--end::Flatpickr-->
-
-                    {{-- <div class="w-100 mw-150px">
-                        <!--begin::Select2-->
-                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Status" data-kt-ecommerce-order-filter="status">
-                            <option></option>
-                            <option value="all">All</option>
-                            <option value="rented">Rented</option>
-                            <option value="pending approval">Pending Approval</option>
-                            <option value="Denied">Denied</option>
-                            <option value="Expired">Expired</option>
-                            <option value="Failed">Failed</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Refunded">Refunded</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Delivering">Delivering</option>
-                        </select>
-                        <!--end::Select2-->
-                    </div> --}}
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -133,10 +113,6 @@
                             <th class="">Invoice ID</th>
                             <th class="">Customer</th>
                             <th class="text-end">Status</th>
-                            <th class="text-end min-w-100px">Subtotal</th>
-                            <th class="text-end min-w-100px">Paid</th>
-                            <th class="text-end min-w-100px">Discount</th>
-                            <th class="text-end min-w-100px">Due</th>
                             <th class="text-end">Total Orders</th>
                             <th class="text-end">Placed On</th>
                             <th class="text-end">Actions</th>
@@ -153,20 +129,8 @@
                             </td>
                             <td class="text-end pe-0">
                                 <!--begin::Badges-->
-                                <div class="badge badge-light-warning">Pending Approval</div>
+                                <div class="badge badge-light-success">{{ strtoupper($invoice->status) }}</div>
                                 <!--end::Badges-->
-                            </td>
-                            <td class="text-end pe-0">
-                                <span class="text-gray-800 font-bn fs-6">{{ number_format($invoice->subtotal) }} ৳</span>
-                            </td>
-                            <td class="text-end pe-0">
-                                <span class="text-success font-bn fs-6">{{ number_format($invoice->paid) }} ৳</span>
-                            </td>
-                            <td class="text-end pe-0">
-                                <span class="text-info font-bn fs-6">{{ number_format($invoice->discount) }} ৳</span>
-                            </td>
-                            <td class="text-end pe-0">
-                                <span class="text-danger font-bn fs-6">{{ number_format($invoice->due) }} ৳</span>
                             </td>
                             <td class="text-end pe-0">
                                 <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>
@@ -175,7 +139,15 @@
                                 {{ Carbon\Carbon::parse($invoice->created_at)->format('d M, y') }}
                             </td>
                             <td class="text-end">
-                                <a href="{{ route('admin.rentals.review', $invoice->id) }}" class="btn btn-success btn-sm btn-light">Review</i></a>
+                                <a href="{{ route('admin.rentals.dispatch.orders', $invoice->id) }}" class="btn btn-sm btn-primary">
+                                    <i class="ki-duotone ki-delivery fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                        <span class="path4"></span>
+                                    </i>
+                                    Dispatch
+                                </a>
                             </td>
                         </tr>
                         @empty
@@ -213,7 +185,7 @@
                     'pageLength': 10,
                     'columnDefs': [
                         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                        { orderable: false, targets: 7 }, // Disable ordering on column 7 (actions)
+                        { orderable: false, targets: 5 }, // Disable ordering on column 7 (actions)
                     ]
                 });
 

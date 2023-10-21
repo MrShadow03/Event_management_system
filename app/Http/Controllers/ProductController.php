@@ -46,6 +46,12 @@ class ProductController extends Controller
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
         ]);
 
+        // if the product code already exists then return error
+        $product = Product::where('product_code', $request->product_code)->first();
+        if($product){
+            return redirect()->back()->with('error', 'Product code already exists');
+        }
+
         $product = new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
@@ -74,7 +80,7 @@ class ProductController extends Controller
             'id' => 'required | exists:products,id',
             'name' => 'required',
             'category_id' => 'required | exists:categories,id',
-            'product_code' => 'required',
+            'product_code' => 'required | unique:products,product_code,'.$request->id,
             'dimension' => 'nullable',
             'color' => 'nullable',
             'stock' => 'nullable',

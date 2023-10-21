@@ -142,6 +142,18 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
+                            <a href="{{ route('admin.rentals.dispatch') }}" class="menu-link {{ Str::startsWith(request()->url(), route('admin.rentals.dispatch')) ? 'active' : '' }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Dispatch Orders</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
+                        
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
                             <a href="{{ route('admin.rentals.returns') }}" class="menu-link {{ Str::startsWith(request()->url(), route('admin.rentals.returns')) ? 'active' : '' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>

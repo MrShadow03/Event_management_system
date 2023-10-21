@@ -325,10 +325,20 @@
                                                 <td id="subTotalRow" class="text-end">0</td>
                                             </tr>
                                             <tr>
+                                                <td colspan="3" class="text-end">Discount (TK)</td>
+                                                <td class="text-end" id="discountRow">
+                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="0">
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td colspan="3" class="text-end">VAT (%)</td>
                                                 <td class="text-end" id="vatPercentageRow">
-                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="0">
+                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="{{ $commonDetails['product_VAT'] }}" readonly>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="border-top border-gray-200 text-end">Grand Total</td>
+                                                <td id="grandTotalRow" class="text-end">0</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end">Paid (TK)</td>
@@ -337,14 +347,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3" class="text-end">Discount (TK)</td>
-                                                <td class="text-end" id="discountRow">
-                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="0">
+                                                <td colspan="3" class="text-end">Due (TK)</td>
+                                                <td class="text-end" id="dueRow">
+                                                    <input id="dueInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="due" value="0">
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="text-end">Grand Total</td>
-                                                <td id="grandTotalRow" class="text-end">0</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -462,16 +468,19 @@
             const paidInput = document.getElementById('paidInput');
             const discountInput = document.getElementById('discountInput');
             const grandTotalRow = document.getElementById('grandTotalRow');
+            const dueRow = document.getElementById('dueRow');
 
             const subTotal = parseInt(subTotalInput.value) || 0;
             const vatPercentage = parseInt(vatPercentageInput.value) || 0;
             const paid = parseInt(paidInput.value) || 0;
             const discount = parseInt(discountInput.value) || 0;
 
-            const grandTotal = subTotal + (subTotal * vatPercentage / 100) - discount - paid;
+            const discountedSubtotal = subTotal - discount;
+            const grandTotal = Math.round(discountedSubtotal + (discountedSubtotal * vatPercentage / 100));
+            const due = grandTotal - paid;
 
             grandTotalRow.innerHTML = `${grandTotal} <input type="hidden" id="grandTotalInput" name="grand_total" value="${grandTotal}">`;
-
+            dueRow.innerHTML = `${due} <input type="hidden" id="dueInput" name="due" value="${due}">`;
         }
     </script>
 @endsection

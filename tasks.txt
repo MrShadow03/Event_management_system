@@ -1,2 +1,10 @@
-1.Create approval feature by admin
-2.Create approve return feature by admin
+----------1.Create approval feature by admin 
+----------2.Create approve return feature by admin
+----------3. Fix Discount calculation
+----------4. Restrict duplicate product code
+----------5. Restrict duplicate category name
+----------6. Add payment method
+8. Fix role permission
+----------9. Add due invoice feature
+----------10. Add vat feature
+----------11. Add customer invoice feature
