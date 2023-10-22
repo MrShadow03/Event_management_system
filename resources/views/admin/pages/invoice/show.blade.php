@@ -33,9 +33,9 @@
 @endsection
 <!--end::Page Custom Styles-->
 
-<!--begin::toolbar-->
+{{-- <!--begin::toolbar-->
 @section('toolbar')
-<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
+<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 print-display-none">
 
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
@@ -71,34 +71,31 @@
     <!--end::Toolbar container-->
 </div>
 @endsection
-<!--end::toolbar-->
+<!--end::toolbar--> --}}
 
 <!--begin::Main Content-->
 @section('content')
-<div id="kt_app_content_container" class="app-container  container-xxl ">
+<div id="kt_app_content_container" class="app-container">
 
     <!-- begin::Invoice 3-->
     <div class="card">
         <!-- begin::Body-->
-        <div class="card-body py-20">
+        <div class="card-body print">
             <!-- begin::Wrapper-->
-            <div class="mw-lg-950px mx-auto w-100">
+            <div class="mx-auto w-100" id="invoice-div">
                 <!-- begin::Header-->
-                <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
+                <div class="d-flex justify-content-between flex-column flex-sm-row mb-5">
                     <div>
-                        <h4 class="fw-bolder text-gray-800 fs-2qx">INVOICE</h4>
-                        <div class="fw-bolder text-gray-800 fs-1 pe-5 pb-7">#{{ $invoice->id }}</div>
-                    </div>
-                    <!--end::Logo-->
-                    <div class="text-sm-end">
                         <!--begin::Logo-->
                         <a href="#" class="d-block mw-150px ms-sm-auto">
                             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" class="w-100" />
                         </a>
                         <!--end::Logo-->
-
+                    </div>
+                    <!--end::Logo-->
+                    <div class="text-sm-end">
                         <!--begin::Text-->
-                        <div class="text-sm-end fw-semibold fs-5 text-gray-700 mt-7">
+                        <div class="text-sm-end fw-semibold fs-5 text-gray-700">
                             <div>{{ $commonDetails['name'] ?? ''}}</div>
                             <div>{{ $commonDetails['phone'] ?? ''}}</div>
                             <div>{{ $commonDetails['email'] ?? '' }}</div>
@@ -110,17 +107,22 @@
                 <!--end::Header-->
 
                 <!--begin::Body-->
-                <div class="pb-12">
+                <div>
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-column gap-7 gap-md-10">
-                        <!--begin::Message-->
-                        <div class="fw-bold fs-2">
-                            {{ $invoice->customer->name ?? '' }}
-                            <div class="fw-semibold fs-5 text-gray-700 mt-7">
-                                <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
-                                <div>{{ $invoice->customer->name ?? ''}}</div>
-                                <div>{{ $invoice->customer->phone_number ?? ''}}</div>
-                                <div>{{ $invoice->customer->email ?? '' }}</div>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4 class="fw-bolder text-gray-800 fs-2qx">INVOICE</h4>
+                                <div class="fw-bolder text-gray-800 fs-1 pe-5 pb-7">#{{ $invoice->id }}</div>
+                            </div>
+                            <div class="fw-bold fs-2 mt-3 text-end">
+                                {{ $invoice->customer->name ?? '' }}
+                                <div class="fw-semibold fs-5 text-gray-700 mt-2">
+                                    <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
+                                    <div>{{ $invoice->customer->name ?? ''}}</div>
+                                    <div>{{ $invoice->customer->phone_number ?? ''}}</div>
+                                    <div>{{ $invoice->customer->email ?? '' }}</div>
+                                </div>
                             </div>
                         </div>
                         <!--begin::Message-->
@@ -260,19 +262,15 @@
                     <!-- begin::Actions-->
                     <div class="my-1 me-5">
                         <!-- begin::Pint-->
-                        <button type="button" class="btn btn-success my-1 me-12" onclick="window.print();">Print
+                        <button type="button" class="btn btn-success my-1 me-12 print-display-none" onclick="window.print();">Print
                             Invoice</button>
                         <!-- end::Pint-->
 
-                        <!-- begin::Download-->
-                        <button type="button" class="btn btn-light-success my-1">Download</button>
-                        <!-- end::Download-->
+                        {{-- <!-- begin::Download-->
+                        <button type="button" id="downloadPdfButton" class="btn btn-light-success my-1 ">Download</button>
+                        <!-- end::Download--> --}}
                     </div>
                     <!-- end::Actions-->
-
-                    <!-- begin::Action-->
-                    <a href="../create.html" class="btn btn-primary my-1">Create Invoice</a>
-                    <!-- end::Action-->
                 </div>
                 <!-- end::Footer-->
             </div>
@@ -287,5 +285,30 @@
 
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+        const downloadPdfButton = document.getElementById('downloadPdfButton');
+        downloadPdfButton.addEventListener('click', function() {
+            const invoiceDiv = document.getElementById('invoice-div');
+            // alert(invoiceDiv);
+            const pdfOptions = {
+                margin: 10,
+                filename: 'invoice.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().from(invoiceDiv).set(pdfOptions).outputPdf(function(pdf) {
+                const blob = new Blob([pdf], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'invoice.pdf';
+                link.click();
+            });
+        });
+
+</script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->

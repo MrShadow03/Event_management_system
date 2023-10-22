@@ -1,3 +1,18 @@
 .font-bn{
     font-family: 'Hind Siliguri', sans-serif;
 }
+.invoice-header{
+    background-color: #4273b8;
+}
+@media print {
+    .font-bn{
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .print-display-none{
+        display: none;
+    }
+    .app-content{
+        background-color: #fff !important;
+    }
+}

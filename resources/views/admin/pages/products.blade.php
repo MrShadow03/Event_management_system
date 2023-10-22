@@ -70,12 +70,12 @@
         <!--begin::Actions-->
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Primary button-->
-            <a href="#" class="btn btn-sm btn-flex bg-body btn-color-gray-700 btn-active-color-primary fw-bold" id="kt_drawer_chat_toggle">
+            <a href="#" class="btn btn-flex bg-body btn-color-gray-700 btn-active-color-primary fw-bold" id="kt_drawer_chat_toggle">
                 <i class="ki-duotone ki-burger-menu-5 fs-6 text-muted me-1">
                 </i>
                 Categories
             </a>
-            <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_product">Add Product</a>
+            <a href="#" class="btn fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_product">Add Product</a>
             <!--end::Primary button-->
         </div>
         <!--end::Actions-->
@@ -1061,7 +1061,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bold">{{  $category->name }}</a>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bold font-bn">{{  $category->name }}</a>
                                 <span class="text-muted fw-semibold d-block fs-7">{{  $category->product_count }} Product{{  $category->product_count > 1 ? 's' : '' }}</span>
                             </div>
                             <div class="my-2">

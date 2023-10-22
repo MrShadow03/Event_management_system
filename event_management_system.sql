@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 09:12 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Oct 22, 2023 at 04:33 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -265,9 +265,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1200, 'Mohammad Hijab', 'mhijab@gmail.com', '01766555213', NULL, '22/8/A, Block-B, Mirpur Road Shamoli, Dhaka-1207, Bangladesh', 'customers/default.png', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
-(1201, 'Gary Medina', 'vepyleqawy@mailinator.com', '01755666213', 'Ayala Bolton Traders', 'Fuga Esse beatae qu', 'customers/Il8aqvoENWlAT61fuA6AnQgMaMv53TvvIbKP3VG2.jpg', NULL, '$2y$10$RVsVdVPyrfkei95gEyvbO.sMU/DwrupfvCQuazAXIuc3w3D7IjPMy', NULL, '2023-10-18 06:31:43', '2023-10-18 06:31:43'),
-(1202, 'Aimee Martin', 'gedibad@mailinator.com', '01978194331', 'Holden Miller Trading', 'N. H avenue, Barishal, Bangladesh', 'customers/default.png', NULL, '$2y$10$D65GvZh4ZIvAzMPMMZYjeuyb0h0r1ZN69aigAD4eSM9ty/2w/ZT.W', NULL, '2023-10-20 10:10:28', '2023-10-20 10:10:28');
+(1200, 'Customer 1', 'mhijab@gmail.com', '01766555213', NULL, '22/8/A, Block-B, Mirpur Road Shamoli, Dhaka-1207, Bangladesh', 'customers/default.png', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
+(1201, 'Customer 2', 'vepyleqawy@mailinator.com', '01755666213', 'Ayala Bolton Traders', 'Fuga Esse beatae qu', 'customers/Il8aqvoENWlAT61fuA6AnQgMaMv53TvvIbKP3VG2.jpg', NULL, '$2y$10$RVsVdVPyrfkei95gEyvbO.sMU/DwrupfvCQuazAXIuc3w3D7IjPMy', NULL, '2023-10-18 06:31:43', '2023-10-18 06:31:43'),
+(1202, 'Customer 3', 'gedibad@mailinator.com', '01978194331', 'Holden Miller Trading', 'N. H avenue, Barishal, Bangladesh', 'customers/default.png', NULL, '$2y$10$D65GvZh4ZIvAzMPMMZYjeuyb0h0r1ZN69aigAD4eSM9ty/2w/ZT.W', NULL, '2023-10-20 10:10:28', '2023-10-20 10:10:28');
 
 -- --------------------------------------------------------
 
@@ -397,18 +397,6 @@ CREATE TABLE `invoices` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `invoices`
---
-
-INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `due`, `status`, `created_at`, `updated_at`) VALUES
-(1305, 1202, 1, 2000, 15, 1500, 200, 600, 0, 'returned', '2023-10-20 10:17:19', '2023-10-21 14:52:30'),
-(1306, 1201, 1, 2000, 15, 1500, 300, 500, 0, 'rented', '2023-10-21 06:49:23', '2023-10-21 06:50:25'),
-(1307, 1200, 1, 82600, 15, 50000, 3000, 41990, 0, 'returned', '2023-10-21 07:18:02', '2023-10-21 13:56:36'),
-(1308, 1200, 1, 3420, 15, 2000, 200, 1733, 0, 'returned', '2023-10-21 15:35:07', '2023-10-21 16:20:44'),
-(1309, 1200, 1, 2400, 15, 1500, 500, 2185, 685, 'approved', '2023-10-21 18:22:26', '2023-10-21 18:33:15'),
-(1310, 1201, 1, 2000, 15, 100, 500, 1725, 1625, 'approved', '2023-10-21 18:50:39', '2023-10-21 18:55:14');
 
 -- --------------------------------------------------------
 
@@ -687,16 +675,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`, `color`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 7, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-21 18:55:14', NULL),
-(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', 8, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-21 18:55:14', NULL),
-(23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 5, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-19 09:33:15', NULL),
-(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 5, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-21 16:20:39', NULL),
-(25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 27, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-21 18:33:15', NULL),
-(26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 23, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-21 18:33:15', NULL),
-(27, 10, 'CP-7', 'Candle SS Centre Piece', '1.5', 'SS', 8, 'pcs', 100, 'product/msDimzKfxHmC5a7LpxtgEVPVRynXvvOLFlDM7Hl6.jpg', 1, '2023-10-12 05:20:13', '2023-10-21 18:33:15', NULL),
+(21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 0, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-19 12:23:54', NULL),
+(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', -2, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-19 11:26:03', NULL),
+(23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 4, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-22 06:42:36', NULL),
+(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 5, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-22 06:22:46', NULL),
+(25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 28, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-22 06:22:50', NULL),
+(26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 25, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-19 11:35:13', NULL),
+(27, 10, 'CP-7', 'Candle SS Centre Piece', '1.5', 'SS', 9, 'pcs', 100, 'product/msDimzKfxHmC5a7LpxtgEVPVRynXvvOLFlDM7Hl6.jpg', 1, '2023-10-12 05:20:13', '2023-10-19 09:33:15', NULL),
 (28, 10, 'CP-8', 'Clear Acrylic Centre Piece', '2 x 2', NULL, 6, 'pcs', 2000, 'product/pSOdrjwR90CdIeDgb4uXDSUFwAzZSJNejdcCSprS.jpg', 1, '2023-10-12 05:25:14', '2023-10-12 05:25:14', NULL),
 (29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 20, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-19 12:23:54', NULL),
-(30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 21, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-19 11:51:11', NULL),
+(30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 19, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-21 16:05:30', NULL),
 (31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-12 07:36:04', NULL),
 (32, 10, 'CP-', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/klUL7s7PQGRbtf6qlMklsmcz7q4XVMOE6tMurCFI.jpg', 1, '2023-10-12 07:36:44', '2023-10-12 07:39:09', '2023-10-12 07:39:09'),
 (33, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/wPmPkMRLqDxxh2qX4zF9hBYn3cTIxsprcUrgT9Kk.jpg', 1, '2023-10-12 07:37:57', '2023-10-12 07:39:22', '2023-10-12 07:39:22'),
@@ -750,42 +738,42 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (81, 13, 'CND-1', 'Glass Chandelier Large', 'Large', NULL, 2, 'pcs', 2500, 'product/ooRh6ONQLXbls8BWkz8ATUyM4IqsipymxJ3AzNZR.jpg', 1, '2023-10-12 13:31:02', '2023-10-12 13:31:02', NULL),
 (82, 13, 'CND-1a', 'Glass Chandelier Small', 'Single Layer', NULL, 1, 'pcs', 2000, 'product/e0YIsBrwbt7n4G7mW8XER2cDRgtR2zuJJKbK4k8H.jpg', 1, '2023-10-12 13:32:24', '2023-10-12 13:32:24', NULL),
 (83, 13, 'CND-2', 'Glass Chandelier Small', 'Large', NULL, 4, 'pcs', 700, 'product/HONZPFLmgrpSMLlh2764Hgl0hyZww6xa6SG9PNPZ.jpg', 1, '2023-10-12 13:34:50', '2023-10-12 13:34:50', NULL),
-(84, 13, 'CND-3', 'Silver Chandelier', NULL, 'Silver', 58, 'pcs', 500, 'product/sZ7BCW1AYngwc6Gt7iNWZUIX2Qx6YK0JnckcgYUT.jpg', 1, '2023-10-13 04:37:52', '2023-10-21 12:15:27', NULL),
-(85, 13, 'CND-4', 'Golder Chandelier', NULL, 'Golden', 11, 'pcs', 700, 'product/m9T6UZQCHIuPXKhVPWzNf0m5yTvnAbg2uh2l8Yd2.jpg', 1, '2023-10-13 04:38:46', '2023-10-21 13:52:44', NULL),
-(86, 13, 'CND-5', 'Ball Chandelier', '2 feet Dia', 'Golden', 10, 'pcs', 1000, 'product/Fq6NArowwIIbAGo5RvpW4c3FROdC545YjrtEj6BM.jpg', 1, '2023-10-13 04:40:27', '2023-10-21 13:49:39', NULL),
+(84, 13, 'CND-3', 'Silver Chandelier', NULL, 'Silver', 58, 'pcs', 500, 'product/sZ7BCW1AYngwc6Gt7iNWZUIX2Qx6YK0JnckcgYUT.jpg', 1, '2023-10-13 04:37:52', '2023-10-13 04:37:52', NULL),
+(85, 13, 'CND-4', 'Golder Chandelier', NULL, 'Golden', 12, 'pcs', 700, 'product/m9T6UZQCHIuPXKhVPWzNf0m5yTvnAbg2uh2l8Yd2.jpg', 1, '2023-10-13 04:38:46', '2023-10-13 04:38:46', NULL),
+(86, 13, 'CND-5', 'Ball Chandelier', '2 feet Dia', 'Golden', 10, 'pcs', 1000, 'product/Fq6NArowwIIbAGo5RvpW4c3FROdC545YjrtEj6BM.jpg', 1, '2023-10-13 04:40:27', '2023-10-13 04:40:27', NULL),
 (87, 13, 'CND-6', 'Round Crystal Chandelier', 'Round', 'Silver Crystal', 65, 'pcs', 500, 'product/etVxERNRa1P3zbx976VdOhmOFlm5WbcwEBrTXq2p.jpg', 1, '2023-10-13 04:45:23', '2023-10-13 04:45:23', NULL),
 (88, 13, 'CND-7', 'Metal Chandelier', NULL, 'Golden', 2, 'pcs', 1000, 'product/dl0eR0uz8l4iD8yDoJRjccrlObc4jWPrLGQl3D7L.png', 1, '2023-10-13 04:46:21', '2023-10-13 04:46:21', NULL),
 (89, 13, 'CND-8', 'Spiral Chandelier', NULL, NULL, 30, 'pcs', 500, 'product/QkvVgDYBCA21I1OAU0NpnIKoeEfMsMt215S9voZt.jpg', 1, '2023-10-13 04:47:32', '2023-10-13 04:47:32', NULL),
 (90, 13, 'CND-9', 'Corona Chandelier', NULL, NULL, 30, 'pcs', 800, 'product/1O7OttQVyIsavGbyg24puXsG45mF5E8VJcH933GC.jpg', 1, '2023-10-13 04:48:15', '2023-10-13 04:48:15', NULL),
-(91, 13, 'CND-10', 'Crystal Chandelier', NULL, 'Red, Pink, Blue, Purple', 79, 'pcs', 200, 'product/WsONrLRMxFwAxWftavQed7gmceAGKv4NMLtSuJGt.jpg', 1, '2023-10-13 04:50:22', '2023-10-21 07:19:47', NULL),
+(91, 13, 'CND-10', 'Crystal Chandelier', NULL, 'Red, Pink, Blue, Purple', 81, 'pcs', 200, 'product/WsONrLRMxFwAxWftavQed7gmceAGKv4NMLtSuJGt.jpg', 1, '2023-10-13 04:50:22', '2023-10-13 04:50:22', NULL),
 (92, 13, 'CND-11', 'Anbas Chandelier', 'Large 21 pcs & Small 9 pcs', 'Blue', 30, 'pcs', 200, 'product/mLlw7iXni9zEUukzcEM5w25K4RAVf3amiJJqxgOB.jpg', 1, '2023-10-13 04:52:19', '2023-10-13 04:52:19', NULL),
 (93, 13, 'CND-12', 'Anbas Chandelier', 'Medium', 'Sky', 7, 'pcs', 200, 'product/X7TnggmdXeBoF4qtGyDHpEpdkxdvOx7GOfncZEdI.jpg', 1, '2023-10-13 04:53:01', '2023-10-13 04:53:01', NULL),
-(94, 13, 'CND-13', 'Anbas Chandelier', 'Large', 'Golden', 18, 'pcs', 200, 'product/8cPf5WYZbhCHoOid6HS0nOtsfFFH55LC3bIf9sJO.jpg', 1, '2023-10-13 04:53:41', '2023-10-21 13:54:30', NULL),
+(94, 13, 'CND-13', 'Anbas Chandelier', 'Large', 'Golden', 18, 'pcs', 200, 'product/8cPf5WYZbhCHoOid6HS0nOtsfFFH55LC3bIf9sJO.jpg', 1, '2023-10-13 04:53:41', '2023-10-13 04:53:41', NULL),
 (95, 13, 'CND-14', 'Anbas Chandelier', 'Large 23 pcs, Small 9 pcs', 'Green', 32, 'pcs', 200, 'product/WKM5Pn8IiA5ogRbxGk34jUgo6LMP7Egrhnzukixa.jpg', 1, '2023-10-13 04:54:34', '2023-10-13 04:54:34', NULL),
 (96, 13, 'CND-15', 'Anbas Chandelier', 'Large 31 pcs, Small 9 pcs', 'Red', 40, 'pcs', 200, 'product/JVRUqv7kSNUK8bXtaYchTv0PgKRckllge1Ccm2re.jpg', 1, '2023-10-13 04:55:40', '2023-10-13 04:55:40', NULL),
 (97, 13, 'CND-16', 'Case Chandelier', NULL, 'White', 50, 'pcs', 100, 'product/gVKX4uysZVfT8aQoKXYrehXhf15XDEyE6JAC8Hnc.jpg', 1, '2023-10-13 04:58:07', '2023-10-13 04:58:07', NULL),
 (98, 13, 'CND-17', 'Mic Chandelier', NULL, NULL, 8, 'pcs', 200, 'product/lbRowjxAlhnbN2n2M99Qmbye1Cq086rUxuQKn9ap.jpg', 1, '2023-10-13 04:59:19', '2023-10-13 04:59:19', NULL),
 (99, 13, 'CND-18', 'Hanging Chandelier', NULL, 'White', 6, 'pcs', 200, 'product/5R83ZgFzCl9itHvMZN6SzcPSp7gdt4UNvqHPpR9n.jpg', 1, '2023-10-13 05:00:32', '2023-10-13 05:00:32', NULL),
-(100, 13, 'CND-19', 'Bulb Chandelier', 'Set', 'Golden', 2, 'pcs', 8000, 'product/TLssgVzPDp45dCLqs3PywSuZHbOXaWogY1SKtmmL.jpg', 1, '2023-10-13 05:01:44', '2023-10-21 13:56:08', NULL),
+(100, 13, 'CND-19', 'Bulb Chandelier', 'Set', 'Golden', 2, 'pcs', 8000, 'product/TLssgVzPDp45dCLqs3PywSuZHbOXaWogY1SKtmmL.jpg', 1, '2023-10-13 05:01:44', '2023-10-13 05:01:44', NULL),
 (101, 13, 'CND-20', 'Large Crystal Chandelier', 'Large', 'Silver Crystal', 1, 'pcs', 2000, 'product/7bYBNNkDFuoxkXL34WUOaMqMB31lHUY3CjgIye1Z.jpg', 1, '2023-10-13 05:03:01', '2023-10-13 05:03:01', NULL),
 (102, 13, 'CND-21', 'Glass Crystal Chandelier', '10 gang', 'Crystal', 11, 'pcs', 2000, 'product/1ApHQlvHaA849xPAbImL5LL0osJDJQLsK2yb9ZeK.jpg', 1, '2023-10-13 05:06:39', '2023-10-13 05:06:39', NULL),
 (103, 13, 'CND-22', 'Glass Crystal Chandelier', '15 Gang', 'Crystal', 15, 'pcs', 3000, 'product/jUmh6eZIvCIjanwNypZ3xftdEHFvvyR45zZdydH6.jpg', 1, '2023-10-13 05:07:25', '2023-10-13 05:07:25', NULL),
 (104, 13, 'CND-24', 'Modern Crystal Chandelier', 'Round', 'Crystal Golden', 6, 'pcs', 1500, 'product/Lk23hJ9Th8Gnf8NQhGjKj0C3lJJBcTl8tWsyIR7s.jpg', 1, '2023-10-13 05:13:36', '2023-10-13 05:13:36', NULL),
 (105, 13, 'CND-25', 'Pineapple Chandelier', NULL, 'Glass', 8, 'pcs', 300, 'product/o93Ih8U9hnWtiwbAhETVH9JM2jmdnQeAFGxWiSYo.jpg', 1, '2023-10-13 05:15:18', '2023-10-13 05:15:18', NULL),
 (106, 13, 'CND-26', 'Hanging Chandelier', NULL, 'White', 8, 'pcs', 300, 'product/FRVURZCJaJVUuploIPtBsr9ruR18fp7zQtSlb9tp.jpg', 1, '2023-10-13 05:18:26', '2023-10-13 05:18:26', NULL),
-(107, 17, 'FT-1', 'Large Stone Chandelier', 'H-7feet, D-8feet', 'White', 1, 'pcs', 25000, 'product/default.webp', 1, '2023-10-13 06:28:00', '2023-10-21 13:56:11', NULL),
+(107, 17, 'FT-1', 'Large Stone Chandelier', 'H-7feet, D-8feet', 'White', 1, 'pcs', 25000, 'product/default.webp', 1, '2023-10-13 06:28:00', '2023-10-13 06:28:00', NULL),
 (108, 17, 'FT-1', 'Large Stone Chandelier', 'H-7feet, D-8feet', 'Antique White', 1, 'pcs', 25000, 'product/2aCqWJRMsAj7vJkqKIaKCslMS2GRj89s3uL4zsWQ.png', 1, '2023-10-13 06:28:30', '2023-10-13 06:28:30', NULL),
 (109, 17, 'FT-2', 'Small Stone Fountain', 'H-4 feet, D-3.5 feet', 'Marvel', 2, 'pcs', 6000, 'product/0PQnOBIrYMZQPy4IxqhqxhSwvtc8cfeA8zkR0c6Y.png', 1, '2023-10-13 06:29:39', '2023-10-13 06:29:39', NULL),
 (110, 17, 'FT-3', 'Rectangle Metal Fountain', 'H-5 feet, L-4 feet, W-4 feet', 'White', 2, 'pcs', 7000, 'product/Lgj33WkmBMG8D2s7JiQIyM0vGbSMcLhBtFOFFRoU.jpg', 1, '2023-10-13 06:30:40', '2023-10-13 06:30:40', NULL),
 (111, 17, 'FT-4', 'Round Large Metal Fountain', 'H-7 feet', 'White', 3, 'pcs', 5000, 'product/PPy2KCV08P9qdPSmv0qDBK9ujDFajEuGl0YSzd1m.jpg', 1, '2023-10-13 06:31:24', '2023-10-13 06:31:24', NULL),
-(112, 17, 'FT-5', 'SS Mini Fountain', 'H-4 feet, W+L-1 feet', 'Steel', 12, 'pcs', 1500, 'product/So6ZS9In7b41E2ZtcSvqn2d36CiUNKC3YST11f3M.jpg', 1, '2023-10-13 06:34:56', '2023-10-21 13:56:14', NULL),
+(112, 17, 'FT-5', 'SS Mini Fountain', 'H-4 feet, W+L-1 feet', 'Steel', 12, 'pcs', 1500, 'product/So6ZS9In7b41E2ZtcSvqn2d36CiUNKC3YST11f3M.jpg', 1, '2023-10-13 06:34:56', '2023-10-13 06:34:56', NULL),
 (113, 17, 'FT-6', 'Stone Medium Fountain', 'H-4 feet, D-4 feet', 'Antique White', 1, 'pcs', 10000, 'product/VDHaPL964YR2WeLCiN41TraCr422UntDdqahniKq.jpg', 1, '2023-10-13 08:21:28', '2023-10-13 08:21:28', NULL),
 (114, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/N0jE91nbnYUiC3Ffczr7UcRfowPDHg8OptcJohzx.jpg', 1, '2023-10-13 08:36:49', '2023-10-13 08:36:49', NULL),
 (115, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/7e1d49Ea5XKd5UV0fbJfSWGPeY2HRFCgdv0o5BDU.jpg', 1, '2023-10-13 08:36:52', '2023-10-13 08:37:22', '2023-10-13 08:37:22'),
 (116, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/YvHfGDmJDRrrb9xUn9y4HWrA9HhXsgmFSF8xCzcr.jpg', 1, '2023-10-13 08:36:53', '2023-10-13 08:38:04', '2023-10-13 08:38:04'),
 (117, 16, 'FV-1', 'Crystal Flower Vase', 'H-2 feet, 1 feet', 'Crystal Silver', 12, 'pcs', 1000, 'product/GcXVGQLIYLySM5YxJRXfqWBYAgNBdBzo8D3omzjW.jpg', 1, '2023-10-13 09:12:44', '2023-10-13 09:12:44', NULL),
 (118, 16, 'FV-3', 'Medium Flower Vase', 'H-3 feet', 'Customize', 6, 'pcs', 500, 'product/2PUSQj3btRBdodGH8eT6aRRcAlqrUVQPItOuich0.jpg', 1, '2023-10-13 09:18:03', '2023-10-19 12:23:54', NULL),
-(119, 16, 'FV-4', 'Fiber Flower Vase', 'H-2.5 feet', NULL, 14, 'pcs', 500, 'product/3uzDDlSeGNtswaT1HL3Y7RC6KQwUXinBoIanwjgk.jpg', 1, '2023-10-13 09:29:36', '2023-10-21 18:33:15', NULL),
+(119, 16, 'FV-4', 'Fiber Flower Vase', 'H-2.5 feet', NULL, 16, 'pcs', 500, 'product/3uzDDlSeGNtswaT1HL3Y7RC6KQwUXinBoIanwjgk.jpg', 1, '2023-10-13 09:29:36', '2023-10-13 09:29:36', NULL),
 (120, 16, 'FV-5', 'Plastic Flower Vase', NULL, 'White', 6, 'pcs', 300, 'product/1iwDylrlh9K3sqap6LagyVKZllC2e6rc6iYCCaCk.jpg', 1, '2023-10-13 09:30:18', '2023-10-13 09:30:18', NULL),
 (121, 16, 'FV-6', 'Roman Flower Vase', NULL, 'White', 9, 'pcs', 500, 'product/CqTQQLOvP4M27MesAmZMxw69tkzsLFqMXSxVG5jD.jpg', 1, '2023-10-13 09:35:00', '2023-10-13 09:35:00', NULL),
 (122, 16, 'FV-7', 'Thin Fiber Flower Vase', NULL, 'Golden', 16, 'pcs', 500, 'product/ap21wYCaUqe7eSAaEUVDRLbBAuARhh6hUBbup5fr.jpg', 1, '2023-10-15 03:52:35', '2023-10-15 03:52:35', NULL),
@@ -793,20 +781,20 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (124, 16, 'FV-9', 'Elephant Teeth Flower Vase', NULL, 'Golden', 2, 'pcs', 1000, 'product/FknqWB0j5ukYxGj6SFSwRCM6OqLhLMvoaDQWNLMV.jpg', 1, '2023-10-15 03:54:24', '2023-10-15 03:54:24', NULL),
 (125, 16, 'FV-10', 'Wooden Flower Vase', 'Tall & Short', 'White', 7, 'pcs', 200, 'product/3i5ZzWJzr6F5phymlJSfru7KI8B5gXlAaSPpIcDL.png', 1, '2023-10-15 03:55:52', '2023-10-19 11:35:13', NULL),
 (126, 16, 'FV-12', 'Wooden Flower Vase', 'Tall & Short', 'White', 3, 'pcs', 100, 'product/Phf6jt1HmET6BkN1Lz9EI1Jhe5bzu0q2kvl5EHif.jpg', 1, '2023-10-15 03:57:13', '2023-10-15 03:57:13', NULL),
-(127, 16, 'FV-13', 'Wooden Box Flower Vase', 'Large, Medium & Small', 'Wooden', 11, 'pcs', 200, 'product/Z6D2TUpmBvLwJfgnZhfdPzijR8VLgyco2OPhsS84.png', 1, '2023-10-15 03:58:12', '2023-10-21 13:56:18', NULL),
+(127, 16, 'FV-13', 'Wooden Box Flower Vase', 'Large, Medium & Small', 'Wooden', 11, 'pcs', 200, 'product/Z6D2TUpmBvLwJfgnZhfdPzijR8VLgyco2OPhsS84.png', 1, '2023-10-15 03:58:12', '2023-10-15 03:58:12', NULL),
 (128, 16, 'FV-14a', 'Round Flower Vase', 'Large', 'White', 2, 'pcs', 300, 'product/6ChNnc1dDL6xpfwsXT24cGJkktLoNMSMdlnVuAMX.jpg', 1, '2023-10-15 04:00:00', '2023-10-15 04:00:00', NULL),
 (129, 16, 'FV-14b', 'Round Flower Vase', 'Medium', 'White', 2, 'pcs', 250, 'product/sofm28OAPBfsGjnktfpksnGA8nphc6mGS4NGXVBf.jpg', 1, '2023-10-15 04:00:35', '2023-10-15 04:00:35', NULL),
 (130, 16, 'FV-14c', 'Round Flower Vase', 'Small', 'White', 5, 'pcs', 250, 'product/YcEo6o5R5sVGTfIE3ir09tqe3crcRNTH6MfFC0WA.jpg', 1, '2023-10-15 04:01:00', '2023-10-15 04:01:00', NULL),
 (131, 16, 'FV-15a', 'Mirror Flower Vase', 'Large', NULL, 1, 'pcs', 500, 'product/etFRvy99ZhSTifDHzHDj1gWKIvobgqGiCdZwFmj9.jpg', 1, '2023-10-15 04:02:14', '2023-10-19 12:23:54', NULL),
-(132, 16, 'FV-15b', 'Mirror Flower Vase', 'Medium', NULL, 4, 'pcs', 300, 'product/K60x4r0APPpqjQL6P8FoHtmAFKCOVn4inLGf13z3.jpg', 1, '2023-10-15 04:02:53', '2023-10-21 13:56:21', NULL),
+(132, 16, 'FV-15b', 'Mirror Flower Vase', 'Medium', NULL, 4, 'pcs', 300, 'product/K60x4r0APPpqjQL6P8FoHtmAFKCOVn4inLGf13z3.jpg', 1, '2023-10-15 04:02:53', '2023-10-15 04:02:53', NULL),
 (133, 16, 'FV-15c', 'Mirror Flower Vase', 'Small', NULL, 2, 'pcs', 200, 'product/f3MmSzjqexmVFAr64kqcCwcDKbc1Bj1xdFcyHhaK.jpg', 1, '2023-10-15 04:04:38', '2023-10-15 04:04:38', NULL),
 (134, 16, 'FV-16', 'Metal Flower Vase', NULL, 'Customize', 4, 'pcs', 300, 'product/MfsJqYh2QG4uw9TH4afdR7Ubg7YpBFXbVFIwgdrW.jpg', 1, '2023-10-15 04:05:46', '2023-10-15 04:05:46', NULL),
 (135, 16, 'FV-17', 'Metal Flower Vase', NULL, 'Customize', 19, 'pcs', 300, 'product/UePS6Zl8y62mKbe0986mLCuuRFmjtD1ttj1W40CM.jpg', 1, '2023-10-15 04:06:20', '2023-10-15 04:06:20', NULL),
 (136, 16, 'FV-18', 'Coper Flower Vase', 'Large, Medium & Small', 'Coper', 12, 'pcs', 1000, 'product/gVnxcMViuXEonmKsyD02Zi6sGJdbwk5kjqtHa6P8.jpg', 1, '2023-10-15 04:07:21', '2023-10-15 04:07:21', NULL),
 (137, 18, 'HI-01', 'Yarn Lace', NULL, 'Blue & Yellow', 7, 'pcs', 200, 'product/dqbMc0m8V5eEn3WaIk35z7588uLUgWAWCWxFe6oe.jpg', 1, '2023-10-15 04:26:50', '2023-10-15 04:26:50', NULL),
 (138, 18, 'HI-2', 'Golden Yarn Lace', 'Large, Medium & Small', 'Golden', 18, 'pcs', 200, 'product/VVxkqN7XmquLW8FzLbx9TRy2UG2Y61TFift0XPir.jpg', 1, '2023-10-15 04:27:42', '2023-10-15 04:27:42', NULL),
-(139, 18, 'HI-03', 'Red Yarn Lace', NULL, 'Red', 5, 'pcs', 200, 'product/aDblZrtsGWsGKFR77ozp47kYrLliGUa8jguLFQVn.jpg', 1, '2023-10-15 04:29:52', '2023-10-21 13:56:26', NULL),
-(140, 18, 'HI-04', 'Pink Yarn Lace', NULL, 'Pink', 8, 'pcs', 200, 'product/Q8oMdSb57dwurdO6Nz3uJkzz8D61pAC7lmqUC0ot.jpg', 1, '2023-10-15 04:30:23', '2023-10-21 13:56:23', NULL),
+(139, 18, 'HI-03', 'Red Yarn Lace', NULL, 'Red', 5, 'pcs', 200, 'product/aDblZrtsGWsGKFR77ozp47kYrLliGUa8jguLFQVn.jpg', 1, '2023-10-15 04:29:52', '2023-10-15 04:29:52', NULL),
+(140, 18, 'HI-04', 'Pink Yarn Lace', NULL, 'Pink', 8, 'pcs', 200, 'product/Q8oMdSb57dwurdO6Nz3uJkzz8D61pAC7lmqUC0ot.jpg', 1, '2023-10-15 04:30:23', '2023-10-15 04:30:23', NULL),
 (141, 18, 'HI-5', 'Silver Yarn Lace', NULL, 'Silver', 10, 'pcs', 200, 'product/y20bdqW1V2zWvqHZFhwmzXRAXvWlhsZvYX2LhDs5.jpg', 1, '2023-10-15 04:31:06', '2023-10-15 04:31:06', NULL),
 (142, 18, 'HI-06', 'Silver Beads Lace', NULL, 'Crystal Silver', 7, 'pcs', 500, 'product/70Z9MpzmjPpojFV9A5Sf0zRAJNBvKFEIOCrVCeXo.jpg', 1, '2023-10-15 04:39:01', '2023-10-15 04:39:01', NULL),
 (143, 18, 'HI-07', 'Silver Beads Lace', NULL, 'Crystal Silver', 5, 'pcs', 500, 'product/EDyHTRhTpwdnWWnVc7vyH73IWq7lmgK0qyTRggj6.jpg', 1, '2023-10-15 04:40:14', '2023-10-15 04:40:14', NULL),
@@ -817,14 +805,14 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (148, 18, 'HI-12', 'Yarn Glitter Lace Ring', NULL, 'Red & Yellow', 9, 'pcs', 300, 'product/dSAJZAgF43JJgZrcAYeA40Is6sMRkrevnCJmQyqb.jpg', 1, '2023-10-15 04:44:39', '2023-10-15 04:44:39', NULL),
 (149, 18, 'HI-13', 'Yarn Lace', NULL, 'White, Silver & Golden', 72, 'pcs', 100, 'product/21mMtdOtA4IMJKz3NbbnR1mexzn5oqLhDOBo4vlH.jpg', 1, '2023-10-15 04:45:47', '2023-10-15 04:45:47', NULL),
 (150, 18, 'HI-14', 'Beads Lace', 'Dhan-5 pcs, Flat-5 pcs', NULL, 10, 'pcs', 500, 'product/0neG4M81h3aZCEWGsOo10AXJII7ufiYil0v8BLte.jpg', 1, '2023-10-15 04:50:54', '2023-10-15 04:50:54', NULL),
-(151, 18, 'HI-15', 'Love Beads Lace', NULL, NULL, 4, 'pcs', 500, 'product/Wg2zO4HwVKgQRKtpnMWQkZSWQVjQR87J5fukl7fH.jpg', 1, '2023-10-15 05:06:00', '2023-10-21 13:56:29', NULL),
+(151, 18, 'HI-15', 'Love Beads Lace', NULL, NULL, 4, 'pcs', 500, 'product/Wg2zO4HwVKgQRKtpnMWQkZSWQVjQR87J5fukl7fH.jpg', 1, '2023-10-15 05:06:00', '2023-10-15 05:06:00', NULL),
 (152, 18, 'HI-16', 'Beads Lace', NULL, 'Silver & Golden', 20, 'pcs', 500, 'product/8PnN7c7Dh3zfYl4i1mbqrGZI3aofsnrdXkUa7Iqs.jpg', 1, '2023-10-15 05:07:39', '2023-10-15 05:07:39', NULL),
 (153, 18, 'HI-17', 'Beads Lace', NULL, 'Golden', 10, 'pcs', 500, 'product/TyBF8l8ktsRgoep1NXSedaFIbhCHWeyX2KyKZCyv.jpg', 1, '2023-10-15 05:08:31', '2023-10-15 05:08:31', NULL),
 (154, 18, 'HI-18', 'Beads Lace', NULL, 'Blue, Pink & Purple', 7, 'pcs', 400, 'product/VV0juMoUxAYoJyIhwlSd1SVK6ekH25Gl8C9gxylx.jpg', 1, '2023-10-15 05:11:35', '2023-10-15 05:11:35', NULL),
 (155, 18, 'HI-19', 'China Ring', 'S-14, M-15, L-14', 'Customize', 43, 'pcs', 200, 'product/am9DgHqNW9O1oXb2BGusvvM415KUuOj0ZB75zSKD.jpg', 1, '2023-10-15 05:13:09', '2023-10-15 05:13:09', NULL),
 (156, 18, 'HI-20', 'Glass Nest Case', NULL, 'Glass', 11, 'pcs', 200, 'product/kipAajnOX2w5Ua9xA0tFSRO26elpWW7lLfJaXmle.jpg', 1, '2023-10-15 05:13:49', '2023-10-15 05:13:49', NULL),
 (157, 18, 'HI-21', 'Glass Nest Case', 'Round', 'Glass', 6, 'pcs', 200, 'product/5OrDcrAe1u3SMnniLvA7qWMLYIq2cm4U07B3JfG7.jpg', 1, '2023-10-15 05:14:15', '2023-10-15 05:14:15', NULL),
-(158, 18, 'HI-22', 'Glass Nest Case', NULL, 'Glass', 5, 'pcs', 200, 'product/glhDPJ0eMEkDw8zwsGdmji8af0iqLx8FYOnMZE2j.jpg', 1, '2023-10-15 05:15:12', '2023-10-21 13:56:36', NULL),
+(158, 18, 'HI-22', 'Glass Nest Case', NULL, 'Glass', 5, 'pcs', 200, 'product/glhDPJ0eMEkDw8zwsGdmji8af0iqLx8FYOnMZE2j.jpg', 1, '2023-10-15 05:15:12', '2023-10-15 05:15:12', NULL),
 (159, 18, 'HI-23', 'Hanging Glass Showpiece', NULL, NULL, 165, 'pcs', 50, 'product/dLWGxmHVDEDcIYJLXEo9DO0ewAVTa9uwmKQixcJe.jpg', 1, '2023-10-15 05:15:47', '2023-10-15 05:15:47', NULL),
 (160, 18, 'HI-24', 'Hanging Showpiece', NULL, NULL, 1, 'pcs', 1, 'product/wNutZkdNFprwk3RV9WwowLTPwKYBv6P8Y08ljYly.jpg', 1, '2023-10-15 05:16:13', '2023-10-15 05:16:13', NULL),
 (161, 18, 'HI-25', 'Hanging Showpiece', NULL, NULL, 160, 'pcs', 50, 'product/B4Ot8lATxI7C5uT775bTlFSfJCzruSYKeqUlMMgf.jpg', 1, '2023-10-15 05:16:33', '2023-10-15 05:16:33', NULL),
@@ -838,7 +826,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (169, 18, 'HI-33', 'Crystal Fat Chain', '10 feet', 'Crystal', 48, 'pcs', 30, 'product/ELAfND5BGMqaQKY648B71BlrvRHtI8t2aebPiO4n.jpg', 1, '2023-10-15 05:43:22', '2023-10-15 05:43:37', NULL),
 (170, 18, 'HI-34', 'Crystal Thin Chain', '10 feet', NULL, 20, 'pcs', 30, 'product/vBhY4kMYBRETX9JstWWsgDAen67zSaPH9wZmeu5D.jpg', 1, '2023-10-15 05:44:14', '2023-10-15 05:44:14', NULL),
 (171, 18, 'HI-35', 'Crystal Chain', '2 feet', 'White', 300, 'pcs', 10, 'product/9w5ceHgoGTMoUHKJqT6kIrkXLwMkXXcWeGZK08oO.jpg', 1, '2023-10-15 05:45:05', '2023-10-15 05:45:05', NULL),
-(172, 18, 'HI-36', 'Crystal Lohor', '3 feet', 'Crystal', 5000, 'pcs', 50, 'product/ZHylLrEoErlHBBobmCfOHvz6CfmJkQJ4QpQoUN4D.jpg', 1, '2023-10-15 05:47:03', '2023-10-15 05:47:03', NULL),
+(172, 18, 'HI-36', 'Crystal Lohor', '3 feet', 'Crystal', 2000, 'pcs', 50, 'product/ZHylLrEoErlHBBobmCfOHvz6CfmJkQJ4QpQoUN4D.jpg', 1, '2023-10-15 05:47:03', '2023-10-22 05:21:36', NULL),
 (173, 18, 'HI-37', 'Pearl Lohor', '3 feet', NULL, 0, 'pcs', 20, 'product/JDaVRlw2xQ49HewU3QRth0KWOMWWgrs0Nzb9cwTv.jpg', 1, '2023-10-15 05:50:11', '2023-10-15 05:50:11', NULL),
 (174, 18, 'HI-37', 'Crystal Ball', NULL, NULL, 34, 'pcs', 50, 'product/GDKSGzC4z6HcTVxAHkDMPM3u2QPqbbw0qOn0e1oV.jpg', 1, '2023-10-15 05:50:39', '2023-10-15 05:50:39', NULL),
 (175, 18, 'HI-38', 'Glass Snail', 'Tall', NULL, 34, 'pcs', 200, 'product/tzvIX1JoFcjOVldxFO9VkbY7MGzv4tMrr7zKSyRl.jpg', 1, '2023-10-15 05:51:35', '2023-10-15 05:51:35', NULL),
@@ -873,7 +861,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (204, 14, 'C-2', 'White Georgette', '3000 Yards', 'White', 3000, 'pcs', 6, 'product/XmXBIxqeK2fXUIPCa57LpX555yiGtJmKZnQExIRR.jpg', 1, '2023-10-19 04:44:46', '2023-10-19 04:44:46', NULL),
 (205, 14, 'C-3', 'Black Georgette', '5000 Yards', 'Black', 5000, 'pcs', 6, 'product/ELSxHFjLseUTzOASX7ria4RGpIXDxbxrKoI1xrcX.jpg', 1, '2023-10-19 04:47:24', '2023-10-19 04:47:24', NULL),
 (206, 14, 'C-04', 'Piece Butter', '2100 Yards', 'Piece', 2100, 'pcs', 4, 'product/1USIfK9XbaRMhnBdLHZ9PWEKzg6pZkrn3H3nBNxH.jpg', 1, '2023-10-19 04:51:54', '2023-10-19 04:51:54', NULL),
-(207, 14, 'C-05', 'Light Piece Butter', '400 Yards', 'Light Piece', 400, 'pcs', 4, 'product/Uq3miEq5FrVY4ArBXNRKAogdMleei7m9fBYVkRo3.png', 1, '2023-10-19 04:52:48', '2023-10-21 16:20:36', NULL),
+(207, 14, 'C-05', 'Light Piece Butter', '400 Yards', 'Light Piece', 400, 'pcs', 4, 'product/Uq3miEq5FrVY4ArBXNRKAogdMleei7m9fBYVkRo3.png', 1, '2023-10-19 04:52:48', '2023-10-19 04:52:48', NULL),
 (208, 14, 'C-06', 'Violet Butter', '1020 Yards', 'Violet', 1020, 'pcs', 4, 'product/OaPLrPebwg2LmDrI5ku4rzKpviVECJcmT6NyDnx4.jpg', 1, '2023-10-19 04:54:28', '2023-10-19 04:54:28', NULL),
 (209, 14, 'C-07', 'Sky Blue Butter', '240 Yards', 'Sky Blue', 240, 'pcs', 4, 'product/X56N5pDEr4zXA8W2q6yzLSZAg6TAFENJ5rG7tlOJ.jpg', 1, '2023-10-19 04:55:06', '2023-10-19 04:55:06', NULL),
 (210, 14, 'C-08', 'Blue Butter', '300 Yards', 'Blue', 300, 'pcs', 4, 'product/1BwGPAa0cIx17HorIWv28SFJsEUPaenVQy5HTU2s.jpg', 1, '2023-10-19 05:04:42', '2023-10-19 05:04:42', NULL),
@@ -897,7 +885,127 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (228, 14, 'C-26', 'Ripe Yellow Butter', '250 Yads', 'Ripe Yellow', 250, 'pcs', 4, 'product/LrYfQJKH58q7ZChyWQY4dD42Rpt2axXCYyAzmU25.jpg', 1, '2023-10-21 05:50:42', '2023-10-21 05:50:42', NULL),
 (229, 14, 'C-27', 'Orange Butter', '2250 Yards', 'Orange', 2250, 'pcs', 4, 'product/mmgxww04EQ2xTaCJdDamMBcVM7RAllMZd5oWcjCy.png', 1, '2023-10-21 05:51:20', '2023-10-21 05:51:20', NULL),
 (230, 14, 'C-28', 'Deep S Butter', '540 Yards', 'Deep S', 540, 'pcs', 4, 'product/dq6DmUPam2xC93KhI3XG5myujfhPF8zg9OBsEcHS.jpg', 1, '2023-10-21 05:53:37', '2023-10-21 05:53:37', NULL),
-(231, 14, 'C-29', 'Maroon Velvet', '154 Yards', 'Marron', 154, 'pcs', 20, 'product/8e1GdFgJAIrRTiAXyEJv96Lh1cphQyoXUgLyFDWU.jpg', 1, '2023-10-21 05:57:23', '2023-10-21 19:10:42', NULL);
+(231, 14, 'C-29', 'Maroon Velvet', '154 Yards', 'Marron', 154, 'pcs', 20, 'product/8e1GdFgJAIrRTiAXyEJv96Lh1cphQyoXUgLyFDWU.jpg', 1, '2023-10-21 05:57:23', '2023-10-21 05:57:23', NULL),
+(232, 14, 'C-29', 'Maroon Velvet', '154 Yards', 'Marron', 154, 'pcs', 20, 'product/6Qbezi64X1J94VWBFfSSuO6mZAZgflx3N76Bu7Jh.jpg', 1, '2023-10-21 05:57:25', '2023-10-21 06:38:12', '2023-10-21 06:38:12'),
+(233, 14, 'C-30', 'Golden Velvet', '112 Yards', 'Golden', 112, 'pcs', 20, 'product/Ifv54czyAJteobHtcoLgBYV6MQC0wXgHjs0rouYy.jpg', 1, '2023-10-21 06:40:07', '2023-10-21 06:40:07', NULL),
+(234, 14, 'C-31', 'Orange Velvet', '28 Yards', 'Orange', 28, 'pcs', 20, 'product/kJXoDUxOsHV2mtmUMpa22SZ6hZSGQYR7oe7o6TGG.jpg', 1, '2023-10-21 06:41:49', '2023-10-21 06:41:49', NULL),
+(235, 14, 'C-32', 'Deep Purple Design Cloth', '60 yards', 'Deep Purple', 60, 'pcs', 30, 'product/o8ru7uSVDeov9H3rBf4YospmG7RNWa4LeCXeos79.jpg', 1, '2023-10-21 06:43:17', '2023-10-21 06:43:17', NULL),
+(236, 14, 'C-33', 'Paste Design Cloth', '60 yards', 'Paste', 60, 'pcs', 30, 'product/YfB7YfnTwyA7Hb2woIu8J8qT5xQacFzyG4n6IG2s.jpg', 1, '2023-10-21 06:44:32', '2023-10-21 06:44:32', NULL),
+(237, 14, 'C-34', 'Golden Design Cloth', '60 yards', 'Golden', 30, 'pcs', 30, 'product/C9S5rH8GTAkPNrZmSNucwSAVsaBwVijgfO8XrRBz.jpg', 1, '2023-10-21 06:45:06', '2023-10-21 06:45:06', NULL),
+(238, 14, 'C-35', 'Parrot Design Cloth', '60 yards', 'Parrot Green', 30, 'pcs', 30, 'product/a449a8ywuNDcxxtZ0OSP279yOWcLakENJqUO78x6.jpg', 1, '2023-10-21 06:45:48', '2023-10-21 06:45:48', NULL),
+(239, 14, 'C-36', 'Stage Backdrop Cloth', '15 feet x 10 feet', 'White', 4, 'pcs', 2000, 'product/nDZIPYSoYctZLcGbVAYesdUaTzYKR1x6jUwWb6wJ.jpg', 1, '2023-10-21 06:47:59', '2023-10-21 06:47:59', NULL),
+(240, 14, 'C-37', 'Blue Sequence Cloth', '84 Yards', 'Blue', 84, 'pcs', 30, 'product/N42YE3EDL6kVOGJHYpCpsyTkDR21kjLnPFSNFi4B.jpg', 1, '2023-10-21 06:49:02', '2023-10-21 06:49:02', NULL),
+(241, 14, 'C-38', 'Red Sequence Cloth', '140 Yards', 'Red', 140, 'pcs', 30, 'product/6hAHLnrAQb1YOKClwQAbJMkGJVgxsrts4W8nzShe.jpg', 1, '2023-10-21 06:58:32', '2023-10-21 06:58:32', NULL),
+(242, 14, 'C-38', 'Golden Sequence Cloth', '140 Yards', 'Golden', 140, 'pcs', 30, 'product/IqfMp1drn3SXlJAlE722I7SqvR97gESmomawNydX.jpg', 1, '2023-10-21 07:02:36', '2023-10-21 07:02:36', NULL),
+(243, 14, 'C-40', 'Rose Golden Sequence Cloth', '140 Yards', 'Rose Golden', 140, 'pcs', 30, 'product/3MqTA2ApfmB5qoZsn0uyL9Madpm5D71dMFDJfJdw.jpg', 1, '2023-10-21 07:03:37', '2023-10-21 07:03:37', NULL),
+(244, 14, 'C-41', 'Silver Sequence Cloth', '100 Yards', 'Silver', 100, 'pcs', 30, 'product/0S0u03BQZFrChX2eglycePqiZVT75zZp5jOZG3dv.jpg', 1, '2023-10-21 07:04:13', '2023-10-21 07:04:13', NULL),
+(245, 14, 'C-42', 'Silver Boquete Cloth', '100 Yards', 'Silver', 100, 'pcs', 10, 'product/YyMCYcaNiVVM7AJerNk02iQgQzFrjB2uZd6Kba96.jpg', 1, '2023-10-21 07:05:16', '2023-10-21 07:05:16', NULL),
+(246, 14, 'C-43', 'Golden Thick Tissue Cloth', '220 Yards', 'Golden', 220, 'pcs', 10, 'product/cxv4sG0fKUrd1qW7dkDD4HRV6LahZwJR4lzDLg1J.jpg', 1, '2023-10-21 07:06:15', '2023-10-21 07:06:15', NULL),
+(247, 14, 'C-44', 'Golden Curtain', '0', 'Golden', 87, 'pcs', 200, 'product/JjzJk7Znq47qKTrSSAK6mBFuUYjqdpKCxxqaVWMj.png', 1, '2023-10-21 07:07:44', '2023-10-21 07:07:44', NULL),
+(248, 14, 'C-45', 'White Curtain', NULL, 'White', 80, 'pcs', 200, 'product/kW4tnvJjyMdYYtlHlHlCDQsbPqzKntndBpcThgR2.png', 1, '2023-10-21 07:21:48', '2023-10-21 07:21:48', NULL),
+(249, 14, 'C-46', 'Black Curtain', NULL, 'Black', 83, 'pcs', 200, 'product/TP6wDPHmbALMJaraIvY39grLIiSlPwPUjkwOh7G3.png', 1, '2023-10-21 07:22:10', '2023-10-21 07:22:10', NULL),
+(250, 12, 'CR-1', 'White Chair Cover', NULL, 'White', 815, 'pcs', 20, 'product/JKXOHhPHAhJLvFEM0NM1UKCAjL1S4UhrrgSivy9J.jpg', 1, '2023-10-21 08:14:00', '2023-10-21 08:14:00', NULL),
+(251, 12, 'CR-2', 'Jute Balco Chair Bow', NULL, 'Jute', 315, 'pcs', 20, 'product/8cXMaKZOBDQRwtlq9hzqQ5FddSUNCuH8BajGifa2.jpg', 1, '2023-10-21 08:15:22', '2023-10-21 08:15:22', NULL),
+(252, 12, 'CR-3', 'Piece Color Chair Tie', NULL, 'Piece', 750, 'pcs', 15, 'product/7wkiXWa2Ic0M7UL21avYMzRp996mh1jvBuz132mq.jpg', 1, '2023-10-21 08:16:06', '2023-10-21 08:16:06', NULL),
+(253, 12, 'CR-4', 'Purple Color Chair Tie', NULL, 'Purple', 750, 'pcs', 15, 'product/jn3ZNEcQykS7tu4hMk1mGyc8QsYTBnjkIHyENyZa.jpg', 1, '2023-10-21 08:17:48', '2023-10-21 08:17:48', NULL),
+(254, 12, 'CR-5', 'Red Color Chair Tie', NULL, 'Red', 780, 'pcs', 15, 'product/sVgJTc5moLJeEcXQYVHMPdodcpEHb8kfNCC6l96L.jpg', 1, '2023-10-21 08:18:26', '2023-10-21 08:18:26', NULL),
+(255, 12, 'CR-6', 'Sky Color Chair Tie', NULL, 'Sky', 748, 'pcs', 15, 'product/70SUNqIcHmtbPFCjZBzX1bjUvtbYCwQcSltnsGD1.jpg', 1, '2023-10-21 08:21:40', '2023-10-21 16:05:30', NULL),
+(256, 12, 'CR-7', 'Silver Boquete Chair Bow', NULL, 'Silver', 1675, 'pcs', 10, 'product/W5wgpK3zM30VJZUaygxZVelzVU34npSuCy2bFqfZ.jpg', 1, '2023-10-21 08:24:15', '2023-10-21 08:24:15', NULL),
+(257, 12, 'CR-8', 'Golden Boquete Chair Bow', NULL, 'Golden', 400, 'pcs', 20, 'product/UfdCARCgo0FRQpnMOrn7AEribjuQAo4rAA8p4O6J.jpg', 1, '2023-10-21 08:25:23', '2023-10-21 08:25:23', NULL),
+(258, 12, 'CR-9', 'Blue Lace Chair Bow', NULL, 'Blue', 210, 'pcs', 20, 'product/Moss7lLYES9GZ4E3rvxU1Er4IiMhYTaWbLKijswb.jpg', 1, '2023-10-21 08:25:58', '2023-10-21 08:25:58', NULL),
+(259, 12, 'CR-10', 'Sequence Chair Bow', NULL, 'White Golden', 950, 'pcs', 20, 'product/knn792CgmTdvDWdqI7uVGgzE7jUjZbWMQAyqW51h.jpg', 1, '2023-10-21 08:26:48', '2023-10-21 08:26:48', NULL),
+(260, 12, 'CR-11', 'Green Color Chair Bow', NULL, 'Green', 211, 'pcs', 5, 'product/pIsHh117eWsWdWHaNpC1HEVAxrA65SDzGoXY9x2E.jpg', 1, '2023-10-21 08:27:18', '2023-10-21 08:27:18', NULL),
+(261, 12, 'CR-12', 'Red Color Chair Bow', NULL, 'Red', 822, 'pcs', 5, 'product/Gg1O0IvFYFJ1bSXDt9Kt7MebIx5btR5R2dGOLC0m.jpg', 1, '2023-10-21 08:27:40', '2023-10-21 08:27:40', NULL),
+(262, 12, 'CR-13', 'White Color Chair Bow', NULL, 'White', 330, 'pcs', 5, 'product/udkwPGc67menz4laA8gZSImKs4pEB3wzLHk4eOsN.jpg', 1, '2023-10-21 08:28:07', '2023-10-21 08:28:07', NULL),
+(263, 12, 'CR-14', 'Blue Color Chair Bow', NULL, 'Blue', 370, 'pcs', 5, 'product/SSVLvABqvSlEzi5inEh3oLJtFofTn1jA4v8BQGv6.jpg', 1, '2023-10-21 08:28:27', '2023-10-21 08:28:27', NULL),
+(264, 12, 'CR-15', 'Pink Color Chair Bow', NULL, 'Pink', 860, 'pcs', 5, 'product/aFqNEN5ZgMxdW7hZz0y4WRCs0ia6LIivFajFnPdW.jpg', 1, '2023-10-21 08:28:51', '2023-10-21 08:28:51', NULL),
+(265, 12, 'CR-16', 'Golden Color Chair Bow', NULL, 'Golden', 1030, 'pcs', 5, 'product/WHj3wPGRWzokrBMNljpidX0xcQx6Qr96hrSscxRu.jpg', 1, '2023-10-21 08:29:13', '2023-10-21 08:29:13', NULL),
+(266, 12, 'CR-17', 'Firoza Color Chair Bow', NULL, 'Firoja', 280, 'pcs', 5, 'product/JkZRDKPqeWIdJ8O1jdM9EfqrRME6ZGYd5hUdrOVm.jpg', 1, '2023-10-21 08:29:48', '2023-10-21 08:29:48', NULL),
+(267, 12, 'CR-18', 'White Ball Print Chair Bow', NULL, 'Black', 407, 'pcs', 5, 'product/ozDg6Qdb4aJc3cJKyE3M4Ow69NBoNpeMgTqcVRhJ.jpg', 1, '2023-10-21 08:30:32', '2023-10-21 08:30:32', NULL),
+(268, 12, 'CR-19', 'Black Ball Print Chair Bow', NULL, 'White', 350, 'pcs', 5, 'product/jeiFowiqP5bbrczndDliK5CYbikVWh7dF9mulGqv.jpg', 1, '2023-10-21 08:48:50', '2023-10-21 08:48:50', NULL),
+(269, 12, 'CR-20', 'Green Chunri Chair Bow', NULL, 'Light Green', 69, 'pcs', 5, 'product/pVw4tbzX640gaLPcLDOpLeerbl15YdzCEAFQT0w0.jpg', 1, '2023-10-21 08:49:52', '2023-10-21 08:49:52', NULL),
+(270, 12, 'CR-21', 'Orange Chunri Chair Bow', NULL, 'Orange', 79, 'pcs', 5, 'product/ibpFG2L0g3xFbCIj9GGsES2QO81maobe9yiHWMsx.jpg', 1, '2023-10-21 08:50:23', '2023-10-21 08:50:23', NULL),
+(271, 12, 'CR-22', 'Yellow Chunri Chair Bow', NULL, 'Yellow', 57, 'pcs', 5, 'product/ggrZuWKKsfZj1pKJvSAH4Apn34pTe2QZt5op4oOp.jpg', 1, '2023-10-21 08:50:46', '2023-10-21 08:50:46', NULL),
+(272, 12, 'CR-23', 'Red Chunri', NULL, 'Red', 88, 'pcs', 5, 'product/EjX8Lg8f6JE23KLPZ0YNTJfixDplAOk2HVuXpD4u.png', 1, '2023-10-21 08:51:17', '2023-10-21 08:51:17', NULL),
+(273, 12, 'CR-24', 'Green Dhamas', NULL, 'Green', 350, 'pcs', 5, 'product/cEZhmvkSYDs3IHlDYyE8nlx5rtoPV7uZ8OXBS607.png', 1, '2023-10-21 08:52:07', '2023-10-21 08:52:07', NULL),
+(274, 12, 'CR-25', 'Green Tissue Lace Bow', NULL, 'Green', 500, 'pcs', 5, 'product/wvRWAEgEHRJN7xXfBKsOuE0aq24ftkRDUGuvBrmG.png', 1, '2023-10-21 08:52:58', '2023-10-21 08:52:58', NULL),
+(275, 12, 'CR-26', 'Cotton Coffey Color Chair Bow', NULL, 'Coffey', 250, 'pcs', 5, 'product/viAF5BjNXRQWiloXsXawb4Bj7sr2oWfpwnybkjlR.png', 1, '2023-10-21 08:53:52', '2023-10-21 08:53:52', NULL),
+(276, 12, 'CR-27', 'Black Georgette', NULL, 'Black', 46, 'pcs', 5, 'product/RkOTQAxEN4tNPZSobvEtOVocwjpJoebyod7SSOMj.png', 1, '2023-10-21 08:54:32', '2023-10-21 08:54:32', NULL),
+(277, 12, 'CR-28', 'Marking Velco Tie', NULL, 'White', 330, 'pcs', 10, 'product/e005mcje4jtmIlCDP0HpNfyRDNnbPyAlIGxtiYBt.jpg', 1, '2023-10-21 08:55:12', '2023-10-21 08:55:12', NULL),
+(278, 12, 'CR-29', 'Piece Butter Chair Bow', NULL, 'Piece', 250, 'pcs', 5, 'product/Z6haizFa2JlIJQtwQVN3PTa8DQQFKzJY4bfsqHsx.png', 1, '2023-10-21 08:55:35', '2023-10-21 08:55:35', NULL),
+(279, 26, 'TR-01', 'Red Table Runner', NULL, 'Red', 14, 'pcs', 100, 'product/VPxaNTDBjRv1wEUlNyMAKRj3mulHGQI6SNqTNMxe.jpg', 1, '2023-10-21 09:07:06', '2023-10-21 09:07:06', NULL),
+(280, 26, 'TR-02', 'Blue Table Runner', NULL, 'Blue', 8, 'pcs', 100, 'product/default.png', 1, '2023-10-21 09:07:39', '2023-10-21 09:07:39', NULL),
+(281, 26, 'TR-03', 'Purple Table Runner', NULL, 'Purple', 8, 'pcs', 100, 'product/CBYd2a4PRXe6iJ7rRnowA11lwlPIRaisaasW6ZWU.jpg', 1, '2023-10-21 09:08:07', '2023-10-21 09:08:07', NULL),
+(282, 26, 'TR-04', 'Green Table Runner', NULL, 'Green', 10, 'pcs', 100, 'product/3fVX3MWK4KNmzGqOpnZhrhDTVKHKoB3Vc6yOfN3g.jpg', 1, '2023-10-21 09:08:49', '2023-10-21 09:08:49', NULL),
+(283, 26, 'TR-05', 'Golden Table Runner', NULL, 'Golden', 49, 'pcs', 100, 'product/SmfuGrl094LcYW3v1lorIgfbVo41agtT6O0FxbeM.jpg', 1, '2023-10-21 09:09:40', '2023-10-21 09:09:40', NULL),
+(284, 26, 'TR-06', 'Firoja Certin Table Runner', NULL, 'Firoja', 7, 'pcs', 100, 'product/f0UX80AMfifAyh3JsHp8SJ2EhbqZaMdPjvMujWd3.jpg', 1, '2023-10-21 09:10:37', '2023-10-21 09:10:37', NULL);
+INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`, `color`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(285, 26, 'TR-07', 'Orange Table Runner', NULL, 'Orange', 26, 'pcs', 100, 'product/FHCg52TYCBLUjbIBHKDoIREoJdsrQoCPrJO1SOwP.jpg', 1, '2023-10-21 09:11:03', '2023-10-21 09:11:03', NULL),
+(286, 26, 'TR-08', 'Maroon Table Runner', NULL, 'Marron', 10, 'pcs', 100, 'product/ykhkN0r3xl4xiawdRe20Mj0ci2xcgrbUfW2OPEij.jpg', 1, '2023-10-21 09:11:27', '2023-10-21 09:11:27', NULL),
+(287, 26, 'TR-09', 'Yellow Table Runner', NULL, 'Yellow', 8, 'pcs', 100, 'product/osy3nim3zlTvz9ViVZ4yHGHvrkkZvFu2O5nshx8X.jpg', 1, '2023-10-21 09:11:48', '2023-10-21 09:11:48', NULL),
+(288, 26, 'TR-10', 'Orange Table Runner', NULL, 'Orange', 26, 'pcs', 100, 'product/4PXmYVQM5O6Jt2UBk5FNzU6A1SXzSpEYeXEh2HSL.jpg', 1, '2023-10-21 09:13:53', '2023-10-21 09:13:53', NULL),
+(289, 27, 'TT-01', 'Sequence Table Top', NULL, 'Rose Golden', 32, 'pcs', 300, 'product/n2kc08WY5iew70fe0LPdD8IN2iM2agOAAo5K0Tql.jpg', 1, '2023-10-21 09:58:48', '2023-10-21 09:58:48', NULL),
+(290, 27, 'TT-02', 'Golden Net Table Top', NULL, 'Golden', 45, 'pcs', 100, 'product/YJJiYQcTbBSjeWwKBRFhBDm29fKyVM1gdvKA6Pve.jpg', 1, '2023-10-21 10:01:08', '2023-10-21 10:01:08', NULL),
+(291, 27, 'TT-03', 'Cream Net Table Top', NULL, 'Cream', 18, 'pcs', 100, 'product/JTj5pmrVkDcWgrY5voMSYc3V4dFkxulusSEPAPxE.jpg', 1, '2023-10-21 10:02:15', '2023-10-21 10:02:15', NULL),
+(292, 27, 'TT-04', 'White Net Table Top', NULL, 'White', 88, 'pcs', 100, 'product/wihHdzSe2lVWegPdC2N4I3zlo6GoGnoCoiYT391s.jpg', 1, '2023-10-21 10:02:49', '2023-10-21 10:02:49', NULL),
+(293, 27, 'TT-06', 'Black Ball Table Top', NULL, 'White', 36, 'pcs', 100, 'product/v6XoDrPlqgbgVq5rP09jJXVlQiiJOa9sv33okBAs.jpg', 1, '2023-10-21 10:03:37', '2023-10-21 10:03:37', NULL),
+(294, 27, 'TT-07', 'White Ball Table Top', NULL, 'Black', 19, 'pcs', 100, 'product/ALNruUdbknWM4dUcHhx5cDW9TerqKjU8s3HGBWYi.jpg', 1, '2023-10-21 10:03:57', '2023-10-21 10:03:57', NULL),
+(295, 27, 'TT-08', 'White Dhamas Print Table Top', NULL, 'White', 50, 'pcs', 100, 'product/cjt3zOUamreykrPA0cKP3hyI6e2Lj8rYT8igB7fY.jpg', 1, '2023-10-21 10:04:29', '2023-10-21 10:04:29', NULL),
+(296, 27, 'TT-09', 'Mud Color Dhamas Print Table Top', NULL, 'Mud Color', 25, 'pcs', 100, 'product/rxsgjoXhrc8x9vZZlPaoxtkeIrDDLVdYPLjdYhNN.jpg', 1, '2023-10-21 10:05:52', '2023-10-21 10:05:52', NULL),
+(297, 27, 'TT-09', 'Mud Color Dhamas Print Table Top', NULL, 'Mud Color', 25, 'pcs', 100, 'product/0qw9mmRvKnhumxWodwst2DntJxYqzz8TScgvRVzA.jpg', 1, '2023-10-21 10:05:53', '2023-10-21 10:05:53', NULL),
+(298, 27, 'TT-10', 'Red  Dhamas Print Table Top', NULL, 'Red', 19, 'pcs', 100, 'product/CvbMT7Y1zEElvaw0It3F5gDxZcMb40xiy3uSiDme.jpg', 1, '2023-10-21 10:06:19', '2023-10-21 10:06:19', NULL),
+(299, 27, 'TT-11', 'Yellow Cotton Print Table Top', NULL, 'Yellow', 21, 'pcs', 100, 'product/k1fAD9n1KSlzU00raO0MZHS9TG2fYWDEnAWNjIaF.jpg', 1, '2023-10-21 10:09:29', '2023-10-21 10:09:29', NULL),
+(300, 27, 'TT-12', 'Orange Color Dhamas Print Table Top', NULL, 'Orange', 8, 'pcs', 100, 'product/luctjjrlKWsMQuOY9Hqv649FTGbE5H5YxmxQMSrV.jpg', 1, '2023-10-21 10:10:19', '2023-10-21 10:10:19', NULL),
+(301, 27, 'TT-13', 'Green Color Dhamas Print Table Top', NULL, 'Green', 36, 'pcs', 100, 'product/5CBJfQE4oh9Ivei6ZA4TK0NkSjIxgAPTNlWysLHj.jpg', 1, '2023-10-21 10:25:48', '2023-10-21 10:25:48', NULL),
+(302, 27, 'TT-14', 'Red Certin Table Top', NULL, 'Red', 22, 'pcs', 100, 'product/cDCjNfWSNd1eCnvdYtXNkZKppOAyaG7Rb2gNuvhM.jpg', 1, '2023-10-21 10:26:29', '2023-10-21 10:26:29', NULL),
+(303, 27, 'TT-15', 'Golden Certin Table Top', NULL, 'Golden', 65, 'pcs', 100, 'product/2xZMvFjDg3WBn07DuaAEeWNZCWo8QASpAn70Jje4.jpg', 1, '2023-10-21 10:27:23', '2023-10-21 10:27:23', NULL),
+(304, 27, 'TT-16', 'Orange Certin Table Top', NULL, 'Orange', 10, 'pcs', 50, 'product/yEa9wbsAKeTUWhQCqnMAnNKUHdjeKx40iBuPAVth.jpg', 1, '2023-10-21 10:28:49', '2023-10-21 10:28:49', NULL),
+(305, 27, 'TT-17', 'Violet Certin Table Top', NULL, 'Violet', 34, 'pcs', 50, 'product/ExfWXVQDde1sBaHITVdq86fetNNRxITTmYPsz7l4.jpg', 1, '2023-10-21 10:29:29', '2023-10-21 10:29:29', NULL),
+(306, 27, 'TT-18', 'Deep Orange Certin Table Top', NULL, 'Deep Orange', 12, 'pcs', 50, 'product/KDGTPRlkfwQbsYtXEKzeCEuAXnVSGYoemjICLtLY.jpg', 1, '2023-10-21 10:30:24', '2023-10-21 10:30:24', NULL),
+(307, 27, 'TT-19', 'White Certin Table Top', NULL, 'White', 72, 'pcs', 50, 'product/zbL2jpLnVva7pAUYCgvC3ohsbxjhZT6qVj5MrMwX.jpg', 1, '2023-10-21 10:30:54', '2023-10-21 10:30:54', NULL),
+(308, 27, 'TT-20', 'Coffey Certin Table Top', NULL, 'Coffey', 25, 'pcs', 50, 'product/ZecZ0X3D6av0rBUwdYi7CgPojLYyZouIzIZHe6Rs.jpg', 1, '2023-10-21 10:31:26', '2023-10-21 10:31:26', NULL),
+(309, 27, 'TT-21', 'Pink Certin Table Top', NULL, 'Pink', 60, 'pcs', 50, 'product/8KEi4czvktxWiX8ZUbyGHyAIQ1fmZLIPuGO3UYiz.jpg', 1, '2023-10-21 10:32:03', '2023-10-21 10:32:03', NULL),
+(310, 27, 'TT-22', 'Green Certin Table Top', NULL, 'Green', 8, 'pcs', 50, 'product/nP1gk45OC8QbuJyqfk6fWGa1y7w8lTxxv3IGb7eX.jpg', 1, '2023-10-21 10:32:50', '2023-10-21 10:32:50', NULL),
+(311, 27, 'TT-23a', 'White Cotton Table Top', 'Large', 'White', 12, 'pcs', 500, 'product/RPFDqHLvm0TVEADsUYeHYlIwYWc9RRuE8COoP7D1.jpg', 1, '2023-10-21 10:34:38', '2023-10-21 10:34:38', NULL),
+(312, 27, 'TT-23b', 'White Cotton Table Top', 'Medium', 'White', 16, 'pcs', 300, 'product/2kTYtMWdpFhVvVEuXq52NP8iAZMja0SNH79PWK7p.jpg', 1, '2023-10-21 10:35:09', '2023-10-21 10:35:09', NULL),
+(313, 27, 'TT-23c', 'White Cotton Table Top', 'Small', 'White', 9, 'pcs', 100, 'product/mI5bJlpLN0S99PJ2GkajUZ97jvDY0WpFOfLrqG7t.jpg', 1, '2023-10-21 10:35:30', '2023-10-21 10:35:30', NULL),
+(314, 27, 'TT-24', 'Red Green Table Top', NULL, 'Red & Green', 17, 'pcs', 100, 'product/ZLwCXU6oXFRTPwJkoKKbWgBqCYwTG8RpI9H3KqqH.jpg', 1, '2023-10-21 10:36:23', '2023-10-21 10:36:23', NULL),
+(315, 20, 'LT-01', 'Stick Light', NULL, 'Customize', 10, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2023-10-22 03:28:15', NULL),
+(316, 20, 'LT-02', 'Leaf Stick Light Walkway', NULL, 'Customize', 20, 'pcs', 1500, 'product/P86Hja9Ofkv5X1zKSOIdTWOEfpsvSG6guxIUH56m.jpg', 1, '2023-10-22 03:30:27', '2023-10-22 03:30:27', NULL),
+(317, 20, 'LT-03', 'Patch Stick Light Walkway', NULL, NULL, 12, 'pcs', 500, 'product/CSRzWdSFiD9JdEzkXwCgO5SppIbqkRyZI030c0rW.jpg', 1, '2023-10-22 03:31:46', '2023-10-22 03:31:46', NULL),
+(318, 20, 'LT-04', 'Bulb', NULL, NULL, 500, 'pcs', 20, 'product/teY8eog0pmODGXL7sOnhlsX29nSsoKitR83tdCnj.jpg', 1, '2023-10-22 03:33:20', '2023-10-22 03:33:20', NULL),
+(319, 20, 'LT-05', 'Round Bulb', 'Big-70 pcs, Small-258 pcs', NULL, 328, 'pcs', 50, 'product/AOa1O7xCHo9daSJcZN7IzedvtI6mR6t2sVS70MUg.jpg', 1, '2023-10-22 04:22:22', '2023-10-22 04:22:22', NULL),
+(320, 20, 'LT-06', 'Star Cloth', 'L-20 feet x W-30 feet', 'Black', 9, 'pcs', 2000, 'product/aMGhEtvpPvOH16Nb2YN32fVXaCI22jIoA94iujf4.jpg', 1, '2023-10-22 04:47:02', '2023-10-22 04:47:02', NULL),
+(321, 20, 'LT-07', 'Shower Light', 'Round Size & S Size', NULL, 5, 'pcs', 10000, 'product/OquhWyvsP8Og7Vl2aJ7SKx7QMq0ecayD0pyBkxev.jpg', 1, '2023-10-22 05:06:15', '2023-10-22 05:06:15', NULL),
+(322, 20, 'LT-08', 'Gate Setup Lighting', NULL, NULL, 1000, 'pcs', 1000, 'product/5E8hhDNQAveZ1ZZqfTNNJ0Lp0vBQ42OXCQZpRAnE.jpg', 1, '2023-10-22 05:07:57', '2023-10-22 05:07:57', NULL),
+(323, 20, 'LT-09', 'Vertical Stick Light', NULL, NULL, 10, 'pcs', 1000, 'product/fbNFbmQMV5oZfZIruuGcaY98rk85iXuohzb1mpfE.jpg', 1, '2023-10-22 05:09:10', '2023-10-22 05:09:10', NULL),
+(324, 20, 'LT-10', 'Trass Light Stick', NULL, NULL, 4, 'pcs', 2000, 'product/1beXg0uX206Wd3H4cPA0XzkxPidENwzv2OuBz3qD.png', 1, '2023-10-22 05:11:03', '2023-10-22 05:11:03', NULL),
+(325, 20, 'LT-11', 'Corona Light', NULL, NULL, 50, 'pcs', 200, 'product/MWYAIqfcCM8icFKWa49DCRc1Z1LPaJBdber63Kt4.jpg', 1, '2023-10-22 05:12:39', '2023-10-22 05:12:39', NULL),
+(326, 20, 'LT-12', 'Bird Light', NULL, NULL, 60, 'pcs', 200, 'product/YmgPg2Zvox5Ak3cxEImzEFm1QSFKdnrvVMECpCJ9.jpg', 1, '2023-10-22 05:13:14', '2023-10-22 05:13:14', NULL),
+(327, 20, 'LT-13', 'Garden Lamp', NULL, NULL, 6, 'pcs', 2000, 'product/B30IUGErMIh52mjg0hfME11rREr0kyp2Pv6gNJn7.jpg', 1, '2023-10-22 05:13:53', '2023-10-22 05:13:53', NULL),
+(328, 28, 'UM-01', 'Rajsthan Umbrella', NULL, NULL, 20, 'pcs', 200, 'product/uHd2tqIEoZc9olbuuwdOeLEDDBEo9aNVEsJV3iKB.jpg', 1, '2023-10-22 05:17:58', '2023-10-22 05:17:58', NULL),
+(329, 28, 'UM-02', 'Printed Umbrella', NULL, NULL, 70, 'pcs', 100, 'product/yaqTFYgsKLdRwfTtRAUHXqnUDHNQSWEjbjPIyVcZ.png', 1, '2023-10-22 05:18:30', '2023-10-22 05:19:58', NULL),
+(330, 28, 'UM-03', 'Kashmiri Umbrella', NULL, NULL, 3, 'pcs', 1000, 'product/Ti8DseQkCJOpqdRqLWh6DGz1nMEWENA9qaXEJCRC.png', 1, '2023-10-22 05:19:15', '2023-10-22 05:19:51', NULL),
+(331, 24, 'S-01', 'VIP Sofa White', '5 Sitter', 'White', 1, 'pcs', 10000, 'product/MZTbUOoMZAfbQJNuF45t270p7FHAj9ZtuoGrMWSQ.jpg', 1, '2023-10-22 05:24:04', '2023-10-22 05:24:04', NULL),
+(332, 24, 'S-02', 'VIP Oval Sofa Velvet', '5 Sitter', 'Violet', 1, 'pcs', 5000, 'product/dDDTQCoq3NTSljWLPD684mhStof9rgFoAGlp26UU.jpg', 1, '2023-10-22 05:25:19', '2023-10-22 05:27:26', NULL),
+(333, 24, 'S-03', 'VIP Oval Sofa Velvet', NULL, 'Pink', 1, 'pcs', 5000, 'product/Tz3Ii8L5xvuhG7Y0jHXrdSaX7U8DLPRxvD0v2A2o.jpg', 1, '2023-10-22 05:26:21', '2023-10-22 05:27:40', NULL),
+(334, 24, 'S-04', 'VIP Round Velvet Sofa', '5 Sitter', 'Pink', 1, 'pcs', 5000, 'product/cuxTUJdiapvcd479gErUbAIa66X4E95NDVpoajgL.jpg', 1, '2023-10-22 05:27:12', '2023-10-22 05:27:12', NULL),
+(335, 24, 'S-05', 'VIP Velvet Sofa', NULL, 'Dark Pink', 1, 'pcs', 5000, 'product/ugPp8urzj5XVjU3j3eEtooMEsry9JdJUlm6P5D37.jpg', 1, '2023-10-22 05:29:32', '2023-10-22 05:29:32', NULL),
+(336, 24, 'S-06', 'VIP Oval Sofa', NULL, 'Off White', 1, 'pcs', 3000, 'product/wLCyqMAaWlK7BhshJccVKT0xieB0jkWHH7eHwF59.jpg', 1, '2023-10-22 05:30:14', '2023-10-22 05:30:14', NULL),
+(337, 24, 'S-07', 'VIP Velvet Sofa', '5 Sitter', 'Light Golden', 1, 'pcs', 5000, 'product/ivFtQZropfySEas5pONhs8DwdYW5jKZNDPTpelDO.jpg', 1, '2023-10-22 05:32:13', '2023-10-22 05:32:13', NULL),
+(338, 24, 'S-08', 'VIP Velvet Sofa', '5 Sitter', 'Golden', 1, 'pcs', 5000, 'product/BiIjWi5mz3HlzoAaawwVtF3ungXUBHJzMgcwjhWi.jpg', 1, '2023-10-22 05:33:49', '2023-10-22 05:33:49', NULL),
+(339, 24, 'S-09', 'VIP Velvet Sofa', '5 Sitter', 'Light Golden', 1, 'pcs', 5000, 'product/qcjViKq5SIjMgcVBsrm1hR1jrF9kzBDybap81e7z.jpg', 1, '2023-10-22 05:34:45', '2023-10-22 05:34:45', NULL),
+(340, 24, 'S-10', 'VIP Velvet Sofa', '5 Sitter', 'Golden', 1, 'pcs', 4000, 'product/8nTbDZNRplGj8LQRqFDndlnFd23kZV4FMQ9fgsFp.jpg', 1, '2023-10-22 05:36:33', '2023-10-22 05:36:33', NULL),
+(341, 24, 'S-11', 'VIP Velvet Sofa', '5 Sitter', 'Off White', 1, 'pcs', 4000, 'product/0yf3naG259HrQu3t9sZzxUWN979bCQkhvW5MXSHr.jpg', 1, '2023-10-22 05:37:13', '2023-10-22 05:37:13', NULL),
+(342, 24, 'S-12', 'VIP Oval Round Velvet Sofa', '4 Sitter', 'Off White', 1, 'pcs', 5000, 'product/C9NL4plB7NnbYVNcD82WZ8tvOUf8VODLDjVXKsoj.jpg', 1, '2023-10-22 05:38:15', '2023-10-22 05:38:15', NULL),
+(343, 24, 'S-13', 'VIP Round Velvet Sofa', '8 Sitter', 'White', 1, 'pcs', 5000, 'product/B2BwQ5Dm2Jiwk28pNJbDDMjiDnh3zWoDzE88bRby.jpg', 1, '2023-10-22 05:39:19', '2023-10-22 05:39:19', NULL),
+(344, 24, 'S-14', 'VIP Round Velvet Sofa', '5 Sitter', 'Green', 1, 'pcs', 3000, 'product/NAi9IBF3RwvLHARKp9UOGbNstpDJoaZh8lG7wuHY.jpg', 1, '2023-10-22 05:40:43', '2023-10-22 05:40:43', NULL),
+(345, 24, 'S-15', 'VIP Round Velvet Sofa', '5 Sitter', 'Maroon', 1, 'pcs', 3000, 'product/6tO21WEtUPQuoxdAcrtUsLSILifhJMh9sdYyXXfX.jpg', 1, '2023-10-22 05:41:42', '2023-10-22 05:41:42', NULL),
+(346, 24, 'S-16', 'VIP Round Velvet Sofa', '5 Sitter', 'Brown', 1, 'pcs', 2000, 'product/LRSqZ7yCAelvfMPTD1ipc2jlWdGNvUwkg7mWpZU6.jpg', 1, '2023-10-22 05:42:23', '2023-10-22 05:42:23', NULL),
+(347, 24, 'S-17', 'Lounge Sofa', '8 Sitter', 'Off White', 4, 'pcs', 2000, 'product/bO8jtl02WLkoLr9QcDZlfgVVd9DHHFK5nDVYuQc5.jpg', 1, '2023-10-22 05:43:57', '2023-10-22 05:43:57', NULL),
+(348, 24, 'S-18', 'VIP Box Sofa', '5 Sitter', 'Light Brown', 1, 'pcs', 4000, 'product/HX36zCPTHJOOBcZRcdtbbJG2JaRYrWGyFeyHpNia.jpg', 1, '2023-10-22 05:48:26', '2023-10-22 05:48:26', NULL),
+(349, 24, 'S-19', 'VIP Box Sofa', '5 Sitter', 'Green', 1, 'pcs', 3000, 'product/x6sE5azPqi3b7s3qJH6wUkYgDUXWKpG8N8zUIQbD.jpg', 1, '2023-10-22 05:49:38', '2023-10-22 05:51:12', NULL),
+(350, 24, 'S-20', 'VIP Box Sofa', '5 Sitter', 'Magenta', 1, 'pcs', 3000, 'product/6BjOQGeIpK2KXg9LT6l62o5z0Rav5Hdfrnn23chw.jpg', 1, '2023-10-22 05:51:04', '2023-10-22 05:51:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -937,39 +1045,6 @@ CREATE TABLE `rentals` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `rentals`
---
-
-INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(15, 1202, 21, 1305, 2, 'returned', '2023-11-01 00:00:00', '2023-11-03 00:00:00', 2, '2023-10-20 10:17:19', '2023-10-21 14:52:30', NULL),
-(21, 1201, 21, 1306, 3, 'rented', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-10-21 06:49:23', '2023-10-21 06:50:25', NULL),
-(22, 1201, 22, 1306, 1, 'rented', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-10-21 06:49:23', '2023-10-21 06:50:25', NULL),
-(23, 1200, 84, 1307, 2, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 12:15:27', NULL),
-(24, 1200, 85, 1307, 3, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:52:44', NULL),
-(25, 1200, 86, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:49:39', NULL),
-(26, 1200, 91, 1307, 2, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:54:13', NULL),
-(27, 1200, 94, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:54:30', NULL),
-(28, 1200, 100, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:08', NULL),
-(29, 1200, 107, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:11', NULL),
-(30, 1200, 112, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:14', NULL),
-(31, 1200, 127, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:18', NULL),
-(32, 1200, 132, 1307, 2, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:21', NULL),
-(33, 1200, 140, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:23', NULL),
-(34, 1200, 139, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:26', NULL),
-(35, 1200, 151, 1307, 1, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:29', NULL),
-(36, 1200, 158, 1307, 2, 'returned', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-21 07:18:02', '2023-10-21 13:56:36', NULL),
-(40, 1200, 207, 1308, 5, 'returned', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-21 15:35:07', '2023-10-21 16:20:36', NULL),
-(41, 1200, 24, 1308, 3, 'returned', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-21 15:35:07', '2023-10-21 16:20:39', NULL),
-(42, 1200, 26, 1308, 1, 'returned', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-21 15:35:07', '2023-10-21 16:20:41', NULL),
-(43, 1200, 27, 1308, 2, 'returned', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-21 15:35:07', '2023-10-21 16:20:44', NULL),
-(44, 1200, 25, 1309, 3, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-10-21 18:22:26', '2023-10-21 18:33:15', NULL),
-(45, 1200, 26, 1309, 2, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-10-21 18:22:26', '2023-10-21 18:33:15', NULL),
-(46, 1200, 27, 1309, 1, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-10-21 18:22:26', '2023-10-21 18:33:15', NULL),
-(48, 1200, 119, 1309, 2, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-10-21 18:33:15', '2023-10-21 18:33:15', NULL),
-(49, 1201, 21, 1310, 1, 'approved', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-21 18:50:39', '2023-10-21 18:55:14', NULL),
-(50, 1201, 22, 1310, 3, 'approved', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-21 18:50:39', '2023-10-21 18:55:14', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -984,14 +1059,6 @@ CREATE TABLE `repairs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `repairs`
---
-
-INSERT INTO `repairs` (`id`, `product_id`, `rental_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 85, 24, 1, '2023-10-21 13:52:44', '2023-10-21 13:52:44'),
-(2, 91, 26, 2, '2023-10-21 13:54:13', '2023-10-21 13:54:13');
 
 -- --------------------------------------------------------
 
@@ -1569,7 +1636,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1311;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1611,7 +1678,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
 
 --
 -- AUTO_INCREMENT for table `quotes`
@@ -1623,13 +1690,13 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `repairs`
 --
 ALTER TABLE `repairs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
