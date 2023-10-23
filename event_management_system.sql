@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 04:33 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 23, 2023 at 02:10 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -196,22 +196,22 @@ CREATE TABLE `company_details` (
 --
 
 INSERT INTO `company_details` (`id`, `detail_name`, `detail_value`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'name', 'Maa Event Management', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(2, 'email', 'maaeventmanagementbd@gmail.com', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(3, 'phone', '+880 1671-711933', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(4, 'address', 'Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(5, 'logo', 'other/NxX95fyKSUomn3JdncbddePsoRMdvCG0jginbhK7.png', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
+(1, 'name', 'Maa Event Management', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(2, 'email', 'maaeventmanagementbd@gmail.com', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(3, 'phone', '+880 1671-711933', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(4, 'address', 'Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(5, 'logo', 'other/NxX95fyKSUomn3JdncbddePsoRMdvCG0jginbhK7.png', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
 (6, 'favicon', 'favicon.png', 1, '2023-08-19 07:54:35', '2023-08-19 07:54:35'),
-(7, 'facebook', 'https://www.facebook.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(8, 'twitter', 'https://twitter.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(9, 'linkedin', 'https://www.linkedin.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(10, 'youtube', 'https://www.youtube.com/', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(11, 'map', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259504026561!2d90.41494447533775!3d23.809369478630117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c715f2121e7d%3A0xf7d351b7edb1d903!2sMaa%20Event%20Management%20and%20Catering!5e0!3m2!1sen!2sbd!4v1695360704361!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(12, 'CEO_name', 'MD Sumon Baly', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(13, 'CEO_image', 'other/r17jUK5WcPa7R8TCgAj0qm2Bqn7dnmctHmrxuaMP.jpg', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(14, 'CEO_message', 'Maaevent.com is the Largest & Most Loved 360 degree wedding solution provider’s platform in Bangladesh. Starting in 2021, we are running our operations with a view to serving our clients as an all-in-one purchasing platform. Where you can find the best wedding vendors with their Creation, Idea and tons of trusted reviews at the click of a Reviews Description. Whether you are looking for hiring wedding planners or top photographers or for just some ideas and inspirations for your upcoming wedding, Maaevent.com can help you solve your wedding planning tasks through its unique features. With a shortlist feature, a unique checklist facility, inspirational photo gallery, blog and many more- you won’t need to spend hours planning a great wedding. We help our customers to purchase their desired products from the most renowned brands from both home and abroad at most affordable rates. You are able to compare and choose suitable products from thousands of options, depending on quality, style, design and cost, just in a few clicks. Moreover, we help wedding planners and businesses to reach their customers for maximum sales. Be it pre-wedding occasions like engagement, Holud, Mehedi Night, Gala Night or post-wedding reception ceremonies, we got it all covered.', 1, '2023-08-19 07:54:35', '2023-09-25 19:44:10'),
-(15, 'whatsapp', '+880 1671-711933', 1, '2023-08-20 13:21:48', '2023-09-25 19:44:10'),
-(16, 'product_VAT', '15', 1, NULL, '2023-10-21 17:58:40');
+(7, 'facebook', 'https://www.facebook.com/', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(8, 'twitter', 'https://twitter.com/', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(9, 'linkedin', 'https://www.linkedin.com/', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(10, 'youtube', 'https://www.youtube.com/', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(11, 'map', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259504026561!2d90.41494447533775!3d23.809369478630117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c715f2121e7d%3A0xf7d351b7edb1d903!2sMaa%20Event%20Management%20and%20Catering!5e0!3m2!1sen!2sbd!4v1695360704361!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(12, 'CEO_name', 'MD Sumon Baly', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(13, 'CEO_image', 'other/r17jUK5WcPa7R8TCgAj0qm2Bqn7dnmctHmrxuaMP.jpg', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(14, 'CEO_message', 'Maaevent.com is the Largest & Most Loved 360 degree wedding solution provider’s platform in Bangladesh. Starting in 2021, we are running our operations with a view to serving our clients as an all-in-one purchasing platform. Where you can find the best wedding vendors with their Creation, Idea and tons of trusted reviews at the click of a Reviews Description. Whether you are looking for hiring wedding planners or top photographers or for just some ideas and inspirations for your upcoming wedding, Maaevent.com can help you solve your wedding planning tasks through its unique features. With a shortlist feature, a unique checklist facility, inspirational photo gallery, blog and many more- you won’t need to spend hours planning a great wedding. We help our customers to purchase their desired products from the most renowned brands from both home and abroad at most affordable rates. You are able to compare and choose suitable products from thousands of options, depending on quality, style, design and cost, just in a few clicks. Moreover, we help wedding planners and businesses to reach their customers for maximum sales. Be it pre-wedding occasions like engagement, Holud, Mehedi Night, Gala Night or post-wedding reception ceremonies, we got it all covered.', 1, '2023-08-19 07:54:35', '2023-10-23 06:03:20'),
+(15, 'whatsapp', '+880 1671-711933', 1, '2023-08-20 13:21:48', '2023-10-23 06:03:20'),
+(16, 'product_VAT', '0', 1, NULL, '2023-10-23 06:05:35');
 
 -- --------------------------------------------------------
 
@@ -398,6 +398,19 @@ CREATE TABLE `invoices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `due`, `status`, `created_at`, `updated_at`) VALUES
+(1301, 1201, 2, 8200, 0, 5500, 500, 7700, 2200, 'returned', '2023-10-23 06:12:04', '2023-10-23 06:29:52'),
+(1302, 1200, 2, 1400, 0, 1100, 300, 1100, 0, 'approved', '2023-10-23 06:31:12', '2023-10-23 06:33:43'),
+(1303, 1201, 2, 4000, 0, 3000, 0, 4000, 1000, 'approved', '2023-10-23 08:19:57', '2023-10-23 08:28:23'),
+(1304, 1202, 2, 4000, 0, 0, 0, 4000, 4000, 'approved', '2023-10-23 08:27:02', '2023-10-23 08:30:23'),
+(1305, 1200, 2, 3000, 0, 0, 0, 3000, 3000, 'approved', '2023-10-23 08:29:41', '2023-10-23 08:46:34'),
+(1306, 1202, 1, 11400, 0, 9000, 1200, 10200, 1200, 'pending approval', '2023-10-23 10:23:41', '2023-10-23 11:41:13'),
+(1307, 1202, 1, 4200, 0, 4200, 0, 4200, 0, 'pending approval', '2023-10-23 10:26:52', '2023-10-23 10:26:52');
+
 -- --------------------------------------------------------
 
 --
@@ -452,7 +465,8 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
 (2, 'App\\Models\\User', 2),
-(3, 'App\\Models\\User', 3);
+(3, 'App\\Models\\User', 3),
+(4, 'App\\Models\\User', 4);
 
 -- --------------------------------------------------------
 
@@ -593,8 +607,8 @@ CREATE TABLE `payment_methods` (
 --
 
 INSERT INTO `payment_methods` (`id`, `name`, `primary_number`, `secondary_number`, `created_at`, `updated_at`) VALUES
-(1, 'bkash', '01711111111', '01711111112', NULL, '2023-10-21 17:58:40'),
-(2, 'nagad', '01711111113', '01711111114', NULL, '2023-10-21 17:58:40');
+(1, 'bkash', '01711111112', '01711111112', NULL, '2023-10-23 06:05:35'),
+(2, 'nagad', '01711111113', '01711111114', NULL, '2023-10-23 06:05:35');
 
 -- --------------------------------------------------------
 
@@ -626,7 +640,17 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (9, 'delete category', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
 (10, 'create order', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
 (11, 'update order', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
-(12, 'delete order', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03');
+(12, 'delete order', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
+(13, 'dispatch rentals', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(14, 'accept returns', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(15, 'view customers', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(16, 'update customers', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(17, 'update vat', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(18, 'view company profile', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(19, 'update company profile', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(20, 'update products', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
+(21, 'approve rentals', 'web', '2023-10-23 04:28:13', '2023-10-23 04:28:13'),
+(22, 'create rentals', 'web', '2023-10-23 04:36:38', '2023-10-23 04:36:38');
 
 -- --------------------------------------------------------
 
@@ -676,9 +700,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`, `color`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 0, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-19 12:23:54', NULL),
-(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', -2, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-19 11:26:03', NULL),
-(23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 4, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-22 06:42:36', NULL),
-(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 5, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-22 06:22:46', NULL),
+(22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', 0, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-23 08:46:34', NULL),
+(23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 0, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-23 08:30:23', NULL),
+(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 4, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-23 08:46:34', NULL),
 (25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 28, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-22 06:22:50', NULL),
 (26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 25, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-19 11:35:13', NULL),
 (27, 10, 'CP-7', 'Candle SS Centre Piece', '1.5', 'SS', 9, 'pcs', 100, 'product/msDimzKfxHmC5a7LpxtgEVPVRynXvvOLFlDM7Hl6.jpg', 1, '2023-10-12 05:20:13', '2023-10-19 09:33:15', NULL),
@@ -702,7 +726,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (45, 10, 'CP-21', 'China Crystal Small Centre Piece', '7 inch', NULL, 6, 'pcs', 100, 'product/eSw2YLD0jZUSzTKJHo9aKIgIapnLQbJrVPXusFRd.jpg', 1, '2023-10-12 09:24:03', '2023-10-15 05:36:24', NULL),
 (46, 10, 'CP-22', 'China Crystal Ceramic Round Centre Piece', '2.5 feet & 2 feet', 'Crystal & White', 4, 'pcs', 600, 'product/Wvwpo93L7rLS48BDQ9fSjUqJYgpnKRxctT4IVsqS.jpg', 1, '2023-10-12 09:26:13', '2023-10-12 09:26:13', NULL),
 (47, 10, 'CP-23', 'China Glass Single Candle Centre Piece', 'Large 1 pc & Small 6 pcs', 'Antique Golden', 7, 'pcs', 200, 'product/P6wUDofNyzdtlePkWspth2vXbSWONOzpiA9vezsg.jpg', 1, '2023-10-12 09:28:04', '2023-10-15 05:37:14', NULL),
-(48, 10, 'CP-24', 'Lace Centre Piece', '2.5 feet', 'Golden', 8, 'pcs', 100, 'product/aj9BA4hkOOCVYzCqWbyBkP4tc15jWoE4KZZLUHhv.jpg', 1, '2023-10-12 09:30:41', '2023-10-19 12:23:54', NULL),
+(48, 10, 'CP-24', 'Lace Centre Piece', '2.5 feet', 'Golden', 7, 'pcs', 100, 'product/aj9BA4hkOOCVYzCqWbyBkP4tc15jWoE4KZZLUHhv.jpg', 1, '2023-10-12 09:30:41', '2023-10-23 06:33:43', NULL),
 (49, 10, 'CP-25', 'China Candle Centre Piece', '2 feet', 'Silver', 2, 'pcs', 500, 'product/Y6sZ71d5umlKMyCIfeTUiP9P7F6q6BW6LPSAaSwU.jpg', 1, '2023-10-12 09:31:53', '2023-10-12 09:31:53', NULL),
 (50, 10, 'CP-26', 'China Big Wine Glass Centre Piece', '2 feet', 'Glass', 9, 'pcs', 500, 'product/gDcHmGEzRa5D9432SqSTAmvSQdBOqHG84t8x8vKk.jpg', 1, '2023-10-12 09:33:14', '2023-10-12 09:33:14', NULL),
 (51, 10, 'CP-27', 'China Big Tall Glass Centre Piece', NULL, 'Glass', 3, 'pcs', 200, 'product/xyMm7lPoo5A32Q7JGthWPr8bVHAwkKeF43Oa6xX9.jpg', 1, '2023-10-12 09:35:11', '2023-10-12 09:35:11', NULL),
@@ -721,7 +745,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (64, 10, 'CP-39', 'China Glass Round Centre Piece', NULL, 'Glass', 20, 'pcs', 200, 'product/z6UCJHf0SuuWDnJETgouMmcKyra77vzepy8M6SdW.jpg', 1, '2023-10-12 10:32:03', '2023-10-19 09:31:52', NULL),
 (65, 10, 'CP-40', 'Glass Fish Bawl', 'Big & Small', 'Glass', 89, 'pcs', 50, 'product/qoWYTNojJ41HqAvgZydbWUdlD84qNExvhvIsmwSd.jpg', 1, '2023-10-12 10:33:09', '2023-10-12 10:33:09', NULL),
 (66, 10, 'CP-41', 'Glass Fish Bawl', 'Big', 'Glass', 26, 'pcs', 300, 'product/0JZvGTGdWSZdcq5T2aQLBn7V0wvp762hOzgDFDJt.jpg', 1, '2023-10-12 10:34:42', '2023-10-12 10:34:42', NULL),
-(67, 10, 'CP-42', 'Round Mirror Vase', NULL, 'Mirror', 57, 'pcs', 50, 'product/FdhXg2i0rM7a1WMjbVAYtSQcQYpRcSuu5lzKqo7h.jpg', 1, '2023-10-12 10:39:26', '2023-10-12 10:39:26', NULL),
+(67, 10, 'CP-42', 'Round Mirror Vase', NULL, 'Mirror', 55, 'pcs', 50, 'product/FdhXg2i0rM7a1WMjbVAYtSQcQYpRcSuu5lzKqo7h.jpg', 1, '2023-10-12 10:39:26', '2023-10-23 06:33:43', NULL),
 (68, 10, 'CP-43', 'Rectangle', '1.5 x 1.5', 'Mirror', 32, 'pcs', 200, 'product/GqWKulQi65bRE1jI4MvtQAnkhabJtmDNIKoSRw2x.jpg', 1, '2023-10-12 10:48:45', '2023-10-12 10:48:45', NULL),
 (69, 10, 'CP-44', 'Metal Hexagon Centre Piece', '10 inch', 'White', 10, 'pcs', 150, 'product/BAv8MM6vwvhGsYtglNKI01pFh3gsGDG6Eu0qkJSb.jpg', 1, '2023-10-12 10:53:52', '2023-10-19 12:23:54', NULL),
 (70, 10, 'CP-15', 'Metal Round Centre Piece', '10 inch', 'White', 15, 'pcs', 150, 'product/8uhWgrwXpjxQLZamw2GMEiTMvWq9fiRBwJ89VZrF.jpg', 1, '2023-10-12 10:54:57', '2023-10-19 11:26:03', NULL),
@@ -970,10 +994,10 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (312, 27, 'TT-23b', 'White Cotton Table Top', 'Medium', 'White', 16, 'pcs', 300, 'product/2kTYtMWdpFhVvVEuXq52NP8iAZMja0SNH79PWK7p.jpg', 1, '2023-10-21 10:35:09', '2023-10-21 10:35:09', NULL),
 (313, 27, 'TT-23c', 'White Cotton Table Top', 'Small', 'White', 9, 'pcs', 100, 'product/mI5bJlpLN0S99PJ2GkajUZ97jvDY0WpFOfLrqG7t.jpg', 1, '2023-10-21 10:35:30', '2023-10-21 10:35:30', NULL),
 (314, 27, 'TT-24', 'Red Green Table Top', NULL, 'Red & Green', 17, 'pcs', 100, 'product/ZLwCXU6oXFRTPwJkoKKbWgBqCYwTG8RpI9H3KqqH.jpg', 1, '2023-10-21 10:36:23', '2023-10-21 10:36:23', NULL),
-(315, 20, 'LT-01', 'Stick Light', NULL, 'Customize', 10, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2023-10-22 03:28:15', NULL),
+(315, 20, 'LT-01', 'Stick Light', NULL, 'Customize', 10, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2023-10-23 06:29:48', NULL),
 (316, 20, 'LT-02', 'Leaf Stick Light Walkway', NULL, 'Customize', 20, 'pcs', 1500, 'product/P86Hja9Ofkv5X1zKSOIdTWOEfpsvSG6guxIUH56m.jpg', 1, '2023-10-22 03:30:27', '2023-10-22 03:30:27', NULL),
 (317, 20, 'LT-03', 'Patch Stick Light Walkway', NULL, NULL, 12, 'pcs', 500, 'product/CSRzWdSFiD9JdEzkXwCgO5SppIbqkRyZI030c0rW.jpg', 1, '2023-10-22 03:31:46', '2023-10-22 03:31:46', NULL),
-(318, 20, 'LT-04', 'Bulb', NULL, NULL, 500, 'pcs', 20, 'product/teY8eog0pmODGXL7sOnhlsX29nSsoKitR83tdCnj.jpg', 1, '2023-10-22 03:33:20', '2023-10-22 03:33:20', NULL),
+(318, 20, 'LT-04', 'Bulb', NULL, NULL, 500, 'pcs', 20, 'product/teY8eog0pmODGXL7sOnhlsX29nSsoKitR83tdCnj.jpg', 1, '2023-10-22 03:33:20', '2023-10-23 06:29:52', NULL),
 (319, 20, 'LT-05', 'Round Bulb', 'Big-70 pcs, Small-258 pcs', NULL, 328, 'pcs', 50, 'product/AOa1O7xCHo9daSJcZN7IzedvtI6mR6t2sVS70MUg.jpg', 1, '2023-10-22 04:22:22', '2023-10-22 04:22:22', NULL),
 (320, 20, 'LT-06', 'Star Cloth', 'L-20 feet x W-30 feet', 'Black', 9, 'pcs', 2000, 'product/aMGhEtvpPvOH16Nb2YN32fVXaCI22jIoA94iujf4.jpg', 1, '2023-10-22 04:47:02', '2023-10-22 04:47:02', NULL),
 (321, 20, 'LT-07', 'Shower Light', 'Round Size & S Size', NULL, 5, 'pcs', 10000, 'product/OquhWyvsP8Og7Vl2aJ7SKx7QMq0ecayD0pyBkxev.jpg', 1, '2023-10-22 05:06:15', '2023-10-22 05:06:15', NULL),
@@ -1002,7 +1026,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (344, 24, 'S-14', 'VIP Round Velvet Sofa', '5 Sitter', 'Green', 1, 'pcs', 3000, 'product/NAi9IBF3RwvLHARKp9UOGbNstpDJoaZh8lG7wuHY.jpg', 1, '2023-10-22 05:40:43', '2023-10-22 05:40:43', NULL),
 (345, 24, 'S-15', 'VIP Round Velvet Sofa', '5 Sitter', 'Maroon', 1, 'pcs', 3000, 'product/6tO21WEtUPQuoxdAcrtUsLSILifhJMh9sdYyXXfX.jpg', 1, '2023-10-22 05:41:42', '2023-10-22 05:41:42', NULL),
 (346, 24, 'S-16', 'VIP Round Velvet Sofa', '5 Sitter', 'Brown', 1, 'pcs', 2000, 'product/LRSqZ7yCAelvfMPTD1ipc2jlWdGNvUwkg7mWpZU6.jpg', 1, '2023-10-22 05:42:23', '2023-10-22 05:42:23', NULL),
-(347, 24, 'S-17', 'Lounge Sofa', '8 Sitter', 'Off White', 4, 'pcs', 2000, 'product/bO8jtl02WLkoLr9QcDZlfgVVd9DHHFK5nDVYuQc5.jpg', 1, '2023-10-22 05:43:57', '2023-10-22 05:43:57', NULL),
+(347, 24, 'S-17', 'Lounge Sofa', '8 Sitter', 'Off White', 4, 'pcs', 2000, 'product/bO8jtl02WLkoLr9QcDZlfgVVd9DHHFK5nDVYuQc5.jpg', 1, '2023-10-22 05:43:57', '2023-10-23 06:29:42', NULL),
 (348, 24, 'S-18', 'VIP Box Sofa', '5 Sitter', 'Light Brown', 1, 'pcs', 4000, 'product/HX36zCPTHJOOBcZRcdtbbJG2JaRYrWGyFeyHpNia.jpg', 1, '2023-10-22 05:48:26', '2023-10-22 05:48:26', NULL),
 (349, 24, 'S-19', 'VIP Box Sofa', '5 Sitter', 'Green', 1, 'pcs', 3000, 'product/x6sE5azPqi3b7s3qJH6wUkYgDUXWKpG8N8zUIQbD.jpg', 1, '2023-10-22 05:49:38', '2023-10-22 05:51:12', NULL),
 (350, 24, 'S-20', 'VIP Box Sofa', '5 Sitter', 'Magenta', 1, 'pcs', 3000, 'product/6BjOQGeIpK2KXg9LT6l62o5z0Rav5Hdfrnn23chw.jpg', 1, '2023-10-22 05:51:04', '2023-10-22 05:51:04', NULL);
@@ -1045,6 +1069,35 @@ CREATE TABLE `rentals` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `rentals`
+--
+
+INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1201, 347, 1301, 2, 'returned', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-23 06:12:04', '2023-10-23 06:29:42', NULL),
+(2, 1201, 22, 1301, 2, 'returned', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-23 06:12:04', '2023-10-23 06:29:45', NULL),
+(3, 1201, 315, 1301, 2, 'returned', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-23 06:12:04', '2023-10-23 06:29:48', NULL),
+(4, 1201, 318, 1301, 10, 'returned', '2023-10-24 00:00:00', '2023-10-25 00:00:00', 1, '2023-10-23 06:12:04', '2023-10-23 06:29:52', NULL),
+(5, 1200, 22, 1302, 1, 'rented', '2023-10-27 00:00:00', '2023-10-29 00:00:00', 2, '2023-10-23 06:31:12', '2023-10-23 06:34:26', NULL),
+(6, 1200, 48, 1302, 1, 'approved', '2023-10-27 00:00:00', '2023-10-29 00:00:00', 2, '2023-10-23 06:31:12', '2023-10-23 06:33:43', NULL),
+(7, 1200, 67, 1302, 2, 'approved', '2023-10-27 00:00:00', '2023-10-29 00:00:00', 2, '2023-10-23 06:31:12', '2023-10-23 06:33:43', NULL),
+(8, 1201, 22, 1303, 2, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:19:57', '2023-10-23 08:28:23', NULL),
+(9, 1201, 23, 1303, 2, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:19:57', '2023-10-23 08:28:23', NULL),
+(10, 1202, 22, 1304, 2, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:27:02', '2023-10-23 08:30:23', NULL),
+(11, 1202, 23, 1304, 2, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:27:02', '2023-10-23 08:30:23', NULL),
+(12, 1200, 22, 1305, 4, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:29:41', '2023-10-23 08:46:34', NULL),
+(14, 1200, 24, 1305, 1, 'approved', '2023-10-23 00:00:00', '2023-10-24 00:00:00', 1, '2023-10-23 08:46:34', '2023-10-23 08:46:34', NULL),
+(15, 1202, 285, 1306, 2, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(16, 1202, 286, 1306, 3, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(17, 1202, 289, 1306, 2, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(18, 1202, 292, 1306, 2, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(19, 1202, 290, 1306, 4, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(20, 1202, 320, 1306, 2, 'pending approval', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-23 10:23:41', '2023-10-23 10:23:41', NULL),
+(21, 1202, 22, 1307, 1, 'pending approval', '2023-10-26 00:00:00', '2023-10-27 00:00:00', 1, '2023-10-23 10:26:52', '2023-10-23 10:26:52', NULL),
+(22, 1202, 62, 1307, 2, 'pending approval', '2023-10-26 00:00:00', '2023-10-27 00:00:00', 1, '2023-10-23 10:26:52', '2023-10-23 10:26:52', NULL),
+(23, 1202, 82, 1307, 1, 'pending approval', '2023-10-26 00:00:00', '2023-10-27 00:00:00', 1, '2023-10-23 10:26:52', '2023-10-23 10:26:52', NULL),
+(24, 1202, 87, 1307, 3, 'pending approval', '2023-10-26 00:00:00', '2023-10-27 00:00:00', 1, '2023-10-23 10:26:52', '2023-10-23 10:26:52', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1079,9 +1132,10 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'super admin', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
+(1, 'super_admin', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
 (2, 'admin', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
-(3, 'sales manager', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03');
+(3, 'sales_manager', 'web', '2023-10-17 11:17:03', '2023-10-17 11:17:03'),
+(4, 'inventory_manager', 'web', '2023-10-23 04:22:06', '2023-10-23 04:22:06');
 
 -- --------------------------------------------------------
 
@@ -1110,7 +1164,19 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (9, 3),
 (10, 3),
 (11, 3),
-(12, 3);
+(12, 3),
+(13, 4),
+(14, 4),
+(15, 2),
+(16, 2),
+(18, 2),
+(18, 3),
+(19, 2),
+(20, 2),
+(20, 3),
+(20, 4),
+(21, 2),
+(22, 3);
 
 -- --------------------------------------------------------
 
@@ -1212,9 +1278,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Traveler-super admin', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'iIwnQxv1ClplNNraRPbo1ULG4zuKTqsfnZyhSTu2g74Ss0FFfBrcVlyk7Ydm', NULL, '2023-09-25 19:41:48'),
+(1, 'Traveler-super admin', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'fUdLu2n6qEnjrqYHYY3eNIdWi30dvphcgubJo5gUfmf0LuQkw83RyrxJkM8H', NULL, '2023-09-25 19:41:48'),
 (2, 'Stranger - Admin', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
-(3, 'Wanderer - Sales Manager ', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL);
+(3, 'Wanderer - Sales Manager ', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
+(4, 'Wizard - Inventory', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, '2023-10-23 04:41:56', '2023-10-23 04:41:56');
 
 -- --------------------------------------------------------
 
@@ -1636,7 +1703,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1308;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1666,7 +1733,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1690,7 +1757,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `repairs`
@@ -1702,7 +1769,7 @@ ALTER TABLE `repairs`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sections`
@@ -1726,7 +1793,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `workforce`

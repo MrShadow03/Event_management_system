@@ -11,42 +11,15 @@ class RolePermissionController extends Controller
 {
     public function createRole(){
 
-        // $rolePermission = [
-        //     'super admin' => [],
-        //     'admin' => [
-        //         'create customer',
-        //         'update customer',
-        //         'delete customer',
-        //     ],
-        //     'sales manager' => [
-        //         'create product',
-        //         'update product',
-        //         'delete product',
-        //         'create category',
-        //         'update category',
-        //         'delete category',
-        //         'create order',
-        //         'update order',
-        //         'delete order',
-        //     ],
-        // ];
+        // $role = Role::create(['name' => 'inventory manager']);
+        // $permissions = ['dispatch rentals', 'receive returns', 'view customers', 'update customers', 'update vat', 'view company profile', 'update company profile', 'update products'];
+        $user = User::find(4);
+        $role = Role::findByName("inventory_manager");
 
-        // $roles = array_keys($rolePermission);
-        // foreach($roles as $role){
-        //     Role::create(['name' => $role]);
-        // }
-        // $permissions = array_values($rolePermission);
-        // foreach($permissions as $permission){
-        //     foreach($permission as $p){
-        //         Permission::create(['name' => $p]);
-        //     }
-        // }
-
-        // foreach ($rolePermission as $role => $permission) {
-        //     $role = Role::findByName($role);
-        //     $role->givePermissionTo($permission);
-        // }
-
-        // return 'success';
+        $user->assignRole($role);
+        // $permission = Permission::create(['name' => 'create rentals']);
+        // give permissions to view customers, update customers, view company profile, update company profile, update products
+        // revoke permission to update customers
+        // $role->givePermissionTo(['dispatch rentals', 'accept returns']);
     }
 }

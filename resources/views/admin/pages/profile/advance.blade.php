@@ -100,6 +100,7 @@
             <form class="form" action="{{ route('admin.profile.advance.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+
                 <!--begin::Card body-->
                 <div class="card-body border-top p-9">
                     <!--begin::Input group-->
@@ -116,7 +117,12 @@
                                 <div class="col-lg-6 fv-row">
                                     <div class="input-group input-group-solid mb-5">
                                         <span class="input-group-text">%</span>
-                                        <input type="number" class="form-control" name="product_VAT" placeholder="product VAT" aria-label="product VAT" value="{{ $details['product_VAT'] }}"/>
+                                        <input type="number" class="form-control" name="product_VAT" placeholder="product VAT" aria-label="product VAT" value="{{ $details['product_VAT'] }}" 
+                                        @hasrole('super_admin')
+                                        @else
+                                        readonly
+                                        @endhasrole
+                                        />
                                     </div>
                                 </div>
                                 <!--end::Col-->

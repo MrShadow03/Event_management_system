@@ -25,6 +25,9 @@
         [data-bs-theme="dark"] .image-input-placeholder {
             background-image: url('{{ asset('assets/admin/assets/media/svg/avatars/blank-dark.svg') }}');
         }
+        #dataTableProductQuantity:invalid{
+            border: 1px solid red;
+        }
     </style>
 @endsection
 <!--end::Page Custom Styles-->
@@ -39,7 +42,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Add Order
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Approve Orders
                 </h1>
                 <!--end::Title-->
 
@@ -297,7 +300,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" value="{{ $requested_quantity }}"/>
+                                            <input id="dataTableProductQuantity" type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" title="Requeted amount is not available for this date!" value="{{ $requested_quantity }}"/>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -347,7 +350,7 @@
                                             <tr>
                                                 <td colspan="3" class="text-end">VAT (%)</td>
                                                 <td class="text-end" id="vatPercentageRow">
-                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="{{ $commonDetails['product_VAT'] }}">
+                                                    <input id="vatPercentageInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="vat_percentage" value="{{ $commonDetails['product_VAT'] }}" readonly>
                                                 </td>
                                             </tr>
                                             <tr>

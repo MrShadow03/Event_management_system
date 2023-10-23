@@ -82,26 +82,23 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
-                @can('create customer')
-                    <!--begin:Menu item-->
-                    <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.customers')) ? 'here' : '' }}">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="{{ route('admin.customers') }}">
-                            <span class="menu-icon">
-                                <i class="ki-duotone ki-profile-user fs-2">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                    <span class="path4"></span>
-                                </i>
-                            </span>
-                            <span class="menu-title">Customers</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                @endcan
-                @can('create order')
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.customers')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.customers') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-profile-user fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                                <span class="path4"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Customers</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Str::startsWith(request()->url(), route('admin.rentals')) ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -115,6 +112,7 @@
                     <!--end:Menu link-->
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion">
+                        @can('create rentals')
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
@@ -126,7 +124,9 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
+                        @endcan
 
+                        @can('approve rentals')
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
@@ -138,7 +138,9 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
+                        @endcan
                         
+                        @can('dispatch rentals')
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
@@ -150,7 +152,9 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
+                        @endcan
                         
+                        @can('accept returns')
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
@@ -162,17 +166,17 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
+                        @endcan
                     </div>
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
-                @endcan
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
                     <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Reportings</span>
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Upcoming</span>
                     </div>
                     <!--end:Menu content-->
                 </div>
@@ -197,11 +201,11 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link active" href="private.html">
+                            <a class="menu-link" href="javascript:void(0)">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Private Chat</span>
+                                <span class="menu-title">Product Report</span>
                             </a>
                         </div>
                         <!--end:Menu item-->

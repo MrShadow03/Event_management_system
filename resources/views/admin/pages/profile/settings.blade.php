@@ -1,7 +1,8 @@
+@can('update company profile')
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Banners</title>
+    <title>Admin-Settings</title>
 @endsection
 <!--end::Page Title-->
 
@@ -836,3 +837,4 @@
 </script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
+@endcan

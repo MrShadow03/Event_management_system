@@ -151,7 +151,7 @@ class RentalApprovalController extends Controller{
             ->get();
 
         if($declinedRentals->count() == 0){
-            return redirect()->route('admin.rentals')->with('success','Rental created successfully and is pending approval from the admin'); 
+            return redirect()->route('admin.rentals.approve')->with('success','Rental created successfully and is pending approval from the admin'); 
         }
 
         // Delete the declined rentals
@@ -159,7 +159,7 @@ class RentalApprovalController extends Controller{
             $declinedRental->delete();
         }
 
-        return redirect()->route('admin.rentals')->with('success','Rental created successfully and is pending approval from the admin'); 
+        return redirect()->route('admin.rentals.approve')->with('success','Rental created successfully and is pending approval from the admin'); 
     }
 
     public function acceptReturn(Request $request){

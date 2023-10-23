@@ -85,41 +85,62 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::patch('/category/update', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
-    Route::get('/customer/{customer}', [CustomerController::class, 'show'])->name('customer.show');
-    Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
-    Route::patch('/customer/update', [CustomerController::class, 'update'])->name('customer.update');
-    Route::delete('/customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
-    
-    Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
-    Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
-    Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
-    
-    Route::get('/rentals/approve', [RentalApprovalController::class, 'index'])->name('rentals.approve');
-    Route::get('/rentals/approve/{invoice}', [RentalApprovalController::class, 'edit'])->name('rentals.review');
-    Route::patch('/rentals/review', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
-    Route::patch('/rentals/return/accept', [RentalApprovalController::class, 'acceptReturn'])->name('rentals.return.accept');
-    Route::patch('/rentals/return/repair', [RentalApprovalController::class, 'sendToRepair'])->name('rentals.return.repair');
-    
-    Route::get('/rentals/dispatch', [RentalDispatchController::class, 'index'])->name('rentals.dispatch');
-    Route::get('/rentals/dispatch/{invoice}/orders', [RentalDispatchController::class, 'show'])->name('rentals.dispatch.orders');
-    Route::get('rentals/dispatch/{rental}', [RentalDispatchController::class, 'update'])->name('rentals.dispatch.update');
+    Route::group(['middleware' => ['role:sales_manager|admin|super_admin']], function(){
+        Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+        Route::get('/customer/{customer}', [CustomerController::class, 'show'])->name('customer.show');
+        Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
 
+        Route::get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
+    });
+    
+    Route::group(['middleware'=> ['can:collect due']], function(){
+        Route::patch('invoice/collect-due', [InvoiceController::class, 'collectDue'])->name('invoice.collect-due');
+    });
 
-    Route::get('/rentals/returns', [RentalReturnController::class, 'index'])->name('rentals.returns');
-    Route::get('/rentals/returns/{invoice}', [RentalReturnController::class, 'show'])->name('rentals.return.products');
+    Route::group(['middleware' => ['role:admin|super_admin']], function(){
+        Route::patch('/customer/update', [CustomerController::class, 'update'])->name('customer.update');
+        Route::delete('/customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+    });
 
-    Route::get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
+    Route::group(['middleware' => ['role:sales_manager|super_admin']], function(){
+        Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
+        Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
+        Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
+    });
+
+    Route::group(['middleware' => ['role:admin|super_admin']], function(){
+        Route::get('/rentals/approve', [RentalApprovalController::class, 'index'])->name('rentals.approve');
+        Route::get('/rentals/approve/{invoice}', [RentalApprovalController::class, 'edit'])->name('rentals.review');
+        Route::patch('/rentals/review', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
+    });
+    
+    Route::group(['middleware' => ['role:inventory_manager|super_admin']], function(){
+        Route::get('/rentals/dispatch', [RentalDispatchController::class, 'index'])->name('rentals.dispatch');
+        Route::get('/rentals/dispatch/{invoice}/orders', [RentalDispatchController::class, 'show'])->name('rentals.dispatch.orders');
+        Route::get('rentals/dispatch/{rental}', [RentalDispatchController::class, 'update'])->name('rentals.dispatch.update');
+
+        Route::get('/rentals/returns', [RentalReturnController::class, 'index'])->name('rentals.returns');
+        Route::get('/rentals/returns/{invoice}', [RentalReturnController::class, 'show'])->name('rentals.return.products');
+        Route::patch('/rentals/return/accept', [RentalApprovalController::class, 'acceptReturn'])->name('rentals.return.accept');
+        Route::patch('/rentals/return/repair', [RentalApprovalController::class, 'sendToRepair'])->name('rentals.return.repair');
+    });
+
 
     //profile routes
     Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
         Route::get('/overview', [ProfileController::class, 'index'])->name('overview');
-        Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
-        Route::get('/advance', [ProfileController::class, 'advance'])->name('advance');
-        Route::patch('/advance/update', [ProfileController::class, 'updateAdvance'])->name('advance.update');
-        Route::patch('/update', [ProfileController::class, 'update'])->name('update');
-        Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
-        Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+
+        // need the permission to update company profile
+        Route::group(['middleware' => ['can:update company profile']], function(){
+            Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
+            Route::patch('/update', [ProfileController::class, 'update'])->name('update');
+            Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
+            Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+        });
+        Route::group(['middleware' => ['role:super_admin|admin|sales_manager']], function(){
+            Route::get('/advance', [ProfileController::class, 'advance'])->name('advance');
+            Route::patch('/advance/update', [ProfileController::class, 'updateAdvance'])->name('advance.update');
+        });
     });
 
     // Route::get('/pages', [PageController::class, 'index'])->name('pages');

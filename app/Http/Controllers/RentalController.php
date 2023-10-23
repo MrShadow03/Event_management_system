@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class RentalController extends Controller
 {
     public function index(){
-        $rentals = Rental::with('customer', 'product', 'invoice')->get();
+        $rentals = Rental::with('customer', 'product', 'invoice')->latest()->get();
         $customers = Customer::all();
         return view('admin.pages.rental.rentals', [
             'rentals' => $rentals,
@@ -47,7 +47,7 @@ class RentalController extends Controller
 
         $newOrdersStartDate = $startDate;
 
-        $rentedOrders = Rental::where('status', 'rented')
+        $rentedOrders = Rental::whereIn('status', ['approved','rented'])
             ->where('ending_date', '<', $newOrdersStartDate)
             ->get();
 

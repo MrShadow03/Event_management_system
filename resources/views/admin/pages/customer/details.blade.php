@@ -173,13 +173,14 @@
                             href="#kt_ecommerce_customer_overview">Overview</a>
                     </li>
                     <!--end:::Tab item-->
-
+                    @can('update customers')
                     <!--begin:::Tab item-->
                     <li class="nav-item">
                         <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
                             href="#kt_ecommerce_customer_general">General Settings</a>
                     </li>
                     <!--end:::Tab item-->
+                    @endcan
                 </ul>
                 <!--end:::Tabs-->
 
@@ -187,33 +188,22 @@
                 <div class="tab-content" id="myTabContent">
                     <!--begin:::Tab pane-->
                     <div class="tab-pane fade show active" id="kt_ecommerce_customer_overview" role="tabpanel">
-                        <div class="row row-cols-1 row-cols-md-2 mb-6 mb-xl-9">
+                        <div class="row row-cols-1 row-cols-md-3 mb-6 mb-xl-9">
                             <div class="col">
                                 <!--begin::Card-->
-                                <div class="card pt-4 h-md-100 mb-6 mb-md-0">
-                                    <!--begin::Card header-->
-                                    <div class="card-header border-0">
-                                        <!--begin::Card title-->
-                                        <div class="card-title">
-                                            <h2 class="fw-bold">Reward Points</h2>
-                                        </div>
-                                        <!--end::Card title-->
-                                    </div>
-                                    <!--end::Card header-->
-
+                                <div class="card pt-4 h-md-200 mb-6 mb-md-0">
                                     <!--begin::Card body-->
-                                    <div class="card-body pt-0">
-                                        <div class="fw-bold fs-2">
-                                            <div class="d-flex">
-                                                <i class="ki-duotone ki-heart text-info fs-2x"><span
-                                                        class="path1"></span><span class="path2"></span></i>
-                                                <div class="ms-2">
-                                                    4,571 <span class="text-muted fs-4 fw-semibold">Points earned</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-7 fw-normal text-muted">Earn reward points with every purchase.
-                                            </div>
-                                        </div>
+                                    <div class="card-body">
+                                        <i class="ki-duotone ki-wallet text-primary fs-2x ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                        </i>        
+                                
+                                        <div class="text-gray-900 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('grand_total')) }} BDT</div>
+                                
+                                        <div class="fw-semibold text-gray-400">Accumulated Total</div>
                                     </div>
                                     <!--end::Card body-->
                                 </div>
@@ -221,25 +211,51 @@
                             </div>
 
                             <div class="col">
-                                <!--begin::Reward Tier-->
-                                <a href="#" class="card bg-info hoverable h-md-100">
-                                    <!--begin::Body-->
+                                <!--begin::Card-->
+                                <div class="card pt-4 h-md-200 mb-6 mb-md-0 bg-success">
+                                    <!--begin::Card body-->
                                     <div class="card-body">
-                                        <i class="ki-duotone ki-award text-white fs-3x ms-n1"><span
-                                                class="path1"></span><span class="path2"></span><span
-                                                class="path3"></span></i>
-                                        <div class="text-white fw-bold fs-2 mt-5">
-                                            Premium Member
-                                        </div>
-
-                                        <div class="fw-semibold text-white">
-                                            Tier Milestone Reached
-                                        </div>
+                                        <i class="ki-duotone ki-notepad-bookmark text-gray-100 fs-2x ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                            <span class="path5"></span>
+                                            <span class="path6"></span>
+                                        </i>
+                                
+                                        <div class="text-gray-100 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('paid')) }} BDT</div>
+                                
+                                        <div class="fw-semibold text-gray-100">Total Paid</div>
                                     </div>
-                                    <!--end::Body-->
-                                </a>
-                                <!--end::Reward Tier-->
+                                    <!--end::Card body-->
+                                </div>
+                                <!--end::Card-->
                             </div>
+
+                            <div class="col">
+                                <!--begin::Card-->
+                                <div class="card pt-4 h-md-200 mb-6 mb-md-0 bg-danger">
+                                    <!--begin::Card body-->
+                                    <div class="card-body">
+                                        <i class="ki-duotone ki-notepad-bookmark text-gray-100 fs-2x ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                            <span class="path5"></span>
+                                            <span class="path6"></span>
+                                        </i>        
+                                
+                                        <div class="text-gray-100 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('due')) }} BDT</div>
+                                
+                                        <div class="fw-semibold text-gray-100">Total Due</div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                                <!--end::Card-->
+                            </div>
+
                         </div>
 
 
@@ -261,34 +277,72 @@
                                 <table class="table align-middle table-row-dashed gy-5" id="kt_table_customers_payment">
                                     <thead class="border-bottom border-gray-200 fs-7 fw-bold">
                                         <tr class="text-start text-muted text-uppercase gs-0">
-                                            <th class="min-w-100px">Invoice No.</th>
-                                            <th>Status</th>
-                                            <th>Order Count</th>
-                                            <th class="min-w-100px">Issued On</th>
+                                            <th>Invoice No.</th>
+                                            <th class="text-end">Status</th>
+                                            <th class="text-end">Total</th>
+                                            <th class="text-end">Paid</th>
+                                            <th class="text-end">Due</th>
+                                            <th class="text-end">Orders</th>
+                                            <th class="text-end">Issued On</th>
+                                            <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fs-6 fw-semibold text-gray-600">
-                                        @foreach ($customer->invoices as $invoice)
+
+                                        @foreach ($customer->invoices->sortByDesc('id') as $invoice)
                                         <tr>
-                                            <td>
+                                            <td class="px-0">
                                                 <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-600 text-hover-primary mb-1">#{{ $invoice->id }}</a>
                                             </td>
-                                            <td>
-                                                @if($invoice->status == 'retured')
-                                                    <span class="badge badge-light-success">Returned</span>
-                                                @elseif($invoice->status == 'unpaid')
-                                                    <span class="badge badge-light-danger">Unpaid {{ $invoice->grand_total }}</span>
-                                                @elseif($invoice->status == 'partial')
-                                                    <span class="badge badge-light-warning">Partial</span>
+                                            <td class="text-end px-0">
+                                                @if($invoice->status == 'pending approval')
+                                                    <span class="badge badge-light-warning">Pending</span>
+                                                @elseif($invoice->status == 'approved')
+                                                    <span class="badge badge-light-info">Approved</span>
+                                                @elseif($invoice->status == 'rented')
+                                                    <span class="badge badge-light-primary">Rented</span>
                                                 @else
-                                                    <span class="badge badge-light-primary">{{ $invoice->status }}</span>
+                                                    <span class="badge badge-light-success">Returned</span>
                                                 @endif
                                             </td>
-                                            <td>
+                                            <td class="text-end px-0">
+                                                {{ $invoice->grand_total }}
+                                            </td>
+                                            <td class="text-end px-0">
+                                                <span class="text-success">{{ $invoice->paid }}</span>
+                                            </td>
+                                            <td class="text-end px-0">
+                                                <span class="text-danger">{{ $invoice->due }}</span>
+                                            </td>
+                                            <td class="text-end px-0">
                                                 {{ $invoice->rentals->count() }}
                                             </td>
-                                            <td>
+                                            <td class="text-end px-0">
                                                 {{ $invoice->created_at->format('d M Y') }}
+                                            </td>
+                                            <td class="text-end px-0">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                    Actions
+                                                    <i class="ki-duotone ki-down fs-5 ms-1"></i>
+                                                </a>
+                                                <!--begin::Menu-->
+                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4" data-kt-menu="true">
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="menu-link px-3">View</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        @if ($invoice->due)
+                                                        <a href="javascript:void(0)" onclick="placeDueCollectionAmount({{ json_encode($invoice->only(['id', 'due'])) }})" data-bs-toggle="modal" data-bs-target="#modal_collect_payment" class="menu-link text-hover-gray-100 bg-hover-success px-3">Collect Due</a>
+                                                        @else
+                                                        <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due Payment</a>
+                                                        @endif
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                </div>
+                                                <!--end::Menu-->
                                             </td>
                                         </tr>
                                         @endforeach
@@ -302,6 +356,7 @@
                     </div>
                     <!--end:::Tab pane-->
 
+                    @can('update customers')
                     <!--begin:::Tab pane-->
                     <div class="tab-pane fade" id="kt_ecommerce_customer_general" role="tabpanel">
                         <!--begin::Card-->
@@ -540,6 +595,7 @@
                         <!--end::Card-->
                     </div>
                     <!--end:::Tab pane-->
+                    @endcan
                 </div>
                 <!--end:::Tab content-->
             </div>
@@ -547,6 +603,7 @@
         </div>
     </div>
     
+    @can('update customers')
     <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -748,19 +805,201 @@
         </div>
         <!--end::Modal dialog-->
     </div>
+    @endcan
 @endsection
 <!--end::Main Content-->
+
+@section('exclusive_modals')
+    <!--begin::Category new modal-->
+    <div class="modal fade" id="modal_collect_payment" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        action="{{ route('admin.invoice.collect-due') }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <input type="hidden" id="invoiceIdInput" name="invoice_id">
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h3 class="mb-3">Collect Due</h3>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <div class="input-group input-group-solid">
+                                <span class="input-group-text" id="basic-addon1">BDT</span>
+                                <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control form-control-solid" placeholder="Enter Amount" />
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Actions-->
+                        <div class="text-center">
+                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
+                                Cancel
+                            </button>
+
+                            <button type="submit" class="btn btn-primary">
+                                <span class="indicator-label">
+                                    Submit
+                                </span>
+                                <span class="indicator-progress">
+                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Category new modal-->
+@endsection
 
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/transaction-history.js') }}">
-    </script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/update-password.js') }}">
-    </script>
+    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/update-password.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/update-phone.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/update-profile.js') }}">
+    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/customers/details/update-profile.js') }}"></script>
+    <script>
+        function placeDueCollectionAmount(invoice) {
+            $('#invoiceIdInput').val(invoice.id);
+            $('#dueCollectionAmountInput').attr('max', invoice.due);
+            $('#dueCollectionAmountInput').val(invoice.due);
+        }
+
+        // Class definition
+        var CustomerViewPaymentTable = function () {
+
+        // Define shared variables
+        var datatable;
+        var table = document.querySelector('#kt_table_customers_payment');
+
+        // Private functions
+        var initCustomerView = function () {
+            // Set date data order
+            const tableRows = table.querySelectorAll('tbody tr');
+
+            tableRows.forEach(row => {
+                const dateRow = row.querySelectorAll('td');
+                const realDate = moment(dateRow[3].innerHTML, "DD MMM YYYY, LT").format(); // select date from 4th column in table
+                dateRow[3].setAttribute('data-order', realDate);
+            });
+
+            // Init datatable --- more info on datatables: https://datatables.net/manual/
+            datatable = $(table).DataTable({
+                "info": false,
+                'order': [],
+                "pageLength": 5,
+                "lengthChange": true,
+                'columnDefs': [
+                    { orderable: false, targets: 7 }, // Disable ordering on column 5 (actions)
+                ]
+            });
+        }
+
+        // Delete customer
+        var deleteRows = () => {
+            // Select all delete buttons
+            const deleteButtons = table.querySelectorAll('[data-kt-customer-table-filter="delete_row"]');
+            
+            deleteButtons.forEach(d => {
+                // Delete button on click
+                d.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Select parent row
+                    const parent = e.target.closest('tr');
+
+                    // Get customer name
+                    const invoiceNumber = parent.querySelectorAll('td')[0].innerText;
+
+                    // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+                    Swal.fire({
+                        text: "Are you sure you want to delete " + invoiceNumber + "?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        buttonsStyling: false,
+                        confirmButtonText: "Yes, delete!",
+                        cancelButtonText: "No, cancel",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-danger",
+                            cancelButton: "btn fw-bold btn-active-light-primary"
+                        }
+                    }).then(function (result) {
+                        if (result.value) {
+                            Swal.fire({
+                                text: "You have deleted " + invoiceNumber + "!.",
+                                icon: "success",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn fw-bold btn-primary",
+                                }
+                            }).then(function () {
+                                // Remove current row
+                                datatable.row($(parent)).remove().draw();
+                            }).then(function () {
+                                // Detect checked checkboxes
+                                toggleToolbars();
+                            });
+                        } else if (result.dismiss === 'cancel') {
+                            Swal.fire({
+                                text: customerName + " was not deleted.",
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn fw-bold btn-primary",
+                                }
+                            });
+                        }
+                    });
+                })
+            });
+        }
+
+        // Public methods
+        return {
+            init: function () {
+                if (!table) {
+                    return;
+                }
+
+                initCustomerView();
+                deleteRows();
+            }
+        }
+        }();
+
+        // On document ready
+        KTUtil.onDOMContentLoaded(function () {
+        CustomerViewPaymentTable.init();
+        });
     </script>
-    <script></script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
