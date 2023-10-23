@@ -75,7 +75,7 @@
 
 <!--begin::Main Content-->
 @section('content')
-<div id="kt_app_content_container" class="app-container">
+<div id="kt_app_content_container" class="app-container container-xxl">
 
     <!-- begin::Invoice 3-->
     <div class="card">
@@ -96,7 +96,7 @@
                     <div class="text-sm-end">
                         <!--begin::Text-->
                         <div class="text-sm-end fw-semibold fs-5 text-gray-700">
-                            <div>{{ $commonDetails['name'] ?? ''}}</div>
+                            <div class="fw-bold fs-3 mt-3">{{ $commonDetails['name'] ?? ''}}</div>
                             <div>{{ $commonDetails['phone'] ?? ''}}</div>
                             <div>{{ $commonDetails['email'] ?? '' }}</div>
                             <div>{{ $commonDetails['address'] ?? '' }}</div>
@@ -111,46 +111,44 @@
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-column gap-7 gap-md-10">
                         <div class="d-flex justify-content-between">
-                            <div>
-                                <h4 class="fw-bolder text-gray-800 fs-2qx">INVOICE</h4>
-                                <div class="fw-bolder text-gray-800 fs-1 pe-5 pb-7">#{{ $invoice->id }}</div>
-                            </div>
-                            <div class="fw-bold fs-2 mt-3 text-end">
+                            <div class="fw-bold fs-3 mt-3">
                                 {{ $invoice->customer->name ?? '' }}
                                 <div class="fw-semibold fs-5 text-gray-700 mt-2">
                                     <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
-                                    <div>{{ $invoice->customer->name ?? ''}}</div>
                                     <div>{{ $invoice->customer->phone_number ?? ''}}</div>
-                                    <div>{{ $invoice->customer->email ?? '' }}</div>
                                 </div>
                             </div>
                         </div>
                         <!--begin::Message-->
 
-                        <!--begin::Separator-->
+                        {{-- <!--begin::Separator-->
                         <div class="separator"></div>
-                        <!--begin::Separator-->
+                        <!--begin::Separator--> --}}
 
                         <!--begin::Order details-->
                         <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
                             <div class="flex-root d-flex flex-column">
+                                <span class="text-muted">Invoice ID</span>
+                                <span class="fs-5">#{{ $invoice->id }}</span>
+                            </div>
+
+                            <div class="flex-root d-flex flex-column">
                                 <span class="text-muted">From</span>
-                                <span class="fs-5">10 July, 2023</span>
+                                <span class="fs-5">
+                                    {{ Carbon\Carbon::parse($invoice->rentals[0]->starting_date)->format('d M, Y') }}
+                                </span>
                             </div>
 
                             <div class="flex-root d-flex flex-column">
                                 <span class="text-muted">Return</span>
-                                <span class="fs-5">12 August, 2023</span>
+                                <span class="fs-5">
+                                    {{ Carbon\Carbon::parse($invoice->rentals[0]->ending_date)->format('d M, Y') }}
+                                </span>
                             </div>
 
                             <div class="flex-root d-flex flex-column">
                                 <span class="text-muted">Total Days</span>
                                 <span class="fs-5">{{ $invoice->rentals[0]->number_of_days ?? '' }}</span>
-                            </div>
-
-                            <div class="flex-root d-flex flex-column">
-                                <span class="text-muted">Approved By</span>
-                                <span class="fs-5">{{ auth()->user()->name }}</span>
                             </div>
                         </div>
                         <!--end::Order details-->
@@ -175,12 +173,13 @@
                         <!--begin:Order summary-->
                         <div class="d-flex justify-content-between flex-column">
                             <!--begin::Table-->
-                            <div class="table-responsive border-bottom mb-9">
-                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                            <div class="table-responsive mb-9">
+                                <table class="table align-middle fs-6 mb-0">
                                     <thead>
                                         <tr class="border-bottom fs-6 fw-bold text-muted">
                                             <th class="min-w-175px pb-2">Products</th>
                                             <th class="min-w-70px text-end pb-2">SKU</th>
+                                            <th class="min-w-70px text-end pb-2">Rent</th>
                                             <th class="min-w-80px text-end pb-2">QTY</th>
                                             <th class="min-w-100px text-end pb-2">Total</th>
                                         </tr>
@@ -191,11 +190,11 @@
                                             $total = 0;
                                         @endphp
                                         @foreach ($invoice->rentals as $rental)
-                                        <tr>
-                                            <td>
+                                        <tr class="pb-2">
+                                            <td class="py-1">
                                                 <div class="d-flex align-items-center">
                                                     <!--begin::Thumbnail-->
-                                                    <a href="#" class="symbol symbol-50px">
+                                                    <a href="#" class="symbol symbol-40px">
                                                         <img src="{{ asset('storage') . '/' . $rental->product->image }}" alt="image" />
                                                     </a>
                                                     <!--end::Thumbnail-->
@@ -208,7 +207,8 @@
                                                     <!--end::Title-->
                                                 </div>
                                             </td>
-                                            <td class="text-end">{{ $rental->product->product_code }}</td>
+                                            <td class="py-1 text-end">{{ $rental->product->product_code }}</td>
+                                            <td class="py-1 text-end">{{ $rental->product->rental_price }}</td>
                                             <td class="text-end">{{ $rental->quantity }}</td>
                                             <td class="text-end">
                                                 @php
@@ -218,38 +218,57 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                        <tr>
-                                            <td colspan="3" class="text-end">Subtotal</td>
-                                            <td class="text-end">{{ $invoice->subtotal }}</td>
+                                        <tr class="border-top border-dashed border-gray-300">
+                                            <td colspan="4" class="pt-3 text-end">Subtotal</td>
+                                            <td class="py-1 text-end">{{ $invoice->subtotal }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="text-end">Discount</td>
-                                            <td class="text-end">{{ $invoice->discount }}</td>
+                                            <td colspan="4" class="pt-1 text-end">Discount</td>
+                                            <td class="pt-1 text-end">{{ $invoice->discount }}</td>
                                         </tr>
                                         @php
                                             $discountedTotal = $invoice->subtotal - $invoice->discount;
                                             $vatAmaount = $discountedTotal * $invoice->vat_percentage / 100;
                                         @endphp
                                         <tr>
-                                            <td colspan="3" class="text-end">VAT ({{ $invoice->vat_percentage }}%)</td>
-                                            <td class="text-end">{{ $vatAmaount }}</td>
+                                            <td colspan="4" class="pt-1 text-end">VAT ({{ $invoice->vat_percentage }}%)</td>
+                                            <td class="pt-1 text-end">{{ $vatAmaount }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="fs-3 text-dark fw-bold text-end">Grand Total</td>
-                                            <td class="text-dark fs-3 fw-bolder text-end">{{ $invoice->grand_total }}</td>
+                                            <td colspan="4" class="pt-1 text-end">Grand Total</td>
+                                            <td class="pt-1 text-end">{{ $invoice->grand_total }}</td>
+                                        </tr>
+                                        {{-- border border-top-1 border-gray-300 border-end-0 border-start-0 border-bottom-0
+                                        border border-top-1 border-gray-300 border-end-0 border-start-0 border-bottom-0 --}}
+                                        <tr class="border-top border-dashed border-gray-300">
+                                            <td colspan="4" class="pt-3 text-end fw-bold">Paid</td>
+                                            <td class="pt-3 text-end fw-bold">{{ $invoice->paid }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" class="fs-4 text-dark fw-bold text-end">Paid</td>
-                                            <td class="text-dark fs-4 fw-bolder text-end">{{ $invoice->paid }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" class="fs-4 text-dark fw-bold text-end">Due</td>
-                                            <td class="text-dark fs-4 fw-bolder text-end">{{ $invoice->due }}</td>
+                                            <td colspan="4" class="pt-1 text-end">Due</td>
+                                            <td class="pt-1 text-end">{{ $invoice->due }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!--end::Table-->
+
+                            <!--begin::Customer & Client Signatures-->
+                            <div class="d-flex justify-content-between w-75 mt-5">
+                                <!--begin::Customer-->
+                                <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
+                                    <div class="fs-5 fw-bold pt-5">{{ auth()->user()->name ?? '' }}</div>
+                                    <div class="fs-6">CCO</div>
+                                </div>
+                                <!--end::Customer-->
+                                
+                                <!--begin::Customer-->
+                                <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
+                                    <div class="fs-5 fw-bold pt-5">{{ $invoice->customer->name ?? '' }}</div>
+                                    <div class="fs-6">Client</div>
+                                </div>
+                                <!--end::Customer-->
+                            </div>
                         </div>
                         <!--end:Order summary-->
                     </div>
@@ -258,9 +277,9 @@
                 <!--end::Body-->
 
                 <!-- begin::Footer-->
-                <div class="d-flex flex-stack flex-wrap mt-lg-20 pt-13">
+                <div class="d-flex flex-stack flex-wrap mt-lg-20 pt-13 print-display-none">
                     <!-- begin::Actions-->
-                    <div class="my-1 me-5">
+                    <div class="my-1 me-5 print-display-none">
                         <!-- begin::Pint-->
                         <button type="button" class="btn btn-success my-1 me-12 print-display-none" onclick="window.print();">Print
                             Invoice</button>
