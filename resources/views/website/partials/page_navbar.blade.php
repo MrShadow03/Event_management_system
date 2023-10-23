@@ -110,6 +110,7 @@
             <ul class="nav_area">
                 <li><a href="{{ route('home') }}">HOME</a></li>
                 <li><a href="{{ route('event') }}">EVENT MANAGEMENT</a></li>
+                <li><a href="#">THEMES</a></li>
                 <li><a href="{{ route('catering') }}">CATERING</a></li>
                 <li><a href="#">BOOK YOUR VENUE</a></li>
                 <li><a href="{{ route('logistics') }}">LOGISTIC RENTAL</a></li>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CacheController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\InvoiceController;
@@ -143,6 +144,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         });
     });
 
+    Route::get('/clear-cache', [CacheController::class, 'clearCache']);
     // Route::get('/pages', [PageController::class, 'index'])->name('pages');
     // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
     // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');

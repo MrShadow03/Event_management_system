@@ -11,15 +11,41 @@ class RolePermissionController extends Controller
 {
     public function createRole(){
 
-        // $role = Role::create(['name' => 'inventory manager']);
-        // $permissions = ['dispatch rentals', 'receive returns', 'view customers', 'update customers', 'update vat', 'view company profile', 'update company profile', 'update products'];
-        $user = User::find(4);
-        $role = Role::findByName("inventory_manager");
+        $superAdmin = User::find(1);
+        $admin = User::find(2);
+        $sales = User::find(3);
+        $inventory = User::find(4);
 
-        $user->assignRole($role);
-        // $permission = Permission::create(['name' => 'create rentals']);
-        // give permissions to view customers, update customers, view company profile, update company profile, update products
-        // revoke permission to update customers
-        // $role->givePermissionTo(['dispatch rentals', 'accept returns']);
+        $rolesOfUser1 = $superAdmin->getRoleNames();
+        $rolesOfUser2 = $admin->getRoleNames();
+        $rolesOfUser3 = $sales->getRoleNames();
+        $rolesOfUser4 = $inventory->getRoleNames();
+
+        $permissionsOfUser1 = $superAdmin->getAllPermissions();
+        $permissionsOfUser2 = $admin->getAllPermissions();
+        $permissionsOfUser3 = $sales->getAllPermissions();
+        $permissionsOfUser4 = $inventory->getAllPermissions();
+
+        $createPermission = Permission::create(['name' => 'collect due']);
+
+        $sales->givePermissionTo($createPermission);
+        // dd([
+        //     'user1' => [
+        //         'roles' => $rolesOfUser1,
+        //         'permissions' => $permissionsOfUser1
+        //     ],
+        //     'user2' => [
+        //         'roles' => $rolesOfUser2,
+        //         'permissions' => $permissionsOfUser2
+        //     ],
+        //     'sales'=> [
+        //         'roles' => $rolesOfUser3,
+        //         'permissions' => $permissionsOfUser3
+        //     ],
+        //     'inventory'=> [
+        //         'roles' => $rolesOfUser4,
+        //         'permissions' => $permissionsOfUser4
+        //     ],
+        // ]);
     }
 }

@@ -647,7 +647,7 @@
                                 <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                     <!--begin::Label-->
                                     <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                        <span>Available Quantity (psc)</span>
+                                        <span>Available Quantity (psc/set)</span>
                                     </label>
                                     <!--end::Label-->
         
@@ -879,7 +879,7 @@
                                 <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                                     <!--begin::Label-->
                                     <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                        <span>Available Quantity (psc)</span>
+                                        <span>Available Quantity (psc/set)</span>
                                     </label>
                                     <!--end::Label-->
         

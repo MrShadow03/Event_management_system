@@ -333,6 +333,7 @@
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
+                                                    @can('collect due')
                                                     <div class="menu-item px-3">
                                                         @if ($invoice->due)
                                                         <a href="javascript:void(0)" onclick="placeDueCollectionAmount({{ json_encode($invoice->only(['id', 'due'])) }})" data-bs-toggle="modal" data-bs-target="#modal_collect_payment" class="menu-link text-hover-gray-100 bg-hover-success px-3">Collect Due</a>
@@ -340,6 +341,7 @@
                                                         <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due Payment</a>
                                                         @endif
                                                     </div>
+                                                    @endcan
                                                     <!--end::Menu item-->
                                                 </div>
                                                 <!--end::Menu-->
