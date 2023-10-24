@@ -33,12 +33,12 @@
 @endsection
 <!--end::Page Custom Styles-->
 
-{{-- <!--begin::toolbar-->
+<!--begin::toolbar-->
 @section('toolbar')
 <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 print-display-none">
 
     <!--begin::Toolbar container-->
-    <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+    <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
 
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
@@ -59,9 +59,18 @@
                     <span class="bullet bg-gray-400 w-5px h-2px"></span>
                 </li>
                 <!--end::Item-->
-
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Invoice</li>
+                <li class="breadcrumb-item text-muted">
+                    <a href="{{ route('admin.customer.show', $invoice->customer->id) }}" class="text-muted text-hover-primary">{{ $invoice->customer->name }}</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">Invoice #{{ $invoice->id }}</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -71,7 +80,7 @@
     <!--end::Toolbar container-->
 </div>
 @endsection
-<!--end::toolbar--> --}}
+<!--end::toolbar-->
 
 <!--begin::Main Content-->
 @section('content')
@@ -179,9 +188,9 @@
                                         <tr class="border-bottom fs-6 fw-bold text-muted">
                                             <th class="min-w-175px pb-2">Products</th>
                                             <th class="min-w-70px text-end pb-2">SKU</th>
-                                            <th class="min-w-70px text-end pb-2">Rent</th>
+                                            <th class="min-w-70px text-end pb-2">Rent(BDT)</th>
                                             <th class="min-w-80px text-end pb-2">QTY</th>
-                                            <th class="min-w-100px text-end pb-2">Total</th>
+                                            <th class="min-w-100px text-end pb-2">Total(BDT)</th>
                                         </tr>
                                     </thead>
 
@@ -208,23 +217,23 @@
                                                 </div>
                                             </td>
                                             <td class="py-1 text-end">{{ $rental->product->product_code }}</td>
-                                            <td class="py-1 text-end">{{ $rental->product->rental_price }}</td>
+                                            <td class="py-1 text-end">{{ number_format($rental->product->rental_price) }}</td>
                                             <td class="text-end">{{ $rental->quantity }}</td>
                                             <td class="text-end">
                                                 @php
                                                     $total += $rental->product->rental_price * $rental->quantity * $rental->number_of_days;
                                                 @endphp
-                                                {{ $rental->product->rental_price * $rental->quantity * $rental->number_of_days }}
+                                                {{ number_format($rental->product->rental_price * $rental->quantity * $rental->number_of_days) }}
                                             </td>
                                         </tr>
                                         @endforeach
                                         <tr class="border-top border-dashed border-gray-300">
                                             <td colspan="4" class="pt-3 text-end">Subtotal</td>
-                                            <td class="py-1 text-end">{{ $invoice->subtotal }}</td>
+                                            <td class="py-1 text-end">{{ number_format($invoice->subtotal) }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Discount</td>
-                                            <td class="pt-1 text-end">{{ $invoice->discount }}</td>
+                                            <td class="pt-1 text-end">{{ number_format($invoice->discount) }}</td>
                                         </tr>
                                         @php
                                             $discountedTotal = $invoice->subtotal - $invoice->discount;
@@ -232,21 +241,21 @@
                                         @endphp
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">VAT ({{ $invoice->vat_percentage }}%)</td>
-                                            <td class="pt-1 text-end">{{ $vatAmaount }}</td>
+                                            <td class="pt-1 text-end">{{ number_format($vatAmaount) }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Grand Total</td>
-                                            <td class="pt-1 text-end">{{ $invoice->grand_total }}</td>
+                                            <td class="pt-1 text-end">{{ number_format($invoice->grand_total) }}</td>
                                         </tr>
                                         {{-- border border-top-1 border-gray-300 border-end-0 border-start-0 border-bottom-0
                                         border border-top-1 border-gray-300 border-end-0 border-start-0 border-bottom-0 --}}
                                         <tr class="border-top border-dashed border-gray-300">
                                             <td colspan="4" class="pt-3 text-end fw-bold">Paid</td>
-                                            <td class="pt-3 text-end fw-bold">{{ $invoice->paid }}</td>
+                                            <td class="pt-3 text-end fw-bold">{{ number_format($invoice->paid) }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Due</td>
-                                            <td class="pt-1 text-end">{{ $invoice->due }}</td>
+                                            <td class="pt-1 text-end">{{ number_format($invoice->due) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -304,30 +313,5 @@
 
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-        const downloadPdfButton = document.getElementById('downloadPdfButton');
-        downloadPdfButton.addEventListener('click', function() {
-            const invoiceDiv = document.getElementById('invoice-div');
-            // alert(invoiceDiv);
-            const pdfOptions = {
-                margin: 10,
-                filename: 'invoice.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().from(invoiceDiv).set(pdfOptions).outputPdf(function(pdf) {
-                const blob = new Blob([pdf], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = 'invoice.pdf';
-                link.click();
-            });
-        });
-
-</script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
