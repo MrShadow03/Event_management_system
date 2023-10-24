@@ -49,9 +49,13 @@ class RentalApprovalController extends Controller{
         $products = Product::with('rentals')->get();
 
         $newOrdersStartDate = $startDate;
+        $newOrdersEndDate = $endDate;
 
-        $rentedOrders = Rental::whereIn('status', ['approved','rented'])
-            ->where('ending_date', '<', $newOrdersStartDate)
+        $rentedOrders = Rental::whereIn('status', ['approved', 'rented'])
+            ->where(function ($query) use ($newOrdersStartDate, $newOrdersEndDate) {
+                $query->whereNotBetween('starting_date', [$newOrdersStartDate, $newOrdersEndDate])
+                ->whereNotBetween('ending_date', [$newOrdersStartDate, $newOrdersEndDate]);
+            })
             ->get();
 
         foreach ($products as $product) {

@@ -1,10 +1,95 @@
-----------1.Create approval feature by admin 
-----------2.Create approve return feature by admin
-----------3. Fix Discount calculation
-----------4. Restrict duplicate product code
-----------5. Restrict duplicate category name
-----------6. Add payment method
-8. Fix role permission
-----------9. Add due invoice feature
-----------10. Add vat feature
-----------11. Add customer invoice feature
+DONE----------1.Create approval feature by admin 
+DONE----------2.Create approve return feature by admin
+DONE----------3. Fix Discount calculation
+DONE----------4. Restrict duplicate product code
+DONE----------5. Restrict duplicate category name
+DONE----------6. Add payment method
+DONE----------8. Fix role permission
+DONE----------9. Add due invoice feature
+DONE----------10. Add vat feature
+DONE----------11. Add customer invoice feature
+12. Add discount on invoice
+13. Add transaction feature
+14 Test product flow
+15. Give permission to change account info
+
+
+
+------------Product Flow Test---------------
+
+AT-01 -- 2
+AT-10 -- 10
+AT-3 -- 20
+
+** Ordering for 29-31 october
+Ordering: 1, 2, 3
+
+** Actual Result on next order:
+** Status pending
+** 29-31 october
+    ** Product: Amount: 2, 10, 20 -- No Issues
+** 1-2 November
+    ** Product: Amount: 2, 10, 20 -- No Issues
+
+Old Algorithm
+=================
+** Status approved
+** 29-31 october (On exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 1-2 November (After exact range)
+    ** Product: Amount: 2, 10, 20 -- No Issues
+** 30-2 November (Overlapping and after exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 26-28 October (Before exact range)
+    ** Expected Product Amount: 2, 10, 20
+    ** Actual Product Amount: 1, 8, 17     <<<<<-- Issue
+** 26-30 October (Overlapping and before exact range)
+    ** Product Amount: 1, 8, 17 -- No Issues
+
+
+Update Algorithm
+=================
+** Status approved
+** 29-31 october (On exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 1-2 November (After exact range)
+    ** Product: Amount: 2, 10, 20 -- No Issues
+** 30-2 November (Overlapping and after exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 26-28 October (Before exact range)
+    ** Expected Product Amount: 2, 10, 20
+    ** Actual Product Amount: 2, 10, 20  <<<<<-- Fixed
+** 26-30 October (Overlapping and before exact range)
+    ** Product Amount: 1, 8, 17 -- No Issues
+
+
+** Status rented
+** 29-31 october (On exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 1-2 November (After exact range)
+    ** Product: Amount: 2, 10, 20 -- No Issues
+** 30-2 November (Overlapping and after exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 26-28 October (Before exact range)
+    ** Product Amount: 2, 10, 20 -- No Issues
+** 26-30 October (Overlapping and before exact range)
+    ** Product Amount: 1, 8, 17 -- No Issues
+
+
+** Ordering for 30-01 November
+Ordering: 1, 2, 3
+
+** Status pending
+** 30-01 November (On exact range)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+
+** Status approved
+** 30-01 November (On exact range: Overlapping 2)
+    ** Product: Amount: 0, 6, 14 -- No Issues
+** 01-02 November (After: Overlapping 1 and Freed 1)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+** 02-03 November (Freed 2)
+    ** Product: Amount: 2, 10, 20 -- No Issues
+** 26-29 October (Before: Overlapping 1 and Freed 1)
+    ** Product: Amount: 1, 8, 17 -- No Issues
+    
