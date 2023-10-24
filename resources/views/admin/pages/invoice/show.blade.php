@@ -125,6 +125,7 @@
                                 <div class="fw-semibold fs-5 text-gray-700 mt-2">
                                     <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
                                     <div>{{ $invoice->customer->phone_number ?? ''}}</div>
+                                    <div>{{ $invoice->customer->address ?? ''}}</div>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +163,7 @@
                         </div>
                         <!--end::Order details-->
 
-                        <!--begin::Billing & shipping-->
+                        {{-- <!--begin::Billing & shipping-->
                         <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
                             <div class="flex-root d-flex flex-column">
                                 <span class="text-muted">Billing Address</span>
@@ -177,7 +178,7 @@
                                 </span>
                             </div>
                         </div>
-                        <!--end::Billing & shipping-->
+                        <!--end::Billing & shipping--> --}}
 
                         <!--begin:Order summary-->
                         <div class="d-flex justify-content-between flex-column">
