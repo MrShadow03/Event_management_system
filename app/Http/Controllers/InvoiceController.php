@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,8 +11,10 @@ class InvoiceController extends Controller
 {
     public function show(Invoice $invoice){
         $invoice->load('customer', 'rentals.product');
+        $user = User::find($invoice->user_id)->name ?? 'Deleted User';
         return view('admin.pages.invoice.show', [
             'invoice' => $invoice,
+            'admin' => $user,
         ]);
     }
 

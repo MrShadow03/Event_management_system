@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -23,7 +22,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('super_admin') ? true : null;
+            // Check if the guard is 'web' (replace with your actual guard name)
+            if (auth()->getDefaultDriver() === 'web') {
+                return $user->hasRole('super_admin') ? true : null;
+            }
+            
+            return null; // Continue as is for other guards
         });
     }
 }

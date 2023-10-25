@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Products</title>
+    <title>Profile</title>
 @endsection
 <!--end::Page Title-->
 
@@ -39,7 +39,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Customers
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Profile
                 </h1>
                 <!--end::Title-->
 
@@ -55,19 +55,9 @@
                         <span class="bullet bg-gray-400 w-5px h-2px"></span>
                     </li>
                     <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('admin.customers') }}" class="text-muted text-hover-primary">Customers </a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
 
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">{{ $customer->name }}</li>
+                    <li class="breadcrumb-item text-muted">Profile</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -94,19 +84,19 @@
                         <div class="d-flex flex-center flex-column mb-5">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-150px symbol-circle mb-7">
-                                <img src="{{ asset('storage').'/'.$customer->image }}" alt="" class="object-fit-cover">
+                                <img src="{{ asset('storage').'/'.auth()->user()->image }}" alt="" class="object-fit-cover">
                             </div>
                             <!--end::Avatar-->
 
                             <!--begin::Name-->
-                            <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{ $customer->name }}</a>
+                            <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">{{ auth()->user()->name }}</a>
                             <!--end::Name-->
 
                             <!--begin::Email-->
-                            @if ($customer->company)
-                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">{{ $customer->company }}</a>
+                            @if (auth()->user()->company)
+                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">{{ auth()->user()->company }}</a>
                             @else
-                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">{{ $customer->email }}</a>
+                            <a href="#" class="fs-5 fw-semibold text-muted text-hover-primary mb-6">{{ auth()->user()->email }}</a>
                             @endif
                             <!--end::Email-->
                         </div>
@@ -130,21 +120,21 @@
                         <div class="pb-5 fs-6">
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Account ID</div>
-                            <div class="text-gray-600">ID-{{ $customer->id }}</div>
+                            <div class="text-gray-600">ID-{{ auth()->user()->id }}</div>
                             <!--begin::Details item-->
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Email</div>
                             <div class="text-gray-600"><a href="#"
-                                    class="text-gray-600 text-hover-primary">{{ $customer->email }}</a></div>
+                                    class="text-gray-600 text-hover-primary">{{ auth()->user()->email }}</a></div>
                             <!--begin::Details item-->
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Phone Number</div>
-                            <div class="text-gray-600">{{ $customer->phone_number }}</div>
+                            <div class="text-gray-600">{{ auth()->user()->phone_number }}</div>
                             <!--begin::Details item-->
                             <!--begin::Details item-->
                             <div class="fw-bold mt-5">Address</div>
                             <div class="text-gray-600">
-                                @foreach (explode(',', $customer->address) as $address)
+                                @foreach (explode(',', auth()->user()->address) as $address)
                                     @if ($loop->last)
                                         {{ $address }}
                                     @else
@@ -156,7 +146,7 @@
                             <!--begin::Details item-->
                             @if ($latestInvoice)
                             <div class="fw-bold mt-5">Latest Transaction</div>
-                            <div class="text-gray-600"><a href="{{ route('admin.invoice.show', $latestInvoice->id ) }}" class="text-gray-600 text-hover-primary">#{{ $latestInvoice->id}}</a> </div>
+                            <div class="text-gray-600"><a href="{{ route('customer.invoice.show', $latestInvoice->id ) }}" class="text-gray-600 text-hover-primary">#{{ $latestInvoice->id}}</a> </div>
                             <!--begin::Details item-->
                             @endif
                         </div>
@@ -178,14 +168,12 @@
                             href="#customer_overview">Overview</a>
                     </li>
                     <!--end:::Tab item-->
-                    @can('update customers')
                     <!--begin:::Tab item-->
                     <li class="nav-item">
                         <a class="nav-link text-active-primary pb-4" id="settingsTabButton" data-bs-toggle="tab"
                             href="#customer_general">General Settings</a>
                     </li>
                     <!--end:::Tab item-->
-                    @endcan
                 </ul>
                 <!--end:::Tabs-->
 
@@ -288,8 +276,7 @@
                                             <th class="text-end">Paid</th>
                                             <th class="text-end">Due</th>
                                             <th class="text-end">Orders</th>
-                                            <th class="text-end">Issued On</th>
-                                            <th class="text-end">Action</th>
+                                            <th class="text-end">Last update</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fs-6 fw-semibold text-gray-600">
@@ -297,7 +284,7 @@
                                         @foreach ($customer->invoices->sortByDesc('id') as $invoice)
                                         <tr>
                                             <td class="px-0">
-                                                <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-600 text-hover-primary mb-1">#{{ $invoice->id }}</a>
+                                                <a href="{{ route('customer.invoice.show', $invoice->id) }}" class="text-gray-600 text-hover-primary mb-1">#{{ $invoice->id }}</a>
                                             </td>
                                             <td class="text-end px-0">
                                                 @if($invoice->status == 'pending approval')
@@ -323,33 +310,7 @@
                                                 {{ $invoice->rentals->count() }}
                                             </td>
                                             <td class="text-end px-0">
-                                                {{ $invoice->created_at->format('d M Y') }}
-                                            </td>
-                                            <td class="text-end px-0">
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                    Actions
-                                                    <i class="ki-duotone ki-down fs-5 ms-1"></i>
-                                                </a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    @can('collect due')
-                                                    <div class="menu-item px-3">
-                                                        @if ($invoice->due)
-                                                        <a href="javascript:void(0)" onclick="placeDueCollectionAmount({{ json_encode($invoice->only(['id', 'due'])) }})" data-bs-toggle="modal" data-bs-target="#modal_collect_payment" class="menu-link text-hover-gray-100 bg-hover-success px-3">Collect Due</a>
-                                                        @else
-                                                        <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due Payment</a>
-                                                        @endif
-                                                    </div>
-                                                    @endcan
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
+                                                {{ $invoice->updated_at->format('d M Y') }}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -363,7 +324,6 @@
                     </div>
                     <!--end:::Tab pane-->
 
-                    @can('update customers')
                     <!--begin:::Tab pane-->
                     <div class="tab-pane fade" id="customer_general" role="tabpanel">
                         <!--begin::Card-->
@@ -381,7 +341,7 @@
                             <!--begin::Card body-->
                             <div class="card-body pt-0 pb-5">
                                 <!--begin::Form-->
-                                <form class="form" action="{{ route('admin.customer.update', $customer->id) }}" method="POST" enctype="multipart/form-data" id="kt_ecommerce_customer_profile">
+                                <form class="form" action="{{ route('customer.profile.update', auth()->user()->id) }}" method="POST" id="kt_ecommerce_customer_profile" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
                                     <!--begin::Input group-->
@@ -408,7 +368,7 @@
                                                 data-kt-image-input="true">
                                                 <!--begin::Preview existing avatar-->
                                                 <div class="image-input-wrapper w-125px h-125px"
-                                                    style="background-image: url({{ asset('storage').'/'.$customer->image }})">
+                                                    style="background-image: url({{ asset('storage').'/'.auth()->user()->image }})">
                                                 </div>
                                                 <!--end::Preview existing avatar-->
 
@@ -459,7 +419,7 @@
 
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="name" value="{{ $customer->name }}" />
+                                            name="name" value="{{ auth()->user()->name }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -471,7 +431,7 @@
 
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="company" value="{{ $customer->company }}" />
+                                            name="company" value="{{ auth()->user()->company }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -488,7 +448,7 @@
                                                     <span class="required">General Email</span>
 
                                                     <span class="ms-1" data-bs-toggle="tooltip"
-                                                        title="{{ $customer->name }} can use this email address to login">
+                                                        title="{{ auth()->user()->name }} can use this email address to login">
                                                         <i class="ki-duotone ki-information fs-7"><span
                                                                 class="path1"></span><span class="path2"></span><span
                                                                 class="path3"></span></i> </span>
@@ -497,7 +457,7 @@
 
                                                 <!--begin::Input-->
                                                 <input type="email" class="form-control form-control-solid"
-                                                    placeholder="" name="email" value="{{ $customer->email }}" />
+                                                    placeholder="" name="email" value="{{ auth()->user()->email }}" />
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
@@ -513,7 +473,7 @@
                                                     <span class="required">Phone</span>
 
                                                     <span class="ms-1" data-bs-toggle="tooltip"
-                                                        title="{{ $customer->name }} can also use this number to login">
+                                                        title="{{ auth()->user()->name }} can also use this number to login">
                                                         <i class="ki-duotone ki-information fs-7">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -525,7 +485,7 @@
 
                                                 <!--begin::Input-->
                                                 <input type="text" class="form-control form-control-solid"
-                                                    placeholder="" name="phone_number" value="{{ $customer->phone_number }}" />
+                                                    placeholder="" name="phone_number" value="{{ auth()->user()->phone_number }}" />
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
@@ -542,7 +502,7 @@
 
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="address" value="{{ $customer->address }}" />
+                                            name="address" value="{{ auth()->user()->address }}" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -611,16 +571,17 @@
                         </div>
                         <!--end::Card-->
                     </div>
-                    <!--end:::Tab pane-->
-                    @endcan
+                    <!--end::Tab pane-->
                 </div>
                 <!--end:::Tab content-->
             </div>
             <!--end::Content-->
         </div>
     </div>
+@endsection
+<!--end::Main Content-->
     
-    @can('update customers')
+@section('exclusive_modals')
     <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -643,14 +604,14 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_update_password_form" class="form" action="{{ route('admin.customer.update-password', $customer->id) }}" method="POST">
+                    <form id="kt_modal_update_password_form" class="form" action="{{ route('customer.profile.update-password', auth()->user()->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <!--begin::Input group -->
                         <div class="fv-row mb-10">
-                            <label class="required form-label fs-6 mb-2">Admin Password</label>
+                            <label class="required form-label fs-6 mb-2">Current Password</label>
 
-                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="admin_password" value="*****" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="current_password" value="*****" autocomplete="off" />
                         </div>
                         <!--end::Input group--->
 
@@ -732,168 +693,6 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-
-    <!--end::Modal - Update password-->
-    <div class="modal fade" id="kt_modal_update_phone" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2 class="fw-bold">Update Phone Number</h2>
-                    <!--end::Modal title-->
-
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                    <!--begin::Form-->
-                    <form id="kt_modal_update_phone_form" class="form" action="#">
-                        <!--begin::Notice-->
-
-                        <!--begin::Notice-->
-                        <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                            <!--begin::Icon-->
-                            <i class="ki-duotone ki-information fs-2tx text-primary me-4"><span
-                                    class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                            <!--end::Icon-->
-
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1 ">
-                                <!--begin::Content-->
-                                <div class=" fw-semibold">
-
-                                    <div class="fs-6 text-gray-700 ">Please note that a valid phone number may be required
-                                        for order or shipping rescheduling.</div>
-                                </div>
-                                <!--end::Content-->
-
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <!--end::Notice-->
-                        <!--end::Notice-->
-
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Phone</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="profile_phone"
-                                value="+6141 234 567" />
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">
-                                Discard
-                            </button>
-
-                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    @endcan
-@endsection
-<!--end::Main Content-->
-
-@section('exclusive_modals')
-    <!--begin::Category new modal-->
-    <div class="modal fade" id="modal_collect_payment" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content rounded">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <!--begin:Form-->
-                    <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.invoice.collect-due') }}" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" id="invoiceIdInput" name="invoice_id">
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h3 class="mb-3">Collect Due</h3>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <div class="input-group input-group-solid">
-                                <span class="input-group-text" id="basic-addon1">BDT</span>
-                                <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control form-control-solid" placeholder="Enter Amount" />
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
-                                Cancel
-                            </button>
-
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end:Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Category new modal-->
 @endsection
 
 <!--begin::Page Vendors Javascript and custom JS-->
@@ -930,9 +729,6 @@
                     'order': [],
                     "pageLength": 5,
                     "lengthChange": true,
-                    'columnDefs': [
-                        { orderable: false, targets: 7 }, // Disable ordering on column 5 (actions)
-                    ]
                 });
             }
 

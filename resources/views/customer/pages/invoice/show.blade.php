@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
     <title>Admin-Invoice</title>
@@ -51,7 +51,7 @@
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home </a>
+                    <a href="{{ route('customer.dashboard') }}" class="text-muted text-hover-primary">Home </a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -61,7 +61,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-muted">
-                    <a href="{{ route('admin.customer.show', $invoice->customer->id) }}" class="text-muted text-hover-primary">{{ $invoice->customer->name }}</a>
+                    <a href="{{ route('customer.profile', $invoice->customer->id) }}" class="text-muted text-hover-primary">{{ $invoice->customer->name }}</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->

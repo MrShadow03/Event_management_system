@@ -31,7 +31,6 @@
                             <img src="{{ asset('storage').'/'.$category->image }}" alt="">
                             <div class="category-detail">
                                 <p class="font-bn heading-xs title">{{ $category->name }}</p>
-                                <p class="font-bn para-sm">{{ $category->products->count() ? $category->products->count().' টি' : 'আসছে'}}</p>
                             </div>
                         </a>
                     </li>

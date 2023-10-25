@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\CompanyDetail;
 use Illuminate\Support\ServiceProvider;
 
+use function PHPSTORM_META\map;
+
 class CompanyDetailsServiceProvider extends ServiceProvider
 {
     /**
@@ -30,5 +32,20 @@ class CompanyDetailsServiceProvider extends ServiceProvider
         view()->composer('admin.*', function ($view) use ($formattedDetails) {
             $view->with('commonDetails', $formattedDetails);
         });
+        
+        $detailsForClient = [
+            'name' => $formattedDetails['name'],
+            'address' => $formattedDetails['address'],
+            'phone' => $formattedDetails['phone'],
+            'email' => $formattedDetails['email'],
+            'logo' => $formattedDetails['logo'],
+            'favicon' => $formattedDetails['favicon'],
+        ];
+
+        // pass to all the views inside admin folder
+        view()->composer('customer.*', function ($view) use ($detailsForClient) {
+            $view->with('commonDetails', $detailsForClient);
+        });
+        
     }
 }

@@ -16,7 +16,7 @@
             <ul class="nav_area">
                 <li><a class="active" href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('event') }}">Event management</a></li>
-                <li><a href="{{ route('event') }}">Themes</a></li>
+                <li><a href="{{ route('event') }}">Designs</a></li>
                 <li><a href="{{ route('catering') }}">Catering</a></li>
                 {{-- <li><a href="#">BOOK YOUR VENUE</a></li> --}}
                 <li><a href="{{ route('logistics') }}">Logistic rentals</a></li>

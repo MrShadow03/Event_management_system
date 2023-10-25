@@ -146,12 +146,7 @@
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                        data-kt-check-target="#kt_customers_table .form-check-input" value="1">
-                                </div>
-                            </th>
+                            <th class="min-w-125px">ID</th>
                             <th class="min-w-125px">Customer Name</th>
                             <th class="min-w-125px">Email</th>
                             <th class="min-w-125px">Phone number</th>
@@ -165,9 +160,7 @@
                         @forelse ($customers as $customer)
                         <tr>
                             <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1">
-                                </div>
+                                <a href="{{ route('admin.customer.show', $customer->id ) }}" class="text-gray-800 text-hover-primary mb-1">#{{ $customer->id }}</a>
                             </td>
                             <td>
                                 <a href="{{ route('admin.customer.show', $customer->id ) }}" class="text-gray-800 text-hover-primary mb-1">{{ $customer->name }}</a>
@@ -197,6 +190,14 @@
                                     <div class="menu-item px-3">
                                         <a href="{{ route('admin.customer.show', $customer->id) }}" class="menu-link px-3">
                                             View
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="{{ route('admin.customer.show', $customer->id).'#update' }}" class="menu-link px-3">
+                                            Edit
                                         </a>
                                     </div>
                                     <!--end::Menu item-->
@@ -412,188 +413,6 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <div class="modal fade" id="modal_update_customer" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content rounded">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <!--begin:Form-->
-                    <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.customer.update') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('POST')
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h1 class="mb-3">Edit Customer</h1>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Name</span>
-                            </label>
-                            <!--end::Label-->
-                            
-                            <input type="text" class="form-control form-control-solid" name="name" >
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">Company</label>
-                            <!--end::Label-->
-
-                            <input type="text" class="form-control form-control-solid" name="company">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="row mb-8">
-                            <div class="col-md-6">
-                                <label class="required d-flex align-items-center fs-6 fw-semibold mb-2">Phone number</label>
-                                <div class="input-group input-group-solid">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <i class="ki-duotone ki-address-book fs-2">
-                                            <i class="path1"></i>
-                                            <i class="path2"></i>
-                                            <i class="path3"></i>
-                                        </i>
-                                    </span>
-                                    <input type="text" name="phone_number" class="form-control form-control-solid" placeholder="01712345678" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-md-0 mt-8">
-                                <label class="required d-flex align-items-center fs-6 fw-semibold mb-2">Email</label>
-                                <div class="input-group input-group-solid">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <i class="ki-duotone ki-sms fs-2">
-                                            <i class="path1"></i>
-                                            <i class="path2"></i>
-                                        </i>
-                                    </span>
-                                    <input type="email" name="email" class="form-control form-control-solid" placeholder="example@gmail.com" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin:: Social Media-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">Address</label>
-                            <div class="input-group input-group-solid">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="ki-duotone ki-geolocation-home fs-2">
-                                        <i class="path1"></i>
-                                        <i class="path2"></i>
-                                    </i>
-                                </span>
-                                <input type="text" name="address" class="form-control form-control-solid"/>
-                            </div>
-                        </div>
-                        <!--end:: Social Media-->
-
-                        <!--begin::Image input-->
-                        <div class="mb-10 fv-row">
-                            <label class="fs-6 fw-semibold mb-4 d-block">
-                                <span>Profile Photo</span>
-                                <span class="ms-1" data-bs-toggle="tooltip" title="Image for the single employee section.">
-                                    <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </span>
-                            </label>
-                            <div class="image-input image-input-outline" data-kt-image-input="true">
-                                <!--begin::Image preview wrapper-->
-                                <div class="image-input-wrapper" style="background-image: url({{ asset('/assets/admin/assets/media/svg/avatars/blank.svg') }})"></div>
-                                <!--end::Image preview wrapper-->
-
-                                <!--begin::Edit button-->
-                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Change employee image">
-                                    <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
-
-                                <!--begin::Cancel button-->
-                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="cancel"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Cancel employee image">
-                                    <i class="ki-outline ki-cross fs-3"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="remove"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Remove employee image">
-                                    <i class="ki-outline ki-cross fs-3"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            </div>
-                            <div class="form-text">Allowed file types: png, jpg, jpeg, webp. | Max Size: 1MB</div>
-                        </div>
-                        <!--end::Image input-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
-                                Cancel
-                            </button>
-
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end:Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
 @endsection
 
 <!--begin::Page Vendors Javascript and custom JS-->
@@ -647,8 +466,7 @@
             datatable = $(table).DataTable({
                 "info": false,
                 'order': [],
-                'columnDefs': [
-                    { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
+                'columnDefs': [ // Disable ordering on column 0 (checkbox)
                     { orderable: false, targets: 6 }, // Disable ordering on column 6 (actions)
                 ]
             });

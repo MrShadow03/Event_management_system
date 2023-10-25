@@ -247,12 +247,6 @@
         <div class="custom_title2">
             <h2 class="heading-lg">Follow &amp; Review Us</h2>
             <p class="para-md">We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.</p>
-            <div class="social_btn_sm">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-pinterest"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            </div>
         </div>
         <div class="social_btn_lg">
             <a class="btn-grad" href="#" style="margin-right: 10px"><i class="fa-brands fa-facebook"></i>&nbsp; Review</a>

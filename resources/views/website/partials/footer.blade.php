@@ -4,13 +4,17 @@
             <div class="address">
                 <img src="assets/img/Logo.png" alt="">
                 <span><i class="fa-solid fa-paper-plane"></i> Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212</span>
-                <span><i class="fa-solid fa-mobile-screen-button"></i><a href="#"></a>+880 1671-711933</span>
+                <span><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+8801671711933">+880-1671-711933</a>,<a href="tel:+8801918893885"> +880-1918-893885</a></span>
                 <span><i class="fa-solid fa-envelope"></i><a href="#">maaeventmanagementbd@gmail.com</a></span>
                 <div class="footer_social_btn">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="footer-icon icon--fb fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="footer-icon icon--ig fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="footer-icon icon--wa fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="footer-icon icon--pt fa-brands fa-pinterest"></i></a>
+                    <a href="#"><i class="footer-icon icon--yt fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="footer-icon icon--tw fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="footer-icon icon--ln fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="footer-icon icon--tk fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="import_link">
@@ -42,6 +46,6 @@
             </div>
         </div>
         <div class="copyright">
-            <span>&copy; Copyright - 2023 - Maa Event | All Rights Reseved | Desingned & Developed by <a href="#"> Pepplo BD</a></span>
+            <span>&copy; Copyright - 2023 - Maa Event | All Rights Reseved | Desingned & Developed by <a href="#" onclick="window.open('https://pepplobd.com', '_blank')"> Pepplo BD</a></span>
         </div>
     </footer>

@@ -62,6 +62,37 @@
     padding-bottom: 2rem;
 }
 
+.footer-icon{
+    font-size: 2rem !important;
+    color: $white;
+    &:hover{
+        &.icon--fb{
+            color: #2b5dca !important;
+        }
+        &.icon--tw{
+            color: #1da1f2 !important;
+        }
+        &.icon--ig{
+            color: #c32aa3 !important;
+        }
+        &.icon--yt{
+            color: #ff0000 !important;
+        }
+        &.icon--ln{
+            color: #0077b5 !important;
+        }
+        &.icon--wa{
+            color: #25d366 !important;
+        }
+        &.icon--pt{
+            color: #bd081c !important;
+        }
+        &.icon--tk{
+            color: #1ab7ea !important;
+        }
+    }
+}
+
 @media only screen and (max-width:1220px) {
     .aro_img{
         margin-top: -5%;

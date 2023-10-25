@@ -128,6 +128,11 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         Route::patch('/rentals/return/repair', [RentalApprovalController::class, 'sendToRepair'])->name('rentals.return.repair');
     });
 
+    //Customer routes
+    Route::group(['middleware' => ['can:update customers']], function(){
+        Route::patch('/customer/update/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+        Route::patch('/customer/update-password/{customer}', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
+    });
 
     //profile routes
     Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){

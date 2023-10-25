@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\Auth\Customer\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\Customer\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\Customer\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\Customer\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\Customer\NewPasswordController;
-use App\Http\Controllers\Auth\Customer\PasswordController;
-use App\Http\Controllers\Auth\Customer\PasswordResetLinkController;
-use App\Http\Controllers\Auth\Customer\RegisteredUserController;
-use App\Http\Controllers\Auth\Customer\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Customer\InvoiceController;
+use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\Customer\DashboardController;
+use App\Http\Controllers\Auth\Customer\PasswordController;
+use App\Http\Controllers\Auth\Customer\NewPasswordController;
+use App\Http\Controllers\Auth\Customer\VerifyEmailController;
+use App\Http\Controllers\Auth\Customer\RegisteredUserController;
+use App\Http\Controllers\Auth\Customer\PasswordResetLinkController;
+use App\Http\Controllers\Auth\Customer\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\Customer\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\Customer\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\Customer\EmailVerificationNotificationController;
 
 Route::group(['middleware' => ['guest:customer'], 'prefix' => 'customer/', 'as' => 'customer.'] ,function () {
 
@@ -35,9 +38,12 @@ Route::group(['middleware' => ['guest:customer'], 'prefix' => 'customer/', 'as' 
 Route::group(['middleware' => ['auth:customer'], 'prefix' => 'customer/', 'as' => 'customer.'],function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('/dashboard', function () {
-        return view('customer.pages.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::patch('/profile/update/{customer}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/update-password/{customer}', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+    Route::get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //             ->name('verification.notice');
 
