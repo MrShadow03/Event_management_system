@@ -27,7 +27,7 @@ trait ImageHandling {
         $hasImageInput = request()->hasFile($inputFileName);
         $hasImageInDatabase = $oldImage != null;
         $oldImageName = $hasImageInDatabase ? explode('/', $oldImage)[1] : null;
-        $isDefaultImage = $oldImageName && explode('/', $oldImageName)[0] == 'default';
+        $isDefaultImage = $oldImageName && strpos($oldImageName, 'default.') !== false;
         //if has new image then delete old image if not default image
         if($hasImageInput && !$isDefaultImage){
             Storage::disk('public')->delete($oldImage);
@@ -37,7 +37,7 @@ trait ImageHandling {
     public function updateImage($inputFileName, $dict, $oldImage = null){
         $hasImageInput = request()->hasFile($inputFileName);
         $hasImageInDatabase = $oldImage != null;
-
+        
         // Delete the old image and upload the new one if a new image is provided
         if ($hasImageInput) {
             $this->deleteOldImage($inputFileName, $oldImage);

@@ -610,7 +610,7 @@
     <div class="app-navbar-item ms-1 ms-md-3" id="kt_header_user_menu_toggle">
         <!--begin::Menu wrapper-->
         <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <img class="object-fit-contain" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}" alt="user">
+            <img class="object-fit-cover" src="{{ asset('storage') . '/' . Auth::user()->image }}" alt="user">
         </div>
 
         <!--begin::User account menu-->
@@ -620,14 +620,14 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img class="object-fit-contain" alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}">
+                        <img class="object-fit-cover" alt="Logo" src="{{ asset('storage') . '/' . Auth::user()->image }}">
                     </div>
                     <!--end::Avatar-->
 
                     <!--begin::Username-->
                     <div class="d-flex flex-column">
                         <div class="fw-bold d-flex align-items-center fs-5">
-                            {{ $commonDetails['name'] }}
+                            {{ auth()->user()->name }}
                         </div>
 
                         <a href="mailto:pepplobuilders@gmail.com" class="fw-semibold text-muted text-hover-primary fs-7">
@@ -645,6 +645,9 @@
 
             <!--begin::Menu item-->
             <div class="menu-item px-5">
+                <a href="{{ route('admin.user.profile') }}" class="menu-link px-5">
+                    <span class="menu-title">My Account</span>
+                </a>
                 <a href="{{ route('admin.profile.overview') }}" class="menu-link px-5">
                     <span class="menu-title">Company Profile</span>
                 </a>

@@ -267,18 +267,20 @@
                             <div class="d-flex justify-content-between w-75 mt-5">
                                 <!--begin::Customer-->
                                 <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
-                                    <div class="fs-5 fw-bold pt-5">{{ auth()->user()->name ?? '' }}</div>
-                                    <div class="fs-6">CCO</div>
-                                </div>
-                                <!--end::Customer-->
-                                
-                                <!--begin::Customer-->
-                                <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
                                     <div class="fs-5 fw-bold pt-5">{{ $invoice->customer->name ?? '' }}</div>
                                     <div class="fs-6">Client</div>
                                 </div>
                                 <!--end::Customer-->
+
+                                <!--begin::Customer-->
+                                <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
+                                    <div class="fs-12 pt-5">APPROVED BY</div>
+                                    <div class="fs-5 fw-bold">{{ auth()->user()->name ?? '' }}</div>
+                                    <div class="fs-6">COO</div>
+                                </div>
+                                <!--end::Customer-->
                             </div>
+                            <!--end::Customer & Client Signatures-->
                         </div>
                         <!--end:Order summary-->
                     </div>

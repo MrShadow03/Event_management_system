@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\CompanyDetail;
-use Faker\Provider\ar_EG\Company;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\PaymentMethod;
 use App\Traits\ImageHandling;
+use Faker\Provider\ar_EG\Company;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -180,6 +181,30 @@ class ProfileController extends Controller
         $user->save();
 
         return Redirect::back()->with('success', 'Password updated successfully');
+    }
+
+    public function updateGeneral(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|max:500|mimes:png,jpg,jpeg',
+        ]);
+
+        if($validator->fails()){
+            $firstError = $validator->errors()->first(); 
+            return redirect()->back()->with('error', $firstError);
+        }
+
+        /** 
+         * 
+         * @var APP\Model\User $user 
+         * 
+         * */
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->image = $this->updateImage('image', 'user', $user->image);
+        $user->save();
+
+        return Redirect::back()->with('success','Profile updated successfully');
     }
 
     /**

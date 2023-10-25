@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PersonalProfileController;
 use App\Http\Controllers\RentalReturnController;
 use App\Http\Controllers\RentalApprovalController;
 use App\Http\Controllers\RentalDispatchController;
@@ -71,6 +72,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         // return view('admin.pages.dashboard');
     })->name('dashboard');
 
+    Route::get('/user/profile', [PersonalProfileController::class,'index'])->name('user.profile');
     
     Route::patch('/section/update', [SectionController::class, 'update'])->name('section.update');
     
@@ -137,6 +139,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
             Route::patch('/update', [ProfileController::class, 'update'])->name('update');
             Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
             Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+            Route::patch('/update-general', [ProfileController::class, 'updateGeneral'])->name('update-general');
         });
         Route::group(['middleware' => ['role:super_admin|admin|sales_manager']], function(){
             Route::get('/advance', [ProfileController::class, 'advance'])->name('advance');
