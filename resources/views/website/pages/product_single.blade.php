@@ -5,7 +5,17 @@
 @endsection
 
 @section('meta')
-    <title>Cart</title>
+    <meta name="title" content="{{ $product->name }} - Maaevent.com - Your Event Solution Provider in Bangladesh">
+    <meta name="description" content="Explore the details of {{ $product->name }}, a high-quality event solution offered by Maaevent.com. Learn about its features, benefits, and how it can enhance your upcoming event in Bangladesh.">
+    <meta name="keywords" content="Maaevent.com, {{ $product->name }}, event solution, product details, features, benefits, Bangladesh events">
+
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="{{ $product->name }} - Maaevent.com - Your Event Solution Provider in Bangladesh">
+    <meta property="og:description" content="Discover the details of {{ $product->name }}, an exceptional event solution provided by Maaevent.com. Learn about its features, benefits, and how it can elevate your upcoming event in Bangladesh.">
+    <meta property="og:image" content="{{ asset('storage').'/'.$product->image }}">
+    <meta property="og:url" content="{{ route('product', $product->id) }}">
+
+<title>{{ $product->name }} - Maaevent.com - Your Event Solution Provider in Bangladesh</title>
 @endsection
 
 @section('nav')
@@ -33,7 +43,7 @@
                     @endforeach
                 </div>
                 @endif
-                <form class="form_box" action="">
+                <form class="form_box" action="{{ route('customer.login') }}">
                     <div class="form_items">
                         <label class="label_text" for="">Pickup Date &amp; Time (Please Select Date &amp; Time to Select Quantity)</label>
                         <input class="pickup_date" name="date" type="date">
@@ -77,7 +87,7 @@
                         <div class="raw_items_image">
                             <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }} image" loading="lazy">
                             <div class="image_items_icon_box">
-                                <a title="Read More" class="image_items_icon" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a title="Read More" class="image_items_icon" href="{{ route('customer.login') }}"><i class="fa-solid fa-cart-shopping"></i></a>
                                 <a title="Quick View" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 <a title="Add To Wishlist" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-heart"></i></a>
                             </div>

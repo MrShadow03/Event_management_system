@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Rental List | Admin</title>
+    <title>Rental List | Client</title>
 @endsection
 <!--end::Page Title-->
 
@@ -47,7 +47,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home </a>
+                        <a href="{{ route('customer.dashboard') }}" class="text-muted text-hover-primary">Home </a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -141,7 +141,6 @@
                                 </div>
                             </th>
                             <th class="min-w-100px">Order ID</th>
-                            <th class="min-w-175px">Customer</th>
                             <th class="text-end min-w-70px">Status</th>
                             <th class="text-end min-w-100px">Total</th>
                             <th class="text-end min-w-100px">From</th>
@@ -160,26 +159,6 @@
                             </td>
                             <td data-kt-ecommerce-order-filter="order_id">
                                 <a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ $rental->id }}</a>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!--begin:: Avatar -->
-                                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}">
-                                            <div class="symbol-label">
-                                                {{ $rental->customer->name[0] }}
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!--end::Avatar-->
-
-                                    <div class="ms-5">
-                                        <!--begin::Title-->
-                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}"
-                                            class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->customer->name }}</a>
-                                        <!--end::Title-->
-                                    </div>
-                                </div>
                             </td>
                             <td class="text-end pe-0" data-order="{{ $rental->status }}">
                                 <!--begin::Badges-->
@@ -209,7 +188,7 @@
                                     data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="{{ route('admin.invoice.show', $rental->invoice->id) }}" class="menu-link px-3">
+                                        <a href="{{ route('customer.invoice.show', $rental->invoice->id) }}" class="menu-link px-3">
                                             View
                                         </a>
                                     </div>
@@ -269,46 +248,15 @@
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
                     <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.rental.create') }}" method="GET">
+                        action="{{ route('customer.rental.create') }}" method="GET">
+                        <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
-                            <h1 class="mb-3">New Order</h1>
+                            <h1 class="mb-3">New FOrder</h1>
                             <!--end::Title-->
                         </div>
                         <!--end::Heading-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Name</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <div class="input-group input-group-solid flex-nowrap">
-                                <span class="input-group-text">
-                                    <i class="ki-duotone ki-profile-user fs-3">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                        <span class="path4"></span>
-                                    </i>
-                                </span>
-                                <div class="overflow-hidden flex-grow-1">
-                                    <select class="form-select form-select-solid rounded-start-0 border-start" data-control="select2" data-placeholder="Select an customer" data-dropdown-parent="#modal_create_rental" name="customer_id">
-                                        <option></option>
-                                        @foreach ($customers as $customer)
-                                            <option value="{{ $customer->id }}">{{ $customer->name.' '.'#'.$customer->id }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!--end::Input group-->
 
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -360,7 +308,6 @@
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/sales/listing.js') }}"></script>
     <script>
         $("#dateRange").flatpickr({
             altInput: true,
@@ -368,6 +315,185 @@
             dateFormat: "Y-m-d",
             mode: "range",
             minDate: "today",
+        });
+
+        // Class definition
+        var KTAppEcommerceSalesListing = function () {
+            // Shared variables
+            var table;
+            var datatable;
+            var flatpickr;
+            var minDate, maxDate;
+
+            // Private functions
+            var initDatatable = function () {
+                // Init datatable --- more info on datatables: https://datatables.net/manual/
+                datatable = $(table).DataTable({
+                    "info": false,
+                    'order': [],
+                    'pageLength': 10,
+                    'columnDefs': [ // Disable ordering on column 0 (checkbox)
+                        { orderable: false, targets: 6 }, // Disable ordering on column 7 (actions)
+                    ]
+                });
+
+                // Re-init functions on datatable re-draws
+                datatable.on('draw', function () {
+                    handleDeleteRows();
+                });
+            }
+
+            // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
+            var initFlatpickr = () => {
+                const element = document.querySelector('#kt_ecommerce_sales_flatpickr');
+                flatpickr = $(element).flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                    mode: "range",
+                    onChange: function (selectedDates, dateStr, instance) {
+                        handleFlatpickr(selectedDates, dateStr, instance);
+                    },
+                });
+            }
+
+            // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+            var handleSearchDatatable = () => {
+                const filterSearch = document.querySelector('[data-kt-ecommerce-order-filter="search"]');
+                filterSearch.addEventListener('keyup', function (e) {
+                    datatable.search(e.target.value).draw();
+                });
+            }
+
+            // Handle status filter dropdown
+            var handleStatusFilter = () => {
+                const filterStatus = document.querySelector('[data-kt-ecommerce-order-filter="status"]');
+                $(filterStatus).on('change', e => {
+                    let value = e.target.value;
+                    if (value === 'all') {
+                        value = '';
+                    }
+                    datatable.column(3).search(value).draw();
+                });
+            }
+
+            // Handle flatpickr --- more info: https://flatpickr.js.org/events/
+            var handleFlatpickr = (selectedDates, dateStr, instance) => {
+                minDate = selectedDates[0] ? new Date(selectedDates[0]) : null;
+                maxDate = selectedDates[1] ? new Date(selectedDates[1]) : null;
+
+                // Datatable date filter --- more info: https://datatables.net/extensions/datetime/examples/integration/datatables.html
+                // Custom filtering function which will search data in column four between two values
+                $.fn.dataTable.ext.search.push(
+                    function (settings, data, dataIndex) {
+                        var min = minDate;
+                        var max = maxDate;
+                        var dateAdded = new Date(moment($(data[5]).text(), 'DD/MM/YYYY'));
+                        var dateModified = new Date(moment($(data[6]).text(), 'DD/MM/YYYY'));
+
+                        if (
+                            (min === null && max === null) ||
+                            (min === null && max >= dateModified) ||
+                            (min <= dateAdded && max === null) ||
+                            (min <= dateAdded && max >= dateModified)
+                        ) {
+                            return true;
+                        }
+                        return false;
+                    }
+                );
+                datatable.draw();
+            }
+
+            // Handle clear flatpickr
+            var handleClearFlatpickr = () => {
+                const clearButton = document.querySelector('#kt_ecommerce_sales_flatpickr_clear');
+                clearButton.addEventListener('click', e => {
+                    flatpickr.clear();
+                });
+            }
+
+            // Delete cateogry
+            var handleDeleteRows = () => {
+                // Select all delete buttons
+                const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-order-filter="delete_row"]');
+
+                deleteButtons.forEach(d => {
+                    // Delete button on click
+                    d.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // Select parent row
+                        const parent = e.target.closest('tr');
+
+                        // Get category name
+                        const orderID = parent.querySelector('[data-kt-ecommerce-order-filter="order_id"]').innerText;
+
+                        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+                        Swal.fire({
+                            text: "Are you sure you want to delete order: " + orderID + "?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            buttonsStyling: false,
+                            confirmButtonText: "Yes, delete!",
+                            cancelButtonText: "No, cancel",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-danger",
+                                cancelButton: "btn fw-bold btn-active-light-primary"
+                            }
+                        }).then(function (result) {
+                            if (result.value) {
+                                Swal.fire({
+                                    text: "You have deleted " + orderID + "!.",
+                                    icon: "success",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                }).then(function () {
+                                    // Remove current row
+                                    datatable.row($(parent)).remove().draw();
+                                });
+                            } else if (result.dismiss === 'cancel') {
+                                Swal.fire({
+                                    text: orderID + " was not deleted.",
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                });
+                            }
+                        });
+                    })
+                });
+            }
+
+
+            // Public methods
+            return {
+                init: function () {
+                    table = document.querySelector('#kt_ecommerce_sales_table');
+
+                    if (!table) {
+                        return;
+                    }
+
+                    initDatatable();
+                    initFlatpickr();
+                    handleSearchDatatable();
+                    handleStatusFilter();
+                    handleDeleteRows();
+                    handleClearFlatpickr();
+                }
+            };
+        }();
+
+        // On document ready
+        KTUtil.onDOMContentLoaded(function () {
+            KTAppEcommerceSalesListing.init();
         });
     </script>
 @endsection

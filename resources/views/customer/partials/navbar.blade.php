@@ -1,5 +1,5 @@
 <div class="app-navbar flex-shrink-0">
-    <!--begin::Notifications-->
+    {{-- <!--begin::Notifications-->
     <div class="app-navbar-item ms-1 ms-md-3">
         <!--begin::Menu- wrapper-->
         <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" id="kt_menu_item_wow">
@@ -245,7 +245,7 @@
 
                     <!--begin::View more-->
                     <div class="py-3 text-center border-top">
-                        <a href="pages/user-profile/activity.html" class="btn btn-color-gray-600 btn-active-color-primary">
+                        <a href="javascript:void(0);" class="btn btn-color-gray-600 btn-active-color-primary">
                             View All
                             <i class="ki-duotone ki-arrow-right fs-5"><span class="path1"></span><span class="path2"></span></i> </a>
                     </div>
@@ -540,7 +540,7 @@
 
                     <!--begin::View more-->
                     <div class="py-3 text-center border-top">
-                        <a href="pages/user-profile/activity.html" class="btn btn-color-gray-600 btn-active-color-primary">
+                        <a href="javascript:void(0);" class="btn btn-color-gray-600 btn-active-color-primary">
                             View All
                             <i class="ki-duotone ki-arrow-right fs-5"><span class="path1"></span><span class="path2"></span></i> </a>
                     </div>
@@ -553,7 +553,7 @@
         <!--end::Menu-->
         <!--end::Menu wrapper-->
     </div>
-    <!--end::Notifications-->
+    <!--end::Notifications--> --}}
 
     <!--begin::Theme mode-->
     <div class="app-navbar-item ms-1 ms-md-3">

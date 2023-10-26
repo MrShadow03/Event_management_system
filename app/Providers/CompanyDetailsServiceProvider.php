@@ -40,6 +40,7 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             'email' => $formattedDetails['email'],
             'logo' => $formattedDetails['logo'],
             'favicon' => $formattedDetails['favicon'],
+            'product_VAT' => $formattedDetails['product_VAT'],
         ];
 
         // pass to all the views inside admin folder

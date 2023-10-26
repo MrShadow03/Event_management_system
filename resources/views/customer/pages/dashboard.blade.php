@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Dashboard | Default</title>
+    <title>Dashboard | Client</title>
 @endsection
 <!--end::Page Title-->
 

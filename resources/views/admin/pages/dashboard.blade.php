@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Dashboard | Default</title>
+    <title>Dashboard | Admin</title>
 @endsection
 <!--end::Page Title-->
 

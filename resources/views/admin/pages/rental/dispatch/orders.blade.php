@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Products</title>
+    <title>Dispatch Orders | Admin</title>
 @endsection
 <!--end::Page Title-->
 
@@ -252,7 +252,7 @@
                                                 data-kt-ecommerce-edit-order-filter="product"
                                                 data-kt-ecommerce-edit-order-id="product_1">
                                                 <!--begin::Thumbnail-->
-                                                <a href="../catalog/edit-product.html" class="symbol symbol-50px">
+                                                <a href="javascript:void(0);" class="symbol symbol-50px">
                                                     <span class="symbol-label"
                                                         style="background-image:url({{ asset('storage').'/'.$rental->product->image }});"></span>
                                                 </a>
@@ -260,7 +260,7 @@
 
                                                 <div class="ms-5">
                                                     <!--begin::Title-->
-                                                    <a href="../catalog/edit-product.html"
+                                                    <a href="javascript:void(0);"
                                                         class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->product->name }}</a>
                                                     <!--end::Title-->
 

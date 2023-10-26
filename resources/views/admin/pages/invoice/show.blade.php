@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Invoice</title>
+    <title>Invoice-{{ $invoice->id }} | Admin</title>
 @endsection
 <!--end::Page Title-->
 

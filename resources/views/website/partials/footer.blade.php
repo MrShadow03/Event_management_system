@@ -2,7 +2,7 @@
     <footer>
         <div class="footer_area">
             <div class="address">
-                <img src="assets/img/Logo.png" alt="">
+                <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
                 <span><i class="fa-solid fa-paper-plane"></i> Ka-44/2, Kalachandpur Gulshan-2, Dhaka-1212</span>
                 <span><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+8801671711933">+880-1671-711933</a>,<a href="tel:+8801918893885"> +880-1918-893885</a></span>
                 <span><i class="fa-solid fa-envelope"></i><a href="#">maaeventmanagementbd@gmail.com</a></span>

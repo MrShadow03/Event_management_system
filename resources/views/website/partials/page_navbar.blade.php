@@ -95,7 +95,7 @@
     <!-- Nav Menu Logo Here -->
     <div id="mainNav_area">
         <div class="logo_top">
-            <img src="{{ asset('assets/website/assets/img/Logo.png') }}" alt="">
+            <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
         </div>
         <nav class="navigation">
             <div class="logo_nav">
@@ -104,7 +104,7 @@
                     <h2>MENU</h2>
                 </div>
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('assets/website/assets/img/Logo.png') }}" alt="">
+                    <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
                 </a>
             </div>
             <ul class="nav_area">

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Banners</title>
+    <title>Inbox | Admin</title>
 @endsection
 <!--end::Page Title-->
 

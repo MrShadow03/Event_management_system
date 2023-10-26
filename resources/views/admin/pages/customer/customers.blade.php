@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Products</title>
+    <title>Customer List | Admin</title>
 @endsection
 <!--end::Page Title-->
 

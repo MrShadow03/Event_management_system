@@ -58,6 +58,19 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('customer.rentals')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a href="{{ route('customer.rentals') }}" class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-handcart fs-2">
+                            </i>
+                        </span>
+                        <span class="menu-title">Rentals</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
             </div>
             <!--end::Menu-->
         </div>

@@ -10,7 +10,7 @@
                     <h2>MENU</h2>
                 </div>
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('assets/website/assets/img/Logo.png') }}" alt="">
+                    <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
                 </a>
             </div>
             <ul class="nav_area">

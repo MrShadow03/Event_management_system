@@ -5,7 +5,17 @@
 @endsection
 
 @section('meta')
-    <title>Event Organization</title>
+    <meta name="title" content="Events Category - Maaevent.com - Explore Wedding Events in Bangladesh">
+    <meta name="description" content="Discover a wide range of wedding events in Bangladesh with Maaevent.com's Events Category. Explore wedding ceremonies, receptions, and more. Find inspiration for your dream wedding.">
+    <meta name="keywords" content="Maaevent.com, events category, wedding events, wedding ceremonies, wedding receptions, wedding inspiration, Bangladesh weddings">
+
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="Events Category - Maaevent.com - Explore Wedding Events in Bangladesh">
+    <meta property="og:description" content="Explore a variety of wedding events in Bangladesh with Maaevent.com's Events Category. From ceremonies to receptions, find inspiration for your dream wedding.">
+    <meta property="og:image" content="{{ asset('assets/website/assets/img/logo.png') }}">
+    <meta property="og:url" content="{{ route('event') }}">
+
+    <title>Events - Maaevent.com - Explore Wedding Events in Bangladesh</title>
 @endsection
 
 @section('nav')

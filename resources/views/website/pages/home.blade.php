@@ -5,17 +5,19 @@
 @endsection
 
 @section('meta')
-    <title>Maa Event Management</title>
-    <meta name="description" content="Maaevent.com is the Largest & Most Loved 360 degree wedding solution provider’s platform in Bangladesh. Starting in 2021, we are running our operations with a view to serving our clients as an all-in-one purchasing platform.">
-    <meta name="keywords" content="Event management, catering, meeting">
+    <meta name="title" content="Welcome to Maaevent.com - Your Ultimate Wedding Solution Provider in Bangladesh">
+    <meta name="description" content="Discover the largest and most trusted wedding solution provider in Bangladesh. Maaevent.com offers a one-stop platform for wedding planning, connecting you with top vendors, ideas, and inspiration. Plan your dream wedding effortlessly.">
+    <meta name="keywords" content="Bangladesh wedding, wedding planners, photographers, vendors, inspiration, wedding ideas, bridal services, wedding solutions">
     <meta name="author" content="Maa Event Management">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Largest & Most Loved wedding solution provider’s platform in Bangladesh.">
-    <meta property="og:description" content="Maaevent.com is the Largest & Most Loved 360 degree wedding solution provider’s platform in Bangladesh. Starting in 2021, we are running our operations with a view to serving our clients as an all-in-one purchasing platform.">
+    
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="Maaevent.com - Your Wedding Planning Partner in Bangladesh">
+    <meta property="og:description" content="Plan your perfect wedding with Maaevent.com, the premier wedding solution provider in Bangladesh. Find vendors, inspiration, and more for your special day.">
     <meta property="og:image" content="{{ asset('assets/website/img/about/about-1.jpg') }}">
     <meta property="og:url" content="https://www.maaevent.com">
     <meta property="og:type" content="website">
+
+    <title>Welcome to Maaevent.com - Your Ultimate Wedding Solution Provider in Bangladesh</title>
 @endsection
 
 @section('nav')
@@ -27,7 +29,7 @@
     <!-- BANNER -->
     @section('top-logo')
     <div class="logo_top">
-        <img src="{{ asset('assets/website/assets/img/Logo.png') }}" alt="">
+        <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
     </div>
     @endsection
     @section('banner')
@@ -180,7 +182,7 @@
         </div>
         <div id="client_slider" class="owl-carousel">
             <div class="clients_card">
-                <img src="{{ asset('./assets/website/assets/img/Logo.png') }}" alt="">
+                <img src="{{ asset('./assets/website/assets/img/logo.png') }}" alt="">
                 <div class="reting">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -192,7 +194,7 @@
                 <h4>Tayba Jannat</h4>
             </div>
             <div class="clients_card">
-                <img src="{{ asset('./assets/website/assets/img/Logo.png') }}" alt="">
+                <img src="{{ asset('./assets/website/assets/img/logo.png') }}" alt="">
                 <div class="reting">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -204,7 +206,7 @@
                 <h4>Tayba Jannat</h4>
             </div>
             <div class="clients_card">
-                <img src="{{ asset('./assets/website/assets/img/Logo.png') }}" alt="">
+                <img src="{{ asset('./assets/website/assets/img/logo.png') }}" alt="">
                 <div class="reting">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -216,7 +218,7 @@
                 <h4>Tayba Jannat</h4>
             </div>
             <div class="clients_card">
-                <img src="{{ asset('./assets/website/assets/img/Logo.png') }}" alt="">
+                <img src="{{ asset('./assets/website/assets/img/logo.png') }}" alt="">
                 <div class="reting">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -228,7 +230,7 @@
                 <h4>Tayba Jannat</h4>
             </div>
             <div class="clients_card">
-                <img src="{{ asset('./assets/website/assets/img/Logo.png') }}" alt="">
+                <img src="{{ asset('./assets/website/assets/img/logo.png') }}" alt="">
                 <div class="reting">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>

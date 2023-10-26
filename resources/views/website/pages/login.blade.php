@@ -7,7 +7,7 @@
         <h3>Customer</h3>
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email or Phone')" />
             <x-text-input id="email" class="block mt-1 w-full" type="text" name="emailOrPhone" :value="old('emailOrPhone')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('emailOrPhone')" class="mt-2" />
         </div>

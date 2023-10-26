@@ -38,14 +38,14 @@ class ProductController extends Controller
             }
         }
 
-        // Pagination
-        $limit = 12;
-        if($request->has('limit')){
-            $limit = $request->limit;
-        }
+        // // Pagination
+        // $limit = 12;
+        // if($request->has('limit')){
+        //     $limit = $request->limit;
+        // }
 
 
-        $products = $products->where('status', 1)->paginate($limit);
+        $products = $products->where('status', 1)->get();
         $max_price = Product::where('category_id', $category_id)->orderBy('rental_price', 'desc')->first()->rental_price ?? 100;
         $categories = Category::all();
         $currentCategory = Category::where('id', $request->id)->first();

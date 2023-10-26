@@ -5,7 +5,17 @@
 @endsection
 
 @section('meta')
-    <title>Logistic Rentals</title>
+    <meta name="title" content="Logistics Category - Maaevent.com - Find Wedding Logistics Services in Bangladesh">
+    <meta name="description" content="Explore wedding logistics services in Bangladesh with Maaevent.com's Logistics Category. Find transportation, venue services, and more for your wedding needs.">
+    <meta name="keywords" content="Maaevent.com, logistics category, wedding logistics, transportation services, venue services, Bangladesh weddings">
+
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="Logistics Category - Maaevent.com - Find Wedding Logistics Services in Bangladesh">
+    <meta property="og:description" content="Discover a range of wedding logistics services in Bangladesh with Maaevent.com's Logistics Category. From transportation to venue services, find what you need for your wedding.">
+    <meta property="og:image" content="{{ asset('assets/website/assets/img/logo.png') }}">
+    <meta property="og:url" content="{{ route('logistics') }}">
+
+    <title>Logistics Category - Maaevent.com - Find Wedding Logistics Services in Bangladesh</title>
 @endsection
 
 @section('nav')

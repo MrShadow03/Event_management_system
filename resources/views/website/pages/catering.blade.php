@@ -5,7 +5,7 @@
 @endsection
 
 @section('meta')
-    <title>Catering</title>
+    <title>Catering | </title>
 @endsection
 
 @section('nav')

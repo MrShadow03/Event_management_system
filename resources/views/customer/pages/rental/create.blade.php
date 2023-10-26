@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Invoice-{{ $invoice->id }} Review | Admin</title>
+    <title>{{ $customer->name }}'s New Rental | Client</title>
 @endsection
 <!--end::Page Title-->
 
@@ -25,9 +25,6 @@
         [data-bs-theme="dark"] .image-input-placeholder {
             background-image: url('{{ asset('assets/admin/assets/media/svg/avatars/blank-dark.svg') }}');
         }
-        #dataTableProductQuantity:invalid{
-            border: 1px solid red;
-        }
     </style>
 @endsection
 <!--end::Page Custom Styles-->
@@ -42,7 +39,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Approve Orders
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Add Order
                 </h1>
                 <!--end::Title-->
 
@@ -50,7 +47,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home </a>
+                        <a href="{{ route('customer.dashboard') }}" class="text-muted text-hover-primary">Home </a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -60,7 +57,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{ route('admin.rentals') }}" class="text-muted text-hover-primary">Rentals </a>
+                        <a href="{{ route('customer.rentals') }}" class="text-muted text-hover-primary">Rentals </a>
                     </li>
                     <!--end::Item-->
 
@@ -86,14 +83,14 @@
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
         <!--begin::Form-->
-        <form id="kt_ecommerce_edit_order_form" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.rentals.review.update') }}" method="POST">
+        <form id="kt_ecommerce_edit_order_form" class="form d-flex flex-column flex-lg-row" action="{{ route('customer.rental.store') }}" method="POST">
             @csrf
-            @method('PATCH')
-            <input type="hidden" name="customer_id" value="{{ $invoice->customer->id }}">
-            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-            <input type="hidden" name="number_of_days" value="{{ $invoice->rentals[0]->number_of_days }}">
-            <input type="hidden" name="start_date" value="{{ $invoice->rentals[0]->starting_date }}">
-            <input type="hidden" name="return_date" value="{{ $invoice->rentals[0]->ending_date }}">
+            @method('POST')
+            <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+            <input type="hidden" name="invoice_id" value="{{ $invoice_id }}">
+            <input type="hidden" name="number_of_days" value="{{ $number_of_days }}">
+            <input type="hidden" name="start_date" value="{{ $start_date }}">
+            <input type="hidden" name="return_date" value="{{ $return_date }}">
             
             <!--begin::Aside column-->
             <div class="w-100 d-flex flex-column gap-8 flex-lg-row-auto w-lg-300px mb-7 me-7 me-lg-10">
@@ -161,62 +158,6 @@
 
                 </div>
                 <!--end::Order details-->
-
-                <!--begin::Card-->
-                <div class="card mb-5 mb-xl-8">
-                    <!--begin::Card body-->
-                    <div class="card-body pt-8">
-                        <!--begin::Details toggle-->
-                        <div class="d-flex flex-stack fs-4 py-3">
-                            <h2>Customer Details</h2>
-                        </div>
-                        <!--end::Details toggle-->
-
-                        <div class="separator separator-dashed my-3"></div>
-
-                        <!--begin::Details content-->
-                        <div class="pb-5 fs-6">
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Name</div>
-                            <div class="text-gray-600">{{ $customer->name }}</div>
-                            <!--begin::Details item-->
-                            @if ($customer->company)
-                                <!--begin::Details item-->
-                                <div class="fw-bold mt-5">Company</div>
-                                <div class="text-gray-600">{{ $customer->company }}</div>
-                                <!--begin::Details item-->
-                            @endif
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Account ID</div>
-                            <div class="text-gray-600">ID-{{ $customer->id }}</div>
-                            <!--begin::Details item-->
-                            @if ($customer->email)
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Email</div>
-                            <div class="text-gray-600"><a href="#"
-                                    class="text-gray-600 text-hover-primary">{{ $customer->email }}</a></div>
-                            <!--begin::Details item-->
-                            @endif
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Phone Number</div>
-                            <div class="text-gray-600">{{ $customer->phone_number }}</div>
-                            <!--begin::Details item-->
-                            @if ($customer->address)
-                            <!--begin::Details item-->
-                            <div class="fw-bold mt-5">Address</div>
-                            <div class="text-gray-600">
-                                @foreach (explode(',', $customer->address) as $address)
-                                    {{ $address }},<br>
-                                @endforeach
-                            </div>
-                            <!--begin::Details item-->
-                            @endif
-                        </div>
-                        <!--end::Details content-->
-                    </div>
-                    <!--end::Card body-->
-                </div>
-                <!--end::Card-->
                 
             </div>
             <!--end::Aside column-->
@@ -239,11 +180,11 @@
                         <div class="d-flex flex-column gap-10">
                             <!--begin::Search products-->
                             <div class="d-flex align-items-center position-relative mb-n7 ">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                </i>
-                                <input id="productSearchInput" type="text" data-kt-ecommerce-edit-order-filter="search" class="form-control form-control-solid w-100 w-lg-50 ps-12" placeholder="Search Products" />
+                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span
+                                        class="path1"></span><span class="path2"></span></i> <input type="text"
+                                    data-kt-ecommerce-edit-order-filter="search"
+                                    class="form-control form-control-solid w-100 w-lg-50 ps-12"
+                                    placeholder="Search Products" />
                             </div>
                             <!--end::Search products-->
 
@@ -259,9 +200,6 @@
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                     @foreach ($products as $product)
-                                    @php
-                                        $requested_quantity = $invoice->rentals->where('product_id', $product->id)->first()->quantity ?? 0;
-                                    @endphp
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center"
@@ -300,7 +238,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input id="dataTableProductQuantity" type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" title="Requeted amount is not available for this date!" value="{{ $requested_quantity }}"/>
+                                            <input type="number" oninput="collectProduct(this, {{ json_encode($product) }}, {{ $number_of_days }})" min="0" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" value="0"/>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -312,7 +250,7 @@
                             <div class="separator"></div>
                             <!--end::Separator-->
 
-                            <div id="product_table_wrapper" class="">
+                            <div id="product_table_wrapper" class="d-none">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -324,27 +262,16 @@
                                             </tr>
                                         </thead>
                                         <tbody id="product_row_wrapper">
-                                            @foreach ($invoice->rentals as $rental)
-                                            <tr id="product_row_{{ $rental->product->id }}">
-                                                <td>{{ $rental->product->name }}</td>
-                                                <td class="cursor-pointer text-hover-primary text-style-hover-underline" onclick="searchProduct(this)">{{ $rental->product->product_code }}</td>
-                                                <td>
-                                                    {{ $rental->quantity }}
-                                                    <input type="hidden" id="productInput{{ $rental->product->id }}" name="products[{{ $rental->product->id }}][quantity]" value="{{ $rental->quantity }}">
-                                                </td>
-                                                <td class="text-end">{{ $rental->quantity * $rental->product->rental_price * $number_of_days }}</td>
-                                            </tr>
-                                            @endforeach
                                         </tbody>
                                         <tfoot id="product_footer">
                                             <tr class="border-top border-gray-200">
                                                 <td colspan="3" class="text-end">Sub Total</td>
-                                                <td id="subTotalRow" class="text-end">{{ $invoice->subtotal }} <input type="hidden" id="subTotalInput" name="subtotal" value="{{ $invoice->subtotal }}" /></td>
+                                                <td id="subTotalRow" class="text-end">0</td>
                                             </tr>
-                                            <tr>
+                                            <tr class="d-none">
                                                 <td colspan="3" class="text-end">Discount (TK)</td>
                                                 <td class="text-end" id="discountRow">
-                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="{{ $invoice->discount }}">
+                                                    <input id="discountInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="discount" value="0" readonly>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -355,40 +282,34 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="border-top border-gray-200 text-end">Grand Total</td>
-                                                <td id="grandTotalRow" class="text-end">{{ $invoice->grand_total }} <input type="hidden" id="grandTotalInput" name="grand_total" value="{{ $invoice->grand_total }}" /> </td>
+                                                <td id="grandTotalRow" class="text-end">0</td>
                                             </tr>
-                                            <tr>
+                                            <tr class="d-none">
                                                 <td colspan="3" class="text-end">Paid (TK)</td>
                                                 <td class="text-end" id="paidRow">
-                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="{{ $invoice->paid }}">
+                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="0" readonly>
                                                 </td>
                                             </tr>
-                                            <td colspan="3" class="border-top border-gray-200 text-end">Due (TK)</td>
-                                            <td class="text-end" id="dueRow">{{ $invoice->due }}
-                                                <input id="dueInput" class="form-control form-control-sm" type="hidden" min="0" name="due" value="{{ $invoice->due }}">
-                                            </td>
+                                            <tr>
+                                                <td colspan="3" class="text-end">Due (TK)</td>
+                                                <td class="text-end" id="dueRow">
+                                                    <input id="dueInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="due" value="0">
+                                                </td>
+                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <!--begin::Button-->
-                                    <a href="{{ route('admin.rentals.approve') }}" id="kt_ecommerce_edit_order_cancel" class="btn btn-light me-5">
+                                    <a href="{{ route('customer.rentals') }}" id="kt_ecommerce_edit_order_cancel" class="btn btn-light me-5">
                                         Cancel
                                     </a>
                                     <!--end::Button-->
                         
                                     <!--begin::Button-->
-                                    <button type="submit" class="btn btn-danger me-5">
+                                    <button type="submit" id="kt_ecommerce_edit_order_submit" class="btn btn-primary">
                                         <span class="indicator-label">
-                                            Decline
-                                        </span>
-                                    </button>
-                                    <!--end::Button-->
-
-                                    <!--begin::Button-->
-                                    <button type="submit" id="kt_ecommerce_edit_order_submit" class="btn btn-success">
-                                        <span class="indicator-label">
-                                            Approve
+                                            Proceed
                                         </span>
                                         <span class="indicator-progress">
                                             Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
@@ -442,7 +363,7 @@
 
                     productRow.innerHTML = `
                         <td>${product.name}</td>
-                        <td class="cursor-pointer text-hover-primary text-style-hover-underline" onclick="searchProduct(this)">${product.product_code}</td>
+                        <td>${product.product_code}</td>
                         <td>
                             ${productInput.value}
                             <input type="hidden" id="productInput${product.id}" name="products[${product.id}][quantity]" value="${productInput.value}">
@@ -504,13 +425,6 @@
 
             grandTotalRow.innerHTML = `${grandTotal} <input type="hidden" id="grandTotalInput" name="grand_total" value="${grandTotal}">`;
             dueRow.innerHTML = `${due} <input type="hidden" id="dueInput" name="due" value="${due}">`;
-
-        }
-
-        function searchProduct(productCode){
-            const productSearchInput = document.getElementById('productSearchInput');
-            productSearchInput.value = productCode.innerText;
-            productSearchInput.dispatchEvent(new Event('keyup'));
         }
     </script>
 @endsection

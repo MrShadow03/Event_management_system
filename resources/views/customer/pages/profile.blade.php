@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Profile</title>
+    <title>{{ auth()->user()->name }}'s Dashboard | Client</title>
 @endsection
 <!--end::Page Title-->
 

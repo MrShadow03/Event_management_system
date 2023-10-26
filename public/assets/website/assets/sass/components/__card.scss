@@ -9,6 +9,9 @@
     flex-direction: column;
     &:hover{
         .raw_items_image{
+            img{
+                transform: scale(1.1);
+            }
             .image_items_icon_box {
                 position: absolute;
                 bottom: 3rem;
@@ -28,6 +31,7 @@
             width: 100%;
             aspect-ratio: 1/1.6 !important;
             object-fit: cover;
+            transition: .25s ease-in-out;
         }
         
         .image_items_icon_box{

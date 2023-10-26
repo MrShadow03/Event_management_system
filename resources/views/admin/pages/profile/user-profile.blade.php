@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin - User Panel</title>
+    <title>{{ auth()->user()->name }}'s Profile | Admin</title>
 @endsection
 <!--end::Page Title-->
 

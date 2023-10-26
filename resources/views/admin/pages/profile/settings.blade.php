@@ -2,7 +2,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Settings</title>
+    <title>Update Settings | Admin</title>
 @endsection
 <!--end::Page Title-->
 

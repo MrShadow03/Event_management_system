@@ -168,7 +168,25 @@
 @endsection
 
 @section('meta')
-    <title>Products</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Products - Maaevent.com - Explore a Wide Range of Event Solutions in Bangladesh">
+    <meta name="description" content="Discover a diverse range of event solutions in Bangladesh with Maaevent.com's Products Page. Explore products and services for all types of events, from weddings to corporate gatherings and more.">
+    <meta name="keywords" content="Maaevent.com, products, event solutions, all events, wedding products, corporate events, Bangladesh events">
+
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="Products - Maaevent.com - Explore a Wide Range of Event Solutions in Bangladesh">
+    <meta property="og:description" content="Explore a diverse selection of event solutions in Bangladesh with Maaevent.com's Products Page. Whether it's a wedding, corporate gathering, or any other event, find the products and services you need.">
+    <meta property="og:image" content="
+    @isset (($products[0]->image))
+        {{ asset('storage').'/'.$products[0]->image }}
+    @else
+    {{ asset('assets/website/assets/img/logo.png') }}
+    @endisset
+    ">
+    <meta property="og:url" content="[Insert your Products page URL here]">
+
+    <title>{{ $products[0]->category->name ?? ''}} Products - Maaevent.com - Explore a Wide Range of Event Solutions in Bangladesh</title>
 @endsection
 
 @section('nav')
@@ -237,7 +255,7 @@
                                     <option @selected($queries['order_by'] == 'price-desc') value="price-desc">Price: high to low</option>
                                 </select>
                             </div>
-                            <div class="item">
+                            {{-- <div class="item">
                                 <span>Show:</span>
                                 <select name="limit">
                                     <option @selected($queries['limit'] == 12) value="12">12</option>
@@ -246,7 +264,7 @@
                                     <option @selected($queries['limit'] == 48) value="48">48</option>
                                     <option @selected($queries['limit'] == 60) value="60">60</option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="raw_items_bottom">
@@ -256,7 +274,7 @@
                                 <div class="raw_items_image">
                                     <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }} image" loading="lazy">
                                     <div class="image_items_icon_box">
-                                        <a title="Read More" class="image_items_icon" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a title="Read More" class="image_items_icon" href="{{ route('customer.login') }}"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <a title="Quick View" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-magnifying-glass"></i></a>
                                         <a title="Add To Wishlist" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-heart"></i></a>
                                     </div>
@@ -287,7 +305,7 @@
                             <a href="">5</a>
                             <a href=""><i class="fa-solid fa-chevron-right"></i></a>
                         </div> --}}
-                        {{ $products->links('website.partials.product_pagination') }}
+                        {{-- {{ $products->links('website.partials.product_pagination') }} --}}
                     </div>
                 </div>
             </div>
@@ -421,12 +439,12 @@
         window.location.href = newUrl;
     });
     
-    document.querySelector('select[name="limit"]').addEventListener('change', function() {
-        const selectedValue = this.value;
-        const currentUrl = window.location.href;
-        const newUrl = updateQueryStringParameter('limit', selectedValue);
-        window.location.href = newUrl;
-    });
+    // document.querySelector('select[name="limit"]').addEventListener('change', function() {
+    //     const selectedValue = this.value;
+    //     const currentUrl = window.location.href;
+    //     const newUrl = updateQueryStringParameter('limit', selectedValue);
+    //     window.location.href = newUrl;
+    // });
     
     document.querySelector("#priceForm").addEventListener("submit", function (e) {
         //prevent default form submit

@@ -12,6 +12,10 @@ DONE----------11. Add customer invoice feature
 13. Add transaction feature
 14 Test product flow
 15. Give permission to change account info
+DONE----------16. Remove Product pagination
+17. Add Email or Phone label to the login page
+18. Add customer wallet
+DONE----------19. Hover effect on product image
 
 
 

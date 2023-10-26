@@ -5,7 +5,17 @@
 @endsection
 
 @section('meta')
-    <title>Contact</title>
+    <meta name="title" content="Contact Us - Maaevent.com - Your Ultimate Wedding Solution Provider in Bangladesh">
+    <meta name="description" content="Get in touch with Maaevent.com, the largest wedding solution provider in Bangladesh. Contact our team for wedding planning assistance, vendor information, and more. Your dream wedding is just a message away.">
+    <meta name="keywords" content="Maaevent.com, contact us, wedding solutions, wedding planning, vendor information, get in touch">
+
+    <!-- Open Graph (og:) Tags -->
+    <meta property="og:title" content="Contact Us - Maaevent.com - Your Wedding Planning Partner in Bangladesh">
+    <meta property="og:description" content="Reach out to Maaevent.com for all your wedding planning needs. Contact our team for assistance, vendor information, and more. Your dream wedding is just a message away in Bangladesh.">
+    <meta property="og:image" content="{{ asset('assets/website/assets/img/logo.png') }}">
+    <meta property="og:url" content="{{ route('contact') }}">
+
+    <title>Contact Us - Maaevent.com - Your Ultimate Wedding Solution Provider in Bangladesh</title>
 @endsection
 
 @section('nav')

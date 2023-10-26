@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 07:36 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Oct 26, 2023 at 12:31 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -265,9 +265,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1200, 'Customer 1', 'mhijab@gmail.com', '01766555213', NULL, '22/8/A, Block-B, Mirpur Road Shamoli, Dhaka-1207, Bangladesh', 'customers/default.png', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', NULL, NULL, NULL),
-(1201, 'Customer 2', 'vepyleqawy@mailinator.com', '01755666213', 'Ayala Bolton Traders', 'Fuga Esse beatae qu', 'customers/Il8aqvoENWlAT61fuA6AnQgMaMv53TvvIbKP3VG2.jpg', NULL, '$2y$10$RVsVdVPyrfkei95gEyvbO.sMU/DwrupfvCQuazAXIuc3w3D7IjPMy', NULL, '2023-10-18 06:31:43', '2023-10-18 06:31:43'),
-(1202, 'Customer 3', 'gedibad@mailinator.com', '01978194331', 'Holden Miller Trading', 'N. H avenue, Barishal, Bangladesh', 'customers/default.png', NULL, '$2y$10$D65GvZh4ZIvAzMPMMZYjeuyb0h0r1ZN69aigAD4eSM9ty/2w/ZT.W', NULL, '2023-10-20 10:10:28', '2023-10-20 10:10:28');
+(1, 'Ibrahim Khalil', 'ibrahimnahid16@gmail.com', '01726416843', 'Fairy Light', 'Ka-52, Kalachad Pur, Gulshan-2, 1212', 'customers/default.png', NULL, '$2y$10$rqx689heLu1W/6PZLzGUBuGToBYuVq6QLPJ2Cg0Ah1vRVgYAJ.w5a', NULL, '2023-10-22 08:56:16', '2023-10-22 08:56:16'),
+(2, 'Rakibul Hasan', 'kakon@gmail.com', '01318322742', 'Maa Event Management', 'Mohakhali, Dhaka', 'customers/9xlFxKJEj1tpiZqfYTsPKWri1UqbofauQ09iOAGI.jpg', NULL, '$2y$10$rF.wP840U7Ld7/zqmvAnsuiDwm4TZywaJobWOuom7GtyonsRuwEZe', NULL, '2023-10-22 12:49:16', '2023-10-22 12:49:16'),
+(3, 'Razia Haque Konok', 'elegant_konok@yahoo.com', '01675694452', 'Elegant Event solutions', '3/1, Block-F, Lyceum School building, lift-4, Flat-5B, Opposite of Lalmatia Mohila College, Dhaka 1207, Dhaka, Bangladesh', 'customers/eLZNoD6BVqEtbPB3xMXT7RBUaTAzAGFjii7p5zhE.jpg', NULL, '$2y$10$oiOjHCI4/VB5RTcxUMLTXe17plumcaUwGSn50jaohcDZT2e5Qttem', NULL, '2023-10-24 07:23:26', '2023-10-25 10:11:35'),
+(4, 'Galib Jaman', 'gj.emon35@gmail.com', '01766555213', 'Pepplo BD', 'N. avenue, Barishal, Bangladesh', 'customers/HDpX7axtnVDCyR1EDmBjU3JjAYiV46Jt8SELI7w7.jpg', NULL, '$2y$10$Jj8BfQAt3KgoQPXjwbGOB.Lhk9x2zBTsiMLWm4fEfK2NebGFYVJMi', NULL, '2023-10-25 07:21:00', '2023-10-25 12:59:14');
 
 -- --------------------------------------------------------
 
@@ -403,8 +404,8 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `due`, `status`, `created_at`, `updated_at`) VALUES
-(1301, 1200, 1, 2000, 0, 2000, 0, 2000, 0, 'rented', '2023-10-24 05:46:43', '2023-10-24 07:07:01'),
-(1302, 1202, 1, 2000, 0, 1500, 0, 2000, 500, 'approved', '2023-10-24 07:14:44', '2023-10-24 07:17:46');
+(1301, 4, 1, 2900, 0, 1500, 200, 2700, 1200, 'pending approval', '2023-10-25 13:08:24', '2023-10-25 13:08:24'),
+(1302, 1, 1, 900, 0, 0, 0, 900, 900, 'pending approval', '2023-10-26 10:17:27', '2023-10-26 10:17:27');
 
 -- --------------------------------------------------------
 
@@ -1069,12 +1070,9 @@ CREATE TABLE `rentals` (
 --
 
 INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1200, 71, 1301, 1, 'rented', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-24 05:46:43', '2023-10-24 07:06:49', NULL),
-(2, 1200, 80, 1301, 2, 'rented', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-24 05:46:43', '2023-10-24 07:06:58', NULL),
-(3, 1200, 73, 1301, 3, 'rented', '2023-10-29 00:00:00', '2023-10-31 00:00:00', 2, '2023-10-24 05:46:43', '2023-10-24 07:07:01', NULL),
-(4, 1202, 71, 1302, 1, 'approved', '2023-10-30 00:00:00', '2023-11-01 00:00:00', 2, '2023-10-24 07:14:44', '2023-10-24 07:17:46', NULL),
-(5, 1202, 80, 1302, 2, 'approved', '2023-10-30 00:00:00', '2023-11-01 00:00:00', 2, '2023-10-24 07:14:44', '2023-10-24 07:17:46', NULL),
-(6, 1202, 73, 1302, 3, 'approved', '2023-10-30 00:00:00', '2023-11-01 00:00:00', 2, '2023-10-24 07:14:44', '2023-10-24 07:17:46', NULL);
+(1, 4, 24, 1301, 2, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
+(2, 4, 25, 1301, 3, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
+(3, 1, 29, 1302, 3, 'pending approval', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-26 10:17:26', '2023-10-26 10:17:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -1257,7 +1255,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin Name', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', 'xeGpxWF7cuWNQNH54lZKrT54oYYilsqp2wDZt4NNhDlXZHxijneAcJUPWGZ7', NULL, '2023-10-24 15:36:45'),
+(1, 'Super Admin Name', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', '5WOjoayYhcIMCFpP6OwFh7cbkGXl5JMvxLi1OFma9DThMDg9CRH7kICVCwPC', NULL, '2023-10-24 15:36:45'),
 (2, 'Admin Name', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, '2023-10-24 15:42:53'),
 (3, 'Wanderer - Sales Manager ', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, NULL),
 (4, 'Wizard - Inventory', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, '2023-10-23 04:41:56', '2023-10-23 04:41:56');
@@ -1646,7 +1644,7 @@ ALTER TABLE `company_histories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1203;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -1736,7 +1734,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `repairs`

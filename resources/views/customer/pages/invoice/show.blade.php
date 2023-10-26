@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Admin-Invoice</title>
+    <title>Invoice-{{ $invoice->id }} | Client</title>
 @endsection
 <!--end::Page Title-->
 
