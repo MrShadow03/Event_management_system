@@ -253,7 +253,7 @@
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
-                            <h1 class="mb-3">New FOrder</h1>
+                            <h1 class="mb-3">Place Order</h1>
                             <!--end::Title-->
                         </div>
                         <!--end::Heading-->

@@ -149,7 +149,7 @@
                                 <div class="ms-5">
                                     <!--begin::Title-->
                                     <span class="text-gray-800 fs-6 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $product->name }}</span>
-                                    <p class="text-gray-500 fs-12">{{ $product->dimension }} feet</p>
+                                    <p class="text-gray-500 fs-12">{{ $product->dimension }}</p>
                                     <!--end::Title-->
                                 </div>
                             </div>
