@@ -11,7 +11,7 @@ class RentalReturnController extends Controller
 {
     public function index(){
         // get all the invoices with rentals with the status of rented and the ending date is today or before today
-        $date = '2023-11-03';
+        $date = date("Y-m-d");
         $invoices = Invoice::whereHas('rentals', function($query) use ($date){
             $query->where('status', 'rented')->whereDate('ending_date', '<=', $date);
         })->with(['rentals.product', 'customer'])->get();
@@ -22,7 +22,7 @@ class RentalReturnController extends Controller
     }
 
     public function show(Invoice $invoice){
-        $date = '2023-11-03';
+        $date = date("Y-m-d");
         $rentalEndingDate = Carbon::parse($invoice->rentals->first()->ending_date)->format('Y-m-d');
         $isEndingDateTodayOrBefore = $rentalEndingDate <= $date;
 
