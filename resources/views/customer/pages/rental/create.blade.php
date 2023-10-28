@@ -178,15 +178,31 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <div class="d-flex flex-column gap-10">
-                            <!--begin::Search products-->
-                            <div class="d-flex align-items-center position-relative mb-n7 ">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span
-                                        class="path1"></span><span class="path2"></span></i> <input type="text"
-                                    data-kt-ecommerce-edit-order-filter="search"
-                                    class="form-control form-control-solid w-100 w-lg-50 ps-12"
-                                    placeholder="Search Products" />
+                            <div class="d-flex justify-content-between gap-3">
+                                <!--begin::Search products-->
+                                <div class="d-flex align-items-center position-relative w-300px">
+                                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    <input type="text"
+                                        data-kt-ecommerce-edit-order-filter="search"
+                                        class="form-control form-control-solid w-100 ps-12"
+                                        placeholder="Search Products" />
+                                </div>
+                                <!--end::Search products-->
+                                <div class="w-100 mw-150px">
+                                    <!--begin::Select2-->
+                                    <select class="form-select form-select-solid font-bn" data-control="select2" data-hide-search="true" data-placeholder="Status" data-product-filter="category">
+                                        <option></option>
+                                        <option value="all">All</option>
+                                        @foreach ($products->unique('category_id') as $product)
+                                            <option value="{{ $product->category->name }}">{{ $product->category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Select2-->
+                                </div>
                             </div>
-                            <!--end::Search products-->
 
                             <!--begin::Table-->
                             <table class="table align-middle table-row-dashed fs-6 gy-5"
@@ -194,6 +210,7 @@
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-200px">Product</th>
+                                        <th class="min-w-200px">Cat</th>
                                         <th class="min-w-200px">Qty Remaining</th>
                                         <th class="min-w-100px">Order Qty</th>
                                     </tr>
@@ -207,8 +224,7 @@
                                                 data-kt-ecommerce-edit-order-id="product_1">
                                                 <!--begin::Thumbnail-->
                                                 <a href="javascript:void(0);" class="symbol symbol-50px">
-                                                    <span class="symbol-label"
-                                                        style="background-image:url({{ asset('storage').'/'.$product->image }});"></span>
+                                                    <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }}" loading="lazy">
                                                 </a>
                                                 <!--end::Thumbnail-->
 
@@ -229,6 +245,7 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td class="font-bn">{{ $product->category->name }}</td>
                                         <td>
                                             @if ($product->stock < 3)
                                             <span class="badge badge-light-warning">Low stock</span>
@@ -338,7 +355,6 @@
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/sales/save-order.js') }}"></script>
     <script>
         function collectProduct(productInput, product, numberOfDays = 1){
             const productRowWrapper = document.getElementById('product_row_wrapper');
@@ -426,6 +442,63 @@
             grandTotalRow.innerHTML = `${grandTotal} <input type="hidden" id="grandTotalInput" name="grand_total" value="${grandTotal}">`;
             dueRow.innerHTML = `${due} <input type="hidden" id="dueInput" name="due" value="${due}">`;
         }
+
+        // Class definition
+        var KTAppEcommerceSalesSaveOrder = function () {
+            // Shared variables
+            var table;
+            var datatable;
+
+            // Private functions
+            const initSaveOrder = () => {
+                table = document.querySelector('#kt_ecommerce_edit_order_product_table');
+                datatable = $(table).DataTable({
+                    "info": false,
+                    'order': [],
+                    "pageLength": 5,
+                    "lenghtMenu": [5, 10, 25, 50],
+                    "lengthChange": true,
+                    'columnDefs': [
+                        { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
+                    ]
+                });
+            }
+
+            // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+            var handleSearchDatatable = () => {
+                const filterSearch = document.querySelector('[data-kt-ecommerce-edit-order-filter="search"]');
+                filterSearch.addEventListener('keyup', function (e) {
+                    datatable.search(e.target.value).draw();
+                });
+            }
+
+            // Handle status filter dropdown
+            var handleStatusFilter = () => {
+                const filterStatus = document.querySelector('[data-product-filter="category"]');
+                $(filterStatus).on('change', e => {
+                    let value = e.target.value;
+                    if(value === 'all'){
+                        value = '';
+                    }
+                    datatable.column(1).search(value ? '^' + value + '$' : '', true, false).draw();
+                });
+            }
+
+
+            // Public methods
+            return {
+                init: function () {
+                    initSaveOrder();
+                    handleSearchDatatable();
+                    handleStatusFilter();
+                }
+            };
+        }();
+
+        // On document ready
+        KTUtil.onDOMContentLoaded(function () {
+            KTAppEcommerceSalesSaveOrder.init();
+        });
     </script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
