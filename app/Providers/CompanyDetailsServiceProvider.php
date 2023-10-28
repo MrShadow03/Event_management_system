@@ -48,5 +48,10 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             $view->with('commonDetails', $detailsForClient);
         });
         
+        // pass to all the views inside admin folder
+        view()->composer('website.*', function ($view) use ($detailsForClient) {
+            $view->with('commonDetails', $detailsForClient);
+        });
+        
     }
 }

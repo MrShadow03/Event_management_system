@@ -41,12 +41,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-
         if (! Auth::guard('customer')->attempt(['email' => $this->emailOrPhone, 'password' => $this->password], $this->boolean('remember')) && ! Auth::guard('customer')->attempt(['phone_number' => $this->emailOrPhone, 'password' => $this->password], $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'emailOrPhone' => trans('auth.failed'),
             ]);
         }
 

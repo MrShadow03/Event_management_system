@@ -125,11 +125,6 @@
             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_products_table">
                 <thead>
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                        {{-- <th class="w-10px pe-2">
-                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1">
-                            </div>
-                        </th> --}}
                         <th class="min-w-100px">Product</th>
                         <th class="text-end">Category</th>
                         <th class="text-end">Code</th>
@@ -143,11 +138,6 @@
                 <tbody class="fw-semibold text-gray-600">
                     @forelse ($products as $product)
                     <tr>
-                        {{-- <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1">
-                            </div>
-                        </td> --}}
                         <td>
                             <div class="d-flex align-items-center">
                                 <!--begin::Thumbnail-->
@@ -174,15 +164,6 @@
                             <span>{{ $product->stock }}</span>
                         </td>
                         <td class="text-end pe-0">{{ $product->rental_price }}</td>
-                        {{-- <td class="text-end pe-0" data-order="rating-4">
-                            <div class="rating justify-content-end">
-                                <div class="rating-label checked"><i class="ki-duotone ki-star fs-6"></i></div>
-                                <div class="rating-label checked"><i class="ki-duotone ki-star fs-6"></i></div>
-                                <div class="rating-label checked"><i class="ki-duotone ki-star fs-6"></i></div>
-                                <div class="rating-label checked"><i class="ki-duotone ki-star fs-6"></i></div>
-                                <div class="rating-label "><i class="ki-duotone ki-star fs-6"></i></div>
-                            </div>
-                        </td> --}}
                         @if ($product->status)
                         <td class="text-end pe-0" data-search="active">
                             <!--begin::Badges-->                    
@@ -1111,7 +1092,6 @@
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/catalog/products.js') }}"></script>
     <script>
         function inputProductData(data, storagePath) {
             $('#editProductId').val(data.id);
@@ -1134,6 +1114,136 @@
             $('#editCategoryName').val(data.name);
             $('#editCategoryImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')' );
         }
+
+        // Class definition
+        var KTAppEcommerceProducts = function () {
+            // Shared variables
+            var table;
+            var datatable;
+
+            // Private functions
+            var initDatatable = function () {
+                // Init datatable --- more info on datatables: https://datatables.net/manual/
+                datatable = $(table).DataTable({
+                    "info": true,
+                    'order': [],
+                    'pageLength': 10,
+                    'columnDefs': [
+                        { render: DataTable.render.number(',', '.', 2), targets: 4},
+                        { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
+                        { orderable: false, targets: 7 }, // Disable ordering on column 7 (actions)
+                    ]
+                });
+
+                // Re-init functions on datatable re-draws
+                datatable.on('draw', function () {
+                    handleDeleteRows();
+                });
+            }
+
+            // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+            var handleSearchDatatable = () => {
+                const filterSearch = document.querySelector('[data-kt-ecommerce-product-filter="search"]');
+                filterSearch.addEventListener('keyup', function (e) {
+                    datatable.search(e.target.value).draw();
+                });
+            }
+
+            // Handle status filter dropdown
+            var handleStatusFilter = () => {
+                const filterStatus = document.querySelector('[data-kt-ecommerce-product-filter="status"]');
+                $(filterStatus).on('change', e => {
+                    let value = e.target.value;
+                    if(value === 'all'){
+                        value = '';
+                    }
+                    console.log(value);
+                    datatable.column(5).search(value ? '^' + value + '$' : '', true, false).draw();
+                });
+            }
+
+            // Delete category
+            var handleDeleteRows = () => {
+                // Select all delete buttons
+                const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-product-filter="delete_row"]');
+
+                deleteButtons.forEach(d => {
+                    // Delete button on click
+                    d.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // Select parent row
+                        const parent = e.target.closest('tr');
+
+                        // Get category name
+                        const productName = parent.querySelector('[data-kt-ecommerce-product-filter="product_name"]').innerText;
+
+                        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+                        Swal.fire({
+                            text: "Are you sure you want to archive " + productName + "?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            buttonsStyling: false,
+                            confirmButtonText: "Yes, archive!",
+                            cancelButtonText: "No, cancel",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-danger",
+                                cancelButton: "btn fw-bold btn-active-light-primary"
+                            }
+                        }).then(function (result) {
+                            if (result.value) {
+                                Swal.fire({
+                                    text: "You have archived " + productName + "!.",
+                                    icon: "success",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                }).then(function () {
+                                    // get the product id from data-product-id
+                                    const productId = parent.querySelector('[data-product-id]').getAttribute('data-product-id');
+                                    // send to the delete route
+                                    window.location.href = `/admin/product/archive/${productId}`;
+                                });
+                            } else if (result.dismiss === 'cancel') {
+                                Swal.fire({
+                                    text: productName + " was not archived.",
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn fw-bold btn-primary",
+                                    }
+                                });
+                            }
+                        });
+                    })
+                });
+            }
+
+
+            // Public methods
+            return {
+                init: function () {
+                    table = document.querySelector('#kt_ecommerce_products_table');
+
+                    if (!table) {
+                        return;
+                    }
+
+                    initDatatable();
+                    handleSearchDatatable();
+                    handleStatusFilter();
+                    handleDeleteRows();
+                }
+            };
+        }();
+
+        // On document ready
+        KTUtil.onDOMContentLoaded(function () {
+            KTAppEcommerceProducts.init();
+        });
     </script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
