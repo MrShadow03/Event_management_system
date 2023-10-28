@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2023 at 12:31 PM
+-- Generation Time: Oct 28, 2023 at 05:30 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -253,6 +253,7 @@ CREATE TABLE `customers` (
   `company` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT 'customers/default.png',
+  `deposit` int(11) DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -264,11 +265,11 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ibrahim Khalil', 'ibrahimnahid16@gmail.com', '01726416843', 'Fairy Light', 'Ka-52, Kalachad Pur, Gulshan-2, 1212', 'customers/default.png', NULL, '$2y$10$rqx689heLu1W/6PZLzGUBuGToBYuVq6QLPJ2Cg0Ah1vRVgYAJ.w5a', NULL, '2023-10-22 08:56:16', '2023-10-22 08:56:16'),
-(2, 'Rakibul Hasan', 'kakon@gmail.com', '01318322742', 'Maa Event Management', 'Mohakhali, Dhaka', 'customers/9xlFxKJEj1tpiZqfYTsPKWri1UqbofauQ09iOAGI.jpg', NULL, '$2y$10$rF.wP840U7Ld7/zqmvAnsuiDwm4TZywaJobWOuom7GtyonsRuwEZe', NULL, '2023-10-22 12:49:16', '2023-10-22 12:49:16'),
-(3, 'Razia Haque Konok', 'elegant_konok@yahoo.com', '01675694452', 'Elegant Event solutions', '3/1, Block-F, Lyceum School building, lift-4, Flat-5B, Opposite of Lalmatia Mohila College, Dhaka 1207, Dhaka, Bangladesh', 'customers/eLZNoD6BVqEtbPB3xMXT7RBUaTAzAGFjii7p5zhE.jpg', NULL, '$2y$10$oiOjHCI4/VB5RTcxUMLTXe17plumcaUwGSn50jaohcDZT2e5Qttem', NULL, '2023-10-24 07:23:26', '2023-10-25 10:11:35'),
-(4, 'Galib Jaman', 'gj.emon35@gmail.com', '01766555213', 'Pepplo BD', 'N. avenue, Barishal, Bangladesh', 'customers/HDpX7axtnVDCyR1EDmBjU3JjAYiV46Jt8SELI7w7.jpg', NULL, '$2y$10$Jj8BfQAt3KgoQPXjwbGOB.Lhk9x2zBTsiMLWm4fEfK2NebGFYVJMi', NULL, '2023-10-25 07:21:00', '2023-10-25 12:59:14');
+INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `deposit`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Ibrahim Khalil', 'ibrahimnahid16@gmail.com', '01726416843', 'Fairy Light', 'Ka-52, Kalachad Pur, Gulshan-2, 1212', 'customers/default.png', 5000, NULL, '$2y$10$rqx689heLu1W/6PZLzGUBuGToBYuVq6QLPJ2Cg0Ah1vRVgYAJ.w5a', NULL, '2023-10-22 08:56:16', '2023-10-22 08:56:16'),
+(2, 'Rakibul Hasan', 'kakon@gmail.com', '01318322742', 'Maa Event Management', 'Mohakhali, Dhaka', 'customers/9xlFxKJEj1tpiZqfYTsPKWri1UqbofauQ09iOAGI.jpg', 0, NULL, '$2y$10$rF.wP840U7Ld7/zqmvAnsuiDwm4TZywaJobWOuom7GtyonsRuwEZe', NULL, '2023-10-22 12:49:16', '2023-10-22 12:49:16'),
+(3, 'Razia Haque Konok', 'elegant_konok@yahoo.com', '01675694452', 'Elegant Event solutions', '3/1, Block-F, Lyceum School building, lift-4, Flat-5B, Opposite of Lalmatia Mohila College, Dhaka 1207, Dhaka, Bangladesh', 'customers/eLZNoD6BVqEtbPB3xMXT7RBUaTAzAGFjii7p5zhE.jpg', 0, NULL, '$2y$10$oiOjHCI4/VB5RTcxUMLTXe17plumcaUwGSn50jaohcDZT2e5Qttem', NULL, '2023-10-24 07:23:26', '2023-10-25 10:11:35'),
+(4, 'Galib Jaman', 'gj.emon35@gmail.com', '01766555213', 'Pepplo BD', 'N. avenue, Barishal, Bangladesh', 'customers/HDpX7axtnVDCyR1EDmBjU3JjAYiV46Jt8SELI7w7.jpg', 13000, NULL, '$2y$10$Jj8BfQAt3KgoQPXjwbGOB.Lhk9x2zBTsiMLWm4fEfK2NebGFYVJMi', NULL, '2023-10-25 07:21:00', '2023-10-28 15:26:14');
 
 -- --------------------------------------------------------
 
@@ -405,7 +406,8 @@ CREATE TABLE `invoices` (
 
 INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `due`, `status`, `created_at`, `updated_at`) VALUES
 (1301, 4, 1, 2900, 0, 1500, 200, 2700, 1200, 'pending approval', '2023-10-25 13:08:24', '2023-10-25 13:08:24'),
-(1302, 1, 1, 900, 0, 0, 0, 900, 900, 'pending approval', '2023-10-26 10:17:27', '2023-10-26 10:17:27');
+(1302, 1, 1, 5600, 0, 595, 5, 5595, 0, 'approved', '2023-10-26 10:17:27', '2023-10-28 14:33:30'),
+(1303, 4, 1, 5000, 0, 8000, 0, 5000, 0, 'approved', '2023-10-28 15:25:08', '2023-10-28 15:26:14');
 
 -- --------------------------------------------------------
 
@@ -700,12 +702,12 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 0, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-23 08:30:23', NULL),
 (24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 4, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-23 08:46:34', NULL),
 (25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 28, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-22 06:22:50', NULL),
-(26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 25, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-19 11:35:13', NULL),
+(26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 14, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-28 15:26:14', NULL),
 (27, 10, 'CP-7', 'Candle SS Centre Piece', '1.5', 'SS', 9, 'pcs', 100, 'product/msDimzKfxHmC5a7LpxtgEVPVRynXvvOLFlDM7Hl6.jpg', 1, '2023-10-12 05:20:13', '2023-10-19 09:33:15', NULL),
-(28, 10, 'CP-8', 'Clear Acrylic Centre Piece', '2 x 2', NULL, 6, 'pcs', 2000, 'product/pSOdrjwR90CdIeDgb4uXDSUFwAzZSJNejdcCSprS.jpg', 1, '2023-10-12 05:25:14', '2023-10-12 05:25:14', NULL),
-(29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 20, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-19 12:23:54', NULL),
-(30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 19, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-21 16:05:30', NULL),
-(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-12 07:36:04', NULL),
+(28, 10, 'CP-8', 'Clear Acrylic Centre Piece', '2 x 2', NULL, 4, 'pcs', 2000, 'product/pSOdrjwR90CdIeDgb4uXDSUFwAzZSJNejdcCSprS.jpg', 1, '2023-10-12 05:25:14', '2023-10-28 15:26:14', NULL),
+(29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 17, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-28 14:33:29', NULL),
+(30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 14, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-28 14:33:30', NULL),
+(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 25, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-28 14:33:30', NULL),
 (32, 10, 'CP-', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/klUL7s7PQGRbtf6qlMklsmcz7q4XVMOE6tMurCFI.jpg', 1, '2023-10-12 07:36:44', '2023-10-12 07:39:09', '2023-10-12 07:39:09'),
 (33, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/wPmPkMRLqDxxh2qX4zF9hBYn3cTIxsprcUrgT9Kk.jpg', 1, '2023-10-12 07:37:57', '2023-10-12 07:39:22', '2023-10-12 07:39:22'),
 (34, 10, 'CP-12', 'Straight Box Medium Centre Piece 3 Layer', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/WO0zjFHBTkxJ8Py8yhOK4Vy6xBXwfZ2F0GdeOJvB.jpg', 1, '2023-10-12 07:40:49', '2023-10-12 07:40:49', NULL),
@@ -1072,7 +1074,12 @@ CREATE TABLE `rentals` (
 INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 4, 24, 1301, 2, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
 (2, 4, 25, 1301, 3, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
-(3, 1, 29, 1302, 3, 'pending approval', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-26 10:17:26', '2023-10-26 10:17:26', NULL);
+(3, 1, 29, 1302, 3, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-26 10:17:26', '2023-10-28 14:33:30', NULL),
+(4, 1, 26, 1302, 6, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
+(5, 1, 30, 1302, 5, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
+(6, 1, 31, 1302, 4, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
+(7, 4, 26, 1303, 5, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 15:25:08', '2023-10-28 15:26:14', NULL),
+(8, 4, 28, 1303, 2, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 15:25:08', '2023-10-28 15:26:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1262,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin Name', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', '5WOjoayYhcIMCFpP6OwFh7cbkGXl5JMvxLi1OFma9DThMDg9CRH7kICVCwPC', NULL, '2023-10-24 15:36:45'),
+(1, 'Super Admin Name', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', 'F0gb40eT2CFdYGIj2Aq9H9fy6e18AgxcFxkEaa4FQBilsy3rs19b4n1RCTlr', NULL, '2023-10-24 15:36:45'),
 (2, 'Admin Name', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, '2023-10-24 15:42:53'),
 (3, 'Wanderer - Sales Manager ', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, NULL),
 (4, 'Wizard - Inventory', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, '2023-10-23 04:41:56', '2023-10-23 04:41:56');
@@ -1680,7 +1687,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1303;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1734,7 +1741,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `repairs`
