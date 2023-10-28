@@ -206,9 +206,9 @@
                                             <span class="path4"></span>
                                         </i>        
                                 
-                                        <div class="text-info fw-bold fs-4 mb-2 mt-5">{{ number_format(425000, 0, '.',',') }} BDT</div>
+                                        <div class="text-info fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->deposit) }} BDT</div>
                                 
-                                        <div class="fw-semibold text-gray-400">Balance</div>
+                                        <div class="fw-semibold text-gray-400">Deposit</div>
                                     </div>
                                     <!--end::Card body-->
                                 </div>
@@ -284,7 +284,6 @@
                             </div>
 
                         </div>
-
 
                         <!--begin::Card-->
                         <div class="card pt-4 mb-6 mb-xl-9">
@@ -378,6 +377,52 @@
                                     </tbody>
                                 </table>
                                 <!--end::Table-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card-->
+
+                        <!--begin::Card-->
+                        <div class="card pt-4 mb-6 mb-xl-9">
+                            <!--begin::Card header-->
+                            <div class="card-header border-0">
+                                <!--begin::Card title-->
+                                <div class="card-title">
+                                    <h2>Customer Deposit</h2>
+                                </div>
+                                <!--end::Card title-->
+                            </div>
+                            <!--end::Card header-->
+
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0 pb-5">
+                                <!--begin::Table wrapper-->
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table class="table align-middle table-row-dashed gy-5"
+                                        id="kt_table_users_login_session">
+                                        <!--begin::Table body-->
+                                        <tbody class="fs-6 fw-semibold text-gray-600">
+                                            <tr>
+                                                <td class="text-success">Balance</td>
+                                                <td>{{ number_format($customer->deposit) }} BDT</td>
+                                                <td class="text-end">
+                                                    <button type="button"
+                                                        class="btn btn-icon btn-active-light-danger w-30px h-30px ms-auto"
+                                                        data-bs-toggle="modal" data-bs-target="#update_deposit">
+                                                        <i class="ki-duotone ki-pencil fs-3">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!--end::Table body-->
+                                    </table>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Table wrapper-->
                             </div>
                             <!--end::Card body-->
                         </div>

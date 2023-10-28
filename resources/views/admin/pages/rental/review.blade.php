@@ -177,6 +177,10 @@
                         <!--begin::Details content-->
                         <div class="pb-5 fs-6">
                             <!--begin::Details item-->
+                            <div class="fw-bold mt-5">Deposit</div>
+                            <div class="text-gray-600">{{ $customer->deposit }}</div>
+                            <!--begin::Details item-->
+                            <!--begin::Details item-->
                             <div class="fw-bold mt-5">Name</div>
                             <div class="text-gray-600">{{ $customer->name }}</div>
                             <!--begin::Details item-->
@@ -358,7 +362,7 @@
                                                 <td id="grandTotalRow" class="text-end">{{ $invoice->grand_total }} <input type="hidden" id="grandTotalInput" name="grand_total" value="{{ $invoice->grand_total }}" /> </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3" class="text-end">Paid (TK)</td>
+                                                <td colspan="3" class="text-end">Cash Paid (TK)</td>
                                                 <td class="text-end" id="paidRow">
                                                     <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="{{ $invoice->paid }}">
                                                 </td>

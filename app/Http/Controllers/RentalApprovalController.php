@@ -99,10 +99,32 @@ class RentalApprovalController extends Controller{
             'products' => 'required | array',
         ]);
 
-        $request->paid = $request->paid ?? 0;
-        $request->vat_percentage = $request->vat_percentage ?? 0;
-        $request->discount = $request->discount ?? 0;
-        $request->due = $request->due ?? 0;
+        $deposit = Customer::find($request->customer_id)->deposit; // 10,000
+        $grand_total = $request->grand_total; // 12,000
+        $paid = $request->paid ?? 0; // 0
+
+
+        $vat_percentage = $request->vat_percentage ?? 0;
+        $discount = $request->discount ?? 0;
+        $due = 0;
+
+
+
+
+        //
+        // $net_payable = $deposit - $grand_total; // -595
+        $net_payable = $grand_total - $paid ; // 12,000 - 0 = 12,000
+        $deposit = $deposit - $net_payable; // 10,000 - 12,000 = -2,000
+
+        if($deposit < 0){
+            $deposit = 0; // 0
+            $due = abs($deposit); // 2,000
+        }
+
+
+        $customer = Customer::find($request->customer_id);
+        $customer->deposit = $deposit;
+        $customer->save();
 
 
         // For each product create a rental with the status pending approval
@@ -141,11 +163,11 @@ class RentalApprovalController extends Controller{
         $invoice = Invoice::find($request->invoice_id);
         $invoice->user_id = auth()->user()->id;
         $invoice->subtotal = $request->subtotal;
-        $invoice->vat_percentage = $request->vat_percentage;
-        $invoice->paid = $request->paid;
-        $invoice->discount = $request->discount;
-        $invoice->grand_total = $request->grand_total;
-        $invoice->due = $request->due;
+        $invoice->vat_percentage = $vat_percentage;
+        $invoice->paid = $paid;
+        $invoice->discount = $discount;
+        $invoice->grand_total = $grand_total;
+        $invoice->due = $due;
         $invoice->status = 'approved';
         $invoice->save();
 
