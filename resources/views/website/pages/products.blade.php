@@ -188,7 +188,6 @@
 
     <title>{{ $products[0]->category->name ?? ''}} Products - Maaevent.com - Explore a Wide Range of Event Solutions in Bangladesh</title>
 @endsection
-
 @section('nav')
     <x-nav />
 @endsection
@@ -233,7 +232,7 @@
                                 @continue
                             @endif
                             <li class="rental_items">
-                                <a href="{{ route('products', $category->id) }}" class="{{ $currentCategory->id == $category->id ? 'active' : '' }}">{{ $category->name }}</a>
+                                <a href="{{ route('customer.products', $category->id) }}" class="{{ $currentCategory->id == $category->id ? 'active' : '' }}">{{ $category->name }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -280,7 +279,7 @@
                                     </div>
                                 </div>
                                 <div class="raw_items_text">
-                                    <a class="heading-xs" href="{{ route('product', $product->id) }}">{{ $product->name }}</a>
+                                    <a class="heading-xs" href="{{ route('customer.product', $product->id) }}">{{ $product->name }}</a>
                                     @if ($product->dimension)
                                         <p>Dimension: {{ $product->dimension }}</p>
                                     @endif
@@ -290,7 +289,7 @@
                                     @endif
                                 </div>
                                 <div class="card-footer">
-                                    <p class="price">{{ $product->rental_price }} <span class="font-bn">৳</span></p>
+                                    <p class="price">Available: {{ $product->stock }} <span class="font-bn"></span></p>
                                 </div>
                             </div>
                             @empty

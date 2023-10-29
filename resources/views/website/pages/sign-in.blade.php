@@ -61,7 +61,7 @@
 
                                 <!--begin::Subtitle-->
                                 <div class="text-gray-500 fw-semibold fs-6">
-                                    Login to access your dashboard!
+                                    Login to browse products, access dashboard, place order & more!
                                 </div>
                                 <!--end::Subtitle--->
                             </div>

@@ -75,7 +75,7 @@ class RentalApprovalController extends Controller{
             'products' => $products,
             'start_date' => $startDate,
             'return_date' => $endDate,
-            'invoice_id' => $latestInvoiceId + 1,
+            'invoice_id' => $invoice->id,
             'number_of_days' => $totalDays,
         ]);
     }
@@ -181,6 +181,19 @@ class RentalApprovalController extends Controller{
         }
 
         return redirect()->route('admin.rentals.approve')->with('success','Rental created successfully and is pending approval from the admin'); 
+    }
+
+    public function decline(Request $request){
+        // Only take the invoice id and validate it
+        $request->validate([
+            'invoice_id' => 'required | exists:invoices,id',
+        ]);
+
+        // Delete rentals and invoice
+        Invoice::find($request->invoice_id)->rentals()->delete();
+        Invoice::destroy($request->invoice_id);
+
+        return redirect()->route('admin.rentals')->with('warning', 'Request of invoice #' . $request->invoice_id . ' has been declined');
     }
 
     public function acceptReturn(Request $request){

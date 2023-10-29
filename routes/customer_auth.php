@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Customer\RentalController;
+use App\Http\Controllers\Website\ProductController;
 use App\Http\Controllers\Customer\InvoiceController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\DashboardController;
@@ -49,6 +50,10 @@ Route::group(['middleware' => ['auth:customer'], 'prefix' => 'customer/', 'as' =
     Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
     Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
     Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
+
+    // Website Routes
+    Route::get('/products/{id}', [ProductController::class, 'index'])->name('products');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product');
 // Route::get('verify-email', EmailVerificationPromptController::class)
     //             ->name('verification.notice');
 

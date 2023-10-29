@@ -555,6 +555,21 @@
     </div>
     <!--end::Notifications--> --}}
 
+    @if (auth()->user()->deposit)
+    <!--begin::Deposit-->
+    <div class="app-navbar-item ms-1 ms-md-3">
+        <a href="#" class="btn btn-bg-light btn-color-info btn-outline btn-outline-dashed btn-outline-info">
+            <i class="ki-duotone ki-award fs-1 text-info">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                <span class="path3"></span>
+            </i>
+            <span class="fw-bold font-bn">{{ number_format(auth()->user()->deposit) }} &#2547;</span>
+        </a>
+    </div>
+    <!--end::Deposit-->
+    @endif
+    
     <!--begin::Theme mode-->
     <div class="app-navbar-item ms-1 ms-md-3">
 

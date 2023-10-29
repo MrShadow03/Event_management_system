@@ -57,11 +57,11 @@
                     </label>
                     <div class="tab_wrap_nav">
                         <ul class="tab_wrap_nav_box">
-                            @foreach ($categories as $category)
+                            @foreach ($categories_shared as $category)
                             @if ($category->id == 1)
                                 @continue(true)
                             @endif
-                                <li class="tab_wrap_nav_items"><a class="font-bn" href="{{ route('products', $category->id) }}">{{ $category->name }}</a></li>
+                                <li class="tab_wrap_nav_items"><a class="font-bn" href="{{ route('customer.products', $category->id) }}">{{ $category->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

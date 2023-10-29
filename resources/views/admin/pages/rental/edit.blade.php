@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Invoice-{{ $invoice->id }} Review | Admin</title>
+    <title>Invoice-{{ $invoice->id }} Update | Admin</title>
 @endsection
 <!--end::Page Title-->
 
@@ -42,7 +42,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Approve Orders
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Update
                 </h1>
                 <!--end::Title-->
 
@@ -70,7 +70,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">New Rental</li>
+                    <li class="breadcrumb-item text-muted">Update Rental</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -86,7 +86,7 @@
 @section('content')
     <div id="kt_app_content_container" class="app-container  container-xxl ">
         <!--begin::Form-->
-        <form id="approvalForm" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.rentals.review.update') }}" method="POST">
+        <form id="approvalForm" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.rental.update') }}" method="POST">
             @csrf
             @method('PATCH')
             <input type="hidden" name="customer_id" value="{{ $invoice->customer->id }}">
@@ -118,7 +118,7 @@
                                 <!--end::Label-->
 
                                 <!--begin::Auto-generated ID-->
-                                <div class="fw-bold fs-3">#{{ $invoice_id }}</div>
+                                <div class="fw-bold fs-3">#{{ $invoice->id }} <span class="badge badge-warning">{{ $invoice->status }}</span></div>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -407,9 +407,9 @@
                                     <!--end::Button-->
 
                                     <!--begin::Button-->
-                                    <a href="javascript:void(0);" id="approveButton" class="btn btn-success">
+                                    <a href="javascript:void(0);" id="approveButton" class="btn btn-primary">
                                         <span class="indicator-label">
-                                            Approve
+                                            Update
                                         </span>
                                         <span class="indicator-progress">
                                             Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
@@ -564,18 +564,15 @@
 
             approveButton.addEventListener('click', function (e) {
                 // Change the form's action to the "Approve" route
-                approvalForm.action = "{{ route('admin.rentals.review.update') }}";
+                approvalForm.action = "{{ route('admin.rental.update') }}";
 
                 // show sweet alert
                 Swal.fire({
                     title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+                    text: "You want to update this!",
                     icon: "success",
                     showCancelButton: true,
-                    confirmButtonText: "Yes, approve it!",
-                    customClass: {
-                        confirmButton: 'btn btn-sm btn-success my-0'
-                    }
+                    confirmButtonText: "Yes, update!",
                 }).then(function (result) {
                     if (result.isConfirmed) {
                         // Submit the form

@@ -56,7 +56,7 @@ class CompanyDetailsServiceProvider extends ServiceProvider
         
         // Get all the categories and pass to all the views website folder
         view()->composer('website.*', function ($view) {
-            $view->with('categories', Category::all());
+            $view->with('categories_shared', Category::all());
         });
     }
 }

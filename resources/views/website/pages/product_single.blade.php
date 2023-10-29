@@ -13,7 +13,7 @@
     <meta property="og:title" content="{{ $product->name }} - Maaevent.com - Your Event Solution Provider in Bangladesh">
     <meta property="og:description" content="Discover the details of {{ $product->name }}, an exceptional event solution provided by Maaevent.com. Learn about its features, benefits, and how it can elevate your upcoming event in Bangladesh.">
     <meta property="og:image" content="{{ asset('storage').'/'.$product->image }}">
-    <meta property="og:url" content="{{ route('product', $product->id) }}">
+    <meta property="og:url" content="{{ route('customer.product', $product->id) }}">
 
 <title>{{ $product->name }} - Maaevent.com - Your Event Solution Provider in Bangladesh</title>
 @endsection
@@ -36,14 +36,14 @@
                 <div class="variations">
                     <span>More Variations: </span>
                     @foreach ($variations['colors'] as $item)
-                        <a href="{{ route('product', $item->id) }}" class="btn-badge">{{ $item->color }}</a>
+                        <a href="{{ route('customer.product', $item->id) }}" class="btn-badge">{{ $item->color }}</a>
                     @endforeach
                     @foreach ($variations['dimensions'] as $item)
-                        <a href="{{ route('product', $item->id) }}" class="btn-badge">{{ $item->dimension }}</a>
+                        <a href="{{ route('customer.product', $item->id) }}" class="btn-badge">{{ $item->dimension }}</a>
                     @endforeach
                 </div>
                 @endif
-                <form class="form_box" action="{{ route('customer.login') }}">
+                <form class="form_box" action="{{ route('customer.rentals') }}">
                     {{-- <div class="form_items">
                         <label class="label_text" for="">Pickup Date &amp; Time (Please Select Date &amp; Time to Select Quantity)</label>
                         <input class="pickup_date" name="date" type="date">
@@ -64,7 +64,7 @@
                         <li><p>SKU : {{ $product->product_code }}</p></li>
                         <li><p>Size & Dimension : {{ $product->dimension }}</p></li>
                         <li><p>Material & Color : {{ $product->color }}</p></li>
-                        <li><p>Category :</p><a href="{{ route('products', $product->category->id) }}">{{ $product->category->name }}</a></li>
+                        <li><p>Category :</p><a href="{{ route('customer.products', $product->category->id) }}">{{ $product->category->name }}</a></li>
                         <li><p>Share :</p>
                             <a href=""><i class="fa-brands fa-facebook-f"></i></a>&nbsp;&nbsp;
                             <a href=""><i class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="raw_items_text">
-                            <a class="heading-xs" href="{{ route('product', $product->id) }}">{{ $product->name }}</a>
+                            <a class="heading-xs" href="{{ route('customer.product', $product->id) }}">{{ $product->name }}</a>
                             {{-- @if ($product->dimension)
                                 <p>Dimension: {{ $product->dimension }}</p>
                             @endif

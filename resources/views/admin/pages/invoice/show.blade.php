@@ -233,18 +233,22 @@
                                             <td colspan="4" class="pt-3 text-end">Subtotal</td>
                                             <td class="py-1 text-end">{{ number_format($invoice->subtotal) }}</td>
                                         </tr>
+                                        @if ($invoice->discount)
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Discount</td>
                                             <td class="pt-1 text-end">{{ number_format($invoice->discount) }}</td>
                                         </tr>
+                                        @endif
                                         @php
                                             $discountedTotal = $invoice->subtotal - $invoice->discount;
                                             $vatAmaount = $discountedTotal * $invoice->vat_percentage / 100;
                                         @endphp
+                                        @if ($invoice->vat_percentage)
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">VAT ({{ $invoice->vat_percentage }}%)</td>
                                             <td class="pt-1 text-end">{{ number_format($vatAmaount) }}</td>
                                         </tr>
+                                        @endif
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Grand Total</td>
                                             <td class="pt-1 text-end">{{ number_format($invoice->grand_total) }}</td>

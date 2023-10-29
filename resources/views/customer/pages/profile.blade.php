@@ -181,22 +181,44 @@
                 <div class="tab-content" id="tabContent">
                     <!--begin:::Tab pane-->
                     <div class="tab-pane fade show active" id="customer_overview" role="tabpanel">
-                        <div class="row row-cols-1 row-cols-md-3 mb-6 mb-xl-9">
+                        <div class="row row-cols-1 row-cols-md-4 mb-6 mb-xl-9">
                             <div class="col">
                                 <!--begin::Card-->
                                 <div class="card pt-4 h-md-200 mb-6 mb-md-0">
                                     <!--begin::Card body-->
                                     <div class="card-body">
-                                        <i class="ki-duotone ki-wallet text-primary fs-2x ms-n1">
+                                        <i class="ki-duotone ki-award text-info fs-2x ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>        
+                                
+                                        <div class="text-info fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->deposit) }} BDT</div>
+                                
+                                        <div class="fw-semibold text-gray-400">Deposit</div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                                <!--end::Card-->
+                            </div>
+                            
+                            <div class="col">
+                                <!--begin::Card-->
+                                <div class="card pt-4 h-md-200 mb-6 mb-md-0">
+                                    <!--begin::Card body-->
+                                    <div class="card-body">
+                                        <i class="ki-duotone ki-notepad-bookmark text-primary fs-2x ms-n1">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
                                             <span class="path4"></span>
+                                            <span class="path5"></span>
+                                            <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-gray-900 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('grand_total')) }} BDT</div>
+                                        <div class="text-primary fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('grand_total')) }} BDT</div>
                                 
-                                        <div class="fw-semibold text-gray-400">Accumulated Total</div>
+                                        <div class="fw-semibold text-gray-400">Total Spent</div>
                                     </div>
                                     <!--end::Card body-->
                                 </div>
@@ -217,7 +239,7 @@
                                             <span class="path6"></span>
                                         </i>
                                 
-                                        <div class="text-gray-100 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('paid')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('paid')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Paid</div>
                                     </div>
@@ -240,7 +262,7 @@
                                             <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-gray-100 fw-bold fs-3 mb-2 mt-5">{{ number_format($customer->invoices->sum('due')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('due')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Due</div>
                                     </div>

@@ -39,10 +39,6 @@ Route::get('/about', function () {
     return view('website.pages.about');
 })->name('about');
 
-Route::get('/products/{id}', [WebsiteProductController::class, 'index'])->name('products');
-
-Route::get('/product/{id}', [WebsiteProductController::class, 'show'])->name('product');
-
 Route::get('/catering', function () {
     return view('website.pages.catering');
 })->name('catering');
@@ -112,10 +108,16 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
     });
 
+    Route::group(['middleware' => ['role:sales_manager|super_admin|admin']], function(){
+        Route::get('/rental/edit/{invoice}', [RentalController::class, 'edit'])->name('rental.edit');
+        Route::patch('/rental/update', [RentalController::class, 'update'])->name('rental.update');
+        Route::patch('/rentals/review/decline', [RentalApprovalController::class, 'decline'])->name('rentals.review.decline');
+    });
+
     Route::group(['middleware' => ['role:admin|super_admin']], function(){
         Route::get('/rentals/approve', [RentalApprovalController::class, 'index'])->name('rentals.approve');
         Route::get('/rentals/approve/{invoice}', [RentalApprovalController::class, 'edit'])->name('rentals.review');
-        Route::patch('/rentals/review', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
+        Route::patch('/rentals/review/approve', [RentalApprovalController::class, 'update'])->name('rentals.review.update');
     });
     
     Route::group(['middleware' => ['role:inventory_manager|super_admin']], function(){

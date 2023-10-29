@@ -37,7 +37,7 @@
                         @continue
                     @endif
                     <li class="single_list">
-                        <a href="{{ route('products', ['id' => $category->id]) }}">
+                        <a href="{{ route('customer.products', ['id' => $category->id]) }}">
                             <img src="{{ asset('storage').'/'.$category->image }}" alt="">
                             <div class="category-detail">
                                 <p class="font-bn heading-xs title">{{ $category->name }}</p>

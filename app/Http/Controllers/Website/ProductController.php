@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Rental;
 
 class ProductController extends Controller
 {
@@ -38,14 +39,18 @@ class ProductController extends Controller
             }
         }
 
-        // // Pagination
-        // $limit = 12;
-        // if($request->has('limit')){
-        //     $limit = $request->limit;
-        // }
-
-
+        /**
+         * @var \App\Models\Product $products
+         */
         $products = $products->where('status', 1)->get();
+
+        // Get the total product count
+        foreach ($products as $product){
+            $stock = $product->stock;
+            $rental_count = Rental::where('product_id', $product->id)->whereIn('status', ['approved', 'rented'])->sum('quantity');
+            $product->stock = $stock + $rental_count;
+        }
+
         $max_price = Product::where('category_id', $category_id)->orderBy('rental_price', 'desc')->first()->rental_price ?? 100;
         $categories = Category::all();
         $currentCategory = Category::where('id', $request->id)->first();

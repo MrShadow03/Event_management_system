@@ -22,10 +22,10 @@ class RolePermissionController extends Controller
         // $sales->givePermissionTo($permission);
         // $admin->givePermissionTo($permission);
         
-        // $permission = Permission::create(['name' => 'view customer']);
+        $permission = Permission::create(['name' => 'collect due']);
 
-        // $sales->givePermissionTo($permission);
-        // $admin->givePermissionTo($permission);
+        $sales->givePermissionTo($permission);
+        $admin->givePermissionTo($permission);
 
         $rolesOfUser1 = $superAdmin->getRoleNames();
         $rolesOfUser2 = $admin->getRoleNames();

@@ -214,6 +214,7 @@
                                 </div>
                                 <!--end::Card-->
                             </div>
+
                             <div class="col">
                                 <!--begin::Card-->
                                 <div class="card pt-4 h-md-200 mb-6 mb-md-0">
@@ -282,7 +283,6 @@
                                 </div>
                                 <!--end::Card-->
                             </div>
-
                         </div>
 
                         <!--begin::Card-->
@@ -357,6 +357,18 @@
                                                     <div class="menu-item px-3">
                                                         <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="menu-link px-3">View</a>
                                                     </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    @if ($invoice->status == 'pending approval')
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('admin.rental.edit', $invoice->id) }}" class="menu-link px-3">Edit</a>
+                                                    </div>
+                                                    @can('approve rentals')
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('admin.rentals.review', $invoice->id) }}" class="menu-link px-3">Approve</a>
+                                                    </div>
+                                                    @endcan
+                                                    @endif
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     @can('collect due')
@@ -903,39 +915,52 @@
             <!--begin::Modal content-->
             <div class="modal-content rounded">
                 <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
+                <div class="modal-header pb-3 border-0 justify-content-between bg-light-dark">
+                    <!--begin::Heading-->
+                    <div class="text-center">
+                       <!--begin::Title-->
+                       <h3 class="text-gray-800 fw-semibold fs-4">Collect Due</h3>
+                       <!--end::Title-->
+                   </div>
+                   <!--end::Heading-->
+                   <!--begin::Close-->
+                   <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                       <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                   </div>
+                   <!--end::Close-->
+               </div>
+               <!--begin::Modal header-->
 
                 <!--begin::Modal body-->
-                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-10 pb-15">
                     <!--begin:Form-->
                     <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
                         action="{{ route('admin.invoice.collect-due') }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" id="invoiceIdInput" name="invoice_id">
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h3 class="mb-3">Collect Due</h3>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
 
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <div class="input-group input-group-solid">
-                                <span class="input-group-text" id="basic-addon1">BDT</span>
-                                <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control form-control-solid" placeholder="Enter Amount" />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="fv-row mb-8 fv-plugins-icon-container">
+                                    <select class="form-select" name="payment_method">
+                                        <option value="deposit" selected>Deposit</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!--begin::Input group-->
+                                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">BDT</span>
+                                        <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control" placeholder="Enter Amount" />
+                                    </div>
+                                </div>
+                                <!--end::Input group-->
                             </div>
                         </div>
-                        <!--end::Input group-->
 
                         <!--begin::Actions-->
                         <div class="text-center">

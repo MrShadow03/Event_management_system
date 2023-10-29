@@ -15,4 +15,8 @@
     .app-content{
         background-color: #fff !important;
     }
+
+    .print * {
+        color : #000 !important;
+    }
 }
