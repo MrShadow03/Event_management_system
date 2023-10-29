@@ -256,7 +256,7 @@
                                 <!--end::Search products-->
                                 <div class="w-100 mw-150px">
                                     <!--begin::Select2-->
-                                    <select class="form-select form-select-solid font-bn" data-control="select2" data-hide-search="true" data-placeholder="Status" data-product-filter="category">
+                                    <select class="form-select form-select-solid font-bn" data-control="select2" data-hide-search="true" data-placeholder="Category" data-product-filter="category">
                                         <option></option>
                                         <option value="all">All</option>
                                         @foreach ($products->unique('category_id') as $product)

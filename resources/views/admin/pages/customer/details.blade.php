@@ -381,7 +381,7 @@
                             <!--end::Card body-->
                         </div>
                         <!--end::Card-->
-
+                        @can('update deposit')
                         <!--begin::Card-->
                         <div class="card pt-4 mb-6 mb-xl-9">
                             <!--begin::Card header-->
@@ -407,14 +407,15 @@
                                                 <td class="text-success">Balance</td>
                                                 <td>{{ number_format($customer->deposit) }} BDT</td>
                                                 <td class="text-end">
-                                                    <button type="button"
-                                                        class="btn btn-icon btn-active-light-danger w-30px h-30px ms-auto"
-                                                        data-bs-toggle="modal" data-bs-target="#update_deposit">
-                                                        <i class="ki-duotone ki-pencil fs-3">
+                                                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal_deposit">
+                                                        <i class="ki-duotone ki-wallet fs-1">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                            <span class="path4"></span>
                                                         </i>
-                                                    </button>
+                                                        Deposit
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -427,6 +428,7 @@
                             <!--end::Card body-->
                         </div>
                         <!--end::Card-->
+                        @endcan
                     </div>
                     <!--end:::Tab pane-->
 
@@ -894,7 +896,7 @@
 <!--end::Main Content-->
 
 @section('exclusive_modals')
-    <!--begin::Category new modal-->
+    <!--begin::Collect Payment modal-->
     <div class="modal fade" id="modal_collect_payment" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -960,7 +962,73 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Category new modal-->
+    <!--end::collect payment modal-->
+    <!--begin::Add deposit modal-->
+    <div class="modal fade" id="modal_deposit" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-3 border-0 justify-content-between bg-light-dark">
+                     <!--begin::Heading-->
+                     <div class="text-center">
+                        <!--begin::Title-->
+                        <h3 class="text-gray-800 fw-semibold fs-4">Deposit</h3>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-10 pb-15">
+                    <!--begin:Form-->
+                    <form class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        action="{{ route('admin.profile.update-deposit', $customer->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <div class="input-group input-group-solid">
+                                <span class="input-group-text" id="basic-addon1">BDT</span>
+                                <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control form-control-solid" placeholder="Enter Amount" />
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Actions-->
+                        <div class="text-center">
+                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
+                                Cancel
+                            </button>
+
+                            <button type="submit" class="btn btn-primary">
+                                <span class="indicator-label">
+                                    Submit
+                                </span>
+                                <span class="indicator-progress">
+                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Add deposit modal-->
 @endsection
 
 <!--begin::Page Vendors Javascript and custom JS-->

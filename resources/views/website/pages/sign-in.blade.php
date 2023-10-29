@@ -23,8 +23,10 @@
         }
     </script>
     <style>
-        body {
-            background-image: url('{{ asset("/assets/website/assets/img/login-bg.png") }}');
+        @media (min-width: 600px) {
+            body {
+                background-image: url('{{ asset("/assets/website/assets/img/login-bg.png") }}');
+            }
         }
     </style>
 </head>
@@ -39,9 +41,9 @@
         <div class="d-flex flex-column justify-content-center flex-column-fluid flex-lg-row">
 
             <!--begin::Body-->
-            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12 p-lg-20">
+            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-0 p-lg-20">
                 <!--begin::Card-->
-                <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
+                <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-sm-600px w-100 p-10">
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
 

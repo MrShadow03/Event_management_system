@@ -103,16 +103,11 @@ class RentalApprovalController extends Controller{
         $grand_total = $request->grand_total; // 12,000
         $paid = $request->paid ?? 0; // 0
 
-
         $vat_percentage = $request->vat_percentage ?? 0;
         $discount = $request->discount ?? 0;
         $due = 0;
 
-
-
-
-        //
-        // $net_payable = $deposit - $grand_total; // -595
+        // $net_payable = $deposit - $grand_total;
         $net_payable = $grand_total - $paid ; // 12,000 - 0 = 12,000
         $deposit = $deposit - $net_payable; // 10,000 - 12,000 = -2,000
 

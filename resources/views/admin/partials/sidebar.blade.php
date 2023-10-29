@@ -82,6 +82,7 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+                @hasanyrole('admin|sales_manager|super_admin')
                 <!--begin:Menu item-->
                 <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.customers')) ? 'here' : '' }}">
                     <!--begin:Menu link-->
@@ -99,6 +100,9 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+                @endhasanyrole
+                
+
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Str::startsWith(request()->url(), route('admin.rentals')) ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">

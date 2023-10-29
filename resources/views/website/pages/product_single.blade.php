@@ -44,7 +44,7 @@
                 </div>
                 @endif
                 <form class="form_box" action="{{ route('customer.login') }}">
-                    <div class="form_items">
+                    {{-- <div class="form_items">
                         <label class="label_text" for="">Pickup Date &amp; Time (Please Select Date &amp; Time to Select Quantity)</label>
                         <input class="pickup_date" name="date" type="date">
                         <input class="pickup_time" name="time" type="time">
@@ -53,7 +53,7 @@
                         <label class="label_text" for="">Drop off Date &amp; Time</label>
                         <input class="pickup_date" name="date" type="date">
                         <input class="pickup_time" name="time" type="time">
-                    </div>
+                    </div> --}}
                     <button class="btn-grad" type="submit">BOOK NOW</button>
                 </form>
                 <div class="cart_wishlist">

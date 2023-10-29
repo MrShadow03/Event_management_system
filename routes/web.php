@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerDepositController;
 use App\Http\Controllers\PersonalProfileController;
 use App\Http\Controllers\RentalReturnController;
 use App\Http\Controllers\RentalApprovalController;
@@ -137,6 +138,11 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     //profile routes
     Route::group(['prefix' => '/profile', 'as' => 'profile.'], function(){
         Route::get('/overview', [ProfileController::class, 'index'])->name('overview');
+        Route::patch('/update-general', [ProfileController::class, 'updateGeneral'])->name('update-general');
+
+        Route::group(['middleware' => ['can:update deposit']], function(){
+            Route::patch('/update-deposit/{id}', [CustomerDepositController::class, 'update'])->name('update-deposit');
+        });
 
         // need the permission to update company profile
         Route::group(['middleware' => ['can:update company profile']], function(){
@@ -144,7 +150,6 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
             Route::patch('/update', [ProfileController::class, 'update'])->name('update');
             Route::patch('/update-email', [ProfileController::class, 'updateEmail'])->name('update-email');
             Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
-            Route::patch('/update-general', [ProfileController::class, 'updateGeneral'])->name('update-general');
         });
         Route::group(['middleware' => ['role:super_admin|admin|sales_manager']], function(){
             Route::get('/advance', [ProfileController::class, 'advance'])->name('advance');

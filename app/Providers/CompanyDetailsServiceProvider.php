@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\CompanyDetail;
-use Illuminate\Support\ServiceProvider;
 
 use function PHPSTORM_META\map;
+use Illuminate\Support\ServiceProvider;
 
 class CompanyDetailsServiceProvider extends ServiceProvider
 {
@@ -53,5 +54,9 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             $view->with('commonDetails', $detailsForClient);
         });
         
+        // Get all the categories and pass to all the views website folder
+        view()->composer('website.*', function ($view) {
+            $view->with('categories', Category::all());
+        });
     }
 }

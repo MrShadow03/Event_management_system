@@ -16,6 +16,17 @@ class RolePermissionController extends Controller
         $sales = User::find(3);
         $inventory = User::find(4);
 
+        
+        // $permission = Permission::create(['name' => 'update deposit']);
+        
+        // $sales->givePermissionTo($permission);
+        // $admin->givePermissionTo($permission);
+        
+        // $permission = Permission::create(['name' => 'view customer']);
+
+        // $sales->givePermissionTo($permission);
+        // $admin->givePermissionTo($permission);
+
         $rolesOfUser1 = $superAdmin->getRoleNames();
         $rolesOfUser2 = $admin->getRoleNames();
         $rolesOfUser3 = $sales->getRoleNames();
@@ -26,26 +37,23 @@ class RolePermissionController extends Controller
         $permissionsOfUser3 = $sales->getAllPermissions();
         $permissionsOfUser4 = $inventory->getAllPermissions();
 
-        $createPermission = Permission::create(['name' => 'collect due']);
-
-        $sales->givePermissionTo($createPermission);
-        // dd([
-        //     'user1' => [
-        //         'roles' => $rolesOfUser1,
-        //         'permissions' => $permissionsOfUser1
-        //     ],
-        //     'user2' => [
-        //         'roles' => $rolesOfUser2,
-        //         'permissions' => $permissionsOfUser2
-        //     ],
-        //     'sales'=> [
-        //         'roles' => $rolesOfUser3,
-        //         'permissions' => $permissionsOfUser3
-        //     ],
-        //     'inventory'=> [
-        //         'roles' => $rolesOfUser4,
-        //         'permissions' => $permissionsOfUser4
-        //     ],
-        // ]);
+        dd([
+            'user1' => [
+                'roles' => $rolesOfUser1,
+                'permissions' => $permissionsOfUser1->pluck('name')
+            ],
+            'user2' => [
+                'roles' => $rolesOfUser2,
+                'permissions' => $permissionsOfUser2->pluck('name')
+            ],
+            'sales'=> [
+                'roles' => $rolesOfUser3,
+                'permissions' => $permissionsOfUser3->pluck('name')
+            ],
+            'inventory'=> [
+                'roles' => $rolesOfUser4,
+                'permissions' => $permissionsOfUser4->pluck('name')
+            ],
+        ]);
     }
 }
