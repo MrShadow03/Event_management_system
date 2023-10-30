@@ -216,7 +216,7 @@
                                             <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-primary fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('grand_total')) }} BDT</div>
+                                        <div class="text-primary fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('grand_total')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-400">Total Spent</div>
                                     </div>
@@ -239,7 +239,7 @@
                                             <span class="path6"></span>
                                         </i>
                                 
-                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('paid')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('paid')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Paid</div>
                                     </div>
@@ -262,7 +262,7 @@
                                             <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('due')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('due')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Due</div>
                                     </div>

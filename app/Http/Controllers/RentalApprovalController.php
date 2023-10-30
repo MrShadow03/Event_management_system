@@ -107,16 +107,13 @@ class RentalApprovalController extends Controller{
         $discount = $request->discount ?? 0;
         $due = 0;
 
-        // $net_payable = $deposit - $grand_total;
-        $net_payable = $grand_total - $paid ; // 12,000 - 0 = 12,000
-        $deposit = $deposit - $net_payable; // 10,000 - 12,000 = -2,000
-
+        $deposit = $deposit - $grand_total; // 10,000 - 12,000 = -2,000
+        
         if($deposit < 0){
-            $deposit = 0; // 0
             $due = abs($deposit); // 2,000
+            $deposit = 0; // 0
         }
-
-
+        
         $customer = Customer::find($request->customer_id);
         $customer->deposit = $deposit;
         $customer->save();

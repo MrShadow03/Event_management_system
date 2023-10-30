@@ -229,7 +229,7 @@
                                             <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-primary fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('grand_total')) }} BDT</div>
+                                        <div class="text-primary fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('grand_total')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-400">Accumulated Total</div>
                                     </div>
@@ -252,7 +252,7 @@
                                             <span class="path6"></span>
                                         </i>
                                 
-                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('paid')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('paid')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Paid</div>
                                     </div>
@@ -275,7 +275,7 @@
                                             <span class="path6"></span>
                                         </i>        
                                 
-                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->sum('due')) }} BDT</div>
+                                        <div class="text-gray-100 fw-bold fs-4 mb-2 mt-5">{{ number_format($customer->invoices->where('status', '!=', 'pending approval')->sum('due')) }} BDT</div>
                                 
                                         <div class="fw-semibold text-gray-100">Total Due</div>
                                     </div>
@@ -306,7 +306,7 @@
                                             <th>Invoice No.</th>
                                             <th class="text-end">Status</th>
                                             <th class="text-end">Total</th>
-                                            <th class="text-end">Paid</th>
+                                            <th class="text-end">Paid/Payable</th>
                                             <th class="text-end">Due</th>
                                             <th class="text-end">Orders</th>
                                             <th class="text-end">Issued On</th>
@@ -373,10 +373,14 @@
                                                     <!--begin::Menu item-->
                                                     @can('collect due')
                                                     <div class="menu-item px-3">
-                                                        @if ($invoice->due)
+                                                        @if ($invoice->due && $invoice->status == 'approved')
                                                         <a href="javascript:void(0)" onclick="placeDueCollectionAmount({{ json_encode($invoice->only(['id', 'due'])) }})" data-bs-toggle="modal" data-bs-target="#modal_collect_payment" class="menu-link text-hover-gray-100 bg-hover-success px-3">Collect Due</a>
                                                         @else
-                                                        <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due Payment</a>
+                                                            @if ($invoice->status == 'pending approval')
+                                                                <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">Pending Approval</a>
+                                                            @else
+                                                                <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due</a>
+                                                            @endif
                                                         @endif
                                                     </div>
                                                     @endcan
@@ -919,7 +923,7 @@
                     <!--begin::Heading-->
                     <div class="text-center">
                        <!--begin::Title-->
-                       <h3 class="text-gray-800 fw-semibold fs-4">Collect Due</h3>
+                       <h3 class="text-gray-800 fw-semibold fs-4">Balance Due with Deposit</h3>
                        <!--end::Title-->
                    </div>
                    <!--end::Heading-->
@@ -939,28 +943,15 @@
                         @csrf
                         @method('PATCH')
                         <input type="hidden" id="invoiceIdInput" name="invoice_id">
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="fv-row mb-8 fv-plugins-icon-container">
-                                    <select class="form-select" name="payment_method">
-                                        <option value="deposit" selected>Deposit</option>
-                                        <option value="cash">Cash</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <!--begin::Input group-->
-                                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">BDT</span>
-                                        <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control" placeholder="Enter Amount" />
-                                    </div>
-                                </div>
-                                <!--end::Input group-->
+                        <input type="hidden" name="payment_method" value="deposit">
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">BDT</span>
+                                <input type="number" id="dueCollectionAmountInput" min="1" step="0" name="amount" class="form-control" placeholder="Enter Amount" />
                             </div>
                         </div>
+                        <!--end::Input group-->
 
                         <!--begin::Actions-->
                         <div class="text-center">

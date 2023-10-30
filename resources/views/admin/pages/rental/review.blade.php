@@ -94,7 +94,8 @@
             <input type="hidden" name="number_of_days" value="{{ $invoice->rentals[0]->number_of_days }}">
             <input type="hidden" name="start_date" value="{{ $invoice->rentals[0]->starting_date }}">
             <input type="hidden" name="return_date" value="{{ $invoice->rentals[0]->ending_date }}">
-            
+            <input type="hidden" id="customerDepositInput" name="deposit" value="{{ $customer->deposit }}">
+
             <!--begin::Aside column-->
             <div class="w-100 d-flex flex-column gap-8 flex-lg-row-auto w-lg-300px mb-7 me-7 me-lg-10">
 
@@ -379,14 +380,14 @@
                                                 <td id="grandTotalRow" class="text-end">{{ $invoice->grand_total }} <input type="hidden" id="grandTotalInput" name="grand_total" value="{{ $invoice->grand_total }}" /> </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3" class="text-end">Cash Paid (TK)</td>
+                                                <td colspan="3" class="text-end">Pay from Deposit(TK)</td>
                                                 <td class="text-end" id="paidRow">
-                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="{{ $invoice->paid }}">
+                                                    <input id="paidInput" oninput="calculateGrandTotal()" class="form-control form-control-sm" type="number" min="0" name="paid" value="{{ $invoice->paid }}" readonly>
                                                 </td>
                                             </tr>
                                             <td colspan="3" class="border-top border-gray-200 text-end">Due (TK)</td>
                                             <td class="text-end" id="dueRow">{{ $invoice->due }}
-                                                <input id="dueInput" class="form-control form-control-sm" type="hidden" min="0" name="due" value="{{ $invoice->due }}">
+                                                <input id="dueInput" class="form-control form-control-sm" type="hidden" min="0" name="due" value="{{ $invoice->due }}" readonly>
                                             </td>
                                         </tfoot>
                                     </table>
@@ -439,6 +440,12 @@
     <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script>
+
+        // After DOM Loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            calculateGrandTotal();
+        });
+
         function collectProduct(productInput, product, numberOfDays = 1){
             const productRowWrapper = document.getElementById('product_row_wrapper');
             const productTableWrapper = document.getElementById('product_table_wrapper');
@@ -508,23 +515,30 @@
         function calculateGrandTotal(){
             const subTotalInput = document.getElementById('subTotalInput');
             const vatPercentageInput = document.getElementById('vatPercentageInput');
-            const paidInput = document.getElementById('paidInput');
             const discountInput = document.getElementById('discountInput');
             const grandTotalRow = document.getElementById('grandTotalRow');
             const dueRow = document.getElementById('dueRow');
 
             const subTotal = parseInt(subTotalInput.value) || 0;
             const vatPercentage = parseInt(vatPercentageInput.value) || 0;
-            const paid = parseInt(paidInput.value) || 0;
             const discount = parseInt(discountInput.value) || 0;
-
             const discountedSubtotal = subTotal - discount;
             const grandTotal = Math.round(discountedSubtotal + (discountedSubtotal * vatPercentage / 100));
+            const paid = calculatePaid(grandTotal);
             const due = grandTotal - paid;
 
             grandTotalRow.innerHTML = `${grandTotal} <input type="hidden" id="grandTotalInput" name="grand_total" value="${grandTotal}">`;
             dueRow.innerHTML = `${due} <input type="hidden" id="dueInput" name="due" value="${due}">`;
 
+        }
+
+        function calculatePaid(grandTotal){
+            const customerDeposit = parseInt(document.getElementById('customerDepositInput').value) || 0;
+            const paidInput = document.getElementById('paidInput');
+            const payable = customerDeposit < grandTotal ? customerDeposit : grandTotal;
+            paidInput.value = payable;
+
+            return payable;
         }
 
         function searchProduct(productCode){

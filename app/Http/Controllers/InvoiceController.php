@@ -39,28 +39,31 @@ class InvoiceController extends Controller
         $customer = Customer::find($invoice->customer_id);
         $amount = $request->amount;
 
+        // if invoice is pending then return error
+        if($invoice->status == 'pending approval'){
+            return redirect()->back()->with('error', "Invoice is not approved yet!");
+        }
+
         // if the amount is greater than the due amount then return error
         if($request->amount > $invoice->due){
             return redirect()->back()->with('error', "Amount is greater than due amount");
         }
 
-        if($request->payment_method == 'deposit'){
-            // determine the amount to be collected
-            $amount = $amount > $customer->deposit ? $customer->deposit : $amount;
-
-            // collect the due
-            $invoice->collectDue($amount);
-
-            // update the deposit
-            $customer->deposit -= $amount;
-            $customer->deposit = $customer->deposit < 0 ? 0 : $customer->deposit;
-            $customer->save();
-
-            return redirect()->back()->with('success',"{$request->amount} collected from invoice {$request->invoice_id}");
+        if($amount > $customer->deposit){
+            return redirect()->back()->with('error', "Insufficient deposit");
         }
 
+        // determine the amount to be collected
+        $amount = $amount > $customer->deposit ? $customer->deposit : $amount;
+
+        // collect the due
         $invoice->collectDue($amount);
 
-        return redirect()->back()->with("success","{$request->amount} collected from invoice {$request->invoice_id}");
+        // update the deposit
+        $customer->deposit -= $amount;
+        $customer->deposit = $customer->deposit < 0 ? 0 : $customer->deposit;
+        $customer->save();
+
+        return redirect()->back()->with('success',"{$request->amount} collected from invoice {$request->invoice_id}");
     }
 }
