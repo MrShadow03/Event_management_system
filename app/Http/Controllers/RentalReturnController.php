@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 
 class RentalReturnController extends Controller
 {
+    protected $date = '2023-12-05';
+
     public function index(){
         // get all the invoices with rentals with the status of rented and the ending date is today or before today
-        $date = date("Y-m-d");
+        $date = $this->date;
         $invoices = Invoice::whereHas('rentals', function($query) use ($date){
             $query->where('status', 'rented')->whereDate('ending_date', '<=', $date);
         })->with(['rentals.product', 'customer'])->get();
@@ -22,9 +24,8 @@ class RentalReturnController extends Controller
     }
 
     public function show(Invoice $invoice){
-        $date = date("Y-m-d");
         $rentalEndingDate = Carbon::parse($invoice->rentals->first()->ending_date)->format('Y-m-d');
-        $isEndingDateTodayOrBefore = $rentalEndingDate <= $date;
+        $isEndingDateTodayOrBefore = $rentalEndingDate <= $this->date;
 
         if(!$isEndingDateTodayOrBefore){
             return redirect()->back()->with('error', 'This invoice is not yet due');

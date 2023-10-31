@@ -26,6 +26,10 @@ class Invoice extends Model
         return $this->hasManyThrough(Product::class, Rental::class);
     }
 
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
+
     public function collectDue($amount){
         $this->paid += $amount;
         $this->due -= $amount;

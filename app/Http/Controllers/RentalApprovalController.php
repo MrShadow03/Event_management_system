@@ -8,6 +8,7 @@ use App\Models\Repair;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class RentalApprovalController extends Controller{
@@ -118,7 +119,6 @@ class RentalApprovalController extends Controller{
         $customer->deposit = $deposit;
         $customer->save();
 
-
         // For each product create a rental with the status pending approval
         foreach ($request->products as $product_id => $value){
             // get the quantity
@@ -162,6 +162,19 @@ class RentalApprovalController extends Controller{
         $invoice->due = $due;
         $invoice->status = 'approved';
         $invoice->save();
+
+        // if paid is more than 0 create transaction
+        if($paid > 0){
+            Transaction::create([
+                'user_id' => auth()->user()->id,
+                'customer_id' => $request->customer_id,
+                'invoice_id' => $request->invoice_id,
+                'type' => 'out',
+                'amount' => $paid,
+                'balance' => $deposit,
+                'description' => 'rental',
+            ]);
+        }
 
         // change the status of remaining rentals to declined
         $declinedRentals = Rental::where('invoice_id', $request->invoice_id)

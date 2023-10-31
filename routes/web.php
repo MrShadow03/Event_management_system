@@ -15,14 +15,19 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\CustomerDepositController;
-use App\Http\Controllers\PersonalProfileController;
 use App\Http\Controllers\RentalReturnController;
 use App\Http\Controllers\RentalApprovalController;
 use App\Http\Controllers\RentalDispatchController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\CustomerDepositController;
+use App\Http\Controllers\PersonalProfileController;
 use App\Http\Controllers\Website\ProductCategoryController;
-use App\Http\Controllers\Website\ProductController as WebsiteProductController;
+use App\Http\Controllers\Reporting\ProductController as ProductReportController;
+use App\Http\Controllers\Reporting\DepositController as DepositReportController;
+use App\Http\Controllers\Reporting\DueController as DueReportController;
+use App\Http\Controllers\Reporting\OrderController as OrderReportController;
+use App\Http\Controllers\Reporting\InvoiceController as InvoiceReportController;
+use App\Http\Controllers\Reporting\TransactionController as TransactionReportController;
 
 // Route::get('/createSymlink', function(){
 //     $targetFolder = storage_path('app/public');
@@ -160,6 +165,15 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     });
 
     Route::get('/clear-cache', [CacheController::class, 'clearCache']);
+
+    Route::group(['prefix' => '/reporting', 'as' => 'reporting.'], function(){
+        //Product Reporting
+        Route::get('/products', [ProductReportController::class, 'index'])->name('products');
+        Route::get('/transactions', [TransactionReportController::class, 'index'])->name('transactions');
+        Route::get('/dues', [DueReportController::class, 'index'])->name('dues');
+        Route::get('/orders', [OrderReportController::class, 'index'])->name('orders');
+        Route::get('/invoices', [InvoiceReportController::class, 'index'])->name('invoices');
+    });
     // Route::get('/pages', [PageController::class, 'index'])->name('pages');
     // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
     // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');

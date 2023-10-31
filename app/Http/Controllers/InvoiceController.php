@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\Customer;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,6 +64,16 @@ class InvoiceController extends Controller
         $customer->deposit -= $amount;
         $customer->deposit = $customer->deposit < 0 ? 0 : $customer->deposit;
         $customer->save();
+
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            'customer_id' => $customer->id,
+            'invoice_id' => $invoice->id,
+            'type' => 'out',
+            'amount' => $amount,
+            'balance' => $customer->deposit,
+            'description' => 'due collection',
+        ]);
 
         return redirect()->back()->with('success',"{$request->amount} collected from invoice {$request->invoice_id}");
     }
