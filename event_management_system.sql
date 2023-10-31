@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2023 at 05:30 PM
+-- Generation Time: Oct 31, 2023 at 02:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -266,10 +266,11 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `address`, `image`, `deposit`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ibrahim Khalil', 'ibrahimnahid16@gmail.com', '01726416843', 'Fairy Light', 'Ka-52, Kalachad Pur, Gulshan-2, 1212', 'customers/default.png', 5000, NULL, '$2y$10$rqx689heLu1W/6PZLzGUBuGToBYuVq6QLPJ2Cg0Ah1vRVgYAJ.w5a', NULL, '2023-10-22 08:56:16', '2023-10-22 08:56:16'),
+(1, 'Ibrahim Khalil', 'ibrahimnahid16@gmail.com', '01726416843', 'Fairy Light', 'Ka-52, Kalachad Pur, Gulshan-2, 1212', 'customers/default.png', 0, NULL, '$2y$10$rqx689heLu1W/6PZLzGUBuGToBYuVq6QLPJ2Cg0Ah1vRVgYAJ.w5a', NULL, '2023-10-22 08:56:16', '2023-10-31 07:57:15'),
 (2, 'Rakibul Hasan', 'kakon@gmail.com', '01318322742', 'Maa Event Management', 'Mohakhali, Dhaka', 'customers/9xlFxKJEj1tpiZqfYTsPKWri1UqbofauQ09iOAGI.jpg', 0, NULL, '$2y$10$rF.wP840U7Ld7/zqmvAnsuiDwm4TZywaJobWOuom7GtyonsRuwEZe', NULL, '2023-10-22 12:49:16', '2023-10-22 12:49:16'),
 (3, 'Razia Haque Konok', 'elegant_konok@yahoo.com', '01675694452', 'Elegant Event solutions', '3/1, Block-F, Lyceum School building, lift-4, Flat-5B, Opposite of Lalmatia Mohila College, Dhaka 1207, Dhaka, Bangladesh', 'customers/eLZNoD6BVqEtbPB3xMXT7RBUaTAzAGFjii7p5zhE.jpg', 0, NULL, '$2y$10$oiOjHCI4/VB5RTcxUMLTXe17plumcaUwGSn50jaohcDZT2e5Qttem', NULL, '2023-10-24 07:23:26', '2023-10-25 10:11:35'),
-(4, 'Galib Jaman', 'gj.emon35@gmail.com', '01766555213', 'Pepplo BD', 'N. avenue, Barishal, Bangladesh', 'customers/HDpX7axtnVDCyR1EDmBjU3JjAYiV46Jt8SELI7w7.jpg', 13000, NULL, '$2y$10$Jj8BfQAt3KgoQPXjwbGOB.Lhk9x2zBTsiMLWm4fEfK2NebGFYVJMi', NULL, '2023-10-25 07:21:00', '2023-10-28 15:26:14');
+(4, 'Galib Jaman', 'gj.emon35@gmail.com', '01766555213', 'Pepplo BD', 'N. avenue, Barishal, Bangladesh', 'customers/HDpX7axtnVDCyR1EDmBjU3JjAYiV46Jt8SELI7w7.jpg', 4900, NULL, '$2y$10$Jj8BfQAt3KgoQPXjwbGOB.Lhk9x2zBTsiMLWm4fEfK2NebGFYVJMi', NULL, '2023-10-25 07:21:00', '2023-10-31 11:14:04'),
+(5, 'Abid Hasan Miraz', 'abid@gmail.com', '01303018917', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/psc8J8XhXS2h0OQXUf6jDi1IeCWoJBXmkDjDvNud.jpg', 10000, NULL, '$2y$10$LETLzuYEWqZMw65unPkheOx4buj4IKGqxkVwIE.NkVnAhl6V/2LpW', NULL, '2023-10-31 12:28:22', '2023-10-31 12:30:54');
 
 -- --------------------------------------------------------
 
@@ -405,9 +406,17 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percentage`, `paid`, `discount`, `grand_total`, `due`, `status`, `created_at`, `updated_at`) VALUES
-(1301, 4, 1, 2900, 0, 1500, 200, 2700, 1200, 'pending approval', '2023-10-25 13:08:24', '2023-10-25 13:08:24'),
-(1302, 1, 1, 5600, 0, 595, 5, 5595, 0, 'approved', '2023-10-26 10:17:27', '2023-10-28 14:33:30'),
-(1303, 4, 1, 5000, 0, 8000, 0, 5000, 0, 'approved', '2023-10-28 15:25:08', '2023-10-28 15:26:14');
+(1302, 1, 1, 5600, 0, 595, 5, 5595, 0, 'rented', '2023-10-26 10:17:27', '2023-10-31 07:57:36'),
+(1303, 4, 1, 5000, 0, 8000, 0, 5000, 0, 'approved', '2023-10-28 15:25:08', '2023-10-28 15:26:14'),
+(1304, 4, 1, 7000, 0, 10000, 0, 7000, 0, 'approved', '2023-10-29 08:41:48', '2023-10-30 06:47:14'),
+(1305, 1, 1, 15000, 0, 5000, 0, 15000, 10000, 'approved', '2023-10-30 06:52:07', '2023-10-31 07:57:15'),
+(1306, 3, 1, 7500, 0, 2000, 0, 7500, 5500, 'pending approval', '2023-10-30 06:54:53', '2023-10-30 06:54:53'),
+(1307, 4, 1, 23700, 0, 13700, 10000, 13700, 0, 'approved', '2023-10-30 07:21:01', '2023-10-30 07:21:35'),
+(1308, 4, 1, 4500, 0, 1500, 1000, 3500, 2000, 'approved', '2023-10-30 07:48:30', '2023-10-30 09:00:05'),
+(1309, 4, 1, 16200, 0, 14700, 0, 16200, 1500, 'approved', '2023-10-30 07:58:36', '2023-10-30 08:23:45'),
+(1310, 4, 1, 6500, 0, 6500, 0, 6500, 0, 'approved', '2023-10-30 08:29:51', '2023-10-31 11:14:04'),
+(1311, 4, 1, 6600, 0, 6100, 500, 6100, 0, 'approved', '2023-10-30 09:01:43', '2023-10-31 11:12:47'),
+(1312, 5, 1, 15000, 0, 15000, 0, 15000, 0, 'approved', '2023-10-31 12:29:49', '2023-10-31 12:30:54');
 
 -- --------------------------------------------------------
 
@@ -443,6 +452,18 @@ CREATE TABLE `model_has_permissions` (
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_permissions`
+--
+
+INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
+(23, 'App\\Models\\User', 2),
+(23, 'App\\Models\\User', 3),
+(24, 'App\\Models\\User', 2),
+(24, 'App\\Models\\User', 3),
+(25, 'App\\Models\\User', 2),
+(25, 'App\\Models\\User', 3);
 
 -- --------------------------------------------------------
 
@@ -648,7 +669,10 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (19, 'update company profile', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
 (20, 'update products', 'web', '2023-10-23 04:23:37', '2023-10-23 04:23:37'),
 (21, 'approve rentals', 'web', '2023-10-23 04:28:13', '2023-10-23 04:28:13'),
-(22, 'create rentals', 'web', '2023-10-23 04:36:38', '2023-10-23 04:36:38');
+(22, 'create rentals', 'web', '2023-10-23 04:36:38', '2023-10-23 04:36:38'),
+(23, 'update deposit', 'web', '2023-10-29 09:13:58', '2023-10-29 09:13:58'),
+(24, 'view customer', 'web', '2023-10-29 09:41:27', '2023-10-29 09:41:27'),
+(25, 'collect due', 'web', '2023-10-30 06:43:16', '2023-10-30 06:43:16');
 
 -- --------------------------------------------------------
 
@@ -700,27 +724,27 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (21, 10, 'CP-1', 'Golden Candle Centre Piece', '2.5 X 1.25', 'Golden', 0, 'pcs', 500, 'product/wvmxBoEAmTmWJa8VuVdSAUrCZqsVSCf4sm3QYIVR.jpg', 1, '2023-10-12 04:45:31', '2023-10-19 12:23:54', NULL),
 (22, 10, 'CP-2', 'Silver Candle Centre Piece', '2.5 x 1.25', 'Silver', 1, 'pcs', 500, 'product/5bip4J0jF7cO2yGrBVPXZKIQGv1BrRjaCkrA2hK5.jpg', 1, '2023-10-12 04:54:15', '2023-10-24 05:29:53', NULL),
 (23, 10, 'CP-3', 'China Glass Centre Piece', '1.25 x 3', 'Glass', 0, 'pcs', 1500, 'product/iiSDpIgm2SMEZjEe578nLkovhSBPtCib9AzCXYdc.jpg', 1, '2023-10-12 04:56:07', '2023-10-23 08:30:23', NULL),
-(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 4, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-23 08:46:34', NULL),
-(25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', 28, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-22 06:22:50', NULL),
+(24, 10, 'CP-4', 'Table Chandelier Centre Piece', '2.5 x 2', 'Silver', 2, 'pcs', 1000, 'product/gXkhYqegdH5WDMrItubU0GHti3clGgRWboQnqC6q.jpg', 1, '2023-10-12 04:57:45', '2023-10-31 12:30:09', NULL),
+(25, 10, 'CP-5', 'Wooden Centre Piece', '1.5 x 1', 'Wooden', -17, 'pcs', 300, 'product/EmMfPw562dIp1eBCQGs2fiZocXhw8nkn2iceKCOq.jpg', 1, '2023-10-12 05:16:43', '2023-10-31 11:12:47', NULL),
 (26, 10, 'CP-6', 'Mini Cristal Centre Piece', '1.5', 'Silver', 14, 'pcs', 200, 'product/REI2j3qhYRRCh6PYPlJ1jW5JTeOGOGPo2eXdUOCD.jpg', 1, '2023-10-12 05:19:27', '2023-10-28 15:26:14', NULL),
 (27, 10, 'CP-7', 'Candle SS Centre Piece', '1.5', 'SS', 9, 'pcs', 100, 'product/msDimzKfxHmC5a7LpxtgEVPVRynXvvOLFlDM7Hl6.jpg', 1, '2023-10-12 05:20:13', '2023-10-19 09:33:15', NULL),
 (28, 10, 'CP-8', 'Clear Acrylic Centre Piece', '2 x 2', NULL, 4, 'pcs', 2000, 'product/pSOdrjwR90CdIeDgb4uXDSUFwAzZSJNejdcCSprS.jpg', 1, '2023-10-12 05:25:14', '2023-10-28 15:26:14', NULL),
-(29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 17, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-28 14:33:29', NULL),
+(29, 10, 'CP-9', 'Patch Small Centre Piece', '2.5', 'SS', 6, 'pcs', 300, 'product/wLvBCDKDYotrV0gAa8hJi52Lf8VkzR7tGXTosLUn.jpg', 1, '2023-10-12 05:26:41', '2023-10-30 08:14:51', NULL),
 (30, 10, 'CP-10', 'Straight Round Small Centre Piece', '1.5feet x 8inch', NULL, 14, 'pcs', 300, 'product/51GQu4jJwNOIzreoOkBuznC3SVbGF5IQZdDUtWc1.jpg', 1, '2023-10-12 07:34:35', '2023-10-28 14:33:30', NULL),
-(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 25, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-28 14:33:30', NULL),
+(31, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 24, 'pcs', 500, 'product/dv5DLstMb2NJOgnF4DWp48JDuRtrt2yRSeNglVZu.jpg', 1, '2023-10-12 07:36:04', '2023-10-30 09:00:05', NULL),
 (32, 10, 'CP-', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/klUL7s7PQGRbtf6qlMklsmcz7q4XVMOE6tMurCFI.jpg', 1, '2023-10-12 07:36:44', '2023-10-12 07:39:09', '2023-10-12 07:39:09'),
 (33, 10, 'CP-11', 'Patch Medium Centre Piece', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/wPmPkMRLqDxxh2qX4zF9hBYn3cTIxsprcUrgT9Kk.jpg', 1, '2023-10-12 07:37:57', '2023-10-12 07:39:22', '2023-10-12 07:39:22'),
-(34, 10, 'CP-12', 'Straight Box Medium Centre Piece 3 Layer', '1.5 feet x 8 in', 'Golden', 29, 'pcs', 500, 'product/WO0zjFHBTkxJ8Py8yhOK4Vy6xBXwfZ2F0GdeOJvB.jpg', 1, '2023-10-12 07:40:49', '2023-10-12 07:40:49', NULL),
+(34, 10, 'CP-12', 'Straight Box Medium Centre Piece 3 Layer', '1.5 feet x 8 in', 'Golden', 19, 'pcs', 500, 'product/WO0zjFHBTkxJ8Py8yhOK4Vy6xBXwfZ2F0GdeOJvB.jpg', 1, '2023-10-12 07:40:49', '2023-10-31 07:57:15', NULL),
 (35, 10, 'CP-13', 'Round Medium Centre Piece 3 Layer', '2 feet x 8 inch', 'Golden', 2, 'pcs', 500, 'product/Bj27U4XYyZSdOyM7a78TxXJjSmmcw0o5k4JrLDYQ.jpg', 1, '2023-10-12 07:41:51', '2023-10-19 11:35:13', NULL),
 (36, 10, 'CP-14', 'Round Centre Piece 3 Layer', '2 feet x 10 in', 'Golden', 5, 'pcs', 1000, 'product/grEcX1zDKaPoNFHOsTmiwkVt1WVeTYXKnWAR2tnR.jpg', 1, '2023-10-12 07:42:55', '2023-10-12 07:42:55', NULL),
-(37, 10, 'CP-15', 'Straight Centre Piece 3 Layer', '2 feet x 11 in', NULL, 8, 'pcs', 1000, 'product/uSRKpyllkPGPmlYfWQw8Vq1HNmL3KlLIzLwhEPHo.jpg', 1, '2023-10-12 07:46:10', '2023-10-12 07:46:10', NULL),
+(37, 10, 'CP-15', 'Straight Centre Piece 3 Layer', '2 feet x 11 in', NULL, 4, 'pcs', 1000, 'product/uSRKpyllkPGPmlYfWQw8Vq1HNmL3KlLIzLwhEPHo.jpg', 1, '2023-10-12 07:46:10', '2023-10-31 07:57:15', NULL),
 (38, 10, 'CP-16', 'Patch Big Centre Piece', '2 feet x 10 in', 'Golden', 6, 'pcs', 1000, 'product/T3ie7ij4v5mZLg1uOEGOGkYsTEYj3mBhHOmwuIzN.jpg', 1, '2023-10-12 07:47:52', '2023-10-12 07:47:52', NULL),
 (39, 10, 'CP-17', 'Straight Box Large Centre Piece 4 Layer', '2 feet x 13 in', 'Crystal Silver', 6, 'pcs', 1200, 'product/MO0ClyVXZaaBMPlhqpa4iIW0ORvRMWF19Xiu5EDX.jpg', 1, '2023-10-12 08:15:14', '2023-10-12 08:15:14', NULL),
 (40, 10, 'CP-18', 'China Crystal Round Centre Piece', '2.5 feet x 14 inch', 'Crystal Silver', 40, 'pcs', 1000, 'product/pEVNNfWi6rEtPoEQbSfqhHUy5nhuPPdNQaQiKhNR.jpg', 1, '2023-10-12 08:39:21', '2023-10-12 08:39:21', NULL),
-(41, 10, 'CP-19', 'China Crystal Ball Round Centre Piece', '2 feet', 'Crystal Silver', 12, 'pcs', 600, 'product/PQV59n25YeIulvvvay78j9fZtufNrADO99arY3vO.jpg', 1, '2023-10-12 08:40:24', '2023-10-12 08:40:24', NULL),
+(41, 10, 'CP-19', 'China Crystal Ball Round Centre Piece', '2 feet', 'Crystal Silver', 9, 'pcs', 600, 'product/PQV59n25YeIulvvvay78j9fZtufNrADO99arY3vO.jpg', 1, '2023-10-12 08:40:24', '2023-10-31 11:12:47', NULL),
 (42, 10, 'CP-20', 'China Centre Piece', '1.4 feet', 'Crystal Silver', 19, 'pcs', 150, 'product/y0HNLjsiHuqAgCfMbX0SnuEF7x9Til7X16HFzq3W.jpg', 1, '2023-10-12 08:42:32', '2023-10-12 08:42:32', NULL),
 (43, 10, 'CP-20a', 'China Centre Piece', '1.8 feet', 'Crystal Silver', 20, 'pcs', 200, 'product/AquZSUZmwRkTq0GkNVCr0SiXMSui8VwAPqqH54Y6.jpg', 1, '2023-10-12 08:45:01', '2023-10-12 09:22:07', NULL),
-(44, 10, 'CP-20b', 'China Round Centre Piece', '2.2 feet', 'Crystal Silver', 18, 'pcs', 250, 'product/jFdbldOWlRhDv4QPMF6mmP07NWj5JHqAFmwOkvlh.jpg', 1, '2023-10-12 09:21:34', '2023-10-12 09:21:34', NULL),
+(44, 10, 'CP-20b', 'China Round Centre Piece', '2.2 feet', 'Crystal Silver', 17, 'pcs', 250, 'product/jFdbldOWlRhDv4QPMF6mmP07NWj5JHqAFmwOkvlh.jpg', 1, '2023-10-12 09:21:34', '2023-10-30 09:00:05', NULL),
 (45, 10, 'CP-21', 'China Crystal Small Centre Piece', '7 inch', NULL, 6, 'pcs', 100, 'product/eSw2YLD0jZUSzTKJHo9aKIgIapnLQbJrVPXusFRd.jpg', 1, '2023-10-12 09:24:03', '2023-10-15 05:36:24', NULL),
 (46, 10, 'CP-22', 'China Crystal Ceramic Round Centre Piece', '2.5 feet & 2 feet', 'Crystal & White', 4, 'pcs', 600, 'product/Wvwpo93L7rLS48BDQ9fSjUqJYgpnKRxctT4IVsqS.jpg', 1, '2023-10-12 09:26:13', '2023-10-12 09:26:13', NULL),
 (47, 10, 'CP-23', 'China Glass Single Candle Centre Piece', 'Large 1 pc & Small 6 pcs', 'Antique Golden', 7, 'pcs', 200, 'product/P6wUDofNyzdtlePkWspth2vXbSWONOzpiA9vezsg.jpg', 1, '2023-10-12 09:28:04', '2023-10-15 05:37:14', NULL),
@@ -785,17 +809,17 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (106, 13, 'CND-26', 'Hanging Chandelier', NULL, 'White', 8, 'pcs', 300, 'product/FRVURZCJaJVUuploIPtBsr9ruR18fp7zQtSlb9tp.jpg', 1, '2023-10-13 05:18:26', '2023-10-13 05:18:26', NULL),
 (107, 17, 'FT-1', 'Large Stone Chandelier', 'H-7feet, D-8feet', 'White', 1, 'pcs', 25000, 'product/default.webp', 1, '2023-10-13 06:28:00', '2023-10-13 06:28:00', NULL),
 (108, 17, 'FT-1', 'Large Stone Chandelier', 'H-7feet, D-8feet', 'Antique White', 1, 'pcs', 25000, 'product/2aCqWJRMsAj7vJkqKIaKCslMS2GRj89s3uL4zsWQ.png', 1, '2023-10-13 06:28:30', '2023-10-13 06:28:30', NULL),
-(109, 17, 'FT-2', 'Small Stone Fountain', 'H-4 feet, D-3.5 feet', 'Marvel', 2, 'pcs', 6000, 'product/0PQnOBIrYMZQPy4IxqhqxhSwvtc8cfeA8zkR0c6Y.png', 1, '2023-10-13 06:29:39', '2023-10-13 06:29:39', NULL),
+(109, 17, 'FT-2', 'Small Stone Fountain', 'H-4 feet, D-3.5 feet', 'Marvel', 1, 'pcs', 6000, 'product/0PQnOBIrYMZQPy4IxqhqxhSwvtc8cfeA8zkR0c6Y.png', 1, '2023-10-13 06:29:39', '2023-10-30 07:21:35', NULL),
 (110, 17, 'FT-3', 'Rectangle Metal Fountain', 'H-5 feet, L-4 feet, W-4 feet', 'White', 2, 'pcs', 7000, 'product/Lgj33WkmBMG8D2s7JiQIyM0vGbSMcLhBtFOFFRoU.jpg', 1, '2023-10-13 06:30:40', '2023-10-13 06:30:40', NULL),
-(111, 17, 'FT-4', 'Round Large Metal Fountain', 'H-7 feet', 'White', 3, 'pcs', 5000, 'product/PPy2KCV08P9qdPSmv0qDBK9ujDFajEuGl0YSzd1m.jpg', 1, '2023-10-13 06:31:24', '2023-10-13 06:31:24', NULL),
+(111, 17, 'FT-4', 'Round Large Metal Fountain', 'H-7 feet', 'White', 0, 'pcs', 5000, 'product/PPy2KCV08P9qdPSmv0qDBK9ujDFajEuGl0YSzd1m.jpg', 1, '2023-10-13 06:31:24', '2023-10-30 07:21:35', NULL),
 (112, 17, 'FT-5', 'SS Mini Fountain', 'H-4 feet, W+L-1 feet', 'Steel', 12, 'pcs', 1500, 'product/So6ZS9In7b41E2ZtcSvqn2d36CiUNKC3YST11f3M.jpg', 1, '2023-10-13 06:34:56', '2023-10-13 06:34:56', NULL),
 (113, 17, 'FT-6', 'Stone Medium Fountain', 'H-4 feet, D-4 feet', 'Antique White', 1, 'pcs', 10000, 'product/VDHaPL964YR2WeLCiN41TraCr422UntDdqahniKq.jpg', 1, '2023-10-13 08:21:28', '2023-10-13 08:21:28', NULL),
-(114, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/N0jE91nbnYUiC3Ffczr7UcRfowPDHg8OptcJohzx.jpg', 1, '2023-10-13 08:36:49', '2023-10-13 08:36:49', NULL),
+(114, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 1, 'pcs', 600, 'product/N0jE91nbnYUiC3Ffczr7UcRfowPDHg8OptcJohzx.jpg', 1, '2023-10-13 08:36:49', '2023-10-30 08:30:44', NULL),
 (115, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/7e1d49Ea5XKd5UV0fbJfSWGPeY2HRFCgdv0o5BDU.jpg', 1, '2023-10-13 08:36:52', '2023-10-13 08:37:22', '2023-10-13 08:37:22'),
 (116, 16, 'FV-2', 'Flower Vase with Base', 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/YvHfGDmJDRrrb9xUn9y4HWrA9HhXsgmFSF8xCzcr.jpg', 1, '2023-10-13 08:36:53', '2023-10-13 08:38:04', '2023-10-13 08:38:04'),
-(117, 16, 'FV-1', 'Crystal Flower Vase', 'H-2 feet, 1 feet', 'Crystal Silver', 12, 'pcs', 1000, 'product/GcXVGQLIYLySM5YxJRXfqWBYAgNBdBzo8D3omzjW.jpg', 1, '2023-10-13 09:12:44', '2023-10-13 09:12:44', NULL),
+(117, 16, 'FV-1', 'Crystal Flower Vase', 'H-2 feet, 1 feet', 'Crystal Silver', 7, 'pcs', 1000, 'product/GcXVGQLIYLySM5YxJRXfqWBYAgNBdBzo8D3omzjW.jpg', 1, '2023-10-13 09:12:44', '2023-10-31 12:30:09', NULL),
 (118, 16, 'FV-3', 'Medium Flower Vase', 'H-3 feet', 'Customize', 6, 'pcs', 500, 'product/2PUSQj3btRBdodGH8eT6aRRcAlqrUVQPItOuich0.jpg', 1, '2023-10-13 09:18:03', '2023-10-19 12:23:54', NULL),
-(119, 16, 'FV-4', 'Fiber Flower Vase', 'H-2.5 feet', NULL, 16, 'pcs', 500, 'product/3uzDDlSeGNtswaT1HL3Y7RC6KQwUXinBoIanwjgk.jpg', 1, '2023-10-13 09:29:36', '2023-10-13 09:29:36', NULL),
+(119, 16, 'FV-4', 'Fiber Flower Vase', 'H-2.5 feet', NULL, 13, 'pcs', 500, 'product/3uzDDlSeGNtswaT1HL3Y7RC6KQwUXinBoIanwjgk.jpg', 1, '2023-10-13 09:29:36', '2023-10-30 08:30:44', NULL),
 (120, 16, 'FV-5', 'Plastic Flower Vase', NULL, 'White', 6, 'pcs', 300, 'product/1iwDylrlh9K3sqap6LagyVKZllC2e6rc6iYCCaCk.jpg', 1, '2023-10-13 09:30:18', '2023-10-13 09:30:18', NULL),
 (121, 16, 'FV-6', 'Roman Flower Vase', NULL, 'White', 9, 'pcs', 500, 'product/CqTQQLOvP4M27MesAmZMxw69tkzsLFqMXSxVG5jD.jpg', 1, '2023-10-13 09:35:00', '2023-10-13 09:35:00', NULL),
 (122, 16, 'FV-7', 'Thin Fiber Flower Vase', NULL, 'Golden', 16, 'pcs', 500, 'product/ap21wYCaUqe7eSAaEUVDRLbBAuARhh6hUBbup5fr.jpg', 1, '2023-10-15 03:52:35', '2023-10-15 03:52:35', NULL),
@@ -875,7 +899,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (196, 35, 'P-16', 'Straight Stair', '1.5 feet 5pcs & 1 feet 3pcs', 'Wooden', 8, 'pcs', 300, 'product/YkRmum6g0obI6MMHQqjYie35tnM2wVFg6DRbpM6Z.jpg', 1, '2023-10-18 06:52:35', '2023-10-18 06:52:35', NULL),
 (197, 34, 'CH-01', 'Golden Round Design Chair', NULL, 'Golden', 50, 'pcs', 300, 'product/3HAoTiPWFOT11g2qnidzBvs0AmXDmB7i6Xm545Uz.jpg', 1, '2023-10-19 04:05:26', '2023-10-19 04:05:26', NULL),
 (198, 34, 'CH-2', 'Golden Stick Chair', NULL, 'Golden', 50, 'pcs', 300, 'product/kcxBfKccqAPa22Ewv8uBtEaPjxEbTsqtr6oZ7mz7.jpg', 1, '2023-10-19 04:07:08', '2023-10-19 04:07:08', NULL),
-(199, 34, 'CH-03', 'Golden Chair', NULL, 'Golden', 50, 'pcs', 300, 'product/acmQ9lRErbxNpuHM0VRUltvEhQU4k29bKKGcHpIB.jpg', 1, '2023-10-19 04:09:31', '2023-10-19 04:09:31', NULL),
+(199, 34, 'CH-03', 'Golden Chair', NULL, 'Golden', 30, 'pcs', 300, 'product/acmQ9lRErbxNpuHM0VRUltvEhQU4k29bKKGcHpIB.jpg', 1, '2023-10-19 04:09:31', '2023-10-30 06:47:14', NULL),
 (200, 34, 'CH-04', 'Golden Chair', NULL, 'Golden', 2, 'pcs', 300, 'product/W2ErSty5FIlpg4NfcBc4msiC0QQtH5025u1Xg6pM.jpg', 1, '2023-10-19 04:09:57', '2023-10-19 04:09:57', NULL),
 (201, 34, 'CH-05', 'Garden Chair', NULL, 'Golden', 200, 'pcs', 80, 'product/034tqd5U89ch3Koh9zQ6CqqS1pmBKFM9yDdv6U6s.jpg', 1, '2023-10-19 04:10:24', '2023-10-19 04:10:24', NULL),
 (202, 34, 'CH-06', 'Garden Chair', NULL, 'White', 200, 'pcs', 80, 'product/mU4HXnMtPjb6WKi4pJuElvvWJ5FAXFIKFb3TQMq1.jpg', 1, '2023-10-19 04:10:53', '2023-10-19 04:10:53', NULL),
@@ -967,7 +991,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `dimension`
 (287, 26, 'TR-09', 'Yellow Table Runner', NULL, 'Yellow', 8, 'pcs', 100, 'product/osy3nim3zlTvz9ViVZ4yHGHvrkkZvFu2O5nshx8X.jpg', 1, '2023-10-21 09:11:48', '2023-10-21 09:11:48', NULL),
 (288, 26, 'TR-10', 'Orange Table Runner', NULL, 'Orange', 26, 'pcs', 100, 'product/4PXmYVQM5O6Jt2UBk5FNzU6A1SXzSpEYeXEh2HSL.jpg', 1, '2023-10-21 09:13:53', '2023-10-21 09:13:53', NULL),
 (289, 27, 'TT-01', 'Sequence Table Top', NULL, 'Rose Golden', 32, 'pcs', 300, 'product/n2kc08WY5iew70fe0LPdD8IN2iM2agOAAo5K0Tql.jpg', 1, '2023-10-21 09:58:48', '2023-10-21 09:58:48', NULL),
-(290, 27, 'TT-02', 'Golden Net Table Top', NULL, 'Golden', 45, 'pcs', 100, 'product/YJJiYQcTbBSjeWwKBRFhBDm29fKyVM1gdvKA6Pve.jpg', 1, '2023-10-21 10:01:08', '2023-10-21 10:01:08', NULL),
+(290, 27, 'TT-02', 'Golden Net Table Top', NULL, 'Golden', 35, 'pcs', 100, 'product/YJJiYQcTbBSjeWwKBRFhBDm29fKyVM1gdvKA6Pve.jpg', 1, '2023-10-21 10:01:08', '2023-10-30 06:47:14', NULL),
 (291, 27, 'TT-03', 'Cream Net Table Top', NULL, 'Cream', 18, 'pcs', 100, 'product/JTj5pmrVkDcWgrY5voMSYc3V4dFkxulusSEPAPxE.jpg', 1, '2023-10-21 10:02:15', '2023-10-21 10:02:15', NULL),
 (292, 27, 'TT-04', 'White Net Table Top', NULL, 'White', 88, 'pcs', 100, 'product/wihHdzSe2lVWegPdC2N4I3zlo6GoGnoCoiYT391s.jpg', 1, '2023-10-21 10:02:49', '2023-10-21 10:02:49', NULL),
 (293, 27, 'TT-06', 'Black Ball Table Top', NULL, 'White', 36, 'pcs', 100, 'product/v6XoDrPlqgbgVq5rP09jJXVlQiiJOa9sv33okBAs.jpg', 1, '2023-10-21 10:03:37', '2023-10-21 10:03:37', NULL),
@@ -1072,14 +1096,34 @@ CREATE TABLE `rentals` (
 --
 
 INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantity`, `status`, `starting_date`, `ending_date`, `number_of_days`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 4, 24, 1301, 2, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
-(2, 4, 25, 1301, 3, 'pending approval', '2023-10-25 00:00:00', '2023-10-26 00:00:00', 1, '2023-10-25 13:08:24', '2023-10-25 13:08:24', NULL),
-(3, 1, 29, 1302, 3, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-26 10:17:26', '2023-10-28 14:33:30', NULL),
-(4, 1, 26, 1302, 6, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
-(5, 1, 30, 1302, 5, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
-(6, 1, 31, 1302, 4, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-28 14:33:30', NULL),
+(3, 1, 29, 1302, 3, 'rented', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-26 10:17:26', '2023-10-31 07:57:28', NULL),
+(4, 1, 26, 1302, 6, 'rented', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-31 07:57:32', NULL),
+(5, 1, 30, 1302, 5, 'rented', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-31 07:57:34', NULL),
+(6, 1, 31, 1302, 4, 'rented', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 14:33:30', '2023-10-31 07:57:36', NULL),
 (7, 4, 26, 1303, 5, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 15:25:08', '2023-10-28 15:26:14', NULL),
-(8, 4, 28, 1303, 2, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 15:25:08', '2023-10-28 15:26:14', NULL);
+(8, 4, 28, 1303, 2, 'approved', '2023-10-30 00:00:00', '2023-10-31 00:00:00', 1, '2023-10-28 15:25:08', '2023-10-28 15:26:14', NULL),
+(9, 4, 199, 1304, 20, 'approved', '2023-10-31 00:00:00', '2023-11-01 00:00:00', 1, '2023-10-29 08:41:48', '2023-10-30 06:47:14', NULL),
+(10, 4, 290, 1304, 10, 'approved', '2023-10-31 00:00:00', '2023-11-01 00:00:00', 1, '2023-10-29 08:41:48', '2023-10-30 06:47:14', NULL),
+(11, 1, 25, 1305, 20, 'approved', '2023-11-03 00:00:00', '2023-11-04 00:00:00', 1, '2023-10-30 06:52:07', '2023-10-31 07:57:15', NULL),
+(12, 1, 34, 1305, 10, 'approved', '2023-11-03 00:00:00', '2023-11-04 00:00:00', 1, '2023-10-30 06:52:07', '2023-10-31 07:57:15', NULL),
+(13, 1, 37, 1305, 4, 'approved', '2023-11-03 00:00:00', '2023-11-04 00:00:00', 1, '2023-10-30 06:52:07', '2023-10-31 07:57:15', NULL),
+(14, 3, 24, 1306, 3, 'pending approval', '2023-11-02 00:00:00', '2023-11-03 00:00:00', 1, '2023-10-30 06:54:53', '2023-10-30 06:54:53', NULL),
+(15, 3, 25, 1306, 15, 'pending approval', '2023-11-02 00:00:00', '2023-11-03 00:00:00', 1, '2023-10-30 06:54:53', '2023-10-30 06:54:53', NULL),
+(16, 4, 25, 1307, 9, 'approved', '2023-11-07 00:00:00', '2023-11-08 00:00:00', 1, '2023-10-30 07:21:01', '2023-10-30 07:21:35', NULL),
+(17, 4, 109, 1307, 1, 'approved', '2023-11-07 00:00:00', '2023-11-08 00:00:00', 1, '2023-10-30 07:21:01', '2023-10-30 07:21:35', NULL),
+(18, 4, 111, 1307, 3, 'approved', '2023-11-07 00:00:00', '2023-11-08 00:00:00', 1, '2023-10-30 07:21:01', '2023-10-30 07:21:35', NULL),
+(20, 4, 44, 1308, 1, 'approved', '2023-11-22 00:00:00', '2023-11-28 00:00:00', 6, '2023-10-30 07:48:30', '2023-10-30 09:00:05', NULL),
+(21, 4, 25, 1309, 7, 'approved', '2023-11-01 00:00:00', '2023-11-04 00:00:00', 3, '2023-10-30 07:58:36', '2023-10-30 08:14:51', NULL),
+(22, 4, 29, 1309, 11, 'approved', '2023-11-01 00:00:00', '2023-11-04 00:00:00', 3, '2023-10-30 07:58:36', '2023-10-30 08:14:51', NULL),
+(23, 4, 25, 1310, 4, 'approved', '2023-11-29 00:00:00', '2023-11-30 00:00:00', 1, '2023-10-30 08:29:51', '2023-10-30 08:30:44', NULL),
+(24, 4, 114, 1310, 3, 'approved', '2023-11-29 00:00:00', '2023-11-30 00:00:00', 1, '2023-10-30 08:29:51', '2023-10-30 08:30:44', NULL),
+(25, 4, 117, 1310, 2, 'approved', '2023-11-29 00:00:00', '2023-11-30 00:00:00', 1, '2023-10-30 08:29:51', '2023-10-30 08:30:44', NULL),
+(26, 4, 119, 1310, 3, 'approved', '2023-11-29 00:00:00', '2023-11-30 00:00:00', 1, '2023-10-30 08:29:51', '2023-10-30 08:30:44', NULL),
+(27, 4, 31, 1308, 1, 'approved', '2023-11-22 00:00:00', '2023-11-28 00:00:00', 6, '2023-10-30 08:49:20', '2023-10-30 09:00:05', NULL),
+(28, 4, 25, 1311, 5, 'approved', '2023-11-23 00:00:00', '2023-11-25 00:00:00', 2, '2023-10-30 09:01:43', '2023-10-31 11:12:47', NULL),
+(29, 4, 41, 1311, 3, 'approved', '2023-11-23 00:00:00', '2023-11-25 00:00:00', 2, '2023-10-30 09:01:43', '2023-10-31 11:12:47', NULL),
+(30, 5, 24, 1312, 2, 'approved', '2023-11-08 00:00:00', '2023-11-11 00:00:00', 3, '2023-10-31 12:29:49', '2023-10-31 12:30:09', NULL),
+(31, 5, 117, 1312, 3, 'approved', '2023-11-08 00:00:00', '2023-11-11 00:00:00', 3, '2023-10-31 12:29:49', '2023-10-31 12:30:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -1242,6 +1286,39 @@ CREATE TABLE `subscriptions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `invoice_id` bigint(20) DEFAULT NULL,
+  `type` varchar(20) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `method` varchar(50) DEFAULT NULL,
+  `balance` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `invoice_id`, `type`, `amount`, `method`, `balance`, `description`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, 1311, 'out', 6100, NULL, 3900, 'rental', '2023-10-31 11:12:47', '2023-10-31 11:12:47'),
+(2, 4, 1, NULL, 'in', 2500, NULL, 6400, 'deposit added', '2023-10-31 11:13:31', '2023-10-31 11:13:31'),
+(3, 4, 1, 1310, 'out', 1500, NULL, 4900, 'due collection', '2023-10-31 11:14:04', '2023-10-31 11:14:04'),
+(4, 5, 1, NULL, 'in', 10000, NULL, 10000, 'deposit added', '2023-10-31 12:28:48', '2023-10-31 12:28:48'),
+(5, 5, 1, 1312, 'out', 10000, NULL, 0, 'rental', '2023-10-31 12:30:09', '2023-10-31 12:30:09'),
+(6, 5, 1, NULL, 'in', 15000, NULL, 15000, 'deposit added', '2023-10-31 12:30:43', '2023-10-31 12:30:43'),
+(7, 5, 1, 1312, 'out', 5000, NULL, 10000, 'due collection', '2023-10-31 12:30:54', '2023-10-31 12:30:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1262,10 +1339,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin Name', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', 'F0gb40eT2CFdYGIj2Aq9H9fy6e18AgxcFxkEaa4FQBilsy3rs19b4n1RCTlr', NULL, '2023-10-24 15:36:45'),
+(1, 'Galib Jaman', 'maaevent@admin.com', NULL, '$2y$10$0e9LtRsmxUnhLdae47aMr.0O16YOP2IqklTZhQ.WMoGleBoXuRPqu', 'user/pyaStJ6AFZqbInLI1xliKnRldTHgjQaFeOxYz1g6.jpg', 'IFP0tckTHEiKKe9g0SsAJYlx1WfZHtvLDatLSltAYC1WIWw7iXCMAn0fsyIF', NULL, '2023-10-29 08:16:44'),
 (2, 'Admin Name', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, '2023-10-24 15:42:53'),
-(3, 'Wanderer - Sales Manager ', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, NULL),
-(4, 'Wizard - Inventory', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, '2023-10-23 04:41:56', '2023-10-23 04:41:56');
+(3, 'Sales Manager', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, NULL, '2023-10-29 08:24:53'),
+(4, 'Wizard', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/JhPzIh7Wu6mzBvl2RSjrttStTnNKaaXURIHv9ZlV.png', NULL, '2023-10-23 04:41:56', '2023-10-29 08:26:25');
 
 -- --------------------------------------------------------
 
@@ -1600,6 +1677,12 @@ ALTER TABLE `subscriptions`
   ADD UNIQUE KEY `subscription_email` (`email`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1651,7 +1734,7 @@ ALTER TABLE `company_histories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -1687,7 +1770,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1313;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1717,7 +1800,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1741,7 +1824,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `repairs`
@@ -1772,6 +1855,12 @@ ALTER TABLE `services`
 --
 ALTER TABLE `subscriptions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
