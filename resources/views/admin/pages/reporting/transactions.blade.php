@@ -101,6 +101,17 @@
     
             <!--begin::Card toolbar-->
             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                <!--begin::Flatpickr-->
+                <div class="input-group w-250px">
+                    <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" id="transactions_flatpickr_input" />
+                    <button class="btn btn-icon btn-light" id="transactions_flatpickr_clear">
+                        <i class="ki-duotone ki-cross fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </button>
+                </div>
+                <!--end::Flatpickr-->
                 <!--begin::filter customer-->
                 <div class="w-100 mw-150px">
                     <!--begin::Select2-->
@@ -161,7 +172,7 @@
                         <td>
                             {{ $index = $index+1 }}
                         </td>
-                        <td class="text-gray-700" data-filter={{ $transaction->customer->id }}>
+                        <td class="text-gray-700" data-filter="{{ $transaction->customer->id }} {{ $transaction->customer->name }}">
                             <a href="{{ route('admin.customer.show', $transaction->customer->id) }}" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $transaction->customer->name }}</a>
                         </td>
                         <td class="text-center" data-filter="{{ $transaction->description }}">
@@ -178,14 +189,16 @@
                             <span>{{ number_format($transaction->balance) }}</span>
                         </td>
                         <td class="text-gray-700">{{ $transaction->user->name }}</td>
-                        <td class="text-gray-700">
+                        <td class="text-gray-700" data-filter="{{ $transaction->invoice_id ?? '' }}">
                             @if ($transaction->invoice_id)
                                 <a href="{{ route('admin.invoice.show', $transaction->invoice_id) }}" class="text-gray-700 fw-semibold text-hover-primary fs-6">#{{ $transaction->invoice->id }}</a>
                             @else
                                 <span class="badge badge-secondary">N/A</span>
                             @endif
                         </td>
-                        <td class="text-gray-700 text-center">{{ Carbon\Carbon::parse($transaction->created_at)->format('d M, Y h:i A') }}</td>
+                        <td class="text-gray-700 text-center" data-filter="<span>{{ Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($transaction->created_at)->format('Y-m-d') }}">
+                            {{ Carbon\Carbon::parse($transaction->created_at)->format('d M, Y h:i A') }}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -236,8 +249,26 @@
                         'pdfHtml5'
                     ]
         });
+
         // Class definition
         var KTAppEcommerceProducts = function () {
+            var flatpickr;
+            var minDate, maxDate;
+
+            // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
+            var initFlatpickr = () => {
+                const element = document.querySelector('#transactions_flatpickr_input');
+                flatpickr = $(element).flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                    mode: "range",
+                    onChange: function (selectedDates, dateStr, instance) {
+                        handleFlatpickr(selectedDates, dateStr, instance);
+                    },
+                });
+            }
+
             var handleSearchDatatable = () => {
                 const filterSearch = document.querySelector('[data-transaction-filter="search"]');
                 filterSearch.addEventListener('input', function (e) {
@@ -269,66 +300,34 @@
                 });
             }
 
-            // Delete category
-            var handleDeleteRows = () => {
-                // Select all delete buttons
-                const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-product-filter="delete_row"]');
+            // Handle flatpickr --- more info: https://flatpickr.js.org/events/
+            var handleFlatpickr = (selectedDates, dateStr, instance) => {
+                minDate = selectedDates[0] ? new Date(selectedDates[0]) : null;
+                maxDate = selectedDates[1] ? new Date(selectedDates[1]) : null;
 
-                deleteButtons.forEach(d => {
-                    // Delete button on click
-                    d.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        // Select parent row
-                        const parent = e.target.closest('tr');
-
-                        // Get category name
-                        const productName = parent.querySelector('[data-kt-ecommerce-product-filter="product_name"]').innerText;
-
-                        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                        Swal.fire({
-                            text: "Are you sure you want to archive " + productName + "?",
-                            icon: "warning",
-                            showCancelButton: true,
-                            buttonsStyling: false,
-                            confirmButtonText: "Yes, archive!",
-                            cancelButtonText: "No, cancel",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-danger",
-                                cancelButton: "btn fw-bold btn-active-light-primary"
-                            }
-                        }).then(function (result) {
-                            if (result.value) {
-                                Swal.fire({
-                                    text: "You have archived " + productName + "!.",
-                                    icon: "success",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                }).then(function () {
-                                    // get the product id from data-product-id
-                                    const productId = parent.querySelector('[data-product-id]').getAttribute('data-product-id');
-                                    // send to the delete route
-                                    window.location.href = `/admin/product/archive/${productId}`;
-                                });
-                            } else if (result.dismiss === 'cancel') {
-                                Swal.fire({
-                                    text: productName + " was not archived.",
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                });
-                            }
-                        });
-                    })
-                });
+                // Custom filtering function which will search data in column four between two values
+                $.fn.dataTable.ext.search.push(
+                    function (settings, data, dataIndex) {
+                        var min = minDate;
+                        var max = maxDate;
+                        var dateAdded = new Date(moment($(data[7]).text(), 'DD/MM/YYYY'));
+                        
+                        if ((min === null && max === null) || (min <= dateAdded && max === null) || (min === null && max >= dateAdded) || (min <= dateAdded && max >= dateAdded)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                );
+                datatable.draw();
             }
 
+            // Handle clear flatpickr
+            var handleClearFlatpickr = () => {
+                const clearButton = document.querySelector('#transactions_flatpickr_clear');
+                clearButton.addEventListener('click', e => {
+                    flatpickr.clear();
+                });
+            }
 
             // Public methods
             return {
@@ -337,10 +336,11 @@
                         return;
                     }
 
-                    // initDatatable();
+                    initFlatpickr();
+                    handleClearFlatpickr();
                     handleSearchDatatable();
-                    handleCustomerFilter();
                     handleTypeFilter();
+                    handleCustomerFilter();
                 }
             };
         }();
@@ -355,14 +355,11 @@
         dtButtons.classList.add('d-none');
 
         function toggleDtButtons(){
-
-            console.log(dtButtons)
             if(dtButtons.classList.contains('d-none')){
                 dtButtons.classList.remove('d-none');
             }else{
                 dtButtons.classList.add('d-none');
             }
-            
         }
 
     </script>
