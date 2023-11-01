@@ -4,13 +4,19 @@
 .invoice-header{
     background-color: #4273b8;
 }
+.print-display-show{
+    display: none !important;
+}
 @media print {
     .font-bn{
         font-family: 'Hind Siliguri', sans-serif;
     }
 
     .print-display-none{
-        display: none;
+        display: none !important;
+    }
+    .print-display-show{
+        display: block !important;
     }
     .app-content{
         background-color: #fff !important;
@@ -19,4 +25,14 @@
     .print * {
         color : #000 !important;
     }
+
+    .dt-table td, .dt-table th{
+        padding-block: 0px !important;
+        border-bottom: 1px solid #747474 !important;
+    }
+
+    .dt-table .tfoot tr:nth-child(1) th{
+        padding-top: 10rem !important;
+    }
+
 }

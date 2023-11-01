@@ -41,7 +41,7 @@
 
 <!--begin::toolbar-->
 @section('toolbar')
-<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
+<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 print-display-none">
 
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
@@ -88,21 +88,25 @@
 
     <div class="card card-flush">
         <!--begin::Card header-->
-        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+        <div class="card-header align-items-center py-5 gap-2 gap-md-5 print-display-none">
             <!--begin::Card title-->
             <div class="card-title">
                 <!--begin::Search-->
                 <div class="d-flex align-items-center position-relative my-1">
-                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span class="path1"></span><span class="path2"></span></i><input type="text" data-transaction-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Product">
+                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <input type="text" data-transaction-filter="search" class="form-control form-control-solid w-250px ps-12 print-display-none" placeholder="Search Product">
                 </div>
                 <!--end::Search-->
             </div>
             <!--end::Card title-->
     
             <!--begin::Card toolbar-->
-            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+            <div class="card-toolbar flex-row-fluid justify-content-end gap-5 print-display-none">
                 <!--begin::Flatpickr-->
-                <div class="input-group w-250px">
+                <div class="input-group w-250px print-display-none">
                     <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" id="transactions_flatpickr_input" />
                     <button class="btn btn-icon btn-light" id="transactions_flatpickr_clear">
                         <i class="ki-duotone ki-cross fs-2">
@@ -113,9 +117,9 @@
                 </div>
                 <!--end::Flatpickr-->
                 <!--begin::filter customer-->
-                <div class="w-100 mw-150px">
+                <div class="w-100 mw-150px print-display-none">
                     <!--begin::Select2-->
-                    <select class="form-select form-select-solid font-bn" data-control="select2" data-placeholder="Filter Type" data-transaction-filter="type">
+                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Type" data-transaction-filter="type">
                         <option></option>
                         <option value="all">All</option>
                         @foreach ($transactions->unique('description') as $transaction)
@@ -126,21 +130,32 @@
                 </div>
                 <!--begin::filter customer-->
                 <!--begin::filter customer-->
-                <div class="w-100 mw-200px">
+                <div class="w-100 mw-200px print-display-none">
                     <!--begin::Select2-->
-                    <select class="form-select form-select-solid font-bn" data-control="select2" data-placeholder="Filter Customer" data-transaction-filter="customer">
+                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Customer" data-transaction-filter="customer">
                         <option></option>
                         <option value="all">All</option>
                         @foreach ($transactions->unique('customer_id') as $transaction)
-                            <option value="{{ $transaction->customer->id }}">#{{ $transaction->customer->id }} {{ $transaction->customer->name }}</option>
+                            <option value="{{ $transaction->customer->id.' '.$transaction->customer->name}}">#{{ $transaction->customer->id }} {{ $transaction->customer->name }}</option>
                         @endforeach
                     </select>
                     <!--end::Select2-->
                 </div>
                 <!--begin::filter customer-->
                 <!--begin::Export-->
-                <button type="button" class="btn btn-light-primary" onclick="toggleDtButtons()">
-                    <i class="ki-duotone ki-exit-up fs-2"><span class="path1"></span><span class="path2"></span></i>Export Report
+                <button type="button" class="btn btn-light-primary print-display-none" onclick="toggleDtButtons()">
+                    <i class="ki-duotone ki-exit-up fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Export Report
+                </button>
+                <button type="button" class="btn btn-light-primary print-display-none" onclick="window.print()">
+                    <i class="ki-duotone ki-document fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Print
                 </button>
             </div>
             <!--end::Card toolbar-->
@@ -150,7 +165,8 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
             <!--begin::Table-->
-            <table class="table align-middle table-row-dashed fs-6 gy-5" id="products_table">
+            <span class="text-dark fs-1 print-display-show p-10">Transaction Report - {{ date('d M, Y h:i A') }}</span>
+            <table class="table align-middle table-row-dashed fs-6 gy-5 dt-table" id="products_table">
                 <thead>
                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                         <th class="">#</th>
@@ -160,7 +176,7 @@
                         <th class="">Deposit Balance</th>
                         <th class="">Processed By</th>
                         <th class="">Invoice</th>
-                        <th class="text-center">Time</th>
+                        <th class="text-end">Time</th>
                     </tr>
                 </thead>
                 <tbody class="fw-semibold text-gray-600">
@@ -172,17 +188,19 @@
                         <td>
                             {{ $index = $index+1 }}
                         </td>
-                        <td class="text-gray-700" data-filter="{{ $transaction->customer->id }} {{ $transaction->customer->name }}">
+                        <td class="text-gray-700" data-filter="{{ $transaction->customer->id.' '.$transaction->customer->name}}">
                             <a href="{{ route('admin.customer.show', $transaction->customer->id) }}" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $transaction->customer->name }}</a>
                         </td>
                         <td class="text-center" data-filter="{{ $transaction->description }}">
-                            @if ($transaction->type == 'in')
-                                <span class="badge badge-success">{{ ucwords($transaction->description) }}</span>
-                            @else
+                            @if ($transaction->description == 'deposit added')
+                                <span class="badge badge-primary">{{ ucwords($transaction->description) }}</span>
+                            @elseif($transaction->description == 'rental')
                                 <span class="badge badge-danger">{{ ucwords($transaction->description) }}</span>
+                            @elseif($transaction->description == 'due collection')
+                                <span class="badge badge-success">{{ ucwords($transaction->description) }}</span>
                             @endif
                         </td>
-                        <td class="text-gray-700">
+                        <td class="text-gray-700" data-filter="{{ $transaction->amount }}">
                             <span>{{ number_format($transaction->amount) }}</span>
                         </td>
                         <td class="text-gray-700">
@@ -196,12 +214,26 @@
                                 <span class="badge badge-secondary">N/A</span>
                             @endif
                         </td>
-                        <td class="text-gray-700 text-center" data-filter="<span>{{ Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($transaction->created_at)->format('Y-m-d') }}">
+                        <td class="text-gray-700 text-end" data-filter="<span>{{ Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($transaction->created_at)->format('Y-m-d') }}">
                             {{ Carbon\Carbon::parse($transaction->created_at)->format('d M, Y h:i A') }}
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr class="border-top border-5">
+                        <th class="text-end py-1" colspan="7">Total Rental</th>
+                        <th class="text-end py-1" id="totalRentalRow"></th>
+                    </tr>
+                    <tr>
+                        <th class="text-end py-1" colspan="7">Total Deposit</th>
+                        <th class="text-end py-1" id="totalDepositRow"></th>
+                    </tr>
+                    <tr>
+                        <th class="text-end py-1" colspan="7">Total Due Collection</th>
+                        <th class="text-end py-1" id="totalDueCollectionRow"></th>
+                    </tr>
+                </tfoot>
             </table>
             <!--end::Table-->
         </div>
@@ -239,15 +271,69 @@
 
         const table = document.querySelector('#products_table');;
         const datatable = $(table).DataTable({
-                    "info": true,
-                    'order': [],
-                    'pageLength': 10,
-                    'dom': 'Bfrtip',
-                    'buttons': [
-                        'copyHtml5',
-                        'excelHtml5',
-                        'pdfHtml5'
-                    ]
+            "info": true,
+            'pageLength': 20,
+            'lengthChange': true,
+            'lengthMenu': [5, 10, 20, 50, 100],
+            'dom': 'Bfrtip',
+            'buttons': [
+                'copyHtml5',
+                'excelHtml5',
+            ],
+            footerCallback: function (row, data, start, end, display) {
+                let totalRentalRow = document.querySelector('#totalRentalRow');
+                let totalDepositRow = document.querySelector('#totalDepositRow');
+                let totalDueCollectionRow = document.querySelector('#totalDueCollectionRow');
+
+                let api = this.api();
+
+                //get current page data
+                data = api.rows({ page: 'current' }).data();
+
+                // extract column 3 data
+                var extractedData = [];
+                data.each(function (dataRow) {
+                    extractedData.push(dataRow);
+                });
+
+                data = extractedData;
+
+                let depositRow = data.filter((item) => {
+                    return item[2]["@data-filter"] == 'deposit added';
+                });
+
+                let depositAmount = 0;
+                depositRow.forEach(item => {
+                    let amount = item[3]["@data-filter"];
+                    depositAmount += parseInt(amount);
+                });
+
+                //calculate rental
+                let rentalRow = data.filter((item) => {
+                    return item[2]["@data-filter"] == 'rental';
+                });
+
+                let rentalAmount = 0;
+                rentalRow.forEach(item => {
+                    let amount = item[3]["@data-filter"];
+                    rentalAmount += parseInt(amount);
+                });
+
+                //calculate due collection
+                let dueCollectionRow = data.filter((item) => {
+                    return item[2]["@data-filter"] == 'due collection';
+                });
+
+                let dueCollectionAmount = 0;
+                dueCollectionRow.forEach(item => {
+                    let amount = item[3]["@data-filter"];
+                    dueCollectionAmount += parseInt(amount);
+                });
+
+                totalRentalRow.innerText = rentalAmount;
+                totalDepositRow.innerText = depositAmount;
+                totalDueCollectionRow.innerText = dueCollectionAmount;
+            }
         });
 
         // Class definition
