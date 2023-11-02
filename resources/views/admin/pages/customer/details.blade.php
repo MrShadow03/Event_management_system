@@ -33,7 +33,7 @@
 @section('toolbar')
     <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
 
-        <!--begin::Toolbar container-->
+        <!--begin::Toolbar container--
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
 
             <!--begin::Page title-->
@@ -373,12 +373,12 @@
                                                     <!--begin::Menu item-->
                                                     @can('collect due')
                                                     <div class="menu-item px-3">
-                                                        @if ($invoice->due && $invoice->status == 'approved')
+                                                        @if ($invoice->due && $invoice->status != 'pending approval')
                                                         <a href="javascript:void(0)" onclick="placeDueCollectionAmount({{ json_encode($invoice->only(['id', 'due'])) }})" data-bs-toggle="modal" data-bs-target="#modal_collect_payment" class="menu-link text-hover-gray-100 bg-hover-success px-3">Collect Due</a>
                                                         @else
                                                             @if ($invoice->status == 'pending approval')
                                                                 <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">Pending Approval</a>
-                                                            @else
+                                                            @elseif($invoice->due == 0)
                                                                 <a href="javascript:void(0)" class="menu-link px-3 disabled text-muted">No Due</a>
                                                             @endif
                                                         @endif
