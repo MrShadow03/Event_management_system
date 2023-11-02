@@ -13,7 +13,7 @@ class InvoiceController extends Controller
 {
     public function show(Invoice $invoice){
         $invoice->load('customer', 'rentals.product');
-        $user = User::find($invoice->user_id)->name ?? 'Deleted User';
+        $user = User::find($invoice->user_id) ?? null;
         return view('admin.pages.invoice.show', [
             'invoice' => $invoice,
             'admin' => $user,
@@ -69,7 +69,7 @@ class InvoiceController extends Controller
             'user_id' => auth()->user()->id,
             'customer_id' => $customer->id,
             'invoice_id' => $invoice->id,
-            'type' => 'out',
+            'type' => 'due collection',
             'amount' => $amount,
             'balance' => $customer->deposit,
             'description' => 'due collection',

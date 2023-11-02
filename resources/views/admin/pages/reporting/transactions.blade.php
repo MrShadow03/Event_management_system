@@ -116,19 +116,19 @@
                     </button>
                 </div>
                 <!--end::Flatpickr-->
-                <!--begin::filter customer-->
+                <!--begin::filter transaction-->
                 <div class="w-100 mw-150px print-display-none">
                     <!--begin::Select2-->
                     <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Type" data-transaction-filter="type">
                         <option></option>
                         <option value="all">All</option>
-                        @foreach ($transactions->unique('description') as $transaction)
-                            <option value="{{ $transaction->description }}">{{ ucwords($transaction->description) }}</option>
+                        @foreach ($transactions->unique('type') as $transaction)
+                            <option value="{{ $transaction->type }}">{{ ucwords($transaction->type) }}</option>
                         @endforeach
                     </select>
                     <!--end::Select2-->
                 </div>
-                <!--begin::filter customer-->
+                <!--end::filter transaction-->
                 <!--begin::filter customer-->
                 <div class="w-100 mw-200px print-display-none">
                     <!--begin::Select2-->
@@ -141,7 +141,7 @@
                     </select>
                     <!--end::Select2-->
                 </div>
-                <!--begin::filter customer-->
+                <!--end::filter customer-->
                 <!--begin::Export-->
                 <button type="button" class="btn btn-light-primary print-display-none" onclick="toggleDtButtons()">
                     <i class="ki-duotone ki-exit-up fs-2">
@@ -191,13 +191,15 @@
                         <td class="text-gray-700" data-filter="{{ $transaction->customer->id.' '.$transaction->customer->name}}">
                             <a href="{{ route('admin.customer.show', $transaction->customer->id) }}" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $transaction->customer->name }}</a>
                         </td>
-                        <td class="text-center" data-filter="{{ $transaction->description }}">
-                            @if ($transaction->description == 'deposit added')
-                                <span class="badge badge-primary">{{ ucwords($transaction->description) }}</span>
-                            @elseif($transaction->description == 'rental')
-                                <span class="badge badge-danger">{{ ucwords($transaction->description) }}</span>
-                            @elseif($transaction->description == 'due collection')
-                                <span class="badge badge-success">{{ ucwords($transaction->description) }}</span>
+                        <td class="text-center" data-filter="{{ $transaction->type }}">
+                            @if ($transaction->type == 'deposit added')
+                                <span class="badge badge-primary cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
+                            @elseif($transaction->type == 'rental cost')
+                                <span class="badge badge-danger cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
+                            @elseif($transaction->type == 'due collection')
+                                <span class="badge badge-success cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
+                            @elseif($transaction->type == 'due added')
+                                <span class="badge badge-warning cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
                             @endif
                         </td>
                         <td class="text-gray-700" data-filter="{{ $transaction->amount }}">

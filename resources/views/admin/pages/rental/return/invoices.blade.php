@@ -133,7 +133,7 @@
                                 <!--end::Badges-->
                             </td>
                             <td class="text-end pe-0">
-                                <span class="text-danger font-bn fs-6">{{ number_format($invoice->grand_total) }} ৳</span>
+                                <span class="text-danger font-bn fs-6">{{ number_format($invoice->due) }} ৳</span>
                             </td>
                             <td class="text-end pe-0">
                                 <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>

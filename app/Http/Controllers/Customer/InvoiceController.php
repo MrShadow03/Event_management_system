@@ -11,7 +11,7 @@ class InvoiceController extends Controller
 {
     public function show(Invoice $invoice){
         $invoice->load('customer', 'rentals.product');
-        $user = User::find($invoice->user_id)->name ?? 'Deleted User';
+        $user = User::find($invoice->user_id) ?? null;
         return view('customer.pages.invoice.show', [
             'invoice' => $invoice,
             'admin' => $user,

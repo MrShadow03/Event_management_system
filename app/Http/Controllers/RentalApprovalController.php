@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\DamagedProduct;
 
 class RentalApprovalController extends Controller{
     public function index(){
@@ -169,10 +170,10 @@ class RentalApprovalController extends Controller{
                 'user_id' => auth()->user()->id,
                 'customer_id' => $request->customer_id,
                 'invoice_id' => $request->invoice_id,
-                'type' => 'out',
+                'type' => 'rental cost',
                 'amount' => $paid,
                 'balance' => $deposit,
-                'description' => 'rental',
+                'description' => 'rental cost',
             ]);
         }
 
@@ -209,16 +210,28 @@ class RentalApprovalController extends Controller{
     public function acceptReturn(Request $request){
         $this->validate($request, [
             'rental_id' => 'required | exists:rentals,id',
+            'process_quantity' => 'required | numeric | min:1',
             'repair_quantity' => 'nullable | numeric | min:0',
+            'repair_cost' => 'nullable | numeric | min:0',
+            'damage_quantity' => 'nullable | numeric | min:0',
+            'damage_cost'=> 'nullable | numeric | min:0',
+            'damageToInvoice' => 'nullable',
         ]);
 
         $repairQuantity = $request->repair_quantity ?? 0;
+        $repairCost = $request->repair_cost ?? 0;
+        $damageQuantity = $request->damage_quantity ?? 0;
+        $damageCost = $request->damage_cost ?? 0;
+
+        $hasDamageToInvoiceInput = $request->has('damageToInvoice') ?? false;
+
+        // dd($hasDamageToInvoiceInput);
         $rental = Rental::find($request->rental_id);
         $invoice = Invoice::find($rental->invoice_id);
         $product = Product::find($rental->product_id);
 
-        if($repairQuantity > $rental->quantity){
-            return redirect()->back()->with('error', 'The repair quantity cannot be more than the rented quantity');
+        if(($repairQuantity + $damageQuantity) > $request->process_quantity){
+            return redirect()->back()->with('error', 'The repair and damage quantity cannot be more than the accepted quantity');
         }
 
         if($product == null){
@@ -230,18 +243,55 @@ class RentalApprovalController extends Controller{
             $repair =  new Repair();
             $repair->product_id = $product->id;
             $repair->rental_id = $rental->id;
-            $repair->quantity = $request->repair_quantity;
+            $repair->quantity = $repairQuantity;
+            $repair->cost = $repairCost;
             $repair->save();
         }
 
-        // update the rental status
-        $rental->status = 'returned';
-        $rental->save();
+        if($damageQuantity){
+            // create a new damaged product
+            $damagedProduct = new DamagedProduct();
+            $damagedProduct->product_id = $product->id;
+            $damagedProduct->rental_id = $rental->id;
+            $damagedProduct->quantity = $damageQuantity;
+            $damagedProduct->cost = $damageCost;
+            $damagedProduct->save();
+        }
+
+        //if hasDamageToInvoiceInput update the invoice due
+        if($hasDamageToInvoiceInput){
+            $invoice->due += ($damageCost+$repairCost);
+            $invoice->save();
+
+            //add transaction for the damage cost
+            if(($damageCost+$repairCost) > 0){
+                Transaction::create([
+                    'user_id' => auth()->user()->id,
+                    'customer_id' => $invoice->customer_id,
+                    'invoice_id' => $invoice->id,
+                    'type' => 'due added',
+                    'amount' => ($damageCost+$repairCost),
+                    'balance' => $invoice->due,
+                    'description' => 'Repair and damage cost',
+                ]);
+            }
+        }
 
         // update the stock
-        $returnedQuantity = $rental->quantity - $repairQuantity;
+        $returnedQuantity = $request->process_quantity - ($repairQuantity + $damageQuantity);
         $product->stock += $returnedQuantity;
         $product->save();
+
+        // if the process quantity is equal to the quantity in the rental change the status to returned else reduce the quantity
+        if($rental->quantity == $request->process_quantity){
+            // update the rental status
+            $rental->status = 'returned';
+            $rental->save();
+        }else{
+            // update the rental quantity
+            $rental->quantity -= $request->process_quantity;
+            $rental->save();
+        }
 
         // check if all the rentals in the invoice are returned
         $hasUnreturnedRentals = Rental::where('invoice_id', $invoice->id)->where('status', '!=', 'returned')->exists();

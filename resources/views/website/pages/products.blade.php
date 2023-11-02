@@ -273,7 +273,7 @@
                                 <div class="raw_items_image">
                                     <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }} image" loading="lazy">
                                     <div class="image_items_icon_box">
-                                        <a title="Read More" class="image_items_icon" href="{{ route('customer.login') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a title="Read More" class="image_items_icon" href="{{ route('customer.rentals') }}"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <a title="Quick View" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-magnifying-glass"></i></a>
                                         <a title="Add To Wishlist" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-heart"></i></a>
                                     </div>

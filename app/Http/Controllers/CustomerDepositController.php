@@ -25,7 +25,7 @@ class CustomerDepositController extends Controller
         Transaction::create([
             'user_id' => auth()->user()->id,
             'customer_id' => $customer->id,
-            'type' => 'in',
+            'type' => 'deposit added',
             'amount' => $request->amount,
             'balance' => $customer->deposit,
             'description' => 'deposit added',

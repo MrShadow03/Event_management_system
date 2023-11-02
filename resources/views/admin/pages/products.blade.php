@@ -106,6 +106,17 @@
             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                 <div class="w-100 mw-150px">
                     <!--begin::Select2-->
+                    <select class="form-select form-select-solid font-bn" data-control="select2" data-hide-search="true" data-placeholder="Category" data-product-filter="category">
+                        <option></option>
+                        <option value="all">All</option>
+                        @foreach ($products->unique('category_id') as $product)
+                            <option value="{{ $product->category->name }}">{{ $product->category->name }}</option>
+                        @endforeach
+                    </select>
+                    <!--end::Select2-->
+                </div>
+                <div class="w-100 mw-150px">
+                    <!--begin::Select2-->
                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-product-filter="status">
                         <option></option>
                         <option value="all">All</option>
@@ -1150,6 +1161,19 @@
             }
 
             // Handle status filter dropdown
+            var handleCategoryFilter = () => {
+                const filterStatus = document.querySelector('[data-product-filter="category"]');
+                $(filterStatus).on('change', e => {
+                    let value = e.target.value;
+                    if(value === 'all'){
+                        value = '';
+                    }
+                    console.log(value);
+                    datatable.column(1).search(value ? '^' + value + '$' : '', true, false).draw();
+                });
+            }
+
+            // Handle status filter dropdown
             var handleStatusFilter = () => {
                 const filterStatus = document.querySelector('[data-kt-ecommerce-product-filter="status"]');
                 $(filterStatus).on('change', e => {
@@ -1234,6 +1258,7 @@
 
                     initDatatable();
                     handleSearchDatatable();
+                    handleCategoryFilter();
                     handleStatusFilter();
                     handleDeleteRows();
                 }

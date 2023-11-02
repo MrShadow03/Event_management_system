@@ -89,7 +89,7 @@
             <div class="w-100 d-flex flex-column gap-8 flex-lg-row-auto w-lg-300px mb-7 me-7 me-lg-10">
 
                 <!--begin::Order details-->
-                <div class="card card-flush py-4">
+                <div class="card card-flush py-2">
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
@@ -115,6 +115,7 @@
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
+                            
                             <!--begin::Input group-->
                             <div class="fv-row">
                                 <!--begin::Label-->
@@ -140,6 +141,54 @@
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
+                            @if ($invoice->due > 0)
+                            <div class="fv-row">
+                                <!--begin::Alert-->
+                                <div class="alert alert-danger d-flex align-items-center p-1 border border-danger border-dashed mt-8">
+                                    <!--begin::Icon-->
+                                    <i class="ki-duotone ki-information-3 fs-2hx text-danger me-4">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <span class="mb-1 fs-6 fw-semibold text-danger">Due</span>
+                                        <!--end::Title-->
+
+                                        <!--begin::Content-->
+                                        <span class="fs-5 fw-bold text-danger">{{ $invoice->due }} BDT</span>
+                                        <!--end::Content-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                </div>
+                                <!--end::Alert-->
+                            </div>
+                            @else
+                            <div class="fv-row">
+                                <!--begin::Alert-->
+                                <div class="alert alert-success d-flex align-items-center p-1 border border-success border-dashed mt-8">
+                                    <!--begin::Icon-->
+                                    <i class="ki-duotone ki-shield-tick fs-2hx text-success me-4">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <span class="mb-1 fs-6 fw-semibold text-success">Due Cleared</span>
+                                        <!--end::Title-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                </div>
+                                <!--end::Alert-->
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <!--end::Card header-->
@@ -278,7 +327,7 @@
                                         </td>
                                         <td class="text-end">
                                             <div class="d-flex gap-2 justify-content-end">
-                                                <a href="#" onclick="placeFormData({{ $rental->id }})" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#product_return_modal">
+                                                <a href="#" onclick="placeFormData({{ $rental->id }}, {{ $rental->quantity }})" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#product_return_modal">
                                                     <i class="ki-duotone ki-tablet-ok">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
@@ -331,6 +380,8 @@
                     @csrf
                     @method('PATCH')
                     <!--begin::Heading-->
+                    <input type="hidden" id="productAcceptRentalId" name="rental_id"/>
+
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
                         <h5 class="mb-3">Accept Product Return</h5>
@@ -341,16 +392,11 @@
                     <!--begin::Input group-->
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <label class="fs-6 fw-semibold mb-4 d-block">
-                            <span>Send to repair</span>
-                            <span class="ms-1" data-bs-toggle="tooltip"
-                                title="Send some products to repair">
-                                <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
+                            <span>Number of Products to accept</span>
                         </label>
+                        <input type="number" id="productAcceptQuantity" name="process_quantity" min="1" class="form-control" required />
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <!--begin::Alert-->
                         <div class="alert alert-dismissible bg-light-info border border-dashed border-info d-flex flex-column flex-sm-row mb-5">
                             <!--begin::Icon-->
@@ -363,22 +409,79 @@
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                 <!--begin::Content-->
-                                <span class="text-info">If no product need repair, keep the value as 0.</span>
+                                <span class="text-info">If any product doesn't require repair or damaged, keep the values as 0.</span>
                                 <!--end::Content-->
                             </div>
                             <!--end::Wrapper-->
                         </div>
                         <!--end::Alert-->
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">
-                                <i class="ki-solid ki-wrench fs-1">
-                                </i>
-                            </span>
-                            <input type="number" id="productAcceptQuantity" name="repair_quantity" class="form-control" value="0"/>
-                            <input type="hidden" id="productAcceptRentalId" name="rental_id"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Send to repair</span>
+                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                        title="Send some products to repair">
+                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="ki-solid ki-wrench fs-1">
+                                        </i>
+                                    </span>
+                                    <input type="number" name="repair_quantity" min="0" class="form-control" value="0"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Repair Cost</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text font-bn">&#2547;</span>
+                                    <input type="number" name="repair_cost" min="0" class="form-control" value="0"/>
+                                </div>
+                            </div>
                         </div>
+                        <div class="row mt-md-6 mt-10">
+                            <div class="col-md-6">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Fully Damaged</span>
+                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                        title="These products will be permenently destroyed from the inventory!">
+                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light-danger border border-danger">
+                                        <i class="ki-solid ki-disconnect fs-1 text-danger">
+                                        </i>
+                                    </span>
+                                    <input type="number" name="damage_quantity" min="0" class="form-control border border-danger" value="0"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fs-6 fw-semibold mb-4 d-block">
+                                    <span>Damage Cost</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text font-bn">&#2547;</span>
+                                    <input type="number" name="damage_cost" min="0" class="form-control" value="0"/>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="form-check form-check-custom form-check-solid mt-4">
+                            <input class="form-check-input h-20px w-20px" type="checkbox" name="damageToInvoice" checked>
+                            <span class="form-check-label fw-semibold text-primary">Add Repair and Damage Cost to Customer Invoice?</span>
+                        </label>
                     </div>
-
                     <!--begin::Actions-->
                     <div class="text-center">
                         <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
@@ -746,8 +849,10 @@
             KTAppEcommerceSalesSaveOrder.init();
         });
 
-        function placeFormData(rentalId) {
+        function placeFormData(rentalId, quantity) {
             document.getElementById('productAcceptRentalId').value = rentalId;
+            document.getElementById('productAcceptQuantity').value = quantity;
+            document.getElementById('productAcceptQuantity').max = quantity;
         }
     </script>
 @endsection

@@ -276,8 +276,15 @@
                                 <!--begin::Customer-->
                                 <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
                                     <div class="fs-12 pt-5">APPROVED BY</div>
-                                    <div class="fs-5 fw-bold">{{ $admin ?? '' }}</div>
-                                    <div class="fs-6">COO</div>
+                                    <div class="fs-5 fw-bold">{{ $admin->name ?? '' }}</div>
+                                    <div class="fs-6">
+                                        @if($admin->hasRole('super_admin'))
+                                            CEO
+                                        @elseif($admin->hasRole('admin'))
+                                            CCO
+                                        @else
+                                        @endif
+                                    </div>
                                 </div>
                                 <!--end::Customer-->
                             </div>
