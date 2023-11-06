@@ -13,7 +13,7 @@ class InvoiceController extends Controller
         if($invoice->customer_id != auth()->user()->id){
             return abort(404, "Invoice not found");
         }
-        $invoice->load('customer', 'rentals.product');
+        $invoice->load('customer', 'rentals.product', 'transactions');
         $user = User::find($invoice->user_id) ?? null;
         return view('customer.pages.invoice.show', [
             'invoice' => $invoice,

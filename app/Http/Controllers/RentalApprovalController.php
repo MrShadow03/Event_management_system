@@ -260,6 +260,7 @@ class RentalApprovalController extends Controller{
 
         //if hasDamageToInvoiceInput update the invoice due
         if($hasDamageToInvoiceInput){
+            $invoice->grand_total += ($damageCost+$repairCost);
             $invoice->due += ($damageCost+$repairCost);
             $invoice->save();
 

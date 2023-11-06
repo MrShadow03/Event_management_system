@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 class InvoiceController extends Controller
 {
     public function show(Invoice $invoice){
-        $invoice->load('customer', 'rentals.product');
+        $invoice->load('customer', 'rentals.product', 'transactions');
+        // dd($invoice);
         $user = User::find($invoice->user_id) ?? null;
         return view('admin.pages.invoice.show', [
             'invoice' => $invoice,

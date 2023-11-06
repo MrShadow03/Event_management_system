@@ -252,6 +252,12 @@
                                             <td class="pt-1 text-end">{{ number_format($vatAmaount) }}</td>
                                         </tr>
                                         @endif
+                                        @if ($invoice->transactions->where('type', 'due added')->count())
+                                        <tr>
+                                            <td colspan="4" class="pt-1 text-end">Repair & Damage cost</td>
+                                            <td class="pt-1 text-end">{{ number_format($invoice->transactions->where('type', 'due added')->sum('amount')) }}</td>
+                                        </tr>
+                                        @endif
                                         <tr>
                                             <td colspan="4" class="pt-1 text-end">Grand Total</td>
                                             <td class="pt-1 text-end">{{ number_format($invoice->grand_total) }}</td>
