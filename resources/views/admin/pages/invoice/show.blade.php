@@ -127,6 +127,9 @@
                                     <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
                                     <div>{{ $invoice->customer->phone_number ?? ''}}</div>
                                     <div>{{ $invoice->customer->address ?? ''}}</div>
+                                    @if ($invoice->venue)
+                                    <div><span class="fw-bold text-gray-900">Venue: </span>{{ $invoice->venue}}</div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -272,7 +275,8 @@
                             <div class="d-flex justify-content-between w-75 mt-5">
                                 <!--begin::Customer-->
                                 <div class="d-flex flex-column me-7 border-top border-gray-300 w-200px">
-                                    <div class="fs-5 fw-bold pt-5">{{ $invoice->customer->name ?? '' }}</div>
+                                    <div class="fs-12 pt-5">PLACED FOR</div>
+                                    <div class="fs-5 fw-bold">{{ $invoice->customer->name ?? '' }}</div>
                                     <div class="fs-6">Client</div>
                                 </div>
                                 <!--end::Customer-->
