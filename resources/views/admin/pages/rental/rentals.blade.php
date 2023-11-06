@@ -328,6 +328,21 @@
                             </div>
                         </div>
                         <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">Vanue</label>
+                            <!--end::Label-->
+
+                            <div class="input-group input-group-solid">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="ki-solid ki-geolocation fs-2">
+                                    </i>
+                                </span>
+                                <input name="venue" class="form-control form-control-solid" placeholder="Venue address" />
+                            </div>
+                        </div>
+                        <!--end::Input group-->
 
                         <!--begin::Actions-->
                         <div class="text-center">

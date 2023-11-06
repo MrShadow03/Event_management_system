@@ -156,6 +156,19 @@
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
+                            @if($invoice->venue)
+                            <!--begin::Input group-->
+                            <div class="fv-row">
+                                <!--begin::Label-->
+                                <div class="fw-bold mt-5">Venue</div>
+                                <!--end::Label-->
+
+                                <!--begin::Auto-generated ID-->
+                                <div class="text-gray-600">{{ $invoice->venue }}</div>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            @endif
                         </div>
                     </div>
                     <!--end::Card header-->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rental;
 use App\Models\Product;
 use App\Models\Section;
 use App\Models\Category;
@@ -15,11 +16,21 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
+        /**
+         * @var \App\Models\Product $products
+         */
         $products = Product::with('category')->latest()->get();
         $categories = Category::all();
         $sectionData = Section::where('name', 'products')->first();
         $lastProduct = Product::with('category')->orderBy('id', 'desc')->first() ?? null;
 
+        // Get the total product count
+        foreach ($products as $product){
+            $stock = $product->stock;
+            $rental_count = Rental::where('product_id', $product->id)->whereIn('status', ['approved', 'rented'])->sum('quantity');
+            $product->stock = $stock + $rental_count;
+        }
+        
         //include product count for each category
         foreach ($categories as $category) {
             $category->product_count = Product::where('category_id', $category->id)->count();

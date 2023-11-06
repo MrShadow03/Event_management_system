@@ -90,13 +90,9 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <!--begin::Flatpickr-->
-                    <div class="input-group w-250px">
-                        <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range"
-                            id="kt_ecommerce_sales_flatpickr" />
-                        <button class="btn btn-icon btn-light" id="kt_ecommerce_sales_flatpickr_clear">
-                            <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i>
-                        </button>
-                    </div>
+                    <form method="GET" action="#" class="input-group w-250px">
+                        <input name="date" type="date" onchange="this.form.submit()" class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick a date" value="{{ request()->date ? Carbon\Carbon::parse(request()->date)->format('Y-m-d') : Carbon\Carbon::now()->format('Y-m-d') }}" />
+                    </form>
                     <!--end::Flatpickr-->
                 </div>
                 <!--end::Card toolbar-->
@@ -115,6 +111,7 @@
                             <th class="text-end">Status</th>
                             <th class="text-end">Total Orders</th>
                             <th class="text-end">Placed On</th>
+                            <th class="text-end">Venue</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -137,6 +134,9 @@
                             </td>
                             <td class="text-end" data-order="{{ Carbon\Carbon::parse($invoice->created_at)->format('Y-m-d') }}">
                                 {{ Carbon\Carbon::parse($invoice->created_at)->format('d M, y') }}
+                            </td>
+                            <td class="text-end">
+                                {{ $invoice->venue ?? 'N/A' }}
                             </td>
                             <td class="text-end">
                                 <a href="{{ route('admin.rentals.dispatch.orders', $invoice->id) }}" class="btn btn-sm btn-primary">
@@ -173,8 +173,6 @@
             // Shared variables
             var table;
             var datatable;
-            var flatpickr;
-            var minDate, maxDate;
 
             // Private functions
             var initDatatable = function () {
@@ -185,27 +183,13 @@
                     'pageLength': 10,
                     'columnDefs': [
                         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                        { orderable: false, targets: 5 }, // Disable ordering on column 7 (actions)
+                        { orderable: false, targets: 6 }, // Disable ordering on column 7 (actions)
                     ]
                 });
 
                 // Re-init functions on datatable re-draws
                 datatable.on('draw', function () {
                     handleDeleteRows();
-                });
-            }
-
-            // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
-            var initFlatpickr = () => {
-                const element = document.querySelector('#kt_ecommerce_sales_flatpickr');
-                flatpickr = $(element).flatpickr({
-                    altInput: true,
-                    altFormat: "d/m/Y",
-                    dateFormat: "Y-m-d",
-                    mode: "range",
-                    onChange: function (selectedDates, dateStr, instance) {
-                        handleFlatpickr(selectedDates, dateStr, instance);
-                    },
                 });
             }
 
@@ -229,34 +213,6 @@
                 });
             }
 
-            // Handle flatpickr --- more info: https://flatpickr.js.org/events/
-            var handleFlatpickr = (selectedDates, dateStr, instance) => {
-                minDate = selectedDates[0] ? new Date(selectedDates[0]) : null;
-                maxDate = selectedDates[1] ? new Date(selectedDates[1]) : null;
-
-                // Datatable date filter --- more info: https://datatables.net/extensions/datetime/examples/integration/datatables.html
-                // Custom filtering function which will search data in column four between two values
-                $.fn.dataTable.ext.search.push(
-                    function (settings, data, dataIndex) {
-                        var min = minDate;
-                        var max = maxDate;
-                        var dateAdded = new Date(moment($(data[5]).text(), 'DD/MM/YYYY'));
-                        var dateModified = new Date(moment($(data[6]).text(), 'DD/MM/YYYY'));
-
-                        if (
-                            (min === null && max === null) ||
-                            (min === null && max >= dateModified) ||
-                            (min <= dateAdded && max === null) ||
-                            (min <= dateAdded && max >= dateModified)
-                        ) {
-                            return true;
-                        }
-                        return false;
-                    }
-                );
-                datatable.draw();
-            }
-
             // Handle clear flatpickr
             var handleClearFlatpickr = () => {
                 const clearButton = document.querySelector('#kt_ecommerce_sales_flatpickr_clear');
@@ -265,63 +221,6 @@
                 });
             }
 
-            // Delete cateogry
-            var handleDeleteRows = () => {
-                // Select all delete buttons
-                const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-order-filter="delete_row"]');
-
-                deleteButtons.forEach(d => {
-                    // Delete button on click
-                    d.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        // Select parent row
-                        const parent = e.target.closest('tr');
-
-                        // Get category name
-                        const orderID = parent.querySelector('[data-kt-ecommerce-order-filter="order_id"]').innerText;
-
-                        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                        Swal.fire({
-                            text: "Are you sure you want to delete order: " + orderID + "?",
-                            icon: "warning",
-                            showCancelButton: true,
-                            buttonsStyling: false,
-                            confirmButtonText: "Yes, delete!",
-                            cancelButtonText: "No, cancel",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-danger",
-                                cancelButton: "btn fw-bold btn-active-light-primary"
-                            }
-                        }).then(function (result) {
-                            if (result.value) {
-                                Swal.fire({
-                                    text: "You have deleted " + orderID + "!.",
-                                    icon: "success",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                }).then(function () {
-                                    // Remove current row
-                                    datatable.row($(parent)).remove().draw();
-                                });
-                            } else if (result.dismiss === 'cancel') {
-                                Swal.fire({
-                                    text: orderID + " was not deleted.",
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                });
-                            }
-                        });
-                    })
-                });
-            }
 
 
             // Public methods
@@ -334,11 +233,8 @@
                     }
 
                     initDatatable();
-                    initFlatpickr();
                     handleSearchDatatable();
                     handleStatusFilter();
-                    handleDeleteRows();
-                    handleClearFlatpickr();
                 }
             };
         }();

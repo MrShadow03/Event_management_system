@@ -114,7 +114,7 @@
                             <th class="text-end">Status</th>
                             <th class="text-end min-w-100px">Due</th>
                             <th class="text-end">Products</th>
-                            <th class="text-end">Placed On</th>
+                            <th class="text-end">Return Date</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -138,8 +138,8 @@
                             <td class="text-end pe-0">
                                 <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>
                             </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($invoice->created_at)->format('Y-m-d') }}">
-                                <span class="text-gray-800">{{ Carbon\Carbon::parse($invoice->created_at)->format('d M, y') }}</span>
+                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($invoice->rentals->first()->ending_date)->format('Y-m-d') }}">
+                                <span class="text-gray-800">{{ Carbon\Carbon::parse($invoice->rentals->first()->ending_date)->format('d M, y') }}</span>
                             </td>
                             <td class="text-end">
                                 <a href="{{ route('admin.rentals.return.products', $invoice->id) }}" class="btn btn-success btn-sm btn-light">View Products</i></a>

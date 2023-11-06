@@ -91,6 +91,7 @@
             <input type="hidden" name="number_of_days" value="{{ $number_of_days }}">
             <input type="hidden" name="start_date" value="{{ $start_date }}">
             <input type="hidden" name="return_date" value="{{ $return_date }}">
+            <input type="hidden" name="venue" value="{{ $venue }}">
             
             <!--begin::Aside column-->
             <div class="w-100 d-flex flex-column gap-8 flex-lg-row-auto w-lg-300px mb-7 me-7 me-lg-10">
@@ -152,6 +153,19 @@
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
+                            @if($venue)
+                            <!--begin::Input group-->
+                            <div class="fv-row">
+                                <!--begin::Label-->
+                                <div class="fw-bold mt-5">Venue</div>
+                                <!--end::Label-->
+
+                                <!--begin::Auto-generated ID-->
+                                <div class="text-gray-600">{{ $venue }}</div>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            @endif
                         </div>
                     </div>
                     <!--end::Card header-->

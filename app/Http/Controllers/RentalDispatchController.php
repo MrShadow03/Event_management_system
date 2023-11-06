@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class RentalDispatchController extends Controller{
     public function index(){
-        $invoices = Invoice::whereHas('rentals', function($query){
-            $query->where('status', 'approved');
+        $date = request()->input("date") ?? date("Y-m-d");
+        $invoices = Invoice::whereHas('rentals', function($query) use ($date){
+            $query->where('status', 'approved')
+                ->whereDate('starting_date', $date);
         })->with(['rentals', 'customer'])->get();
 
         return view('admin.pages.rental.dispatch.invoices', [

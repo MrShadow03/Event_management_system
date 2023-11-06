@@ -21,6 +21,12 @@ class RentalController extends Controller
     }
 
     public function create(Request $request){
+        /**
+         * @var Illuminate\Http\Request $request
+         */
+
+        $venue = $request->venue ?? null;
+
         if(!$request->customer_id){
             return redirect()->back()->with('error','Please select a customer');
         }
@@ -70,6 +76,7 @@ class RentalController extends Controller
             'start_date' => $startDate,
             'return_date' => $endDate,
             'invoice_id' => $latestInvoiceId + 1,
+            'venue' => $venue,
             'number_of_days' => $totalDays,
         ]);
     }
@@ -83,6 +90,7 @@ class RentalController extends Controller
             'invoice_id' => 'required',
             'start_date' => 'required',
             'return_date' => 'required',
+            'venue' => 'nullable | string',
             'number_of_days' => 'required',
             'paid' => 'nullable',
             'vat_percentage' => 'nullable',
@@ -129,10 +137,10 @@ class RentalController extends Controller
         $invoice->grand_total = $request->grand_total;
         $invoice->due = $request->due;
         $invoice->status = 'pending approval';
+        $invoice->venue = $request->venue;
         $invoice->save();
 
         $grandTotal = $request->subtotal + ($request->subtotal * $request->vat_percentage / 100) - $request->discount - $request->paid;
-        
 
         return redirect()->route('admin.rentals')->with('success','Rental created successfully and is pending approval from the admin with and grand total: ' . $grandTotal . ' BDT'); 
     }

@@ -281,6 +281,7 @@
                                             <div class="fw-bold fs-6">{{ $rental->quantity }}</div>
                                         </td>
                                         <td class="text-end">
+                                            @if($rental->starting_date && $rental->starting_date <= now())
                                             <div class="d-flex gap-2 justify-content-end">
                                                 <a href="{{ route('admin.rentals.dispatch.update', $rental->id) }}" class="btn btn-sm btn-success">
                                                     <i class="ki-duotone ki-delivery fs-1">
@@ -292,6 +293,9 @@
                                                     Dispatch
                                                 </a>
                                             </div>
+                                            @else
+                                            <span class="fw-semibold fs-6">Upcoming</span>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

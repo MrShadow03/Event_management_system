@@ -97,3 +97,6 @@ Ordering: 1, 2, 3
 ** 26-29 October (Before: Overlapping 1 and Freed 1)
     ** Product: Amount: 1, 8, 17 -- No Issues
     
+
+// DB Changes
+    1. Add new column in invoice table ('venue' null, varchar(255))
