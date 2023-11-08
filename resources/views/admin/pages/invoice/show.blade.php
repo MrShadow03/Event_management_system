@@ -105,7 +105,7 @@
                     <div class="text-sm-end">
                         <!--begin::Text-->
                         <div class="text-sm-end fw-semibold fs-5 text-gray-700">
-                            <div class="fw-bold fs-3 mt-3">{{ $commonDetails['name'] ?? ''}}</div>
+                            <div class="fw-bold fs-2 mt-3" style="color: #1877f2;">{{ $commonDetails['name'] ?? ''}}</div>
                             <div>{{ $commonDetails['phone'] ?? ''}} | +8801918393885</div>
                             <div>{{ $commonDetails['email'] ?? '' }}</div>
                             <div>{{ $commonDetails['address'] ?? '' }}</div>
@@ -216,8 +216,12 @@
                                                     <!--begin::Title-->
                                                     <div class="ms-5">
                                                         <div class="fw-bold">{{ $rental->product->name }}</div>
-                                                        <div class="fs-7 text-muted">Rent ID: #{{ $rental->id }}</div>
-                                                    </div>
+                                                        @if ($rental->product->dimension || $rental->product->color)
+                                                        <!--begin::Dimension & Color-->
+                                                        <div class="text-muted fs-7">{{ $rental->product->dimension }} {{ $rental->product->color ? '| '.$rental->product->color : '' }}</div>
+                                                        <!--end::Dimension & Color-->
+                                                        @endif
+                                                        </div>
                                                     <!--end::Title-->
                                                 </div>
                                             </td>

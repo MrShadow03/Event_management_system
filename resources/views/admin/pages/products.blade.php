@@ -140,6 +140,7 @@
                         <th class="text-end">Category</th>
                         <th class="text-end">Code</th>
                         <th class="text-end">Stock</th>
+                        <th class="text-end">Available</th>
                         <th class="text-end">Rent Cost</th>
                         <th class="text-end">Status</th>
                         <th class="text-end">Toggle Status</th>
@@ -173,6 +174,9 @@
                         </td>
                         <td class="text-end pe-0">
                             <span>{{ $product->stock }}</span>
+                        </td>
+                        <td class="text-end pe-0">
+                            <span>{{ $product->available }}</span>
                         </td>
                         <td class="text-end pe-0">{{ $product->rental_price }}</td>
                         @if ($product->status)
@@ -1140,9 +1144,9 @@
                     'order': [],
                     'pageLength': 10,
                     'columnDefs': [
-                        { render: DataTable.render.number(',', '.', 2), targets: 4},
+                        { render: DataTable.render.number(',', '.', 2), targets: 5},
                         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                        { orderable: false, targets: 7 }, // Disable ordering on column 7 (actions)
+                        { orderable: false, targets: 8 }, // Disable ordering on column 7 (actions)
                     ]
                 });
 

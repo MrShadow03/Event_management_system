@@ -38,6 +38,12 @@ class RentalReturnController extends Controller
             return redirect()->back()->with('error', 'This invoice has no rentals');
         }
 
+        if($invoice->status != 'rented'){
+            return redirect()->back()->with('error', 'This invoice is not rented');
+        }
+
+
+
         //get the rentals with product
         $rentals = Rental::where('invoice_id', $invoice->id)->where('status', '!=', 'returned')->with('product')->get();
 

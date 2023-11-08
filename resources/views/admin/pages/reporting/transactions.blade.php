@@ -211,7 +211,7 @@
                         <td class="text-gray-700">{{ $transaction->user->name }}</td>
                         <td class="text-gray-700" data-filter="{{ $transaction->invoice_id ?? '' }}">
                             @if ($transaction->invoice_id)
-                                <a href="{{ route('admin.invoice.show', $transaction->invoice_id) }}" class="text-gray-700 fw-semibold text-hover-primary fs-6">#{{ $transaction->invoice->id }}</a>
+                                <a href="{{ route('admin.invoice.show', $transaction->invoice_id) }}" class="text-gray-700 fw-semibold text-hover-primary fs-6">#{{ $transaction->invoice->id ?? 'Not Available' }}</a>
                             @else
                                 <span class="badge badge-secondary">N/A</span>
                             @endif

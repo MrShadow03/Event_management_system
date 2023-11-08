@@ -322,6 +322,12 @@
                                                     <!--begin::SKU-->
                                                     <div class="text-muted fs-7">SKU: {{ $product->product_code }}</div>
                                                     <!--end::SKU-->
+
+                                                    @if ($product->dimension || $product->color)
+                                                    <!--begin::Dimension & Color-->
+                                                    <div class="text-muted fs-7">{{ $product->dimension }} {{ $product->color ? '| '.$product->color : '' }}</div>
+                                                    <!--end::Dimension & Color-->
+                                                    @endif
                                                 </div>
                                             </div>
                                         </td>

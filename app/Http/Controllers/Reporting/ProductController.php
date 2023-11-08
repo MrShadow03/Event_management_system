@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reporting;
 
+use App\Models\Rental;
 use App\Models\Product;
 use App\Models\Section;
 use App\Models\Category;
@@ -18,6 +19,16 @@ class ProductController extends Controller{
         //include product count for each category
         foreach ($categories as $category) {
             $category->product_count = Product::where('category_id', $category->id)->count();
+        }
+        // Get the total product count
+        /**
+         * @var \App\Models\Product $products
+         */
+        foreach ($products as $product){
+            $product->available = $product->stock;
+            $stock = $product->stock;
+            $rental_count = Rental::where('product_id', $product->id)->whereIn('status', ['approved', 'rented'])->sum('quantity');
+            $product->stock = $stock + $rental_count;
         }
         return view('admin.pages.reporting.products', [
             'products' => $products,

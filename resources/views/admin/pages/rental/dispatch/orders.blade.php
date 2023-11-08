@@ -268,6 +268,12 @@
                                                     <div class="fw-semibold fs-7 lan-ban">Rent: ৳<span
                                                             data-kt-ecommerce-edit-order-filter="price">{{ $rental->product->rental_price }}</span></div>
                                                     <!--end::Price-->
+
+                                                    @if ($rental->product->dimension || $rental->product->color)
+                                                    <!--begin::Dimension & Color-->
+                                                    <div class="text-muted fs-7">{{ $rental->product->dimension }} {{ $rental->product->color ? '| '.$rental->product->color : '' }}</div>
+                                                    <!--end::Dimension & Color-->
+                                                    @endif
                                                 </div>
                                             </div>
                                         </td>

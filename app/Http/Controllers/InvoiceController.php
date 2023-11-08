@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class InvoiceController extends Controller
 {
     public function show(Invoice $invoice){
+        // if invoice does not exist, return error
+        if(!$invoice){
+            return redirect()->back()->with('error', 'Invoice does not exist');
+        }
         $invoice->load('customer', 'rentals.product', 'transactions');
-        // dd($invoice);
         $user = User::find($invoice->user_id) ?? null;
         return view('admin.pages.invoice.show', [
             'invoice' => $invoice,

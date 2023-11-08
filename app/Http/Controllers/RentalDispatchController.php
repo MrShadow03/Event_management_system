@@ -37,12 +37,12 @@ class RentalDispatchController extends Controller{
     public function update(Rental $rental){
         // check if rental is approved
         if($rental->status != 'approved'){
-            return redirect()->back()->with('error', 'Rental is not approved');
+            return redirect()->route('admin.rentals.dispatch')->with('error', 'Rental is not approved');
         }
 
         // check if rental is already dispatched
         if($rental->status == 'rented'){
-            return redirect()->back()->with('error', 'Rental is already rented');
+            return redirect()->route('admin.rentals.dispatch')->with('error', 'Rental is already rented');
         }
 
         // update rental status to rented

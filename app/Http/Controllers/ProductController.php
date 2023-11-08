@@ -26,6 +26,7 @@ class ProductController extends Controller
 
         // Get the total product count
         foreach ($products as $product){
+            $product->available = $product->stock;
             $stock = $product->stock;
             $rental_count = Rental::where('product_id', $product->id)->whereIn('status', ['approved', 'rented'])->sum('quantity');
             $product->stock = $stock + $rental_count;

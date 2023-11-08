@@ -101,6 +101,11 @@ class RentalController extends Controller
             'products' => 'required | array',
         ]);
 
+        // if the invoice id already exists then return error
+        if(Invoice::find($request->invoice_id)){
+            return redirect()->route('admin.rentals')->with('error','Invoice already created.');
+        }
+
         $request->paid = $request->paid ?? 0;
         $request->vat_percentage = $request->vat_percentage ?? 0;
         $request->discount = $request->discount ?? 0;

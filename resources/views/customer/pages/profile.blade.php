@@ -151,6 +151,32 @@
                             @endif
                         </div>
                         <!--end::Details content-->
+                        <!--begin::Details toggle-->
+                        <div class="d-flex flex-stack fs-4 py-3">
+                            <div class="fw-bold">
+                                Payment Options
+                            </div>
+                        </div>
+                        <!--end::Details toggle-->
+
+                        <div class="separator separator-dashed my-3"></div>
+
+                        <!--begin::Details content-->
+                        <div class="pb-5 fs-6">
+                            <!--begin::Details item-->
+                            <div class="fw-bold mt-5">Bkash (Merchant)</div>
+                            <div class="text-gray-600">01918393885</div>
+                            <!--begin::Details item-->
+                            <!--begin::Details item-->
+                            <div class="fw-bold mt-5">Bkash (Personal)</div>
+                            <div class="text-gray-600">01671711933</div>
+                            <!--begin::Details item-->
+                            <!--begin::Details item-->
+                            <div class="fw-bold mt-5">Nagad</div>
+                            <div class="text-gray-600">01671711933</div>
+                            <!--begin::Details item-->
+                        </div>
+                        <!--end::Details content-->
                     </div>
                     <!--end::Card body-->
                 </div>

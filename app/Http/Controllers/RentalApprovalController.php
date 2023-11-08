@@ -101,6 +101,13 @@ class RentalApprovalController extends Controller{
             'products' => 'required | array',
         ]);
 
+        // if the invoice is already approved then return error
+        $invoice = Invoice::find($request->invoice_id);
+
+        if($invoice->status == 'approved'){
+            return redirect()->route('admin.rentals')->with('error', 'This invoice is already approved');
+        }
+
         $deposit = Customer::find($request->customer_id)->deposit; // 10,000
         $grand_total = $request->grand_total; // 12,000
         $paid = $request->paid ?? 0; // 0
@@ -218,6 +225,7 @@ class RentalApprovalController extends Controller{
             'damageToInvoice' => 'nullable',
         ]);
 
+
         $repairQuantity = $request->repair_quantity ?? 0;
         $repairCost = $request->repair_cost ?? 0;
         $damageQuantity = $request->damage_quantity ?? 0;
@@ -229,6 +237,11 @@ class RentalApprovalController extends Controller{
         $rental = Rental::find($request->rental_id);
         $invoice = Invoice::find($rental->invoice_id);
         $product = Product::find($rental->product_id);
+
+        // if the rental is returned then return error
+        if($rental->status == 'returned'){
+            return redirect()->route('admin.rentals.returns')->with('error', 'This rental is already returned');
+        }
 
         if(($repairQuantity + $damageQuantity) > $request->process_quantity){
             return redirect()->back()->with('error', 'The repair and damage quantity cannot be more than the accepted quantity');
