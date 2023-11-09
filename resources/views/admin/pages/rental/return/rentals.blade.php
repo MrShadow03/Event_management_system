@@ -308,8 +308,11 @@
 
                                                 <div class="ms-5">
                                                     <!--begin::Title-->
-                                                    <a href="javascript:void(0);"
-                                                        class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->product->name }}</a>
+                                                    @if ($rental->product->name_bangla)
+                                                    <a href="javascript:void(0);" class="text-gray-800 text-hover-primary fs-5 fw-bold font-bn">{{ $rental->product->name_bangla }}</a>
+                                                    @else
+                                                    <a href="javascript:void(0);" class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->product->name }}</a>
+                                                    @endif
                                                     <!--end::Title-->
 
                                                     <!--begin::Price-->

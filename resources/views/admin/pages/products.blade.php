@@ -139,8 +139,7 @@
                         <th class="min-w-100px">Product</th>
                         <th class="text-end">Category</th>
                         <th class="text-end">Code</th>
-                        <th class="text-end">Stock</th>
-                        <th class="text-end">Available</th>
+                        <th class="text-end">Available/Stock</th>
                         <th class="text-end">Rent Cost</th>
                         <th class="text-end">Status</th>
                         <th class="text-end">Toggle Status</th>
@@ -161,6 +160,10 @@
                                 <div class="ms-5">
                                     <!--begin::Title-->
                                     <span class="text-gray-800 fs-6 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $product->name }}</span>
+                                    @if ($product->name_bangla)
+                                    <br>
+                                    <span class="text-gray-600 fs-6 fw-semibold font-bn" data-kt-ecommerce-product-filter="product_name">{{ $product->name_bangla }}</span>
+                                    @endif
                                     <p class="text-gray-500 fs-12">{{ $product->dimension }}</p>
                                     <!--end::Title-->
                                 </div>
@@ -173,10 +176,7 @@
                             <span>{{ $product->product_code }}</span>
                         </td>
                         <td class="text-end pe-0">
-                            <span>{{ $product->stock }}</span>
-                        </td>
-                        <td class="text-end pe-0">
-                            <span>{{ $product->available }}</span>
+                            <span>{{ $product->available }}/{{ $product->stock }}</span>
                         </td>
                         <td class="text-end pe-0">{{ $product->rental_price }}</td>
                         @if ($product->status)
@@ -292,7 +292,25 @@
                                         <i class="path6"></i>
                                     </i>
                                 </span>
-                                <input type="text" name="name" class="form-control form-control-solid" placeholder="E.g Planning" />
+                                <input type="text" name="name" class="form-control form-control-solid font-bn" placeholder="E.g Planning" />
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <div class="input-group input-group-solid">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="ki-duotone ki-text-number fs-1">
+                                        <i class="path1"></i>
+                                        <i class="path2"></i>
+                                        <i class="path3"></i>
+                                        <i class="path4"></i>
+                                        <i class="path5"></i>
+                                        <i class="path6"></i>
+                                    </i>
+                                </span>
+                                <input type="text" name="name_bangla" class="form-control form-control-solid font-bn" placeholder="বাংলা নাম" />
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -428,7 +446,25 @@
                                         <i class="path6"></i>
                                     </i>
                                 </span>
-                                <input type="text" name="name" id="editCategoryName" class="form-control form-control-solid" placeholder="E.g Architechture" />
+                                <input type="text" name="name" id="editCategoryName" class="form-control form-control-solid font-bn" placeholder="E.g Architechture" />
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+                        
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <div class="input-group input-group-solid">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="ki-duotone ki-text-number fs-1">
+                                        <i class="path1"></i>
+                                        <i class="path2"></i>
+                                        <i class="path3"></i>
+                                        <i class="path4"></i>
+                                        <i class="path5"></i>
+                                        <i class="path6"></i>
+                                    </i>
+                                </span>
+                                <input type="text" name="name_bangla" id="editCategoryNameBangla" class="form-control form-control-solid font-bn" placeholder="বাংলা নাম" />
                             </div>
                         </div>
                         <!--end::Input group-->
@@ -559,6 +595,19 @@
                             <!--end::Label-->
 
                             <input type="text" class="form-control form-control-solid" placeholder="Product name" value="{{ $lastProduct->name ?? '' }}" name="name" required >
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span>Name in Bangla</span>
+                            </label>
+                            <!--end::Label-->
+
+                            <input type="text" class="form-control form-control-solid font-bn" placeholder="বাংলা নাম" name="name_bangla">
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->
@@ -797,6 +846,18 @@
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span>Name in Bangla</span>
+                            </label>
+                            <!--end::Label-->
+
+                            <input type="text" class="form-control form-control-solid font-bn" id="editProductNameBangla" placeholder="বাংলা নাম" name="name_bangla" >
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <!--end::Input group-->
 
                         <!--begin::Category Selection-->
                         <div class="d-flex flex-column mb-8">
@@ -815,7 +876,7 @@
                                     </i>
                                 </span>
                                 <div class="overflow-hidden flex-grow-1">
-                                    <select data-dropdown-parent="#modal_update_product" class="form-select form-select-solid rounded-start-0" name="category_id" id="editProductCategory" data-control="select2" data-placeholder="Select a category" required>
+                                    <select data-dropdown-parent="#modal_update_product" class="font-bn form-select form-select-solid rounded-start-0" name="category_id" id="editProductCategory" data-control="select2" data-placeholder="Select a category" required>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" @selected( $category->id == 1 )>{{ $category->name }}</option>
                                         @endforeach
@@ -1111,6 +1172,7 @@
         function inputProductData(data, storagePath) {
             $('#editProductId').val(data.id);
             $('#editProductName').val(data.name);
+            $('#editProductNameBangla').val(data.name_bangla);
             $('#editProductCategory').val(data.category_id);
             $('#editProductCode').val(data.product_code);
             $('#editProductRentalPrice').val(data.rental_price);
@@ -1127,6 +1189,7 @@
             // change the form title
             $('#editCategoryId').val(data.id);
             $('#editCategoryName').val(data.name);
+            $('#editCategoryNameBangla').val(data.name_bangla);
             $('#editCategoryImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')' );
         }
 
@@ -1144,9 +1207,9 @@
                     'order': [],
                     'pageLength': 10,
                     'columnDefs': [
-                        { render: DataTable.render.number(',', '.', 2), targets: 5},
+                        { render: DataTable.render.number(',', '.', 2), targets: 4},
                         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                        { orderable: false, targets: 8 }, // Disable ordering on column 7 (actions)
+                        { orderable: false, targets: 7 }, // Disable ordering on column 7 (actions)
                     ]
                 });
 

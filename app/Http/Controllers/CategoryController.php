@@ -15,6 +15,7 @@ class CategoryController extends Controller{
     public function store(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
+            'name_bangla' => 'nullable|string|max:255',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
         ]);
 
@@ -26,6 +27,7 @@ class CategoryController extends Controller{
 
         $category = new Category();
         $category->name = $request->name;
+        $category->name_bangla = $request->name_bangla;
         $category->image = $this->uploadImage('image', 'category', 'default.png');
         $category->save();
 
@@ -39,6 +41,7 @@ class CategoryController extends Controller{
         $request->validate([
             'id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
+            'name_bangla'=> 'nullable|string|max:255',
             'image' => 'nullable | image | mimes:jpeg,png,jpg,gif,svg | max:2048',
         ]);
 
@@ -50,6 +53,7 @@ class CategoryController extends Controller{
 
         $category = Category::find($request->id);
         $category->name = $request->name;
+        $category->name_bangla = $request->name_bangla;
         $category->image = $this->updateImage('image', 'category', $category->image, 'default.png');
         $category->save();
 

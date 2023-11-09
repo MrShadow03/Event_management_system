@@ -215,11 +215,15 @@
 
                                                     <!--begin::Title-->
                                                     <div class="ms-5">
-                                                        <div class="fw-bold">{{ $rental->product->name }}</div>
+                                                        @if ($rental->product->name_bangla)
+                                                            <div class="fw-bold font-bn">{{ $rental->product->name_bangla }}</div>
+                                                        @else
+                                                            <div class="fw-bold">{{ $rental->product->name }}</div>    
+                                                        @endif
                                                         @if ($rental->product->dimension || $rental->product->color)
-                                                        <!--begin::Dimension & Color-->
-                                                        <div class="text-muted fs-7">{{ $rental->product->dimension }} {{ $rental->product->color ? '| '.$rental->product->color : '' }}</div>
-                                                        <!--end::Dimension & Color-->
+                                                            <!--begin::Dimension & Color-->
+                                                            <div class="text-muted fs-7">{{ $rental->product->dimension }} {{ $rental->product->color ? '| '.$rental->product->color : '' }}</div>
+                                                            <!--end::Dimension & Color-->
                                                         @endif
                                                         </div>
                                                     <!--end::Title-->

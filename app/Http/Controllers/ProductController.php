@@ -49,6 +49,7 @@ class ProductController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
+            'name_bangla' => 'nullable',
             'category_id' => 'required | exists:categories,id',
             'product_code' => 'required',
             'dimension' => 'nullable',
@@ -66,6 +67,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
+        $product->name_bangla = $request->name_bangla;
         $product->category_id = $request->category_id;
         $product->product_code = $request->product_code;
         $product->dimension = $request->dimension;
@@ -91,6 +93,7 @@ class ProductController extends Controller
         $request->validate([
             'id' => 'required | exists:products,id',
             'name' => 'required',
+            'name_bangla' => 'nullable',
             'category_id' => 'required | exists:categories,id',
             'product_code' => 'required | unique:products,product_code,'.$request->id,
             'dimension' => 'nullable',
@@ -102,6 +105,7 @@ class ProductController extends Controller
 
         $product = Product::find($request->id);
         $product->name = $request->name;
+        $product->name_bangla = $request->name_bangla;
         $product->category_id = $request->category_id;
         $product->product_code = $request->product_code;
         $product->dimension = $request->dimension;

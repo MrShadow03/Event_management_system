@@ -105,12 +105,31 @@
 
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Str::startsWith(request()->url(), route('admin.rentals')) ? 'here show' : '' }}">
                     <!--begin:Menu link-->
+                    @php
+                        $total = 0;
+                        if(auth()->user()->can('approve rentals')){
+                            $total += $pending_count;
+                        }
+
+                        if(auth()->user()->can('dispatch rentals')){
+                            $total += $dispatch_count;
+                        }
+
+                        if(auth()->user()->can('accept returns')){
+                            $total += $return_count;
+                        }
+                    @endphp
                     <span class="menu-link">
                         <span class="menu-icon">
                             <i class="ki-duotone ki-handcart fs-2">
                             </i>
                         </span>
-                        <span class="menu-title">Rentals</span>
+                        <span class="menu-title">
+                            Rentals
+                            @if($total > 0)
+                            <span class="ms-3 badge-sm badge badge-danger">{{ $total > 9 ? '9+' : $total  }}</span>
+                            @endif
+                        </span>
                         <span class="menu-arrow"></span>
                     </span>
                     <!--end:Menu link-->
@@ -138,7 +157,12 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Approve Rentals</span>
+                                <span class="menu-title">
+                                    Approve Rentals
+                                    @if($pending_count)
+                                    <span class="ms-3 badge-sm badge badge-secondary">{{ $pending_count }}</span>
+                                    @endif
+                                </span>
                             </a>
                         </div>
                         <!--end:Menu item-->
@@ -152,7 +176,12 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Dispatch Orders</span>
+                                <span class="menu-title">
+                                    Dispatch Orders
+                                    @if($dispatch_count)
+                                    <span class="ms-3 badge-sm badge badge-secondary">{{ $dispatch_count }}</span>
+                                    @endif
+                                </span>
                             </a>
                         </div>
                         <!--end:Menu item-->
@@ -166,7 +195,12 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Accept Returns</span>
+                                <span class="menu-title">
+                                    Accept Returns
+                                    @if($return_count)
+                                    <span class="ms-3 badge-sm badge badge-secondary">{{ $return_count }}</span>
+                                    @endif
+                                </span>
                             </a>
                         </div>
                         <!--end:Menu item-->
