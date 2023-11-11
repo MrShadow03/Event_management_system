@@ -1,118 +1,171 @@
 .event{
-    width: 70%;
-    margin: auto;
-    background-color: $white;
+    width: 100%;
+    position: relative;
+    background: #fbf9f3;
+    padding-bottom: 4rem;
+    padding-top: 2rem;
+    &::before{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/eventbgS.png);
+        background-repeat: repeat;
+        background-size: 10px 10px;
+        z-index: 1;
+    }
 }
-
-.eventCard_md{
+.event_card_area{
+    margin-top: 7rem !important;
+    width: 100%;
+    height: fit-content;
+    padding: 6rem 0;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 10%;
-    margin-top: 15rem;
-    .img_area{
-        img {
-            width: 40rem;
-            object-fit: cover;
-            aspect-ratio: 1/1.2;
-            border-radius: 5px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    align-items: center;
+    gap: 15rem;
+    flex-wrap: wrap;
+    .event_card{
+        width: 40rem;
+        height: 50rem;
+        z-index: 9;
+        position: relative;
+
+        &::after{
+            position: absolute;
+            content: "";
+            width: 130%;
+            height: 120%;
+            background-image: url(../img/eventBG.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            top: -6rem;
+            left: -6rem;
+            z-index: -1;
         }
-    }
-    .custom_title2{
-        width: 52rem;
+        &:nth-child(2){
+            &::after{
+                width: 130%;
+                height: 120%;
+                background-image: url(../img/eventBG1.png);
+                background-repeat: no-repeat;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+                top: -5rem;
+                left: -6rem;
+                z-index: -1;
+            }
+        }
+
+        .card_body_img{
+            width: 100%;
+            height: 100%;
+        }
+        .card_img{
+            position: absolute;
+            top: 8px;
+            left: 9px;
+            width: 96%;
+            height: 16.5rem;
+            z-index: 2;
+            img{
+                width: 100%;
+                height: 100%;
+                clip-path: polygon(0 9%, 2% 4%, 3% 0, 96% 0, 98% 7%, 101% 12%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+                object-fit: cover;
+            }
+        }
+        .card_text{
+
+            position: absolute;
+            bottom: 2rem;
+            width: 90%;
+            height: 30rem;
+            right: 2rem;
+            // border: 1px solid red;
+            text-align: center;
+            .heading-lg{
+                padding-block: 1.5rem;
+                font-weight: 500;
+            }
+            .para-md{
+                margin-bottom: 4rem;
+            }
+            .love_img{
+                z-index: 5;
+                position: absolute;
+                top: -2.2rem;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
     }
 }
 
 
-.eventCard_sm{
-    display: flex;
-    justify-content: center;
-    gap: 10%;
-    margin-top: 10rem;
-    .img_area{
-        img {
-            width: 40rem;
-            object-fit: cover;
-            aspect-ratio: 1/1.2;
-            border-radius: 5px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-        }
-    }
-    .custom_title2{
-        width: 52rem;
-    }
-}
 
-@media only screen and (max-width:1440px) {
-    .event{
-        width: 90%;
-        margin: auto;
-    }
-}
+// RESPONSIVE START
 
-@media only screen and (max-width:1024px) {
-    .event{
-        width: 98%;
-    }
-    .eventCard_md{
-        .img_area{
-            width: 50rem;
-            height: 60rem;
-        }
-    }
-    .eventCard_sm{
-        .img_area{
-            width: 50rem;
-            height: 50rem;
-        }
-    }
-}
-@media only screen and (max-width:768px) {
-    .event{
-        width: 98%;
-    }
-    .eventCard_md{
-        .img_area{
-            width: 50rem;
-            height: 45rem;
-        }
-    }
-    .eventCard_sm{
-        .img_area{
-            width: 50rem;
-            height: 50rem;
+@media only screen and (max-width:1880px) {
+    .event_card_area{
+        gap: 12rem;
+        .event_card{
+            width: 37rem;
+
+
+            &::after{
+                width: 115%;
+                left: -3rem;
+            }
+            &:nth-child(2){
+                &::after{
+                    width: 115%;
+                    left: -3rem;
+
+                }
+            }
+
         }
     }
 }
 
-@media only screen and (max-width:760px) {
-    .event{
-        width: 98%;
-    }
-    .eventCard_md{
-        flex-direction: column;
-        gap: 2rem;
-        .img_area{
-            width: 95%;
-            height: 40rem;
-        }
-        .custom_title2{
-            width: 95%;
-        }
-    }
-    .eventCard_sm{
-        flex-direction: column-reverse;
-        
-        &:nth-child(3) {
-           flex-direction: column;
-        }
-        margin-bottom: 2rem;
-        .img_area{
-            width: 95%;
-            height: 38rem;
-        }
-        .custom_title2{
-            width: 95%;
+@media only screen and (max-width:600px){
+    .event_card_area{
+        margin-top: 2rem;
+        gap: 12rem;
+        .event_card{
+            width: 35rem;
+
+
+            &::after{
+                width: 110%;
+                left: -2.5rem;
+            }
+            &:nth-child(2){
+                &::after{
+                    width: 115%;
+                    left: -3rem;
+
+                }
+            }
+            .card_text{
+                bottom: 3.8rem;
+                .love_img{
+                    top: 0px;
+                }
+                .heading-lg{
+                    padding-block: .5rem;
+                }
+                .para-md{
+                    margin-bottom: 2.5rem;
+                }
+            }
         }
     }
 }

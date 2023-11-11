@@ -43,6 +43,11 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             'logo' => $formattedDetails['logo'],
             'favicon' => $formattedDetails['favicon'],
             'product_VAT' => $formattedDetails['product_VAT'],
+            'facebook' => $formattedDetails['facebook'],
+            'twitter' => $formattedDetails['twitter'],
+            'whatsapp' => $formattedDetails['whatsapp'],
+            'linkedin' => $formattedDetails['linkedin'],
+            'youtube' => $formattedDetails['youtube'],
         ];
 
         // pass to all the views inside admin folder

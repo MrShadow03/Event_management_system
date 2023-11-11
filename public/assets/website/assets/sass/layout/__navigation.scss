@@ -1,4 +1,4 @@
-#mainNav_area{ 
+#mainNav_area{
     position: absolute;
     width: 100%;
     top: 0;
@@ -78,12 +78,12 @@
                 i {
                     color: $white;
                     font-size: 1.7rem;
-                    
+
                 }
             }
         }
     }
-    
+
 }
 
 .nav--white{
@@ -91,6 +91,17 @@
     backdrop-filter: blur(5px);
     border-bottom: 1px solid #eee;
     height: 7rem;
+    .logo_nav{
+        .nav_bars{
+            i{
+                color: #000;
+            }
+            h2{
+                color: #000;
+            }
+        }
+    }
+
     .nav_area{
         li{
             a{
@@ -118,17 +129,21 @@
 }
 
 .active_nav {
+    background: #fff !important;
     .logo_top{
        transform: scale(0);
     }
     .navigation{
         height: 7rem !important;
-        background-color: #ffffffc0;
+        background-color: #ffffff;
         backdrop-filter: blur(5px);
         position: fixed;
         top: 0;
         right: 0;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        transition: .9s;
+        animation-name: trans;
+        animation-duration: .75s;
         .logo_nav{
             a{
                 img{
@@ -181,11 +196,27 @@
     }
 }
 
+
+@keyframes trans{
+    0%{
+        transform: translateY(-50px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+
+}
+
 // RESPONSIVE HERE
 
 
 @media only screen and (max-width:1780px) {
     .navigation{
+        // NE CSS ADD
+        .container{
+            width: 100%;
+        }
+
         .nav_area{
             width: 65%;
         }
@@ -208,6 +239,30 @@
             }
         }
     }
+}
+
+// NEW RESPONSIVE *************/
+@media only screen and (max-width:1024px){
+
+    .active_nav{
+        .navigation{
+            .container{
+                .logo_nav{
+                    .nav_bars{
+                        i {
+                            color: #000 !important;
+                        }
+                        h2{
+                            color: #000 !important;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+
 }
 
 @media only screen and (max-width:1430px){
@@ -272,13 +327,13 @@
             .nav_area{
                 display: none;
             }
-    
+
             .social_link {
                 width: 40% !important;
                 justify-content: flex-end;
             }
          }
-     }  
+     }
 }
 @media only screen and (max-width:600px) {
     .navigation{
@@ -295,10 +350,10 @@
             .logo_nav{
                 width: 68% !important;
             }
-    
+
             .social_link {
                 width: 32% !important;
             }
          }
-     } 
+     }
 }

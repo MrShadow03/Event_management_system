@@ -4,16 +4,19 @@
     display: flex;
     justify-content: center;
     gap: 10%;
-    margin-top: 15rem;
 }
+
+
+
+
 
 .catering_slider {
     width: 48rem;
     height: fit-content;
     position: relative;
+
     .custom_title2{
         height: 33rem;
-        margin-top: 3rem;
         p{
             font-size: 1.6rem;
             line-height: 2.9rem;
@@ -23,15 +26,16 @@
     .img_area {
         height: 32rem;
         width: 100%;
+        display: block;
         padding: 0;
         .img{
             flex: 0 0 100%;
             height: 100%;
+
             img{
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 5px;
             }
         }
     }
@@ -51,7 +55,6 @@
     .custom_title2{
         height: 33rem;
         text-align: right;
-        margin-top: 3rem;
         h2{
 
             &::after{
@@ -84,18 +87,20 @@
             height: 25rem;
         }
     }
-    .left_side{
-        &::after {
-            right: -15%;
-        }
-        .custom_title2{
-            h2{
-
-                &::after{
-                    left: 65%;
-                }
+    .left_side {
+        .custom_title2 {
+            margin-top: 0rem !important;
+            p{
+                margin-bottom: 4rem;
             }
-        }
+       }
+    }
+    .right_side {
+        .custom_title2 {
+            p{
+                margin-bottom: 7rem;
+            }
+       }
     }
 }
 
@@ -146,7 +151,7 @@
             h2{
                 &::after{
                     left: 30% !important;
-                }  
+                }
             }
             .btn_black{
                 left: 0;

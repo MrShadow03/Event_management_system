@@ -1,14 +1,31 @@
 .clients{
-    margin-top: 6rem;
     padding: 4rem 0;
-    background-color: $colorBG;
-    background-image: url('./../img/mesh-69.png');
     background-size: cover;
     background-repeat: no-repeat;
     .custom_title1{
         padding-top: 0;
     }
 }
+
+// NEW ADD CSS STYLE
+.backGtitle{
+    width: 100%;
+    height: 35rem;
+    background-image: url(../img/cliBG.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2{
+        color: #fff;
+        font-size: 8rem;
+        font-weight: 500;
+        font-family: title2;
+    }
+}
+
+
 
 #client_slider {
     width: 65%;
@@ -17,37 +34,52 @@
     padding: 2rem 3rem;
     overflow: hidden;
     position: relative;
-    
-    &:hover{
-        .owl-next{
-            span{
-                transform: translate(0px);
-            }
-        }
-        .owl-prev{
-            span{
-                transform: translate(0px);
-            }
-        }
-    }
+
+
 
 }
 
 // CARD STYLE
 .clients_card {
-	width: 38rem;
-	height: 32rem;
-	padding: 3rem 3rem;
-	background-color: #fff8f8d0;
-	border-radius: 1rem;
-	backdrop-filter: blur(8px);
-    img {
-        width: 10rem !important;
-        height: 5.5rem !important;
-    }
+	width: 32rem;
+	height: fit-content;
+	margin: 0 auto;
+    text-align: center;
+    display: block;
+
+    .ca_img{
+            position: relative;
+            z-index: 6;
+
+        &::after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 120%;
+            top: -2rem;
+            background-image: url(../img/groom-bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 90% 90%;
+            left: 0;
+            z-index: -1;
+        }
+
+            img {
+                width: 18rem;
+                height: 18rem;
+                border: 1rem solid #FFFFFF;
+                border-radius: 50%;
+                z-index: 9;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
     .reting{
+        margin: 0 auto;
         padding: 1rem 0;
-        display: flex;
+        display: block;
         gap: .5rem;
         i {
             font-size: 1.3rem;
@@ -68,13 +100,13 @@
         opacity: .8;
         font-weight: 700;
     }
- 
+
 }
 // CAROUSEL CUSTOMAIGE
 .owl-nav {
     .owl-next{
         font-size: 5rem !important;
-        
+
         span{
             position: absolute;
             right: 0;
@@ -89,7 +121,7 @@
     .owl-prev{
         font-size: 5rem !important;
         span{
-           
+
             position: absolute;
             left: 0;
             top: 40%;
@@ -136,7 +168,6 @@ button.owl-dot.active{
 
     .clients_card{
         width: 34rem;
-        height: 30rem;
     }
 }
 
@@ -147,15 +178,19 @@ button.owl-dot.active{
 
     .clients_card{
         width: 30rem;
-        height: 26rem;
     }
 }
 
 @media only screen and (max-width:600px){
+    .backGtitle {
+        height: 20rem !important;
+        h2{
+            font-size: 4rem;
 
+        }
+    }
     .clients_card{
         width: 95%;
-        height: 26rem;
         padding: 2rem;
     }
 }

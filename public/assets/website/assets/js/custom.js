@@ -11,20 +11,69 @@ var swiper = new Swiper(".benar_box", {
       },
   });
 
-  var swiper_catering = new Swiper(".img_left", {
+
+// CATERING CARD BOX
+
+var swiper = new Swiper(".img_left", {
+    grabCursor: true,
+    effect: "creative",
     loop: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+     autoplay: {
+        delay: 2000,
+        disableOnInteraction: true,
+      },
+    creativeEffect: {
+      prev: {
+        shadow: true,
+        translate: [0, 0, -400],
+      },
+      next: {
+        translate: ["100%", 0, 0],
+      },
     },
   });
 
-  var swiper_event = new Swiper(".img_right", {
+
+// var swiper = new Swiper(".img_left", {
+//     effect: "cube",
+//     grabCursor: true,
+//     loop: true,
+//     autoplay: {
+//         delay: 2000,
+//         disableOnInteraction: true,
+//       },
+//     cubeEffect: {
+//       shadow: true,
+//       slideShadows: true,
+//       shadowOffset: 20,
+//       shadowScale: 0.94,
+//     },
+//     pagination: {
+//       el: ".swiper-pagination",
+//     },
+//   });
+
+  var swiper = new Swiper(".img_right", {
+    effect: "cube",
+    grabCursor: true,
+    loop: true,
+    autoplay: {
+        delay: 2800,
+        disableOnInteraction: true,
+      },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
     pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      el: ".swiper-pagination",
     },
   });
+
+
+
 
   var swiper_related_products = new Swiper(".related_products_items", {
     slidesPerView: 2,
@@ -83,7 +132,7 @@ var swiper = new Swiper(".benar_box", {
 //             items:3
 //         }
 //     }
-    
+
 // });
 
 
@@ -105,7 +154,7 @@ $('#client_slider').owlCarousel({
             items:3
         }
     }
-    
+
 });
 
 
@@ -115,14 +164,16 @@ $('#client_slider').owlCarousel({
 
 
 
+
+
 // Header fixed
-window.onscroll = function() 
-{ 
+window.onscroll = function()
+{
     headerScroll()
 };
 
 function headerScroll() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
         document.getElementById("mainNav_area").classList.add('active_nav');
     } else {
         document.getElementById("mainNav_area").classList.remove('active_nav');

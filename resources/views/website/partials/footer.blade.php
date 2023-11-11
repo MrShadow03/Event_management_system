@@ -7,13 +7,13 @@
                 <span><i class="fa-solid fa-mobile-screen-button"></i><a href="tel:+8801671711933">+880-1671-711933</a>,<a href="tel:+8801918893885"> +880-1918-893885</a></span>
                 <span><i class="fa-solid fa-envelope"></i><a href="#">maaeventmanagementbd@gmail.com</a></span>
                 <div class="footer_social_btn">
-                    <a href="#"><i class="footer-icon icon--fb fa-brands fa-facebook"></i></a>
+                    <a href="{{ $commonDetails['facebook'] ?? '#' }}"><i class="footer-icon icon--fb fa-brands fa-facebook"></i></a>
                     <a href="#"><i class="footer-icon icon--ig fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="footer-icon icon--wa fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/{{ $commonDetails['whatsapp'] ?? '#' }}"><i class="footer-icon icon--wa fa-brands fa-whatsapp"></i></a>
                     <a href="#"><i class="footer-icon icon--pt fa-brands fa-pinterest"></i></a>
-                    <a href="#"><i class="footer-icon icon--yt fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="footer-icon icon--tw fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="footer-icon icon--ln fa-brands fa-linkedin"></i></a>
+                    <a href="{{ $commonDetails['youtube'] ?? '#' }}"><i class="footer-icon icon--yt fa-brands fa-youtube"></i></a>
+                    <a href="{{ $commonDetails['twitter'] ?? '#' }}"><i class="footer-icon icon--tw fa-brands fa-twitter"></i></a>
+                    <a href="{{ $commonDetails['linkedin'] ?? '#' }}"><i class="footer-icon icon--ln fa-brands fa-linkedin"></i></a>
                     <a href="#"><i class="footer-icon icon--tk fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
