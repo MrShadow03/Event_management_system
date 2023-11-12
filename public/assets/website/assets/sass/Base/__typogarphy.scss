@@ -30,18 +30,19 @@
 // ADD NEW CSS ****************************/
 .heading-xl{
     font-size: 6rem;
-    font-family:Playfair Display;
+    font-family:'MonteCarlo', cursive;
     font-weight: 500;
-    opacity: .9;
-    background: linear-gradient(108.7deg, #eb4556  0%, #ff4255 60%);
+    opacity: 1;
+    background: linear-gradient(108.7deg, rgb(223, 3, 127) 0%, rgb(39, 0, 74) 60%);
+    padding-inline: 1rem;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 
 }
 .heading-lg{
-    font-size: 4rem;
-    font-family: 'MonteCarlo', cursive;
+    font-size: 2.4rem;
+    font-family: 'Playfair Display', cursive;
     opacity: .9;
     background: linear-gradient(108.7deg, rgb(223, 3, 127) 0%, rgb(39, 0, 74) 60%);
     background-clip: text;

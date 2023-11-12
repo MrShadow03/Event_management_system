@@ -16,6 +16,11 @@
         background-size: 10px 10px;
         z-index: 1;
     }
+    .custom_title1{
+        h2{
+            padding-block: 2rem;
+        }
+    }
 }
 .event_card_area{
     margin-top: 7rem !important;

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 var swiper = new Swiper(".benar_box", {
     direction: "vertical",
+    speed: 1000,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -18,6 +19,7 @@ var swiper = new Swiper(".img_left", {
     grabCursor: true,
     effect: "creative",
     loop: true,
+    speed: 1000,
      autoplay: {
         delay: 2000,
         disableOnInteraction: true,
@@ -57,6 +59,7 @@ var swiper = new Swiper(".img_left", {
     effect: "cube",
     grabCursor: true,
     loop: true,
+    speed: 1000,
     autoplay: {
         delay: 2800,
         disableOnInteraction: true,
@@ -64,16 +67,54 @@ var swiper = new Swiper(".img_left", {
     cubeEffect: {
       shadow: true,
       slideShadows: true,
-      shadowOffset: 20,
-      shadowScale: 0.94,
+      shadowOffset: 10,
+      shadowScale: 0.5,
     },
     pagination: {
       el: ".swiper-pagination",
     },
   });
 
-
-
+//   var video_gallery = new Swiper(".video_gallery", {
+//     grabCursor: true,
+//     effect: "coverflow",
+//     loop: true,
+//     speed: 1000,
+//     slidesPerView: 'auto',
+//     coverflowEffect: {
+//         rotate: 0,
+//         stretch: 0,
+//         depth: 300,
+//         modifier: 1,
+//         slideShadows: true,
+//     },
+    // breakpoints: {
+    //     700: {
+    //         slidesPerView: 1,
+    //         loop: true,
+    //         autoplay: {
+    //             delay: 2000,
+    //             disableOnInteraction: true,
+    //         },
+    //     },
+    //     1000: {
+    //         slidesPerView: 2,
+    //         loop: true,
+    //         autoplay: {
+    //             delay: 2000,
+    //             disableOnInteraction: true,
+    //         },
+    //     },
+    //     1200: {
+    //         slidesPerView: 3,
+    //         loop: true,
+    //         autoplay: {
+    //             delay: 2000,
+    //             disableOnInteraction: true,
+    //         },
+    //     },
+    // },
+  });
 
   var swiper_related_products = new Swiper(".related_products_items", {
     slidesPerView: 2,
@@ -156,10 +197,6 @@ $('#client_slider').owlCarousel({
     }
 
 });
-
-
-
-})
 
 
 

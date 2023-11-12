@@ -37,21 +37,21 @@
         <div class="benar_box swiper">
             <div class="swiper-wrapper">
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/banner-slide1.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img2.jpg') }}" alt="">
                 </div>
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/banner-slide2.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img3.jpg') }}" alt="">
                 </div>
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/benar1.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img6.jpg') }}" alt="">
                 </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     @endsection
-    <div class="aro_img">
+    {{-- <div class="aro_img">
         <!-- NEW IMG ADDD ************************************ **************************************************-->
-    </div>
+    </div> --}}
 
     <!-- EVENT -->
     <div class="event">
@@ -63,7 +63,7 @@
             <div class="event_card">
                 <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
                 <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/desktop-wallpaper-ajf-wedding-event-management-nalan-sg-event-management.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img1.jpg') }}" alt="">
                 </div>
                 <div class="card_text">
                     <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
@@ -75,7 +75,7 @@
             <div class="event_card">
                 <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
                 <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/the-wedding-party.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img4.jpg') }}" alt="">
                 </div>
                 <div class="card_text">
                     <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
@@ -87,7 +87,7 @@
             <div class="event_card">
                 <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
                 <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/home_corporate.jpg') }}" alt="">
+                    <img src="{{ asset('./assets/website/assets/img/home_page_img5.jpg') }}" alt="">
                 </div>
                 <div class="card_text">
                     <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
@@ -136,16 +136,16 @@
             <div class="img_area img_right swiper">
                 <div class="swiper-wrapper">
                 <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/images (1).jpg') }}" alt="">
+                        <img src="{{ asset('./assets/website/assets/img/home_page_img3.jpg') }}" alt="">
                     </div>
                     <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/71-650x330.jpg') }}" alt="">
+                        <img src="{{ asset('./assets/website/assets/img/home_page_img7.jpg') }}" alt="">
                     </div>
                     <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/images.jpg') }}" alt="">
+                        <img src="{{ asset('./assets/website/assets/img/home_page_img8.jpg') }}" alt="">
                     </div>
                     <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/IMG_1684.JPG') }}" alt="">
+                        <img src="{{ asset('./assets/website/assets/img/home_page_img9.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -185,7 +185,7 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
                 <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
             </div>
             <div class="clients_card">
                 <div class="ca_img">
@@ -200,7 +200,7 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
                 <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
             </div>
             <div class="clients_card">
                 <div class="ca_img">
@@ -215,52 +215,7 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
                 <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
-            </div>
-            <div class="clients_card">
-                <div class="ca_img">
-                    <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
-                </div>
-
-                <div class="reting">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
-            </div>
-            <div class="clients_card">
-                <div class="ca_img">
-                    <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
-                </div>
-
-                <div class="reting">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
-            </div>
-            <div class="clients_card">
-                <div class="ca_img">
-                    <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
-                </div>
-
-                <div class="reting">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <h4>Tayba Jannat</h4>
-                <p>Amr coto meye r birthday te apnader decoration r service niyeci sobie khub sondhor boleca asolei Sondhor hoyeca.</p>
+                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
             </div>
         </div>
     </div>
@@ -268,7 +223,7 @@
     <!-- VIDEOS  -->
     <div class="video">
         <div class="custom_title1">
-            <h2 class="heading-xl">Our Videos</h2>
+            <h2 class="heading-xl">Video Gallery</h2>
             <p class="desc para-lg">Here you’ll find videos that highlight some of our most popular rental products, including tents, tables and chairs, audio and visual equipment, and more. You’ll see our equipment being set up and used at real events, giving you a better understanding of what to expect when you rent from us.</p>
         </div>
         <div class="videos">
