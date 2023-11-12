@@ -89,7 +89,7 @@
 
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                    <!--begin::Flatpickr-->
+                    {{-- <!--begin::Flatpickr-->
                     <div class="input-group w-250px">
                         <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range"
                             id="kt_ecommerce_sales_flatpickr" />
@@ -97,24 +97,17 @@
                             <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i>
                         </button>
                     </div>
-                    <!--end::Flatpickr-->
+                    <!--end::Flatpickr--> --}}
 
                     <div class="w-100 mw-150px">
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Status" data-kt-ecommerce-order-filter="status">
-                            <option></option>
+                            data-placeholder="Filter Status" data-kt-ecommerce-order-filter="status">
+                            <option value="" selected>Filter</option>
                             <option value="all">All</option>
-                            <option value="rented">Rented</option>
-                            <option value="pending approval">Pending Approval</option>
-                            <option value="Denied">Denied</option>
-                            <option value="Expired">Expired</option>
-                            <option value="Failed">Failed</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Refunded">Refunded</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Delivering">Delivering</option>
+                            @foreach ($invoices->unique('status')->pluck('status') as $status)
+                                <option value="{{ $status }}">{{ ucwords($status) }}</option>
+                            @endforeach
                         </select>
                         <!--end::Select2-->
                     </div>
@@ -131,53 +124,38 @@
             <div class="card-body pt-0">
 
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+                <table class="table align-middle table-bordered table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                        data-kt-check-target="#kt_ecommerce_sales_table .form-check-input" value="1" />
-                                </div>
-                            </th>
-                            <th class="min-w-100px">Order ID</th>
-                            <th class="text-end min-w-70px">Status</th>
-                            <th class="text-end min-w-100px">Total</th>
-                            <th class="text-end min-w-100px">From</th>
-                            <th class="text-end min-w-100px">Return Date</th>
-                            <th class="text-end min-w-100px">Product</th>
-                            <th class="text-end min-w-100px">Actions</th>
+                            <th class="">Invoice</th>
+                            <th class="text-end px-2">Total</th>
+                            <th class="text-end px-2">Paid</th>
+                            <th class="text-end px-0">Placed</th>
+                            <th class="text-end px-0"></th>
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @forelse ($rentals as $rental)
+                        @forelse ($invoices as $invoice)
                         <tr>
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
+                            <td class="py-2" data-filter="<span>{{ $invoice->id }} {{ $invoice->status }}</span>">
+                                <a href="#" class="text-hover-primary fw-bold 
+                                @if ($invoice->status == 'pending approval')
+                                    text-warning
+                                @else
+                                    text-gray-800
+                                @endif
+                                ">#{{ $invoice->id }}</a>
                             </td>
-                            <td data-kt-ecommerce-order-filter="order_id">
-                                <a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ $rental->id }}</a>
+                            <td class="text-end pe-0 py-2 px-2">
+                                <span class="fw-semibold">{{ number_format($invoice->grand_total) }}</span>
                             </td>
-                            <td class="text-end pe-0" data-order="{{ $rental->status }}">
-                                <!--begin::Badges-->
-                                <div class="badge badge-light-warning">{{ strtoupper($rental->status) }}</div>
-                                <!--end::Badges-->
+                            <td class="text-end pe-0 py-2 px-2">
+                                <span class="fw-semibold {{ $invoice->grand_total == $invoice->paid ? 'text-success' : 'text-danger' }}">{{ number_format($invoice->paid) }}</span>
                             </td>
-                            <td class="text-end pe-0">
-                                <span class="fw-bold">{{ $rental->product->rental_price * $rental->number_of_days }}</span>
+                            <td class="text-end py-2" data-order="{{ Carbon\Carbon::parse($invoice->created_at)->format('Y-m-d') }}">
+                                <span class="fw-semibold">{{ Carbon\Carbon::parse($invoice->created_at)->format('d.m.y') }}</span>
                             </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($rental->starting_date)->format('Y-m-d') }}">
-                                <span class="fw-bold">{{ Carbon\Carbon::parse($rental->starting_date)->format('d/m/Y') }}</span>
-                            </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($rental->ending_date)->format('Y-m-d') }}">
-                                <span class="fw-bold">{{ Carbon\Carbon::parse($rental->ending_date)->format('d/m/Y') }}</span>
-                            </td>
-                            <td class="text-end">
-                                <span class="fw-bold">{{ $rental->product->name }} {{ $rental->quantity }}</span>
-                            </td>
-                            <td class="text-end">
+                            <td class="text-end py-2">
                                 <a href="#"
                                     class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -188,28 +166,21 @@
                                     data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="{{ route('customer.invoice.show', $rental->invoice->id) }}" class="menu-link px-3">
+                                        <a href="{{ route('customer.invoice.show', $invoice->id) }}" class="menu-link px-3">
                                             View
                                         </a>
                                     </div>
                                     <!--end::Menu item-->
 
+                                    @if ($invoice->status == 'pending approval')
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#edit" class="menu-link px-3">
+                                        <a href="{{ route('customer.rental.edit', $invoice->id) }}" class="menu-link px-3">
                                             Edit
                                         </a>
                                     </div>
                                     <!--end::Menu item-->
-
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#decline" class="menu-link px-3"
-                                            data-kt-ecommerce-order-filter="delete_row">
-                                            Decline
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
+                                    @endif
                                 </div>
                                 <!--end::Menu-->
                             </td>
@@ -337,8 +308,6 @@
             // Shared variables
             var table;
             var datatable;
-            var flatpickr;
-            var minDate, maxDate;
 
             // Private functions
             var initDatatable = function () {
@@ -346,29 +315,16 @@
                 datatable = $(table).DataTable({
                     "info": false,
                     'order': [],
-                    'pageLength': 10,
+                    'pageLength': 20,
+                    'lengthChange': true,
                     'columnDefs': [ // Disable ordering on column 0 (checkbox)
-                        { orderable: false, targets: 6 }, // Disable ordering on column 7 (actions)
+                        { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)
                     ]
                 });
 
                 // Re-init functions on datatable re-draws
                 datatable.on('draw', function () {
                     handleDeleteRows();
-                });
-            }
-
-            // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
-            var initFlatpickr = () => {
-                const element = document.querySelector('#kt_ecommerce_sales_flatpickr');
-                flatpickr = $(element).flatpickr({
-                    altInput: true,
-                    altFormat: "d/m/Y",
-                    dateFormat: "Y-m-d",
-                    mode: "range",
-                    onChange: function (selectedDates, dateStr, instance) {
-                        handleFlatpickr(selectedDates, dateStr, instance);
-                    },
                 });
             }
 
@@ -388,43 +344,7 @@
                     if (value === 'all') {
                         value = '';
                     }
-                    datatable.column(3).search(value).draw();
-                });
-            }
-
-            // Handle flatpickr --- more info: https://flatpickr.js.org/events/
-            var handleFlatpickr = (selectedDates, dateStr, instance) => {
-                minDate = selectedDates[0] ? new Date(selectedDates[0]) : null;
-                maxDate = selectedDates[1] ? new Date(selectedDates[1]) : null;
-
-                // Datatable date filter --- more info: https://datatables.net/extensions/datetime/examples/integration/datatables.html
-                // Custom filtering function which will search data in column four between two values
-                $.fn.dataTable.ext.search.push(
-                    function (settings, data, dataIndex) {
-                        var min = minDate;
-                        var max = maxDate;
-                        var dateAdded = new Date(moment($(data[5]).text(), 'DD/MM/YYYY'));
-                        var dateModified = new Date(moment($(data[6]).text(), 'DD/MM/YYYY'));
-
-                        if (
-                            (min === null && max === null) ||
-                            (min === null && max >= dateModified) ||
-                            (min <= dateAdded && max === null) ||
-                            (min <= dateAdded && max >= dateModified)
-                        ) {
-                            return true;
-                        }
-                        return false;
-                    }
-                );
-                datatable.draw();
-            }
-
-            // Handle clear flatpickr
-            var handleClearFlatpickr = () => {
-                const clearButton = document.querySelector('#kt_ecommerce_sales_flatpickr_clear');
-                clearButton.addEventListener('click', e => {
-                    flatpickr.clear();
+                    datatable.column(0).search(value).draw();
                 });
             }
 
@@ -497,11 +417,8 @@
                     }
 
                     initDatatable();
-                    initFlatpickr();
                     handleSearchDatatable();
                     handleStatusFilter();
-                    handleDeleteRows();
-                    handleClearFlatpickr();
                 }
             };
         }();
