@@ -68,7 +68,9 @@
 .footer-icon{
     font-size: 2rem !important;
     color: $white;
+    opacity: .6;
     &:hover{
+        opacity: 1;
         &.icon--fb{
             color: #2b5dca !important;
         }

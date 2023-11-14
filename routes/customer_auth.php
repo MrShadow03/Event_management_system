@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth:customer'], 'prefix' => 'customer/', 'as' =
     Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
     Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
     Route::post('/rental/store', [RentalController::class, 'store'])->name('rental.store');
+    Route::get('/rental/edit/{invoice}', [RentalController::class, 'edit'])->name('rental.edit');
+    Route::patch('/rental/update', [RentalController::class, 'update'])->name('rental.update');
 
     // Website Routes
     Route::get('/products/{id}', [ProductController::class, 'index'])->name('products');
