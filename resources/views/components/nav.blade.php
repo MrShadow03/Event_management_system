@@ -6,8 +6,11 @@
         <div class="container">
             <div class="logo_nav">
                 <div class="nav_bars">
-                    <i class="fa-solid fa-bars"></i>
-                    <h2>MENU</h2>
+                    <div class="hamburger_icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
                 <a href="{{ route('home') }}">
                     <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">

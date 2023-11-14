@@ -15,25 +15,25 @@ var swiper = new Swiper(".benar_box", {
 
 // CATERING CARD BOX
 
-var swiper = new Swiper(".img_left", {
-    grabCursor: true,
-    effect: "creative",
-    loop: true,
-    speed: 1000,
-     autoplay: {
-        delay: 2000,
-        disableOnInteraction: true,
-      },
-    creativeEffect: {
-      prev: {
-        shadow: true,
-        translate: [0, 0, -400],
-      },
-      next: {
-        translate: ["100%", 0, 0],
-      },
-    },
-  });
+// var swiper = new Swiper(".img_left", {
+//     grabCursor: true,
+//     effect: "creative",
+//     loop: true,
+//     speed: 1000,
+//      autoplay: {
+//         delay: 2000,
+//         disableOnInteraction: true,
+//       },
+//     creativeEffect: {
+//       prev: {
+//         shadow: true,
+//         translate: [0, 0, -400],
+//       },
+//       next: {
+//         translate: ["100%", 0, 0],
+//       },
+//     },
+//   });
 
 
 // var swiper = new Swiper(".img_left", {
@@ -63,6 +63,26 @@ var swiper = new Swiper(".img_left", {
     autoplay: {
         delay: 2800,
         disableOnInteraction: true,
+      },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 10,
+      shadowScale: 0.5,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+  var swiper = new Swiper(".img_left", {
+    effect: "cube",
+    grabCursor: true,
+    loop: true,
+    speed: 1000,
+    autoplay: {
+        delay: 2800,
+        disableOnInteraction: true,
+        reverseDirection: true,
       },
     cubeEffect: {
       shadow: true,

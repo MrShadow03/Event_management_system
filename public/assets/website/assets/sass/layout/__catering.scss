@@ -19,7 +19,7 @@
         h2{
             padding-block: 2rem;
         }
-        height: 33rem;
+        // height: 33rem;
         p{
             font-size: 1.6rem;
             line-height: 2.9rem;
@@ -84,27 +84,6 @@
         margin: auto;
         gap: 13%;
     }
-    .catering_slider{
-        width: 40rem;
-        .img_area{
-            height: 25rem;
-        }
-    }
-    .left_side {
-        .custom_title2 {
-            margin-top: 0rem !important;
-            p{
-                margin-bottom: 4rem;
-            }
-       }
-    }
-    .right_side {
-        .custom_title2 {
-            p{
-                margin-bottom: 7rem;
-            }
-       }
-    }
 }
 
 
@@ -150,34 +129,12 @@
             height: 20rem;
         }
         .custom_title2{
-            text-align: center;
-            h2{
-                &::after{
-                    left: 30% !important;
-                }
-            }
-            .btn_black{
-                left: 0;
-                margin: auto;
-            }
-        }
+            text-align: center !important;
+            .para-md{
+                text-align: center !important;
+                margin: 0 !important;
+                padding: 0 0 4rem 0 !important;
 
-    }
-
-
-
-    .left_side{
-        &::after {
-            right: -12%;
-            display: none;
-        }
-        .custom_title2{
-            height: 42rem;
-            h2{
-
-                &::after{
-                    left: 57%;
-                }
             }
         }
     }
