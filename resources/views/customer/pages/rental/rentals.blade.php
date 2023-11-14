@@ -113,7 +113,7 @@
                     </div>
 
                     <!--begin::Add customer-->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_rental">Add Order</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_rental">New Order</button>
                     <!--end::Add customer-->
                 </div>
                 <!--end::Card toolbar-->
@@ -138,7 +138,7 @@
                         @forelse ($invoices as $invoice)
                         <tr>
                             <td class="py-2" data-filter="<span>{{ $invoice->id }} {{ $invoice->status }}</span>">
-                                <a href="#" class="text-hover-primary fw-bold 
+                                <a href="{{ route('customer.invoice.show', $invoice->id) }}" class="text-hover-primary fw-bold 
                                 @if ($invoice->status == 'pending approval')
                                     text-warning
                                 @else
@@ -156,33 +156,13 @@
                                 <span class="fw-semibold">{{ Carbon\Carbon::parse($invoice->created_at)->format('d.m.y') }}</span>
                             </td>
                             <td class="text-end py-2">
-                                <a href="#"
-                                    class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    Actions
-                                    <i class="ki-duotone ki-down fs-5 ms-1"></i> </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                    data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('customer.invoice.show', $invoice->id) }}" class="menu-link px-3">
-                                            View
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-
-                                    @if ($invoice->status == 'pending approval')
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('customer.rental.edit', $invoice->id) }}" class="menu-link px-3">
-                                            Edit
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    @endif
-                                </div>
-                                <!--end::Menu-->
+                                @if ($invoice->status == 'pending approval')
+                                <a href="{{ route('customer.rental.edit', $invoice->id) }}" class="btn btn-sm btn-light-primary btn-flex btn-center btn-hover-primary">
+                                    Change
+                                </a>
+                                @else
+                                    
+                                @endif
                             </td>
                         </tr>
                         @empty

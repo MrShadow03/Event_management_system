@@ -221,7 +221,7 @@
     </div>
 
     <!-- VIDEOS  -->
-    <div class="video">
+    {{-- <div class="video">
         <div class="custom_title1">
             <h2 class="heading-xl">Video Gallery</h2>
             <p class="desc para-lg">Here you’ll find videos that highlight some of our most popular rental products, including tents, tables and chairs, audio and visual equipment, and more. You’ll see our equipment being set up and used at real events, giving you a better understanding of what to expect when you rent from us.</p>
@@ -249,7 +249,7 @@
         <div class="btn_area">
             <a class="btn-grad" href="#">VIEW</a>
         </div>
-    </div>
+    </div> --}}
 
 
     <!-- FOLLOWUS -->

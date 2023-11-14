@@ -4,14 +4,14 @@
     {{-- @yield('top-logo') --}}
     <nav class="navigation{{ $transparent ? '' : ' nav--white' }}">
         <div class="container">
-            <div class="logo_nav">
-                <div class="nav_bars">
-                    <div class="hamburger_icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+            <div class="nav_bars">
+                <div class="hamburger_icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
+            </div>
+            <div class="logo_nav">
                 <a href="{{ route('home') }}">
                     <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
                 </a>
@@ -29,20 +29,14 @@
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
             <div class="social_link">
-                <div class="search">
-                    <span id="search_bars"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="cart">
-                    <span id="cart_btn"><i class="fa-solid fa-cart-shopping"></i></span>
-                </div>
                 @guest('customer')
                 <a href="{{ route('customer.login') }}" class="signIn">
                     <span><i class="fa-solid fa-user"></i></span>
                 </a>
                 @endguest
                 @auth('customer')
-                <a href="{{ route('customer.dashboard') }}" class="signIn">
-                    <span>{{ Auth::guard('customer')->user()->name }}</span>
+                <a href="{{ route('customer.dashboard') }}" class="user_dp">
+                    <img src="{{ asset('storage').'/'.Auth::guard('customer')->user()->image }}" alt="user image">
                 </a>
                 @endauth
 

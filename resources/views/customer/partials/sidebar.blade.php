@@ -66,7 +66,7 @@
                             <i class="ki-duotone ki-handcart fs-2">
                             </i>
                         </span>
-                        <span class="menu-title">Rentals</span>
+                        <span class="menu-title">Orders</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
