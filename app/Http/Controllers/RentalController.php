@@ -12,7 +12,13 @@ use Illuminate\Http\Request;
 class RentalController extends Controller
 {
     public function index(){
-        $rentals = Rental::with('customer', 'product', 'invoice')->latest()->get();
+        $rentals = Rental::with('customer', 'product', 'invoice')
+            ->whereHas('product', function ($query) {
+                $query->whereNotNull('product_id');
+            })
+            ->latest()
+            ->get();
+
         $customers = Customer::all();
         return view('admin.pages.rental.rentals', [
             'rentals' => $rentals,
@@ -25,7 +31,7 @@ class RentalController extends Controller
          * @var Illuminate\Http\Request $request
          */
 
-        $venue = $request->venue ?? null;
+        $venue = $request->venue ?? null;    
 
         if(!$request->customer_id){
             return redirect()->back()->with('error','Please select a customer');
