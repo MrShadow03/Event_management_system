@@ -123,7 +123,8 @@
                         <div class="d-flex justify-content-between">
                             <div class="fw-bold fs-3 mt-3">
                                 {{ $invoice->customer->name ?? '' }}
-                                <div class="fw-semibold fs-5 text-gray-700 mt-2">
+                                <div class="fw-semibold fs-5 text-gray-700">
+                                    <div class="fs-4 text-gray-900">{{ $invoice->customer->company ?? ''}}</div>
                                     <div>Customer ID: #{{ $invoice->customer->id ?? ''}}</div>
                                     <div>{{ $invoice->customer->phone_number ?? ''}}</div>
                                     <div>{{ $invoice->customer->address ?? ''}}</div>
@@ -296,11 +297,12 @@
                                     <div class="fs-12 pt-5">APPROVED BY</div>
                                     <div class="fs-5 fw-bold">{{ $admin->name ?? '' }}</div>
                                     <div class="fs-6">
-                                        @if($admin->hasRole('super_admin'))
+                                        @if($admin && $admin->hasRole('super_admin'))
                                             CEO
-                                        @elseif($admin->hasRole('admin'))
+                                        @elseif($admin && $admin->hasRole('admin'))
                                             CCO
                                         @else
+                                            <div class="badge badge-warning">Pending</div>
                                         @endif
                                     </div>
                                 </div>

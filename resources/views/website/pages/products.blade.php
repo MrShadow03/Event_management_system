@@ -286,10 +286,11 @@
 
                                     @if ($product->color)
                                         <p>Color/Material: {{ $product->color }}</p>
-                                    @endif
+                                        @endif
+                                    <p>Available: {{ $product->stock }} <span class="font-bn"></span></p>
                                 </div>
                                 <div class="card-footer">
-                                    <p class="price">Available: {{ $product->stock }} <span class="font-bn"></span></p>
+                                    <p class="price">{{ number_format($product->rental_price) }} TK</p>
                                 </div>
                             </div>
                             @empty
