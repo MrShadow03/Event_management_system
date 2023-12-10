@@ -280,6 +280,7 @@
                                 </div>
                                 <div class="raw_items_text">
                                     <a class="heading-xs" href="{{ route('customer.product', $product->id) }}">{{ $product->name }}</a>
+                                    <p>SKU: {{ $product->product_code }}</p>
                                     @if ($product->dimension)
                                         <p>Dimension: {{ $product->dimension }}</p>
                                     @endif
