@@ -254,6 +254,9 @@
                                     <option @selected($queries['order_by'] == 'price-desc') value="price-desc">Price: high to low</option>
                                 </select>
                             </div>
+                            <div class="item">
+                                <button class="btn btn-primary" onclick="window.print()">Print Catalog</button>
+                            </div>
                             {{-- <div class="item">
                                 <span>Show:</span>
                                 <select name="limit">

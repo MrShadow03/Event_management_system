@@ -19,6 +19,29 @@
     }
 }
 
+.btn-primary{
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: $colorBG;
+    border-radius: $ui-border-radius;
+    transition: 0.15s;
+    background-color: #1c7dec;
+    color: #fff;
+    font-family: 'inter';
+
+    &:hover {
+        background-color: #1c7dec;
+        color: #fff;
+    }
+
+    &:active {
+        filter: brightness(0.9);
+    }
+}
+
 // NEW BTN HERE
 
 .btn-grad-sm {
