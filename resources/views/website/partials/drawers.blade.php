@@ -1,13 +1,13 @@
 <!-- SEARCH BOX -->
-<div class="search_box">
+{{-- <div class="search_box">
     <div class="input_area">
         <input type="text" placeholder="Search for product">
         <i class="fa-solid fa-x"></i>
     </div>
     <p>Start typing to see products you are looking for.</p>
-</div>
+</div> --}}
 <!-- CART BOX -->
-<div class="cart_box">
+{{-- <div class="cart_box">
     <div class="cart_head">
         <h2>Shopping cart</h2>
         <div class="cart_bars">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <p>No products in the cart.</p>
-</div>
+</div> --}}
 <!-- Side Nav -->
 <div class="main_side_nav">
     <div class="side_nav_box">
@@ -27,12 +27,12 @@
                     <p>Close</p>
                 </div>
             </div>
-            <div class="nav_search">
+            {{-- <div class="nav_search">
                 <form action="">
                     <input type="text" placeholder="Search for products">
                     <i class="navsearch_icon fa-solid fa-magnifying-glass"></i>
                 </form>
-            </div>
+            </div> --}}
             <ul class="tab_wrap">
                 <li class="tab_wrap_items">
                     <input type="radio" id="tab_1" name="tab" checked />

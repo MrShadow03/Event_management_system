@@ -1,4 +1,4 @@
-<!-- SEARCH BOX -->
+{{-- <!-- SEARCH BOX -->
 <div class="search_box">
     <div class="input_area">
         <input type="text" placeholder="Search for product">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <p>No products in the cart.</p>
-</div>
+</div> --}}
 <!-- Side Nav -->
 <div class="main_side_nav">
     <div class="side_nav_box">
@@ -27,12 +27,12 @@
                     <p>Close</p>
                 </div>
             </div>
-            <div class="nav_search">
+            {{-- <div class="nav_search">
                 <form action="">
                     <input type="text" placeholder="Search for products">
                     <i class="navsearch_icon fa-solid fa-magnifying-glass"></i>
                 </form>
-            </div>
+            </div> --}}
             <ul class="tab_wrap">
                 <li class="tab_wrap_items">
                     <input type="radio" id="tab_1" name="tab" checked />
