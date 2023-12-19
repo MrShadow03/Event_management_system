@@ -366,6 +366,7 @@
                                         </thead>
                                         <tbody id="product_row_wrapper">
                                             @foreach ($invoice->rentals as $rental)
+                                            @if ($rental->product)
                                             <tr id="product_row_{{ $rental->product->id }}">
                                                 <td>{{ $rental->product->name }}</td>
                                                 <td class="cursor-pointer text-hover-primary text-style-hover-underline" onclick="searchProduct(this)">{{ $rental->product->product_code }}</td>
@@ -375,6 +376,7 @@
                                                 </td>
                                                 <td class="text-end">{{ $rental->quantity * $rental->product->rental_price * $number_of_days }}</td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                         <tfoot id="product_footer">
