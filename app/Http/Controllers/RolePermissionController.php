@@ -22,10 +22,11 @@ class RolePermissionController extends Controller
         // $sales->givePermissionTo($permission);
         // $admin->givePermissionTo($permission);
         
-        $permission = Permission::create(['name' => 'collect due']);
-
-        $sales->givePermissionTo($permission);
-        $admin->givePermissionTo($permission);
+        $permissions = ['create theme', 'update theme', 'delete theme', 'view theme' ];
+        foreach ($permissions as $permission) {
+            $permission = Permission::create(['name' => $permission]);
+            $admin->givePermissionTo($permission);
+        }
 
         $rolesOfUser1 = $superAdmin->getRoleNames();
         $rolesOfUser2 = $admin->getRoleNames();

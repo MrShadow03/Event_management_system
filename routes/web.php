@@ -7,6 +7,7 @@ use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CacheController;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\InvoiceController;
@@ -22,11 +23,11 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\CustomerDepositController;
 use App\Http\Controllers\PersonalProfileController;
 use App\Http\Controllers\Website\ProductCategoryController;
-use App\Http\Controllers\Reporting\ProductController as ProductReportController;
-use App\Http\Controllers\Reporting\DepositController as DepositReportController;
 use App\Http\Controllers\Reporting\DueController as DueReportController;
 use App\Http\Controllers\Reporting\OrderController as OrderReportController;
+use App\Http\Controllers\Reporting\DepositController as DepositReportController;
 use App\Http\Controllers\Reporting\InvoiceController as InvoiceReportController;
+use App\Http\Controllers\Reporting\ProductController as ProductReportController;
 use App\Http\Controllers\Reporting\TransactionController as TransactionReportController;
 
 // Route::get('/createSymlink', function(){
@@ -174,6 +175,9 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         Route::get('/orders', [OrderReportController::class, 'index'])->name('orders');
         Route::get('/invoices', [InvoiceReportController::class, 'index'])->name('invoices');
     });
+
+    Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
+    Route::get('/theme/create', [ThemeController::class, 'create'])->name('theme.create');
     // Route::get('/pages', [PageController::class, 'index'])->name('pages');
     // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
     // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');

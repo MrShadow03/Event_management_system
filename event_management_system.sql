@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 05:29 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Dec 23, 2023 at 02:12 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -550,7 +550,11 @@ INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) 
 (24, 'App\\Models\\User', 2),
 (24, 'App\\Models\\User', 3),
 (25, 'App\\Models\\User', 2),
-(25, 'App\\Models\\User', 3);
+(25, 'App\\Models\\User', 3),
+(26, 'App\\Models\\User', 2),
+(27, 'App\\Models\\User', 2),
+(28, 'App\\Models\\User', 2),
+(29, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -759,7 +763,11 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (22, 'create rentals', 'web', '2023-10-23 04:36:38', '2023-10-23 04:36:38'),
 (23, 'collect due', 'web', '2023-10-23 15:19:33', '2023-10-23 15:19:33'),
 (24, 'update deposit', 'web', '2023-10-29 21:18:55', '2023-10-29 21:18:55'),
-(25, 'view customer', 'web', '2023-10-29 21:18:55', '2023-10-29 21:18:55');
+(25, 'view customer', 'web', '2023-10-29 21:18:55', '2023-10-29 21:18:55'),
+(26, 'create theme', 'web', '2023-12-22 13:03:20', '2023-12-22 13:03:20'),
+(27, 'update theme', 'web', '2023-12-22 13:03:20', '2023-12-22 13:03:20'),
+(28, 'delete theme', 'web', '2023-12-22 13:03:20', '2023-12-22 13:03:20'),
+(29, 'view theme', 'web', '2023-12-22 13:03:20', '2023-12-22 13:03:20');
 
 -- --------------------------------------------------------
 
@@ -1796,7 +1804,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Sumon Baly', 'maaevent@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', 'lB0lMHfwtk7bPuVm8GiC0BblnHJH9k54zEWr5y5u1z89neeKpohRMXXzlcGX', NULL, '2023-10-25 07:45:12'),
-(2, 'Hafizul Islam', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/jBtJCZlgwCPh7Y9wjNJOrap8QJqrDHAUUh1n5Mtn.png', 'UGVoCHOPDgbrcXpvMIrFmeUpFfEfxacOnxE6M0aMx9dv9gy6P6YycKdBMmiu', NULL, '2023-10-29 18:20:24'),
+(2, 'Hafizul Islam', 'admin@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/jBtJCZlgwCPh7Y9wjNJOrap8QJqrDHAUUh1n5Mtn.png', 'gzKj3Gk6hanH6Wlij4jtOm3DNu3Bgee1KoPV8DvTWTKGsSWMMuDQ6e7sh0zM', NULL, '2023-10-29 18:20:24'),
 (3, 'Hafizul Islam', 'sales@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/q4eLI797Bu4vjklseTzZ3JkDfpjlrLH51jw2EaAM.png', 'tx7CF506D0AGiLRGHKYhPwmZwkL05CmwT8LbOjDhfHkTH1GCFDIxedizC1T3', NULL, '2023-10-30 21:04:49'),
 (4, 'Wizard - Inventory', 'inventory@admin.com', NULL, '$2y$10$rvi6odKPBr3ODXLJIfAG1enRcDEt5rN/YtqLurMqz9kY7cM.c4Gu.', 'user/default.png', NULL, '2023-10-23 04:41:56', '2023-10-23 04:41:56');
 
@@ -2268,7 +2276,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

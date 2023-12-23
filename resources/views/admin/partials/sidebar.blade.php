@@ -209,7 +209,49 @@
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
+                @can('view theme')
+                <!--begin:Menu item-->
+                <div class="menu-item pt-5">
+                    <!--begin:Menu content-->
+                    <div class="menu-content">
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Themes</span>
+                    </div>
+                    <!--end:Menu content-->
+                </div>
                 <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.theme.create')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.theme.create') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-paintbucket fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Create Themes</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.themes')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.themes') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-clipboard fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Browse Themes</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                @endcan
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
