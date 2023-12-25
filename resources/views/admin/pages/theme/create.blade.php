@@ -104,12 +104,7 @@
                     <!--end::Action-->
 
                     <!--begin::Action-->
-                    <a href="#"
-                        class="btn btn-sm btn-icon btn-icon-muted btn-active-icon-success"
-                        data-bs-toggle="tooltip"
-                        data-bs-trigger="hover"
-                        data-bs-placement="top"
-                        title="Add new category">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#productModal" class="btn btn-sm btn-icon btn-icon-muted btn-active-icon-success" title="Add new category">
                         <i class="ki-duotone ki-add-files fs-2qx">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -297,25 +292,27 @@
                                 </td>
                                     
                                 <td class="text-end">
+                                    <input type="number" min="1" id="productAmountInput{{ $product->id }}" class="form-control">
+                                </td>
+
+                                <td class="text-end">
                                     <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">$560,000</a>
                                     <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
                                 </td>
     
                                 <td class="text-muted fw-semibold text-end">Laravel, Metronic</td>
     
-                                <td class="text-end">
-                                    <span class="badge badge-light-success">Approved</span>
-                                </td>                            
     
                                 <td class="text-end">
-                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-switch fs-2"><span class="path1"></span><span class="path2"></span></i>                                </a>
-                                    
-                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2"><span class="path1"></span><span class="path2"></span></i>                                </a>
-    
                                     <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                        <i class="ki-duotone ki-trash fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>                                </a>
+                                        <i class="ki-duotone ki-trash fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                            <span class="path5"></span>
+                                        </i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -333,7 +330,7 @@
 <!--end::Main Content-->
 
 @section('exclusive_modals')
-    <div class="modal fade" id="modal_add_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -350,164 +347,69 @@
 
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <!--begin:Form-->
-                    <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.customer.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('POST')
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h1 class="mb-3">New Customer</h1>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_edit_order_product_table">
+                        <thead>
+                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                <th class="min-w-200px">Product</th>
+                                <th class="min-w-200px">Cat</th>
+                                <th class="min-w-200px">Qty Remaining</th>
+                                <th class="min-w-100px">Order Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fw-semibold text-gray-600">
+                            @foreach ($products as $product)
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center"
+                                        data-kt-ecommerce-edit-order-filter="product"
+                                        data-kt-ecommerce-edit-order-id="product_1">
+                                        <!--begin::Thumbnail-->
+                                        <a href="javascript:void(0);" class="symbol symbol-50px">
+                                            <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }}" loading="lazy">
+                                        </a>
+                                        <!--end::Thumbnail-->
 
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Name</span>
-                            </label>
-                            <!--end::Label-->
-                            
-                            <input type="text" class="form-control form-control-solid" name="name" >
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">Company</label>
-                            <!--end::Label-->
+                                        <div class="ms-5">
+                                            <!--begin::Title-->
+                                            <a href="javascript:void(0);"
+                                                class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $product->name }}</a>
+                                            <!--end::Title-->
 
-                            <input type="text" class="form-control form-control-solid" name="company">
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
+                                            <!--begin::Price-->
+                                            <div class="fw-semibold fs-7 lan-ban">Rent: ৳<span
+                                                    data-kt-ecommerce-edit-order-filter="price">{{ $product->rental_price }}</span></div>
+                                            <!--end::Price-->
 
-                        <!--begin::Input group-->
-                        <div class="row mb-8">
-                            <div class="col-md-6">
-                                <label class="required d-flex align-items-center fs-6 fw-semibold mb-2">Phone number</label>
-                                <div class="input-group input-group-solid">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <i class="ki-duotone ki-address-book fs-2">
-                                            <i class="path1"></i>
-                                            <i class="path2"></i>
-                                            <i class="path3"></i>
-                                        </i>
-                                    </span>
-                                    <input type="text" name="phone_number" class="form-control form-control-solid" placeholder="01712345678" />
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-md-0 mt-8">
-                                <label class="required d-flex align-items-center fs-6 fw-semibold mb-2">Email</label>
-                                <div class="input-group input-group-solid">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <i class="ki-duotone ki-sms fs-2">
-                                            <i class="path1"></i>
-                                            <i class="path2"></i>
-                                        </i>
-                                    </span>
-                                    <input type="email" name="email" class="form-control form-control-solid" placeholder="example@gmail.com" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Input group-->
+                                            <!--begin::SKU-->
+                                            <div class="text-muted fs-7">SKU: {{ $product->product_code }}</div>
+                                            <!--end::SKU-->
 
-                        <!--begin:: Social Media-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">Address</label>
-                            <div class="input-group input-group-solid">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <i class="ki-duotone ki-geolocation-home fs-2">
-                                        <i class="path1"></i>
-                                        <i class="path2"></i>
-                                    </i>
-                                </span>
-                                <input type="text" name="address" class="form-control form-control-solid"/>
-                            </div>
-                        </div>
-                        <!--end:: Social Media-->
-
-                        <!--begin::Image input-->
-                        <div class="mb-10 fv-row">
-                            <label class="fs-6 fw-semibold mb-4 d-block">
-                                <span>Profile Photo</span>
-                                <span class="ms-1" data-bs-toggle="tooltip" title="Image for the single employee section.">
-                                    <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </span>
-                            </label>
-                            <div class="image-input image-input-outline" data-kt-image-input="true">
-                                <!--begin::Image preview wrapper-->
-                                <div class="image-input-wrapper" style="background-image: url({{ asset('/assets/admin/assets/media/svg/avatars/blank.svg') }})"></div>
-                                <!--end::Image preview wrapper-->
-
-                                <!--begin::Edit button-->
-                                <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Change employee image">
-                                    <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
-
-                                <!--begin::Cancel button-->
-                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="cancel"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Cancel employee image">
-                                    <i class="ki-outline ki-cross fs-3"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="remove"
-                                data-bs-toggle="tooltip"
-                                data-bs-dismiss="click"
-                                title="Remove employee image">
-                                    <i class="ki-outline ki-cross fs-3"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            </div>
-                            <div class="form-text">Allowed file types: png, jpg, jpeg, webp. | Max Size: 1MB</div>
-                        </div>
-                        <!--end::Image input-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
-                                Cancel
-                            </button>
-
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end:Form-->
+                                            @if ($product->dimension || $product->color)
+                                            <!--begin::Dimension & Color-->
+                                            <div class="text-muted fs-7">{{ $product->dimension }} {{ $product->color ? '| '.$product->color : '' }}</div>
+                                            <!--end::Dimension & Color-->
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="font-bn">{{ $product->category->name }}</td>
+                                <td>
+                                    @if ($product->stock < 3)
+                                    <span class="badge badge-light-warning">Low stock</span>
+                                    <span class="fw-bold text-warning ms-3">{{ $product->stock }}</span>
+                                    @else
+                                    {{ $product->stock }}
+                                    @endif
+                                </td>
+                                <td>
+                                    <input type="number" min="0" max="{{ $product->stock }}" class="form-control form-control-sm form-control-solid" value="0"/>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!--end::Table-->
                 </div>
                 <!--end::Modal body-->
             </div>
