@@ -48,6 +48,7 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             'whatsapp' => $formattedDetails['whatsapp'],
             'linkedin' => $formattedDetails['linkedin'],
             'youtube' => $formattedDetails['youtube'],
+            'CEO_image' => $formattedDetails['CEO_image'],
         ];
 
         // pass to all the views inside admin folder

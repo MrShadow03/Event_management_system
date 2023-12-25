@@ -209,7 +209,7 @@
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
-                @can('view theme')
+                {{-- @can('view theme')
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
@@ -251,7 +251,7 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
-                @endcan
+                @endcan --}}
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->

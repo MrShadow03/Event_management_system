@@ -33,7 +33,7 @@
                 <h4>Chairman &amp; CEO</h4>
             </div>
             <div class="ceo_img">
-                <img src="https://maaevent.com/wp-content/uploads/2023/06/CEO-and-Chairman-Maaevenet.jpg" alt="">
+                <img src="{{ asset('storage') . '/' . $commonDetails['CEO_image'] }}" alt="">
             </div>
         </div>
         <div class="tex_box">
