@@ -17,16 +17,14 @@
                 </a>
             </div>
             <ul class="nav_area">
-                <li><a class="active" href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('event') }}">Event management</a></li>
-                <li><a href="{{ route('event') }}">Designs</a></li>
-                <li><a href="{{ route('catering') }}">Catering</a></li>
-                {{-- <li><a href="#">BOOK YOUR VENUE</a></li> --}}
-                <li><a href="{{ route('logistics') }}">Logistic rentals</a></li>
-                <li><a href="{{ route('workshop') }}">Workshop</a></li>
-                {{-- <li><a href="#">FASHOIN & FURNITURE</a></li> --}}
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a class="{{ request()->url() == route('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                <li><a class="{{ request()->url() == route('event') ? 'active' : '' }}" href="{{ route('event') }}">Event management</a></li>
+                {{-- <li><a class="{{ request()->url() == route('event') ? 'active' : '' }}" href="{{ route('event') }}">Designs</a></li> --}}
+                <li><a class="{{ request()->url() == route('catering') ? 'active' : '' }}" href="{{ route('catering') }}">Catering</a></li>
+                <li><a class="{{ request()->url() == route('logistics') ? 'active' : '' }}" href="{{ route('logistics') }}">Logistic rentals</a></li>
+                <li><a class="{{ request()->url() == route('workshop') ? 'active' : '' }}" href="{{ route('workshop') }}">Workshop</a></li>
+                <li><a class="{{ request()->url() == route('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+                <li><a class="{{ request()->url() == route('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
             </ul>
             <div class="social_link">
                 @guest('customer')
