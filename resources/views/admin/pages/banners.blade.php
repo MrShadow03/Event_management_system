@@ -121,7 +121,7 @@
                                         <!--begin::Name-->
                                         <div class="d-flex justify-content-start flex-column" data-toggle="toggle">
                                             <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $banner->title }}</a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7 text-truncate">{{ $banner->description }}</span>
+                                            <span class="text-muted w-250px fw-semibold text-muted d-block fs-7 text-truncate">{{ $banner->description }}</span>
                                         </div>
                                         <!--end::Name-->
                                     </div>

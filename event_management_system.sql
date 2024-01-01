@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2024 at 08:36 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jan 01, 2024 at 12:16 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,7 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `title`, `description`, `image`, `video`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Turning Visions Into Bricks', 'Converting aspirations into tangible structures with precision and expertise.', 'banner/bH97FxGrCVllBHpjsxbqi2dw2i2apcqozFnTNGIe.jpg', 'https://youtu.be/UDvh63xHVa0', 1, '2023-08-13 06:15:22', '2023-08-17 18:22:49'),
+(1, 'Wedding Reception of', 'We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.', 'banner/bH97FxGrCVllBHpjsxbqi2dw2i2apcqozFnTNGIe.jpg', NULL, 1, '2023-08-13 06:15:22', '2024-01-01 10:11:57'),
 (2, 'Building Dreams, Creating Spaces', 'Transforming your vision into reality with our expert construction solutions.', 'banner/cbvEX1oAhfKTapwaOip5NfMdftpnbUyWvghaVzAk.jpg', 'https://youtu.be/khnr4-ehwKA', 1, '2023-08-13 11:24:13', '2023-08-13 12:50:03'),
 (3, 'Your Trusted Construction Partner', 'Reliable construction services tailored to meet your project\'s needs.', 'banner/4kDokZ1QFrRg5WNA7nxtl1euwCfsk5pbidd4AnZC.jpg', 'https://youtu.be/hGjeETM24rk', 1, '2023-08-13 11:26:05', '2023-08-13 14:37:50'),
 (4, 'Builders of Sustainable Futures', 'Focusing on eco-friendly construction practices for a greener tomorrow.', 'banner/qadhi3zRPLFXKO7h50pe0ja6DQRcpQgvGlPsS6xi.jpg', NULL, 0, '2023-08-13 14:18:30', '2023-12-31 15:55:09');
@@ -369,6 +369,31 @@ INSERT INTO `employees` (`id`, `name`, `designation`, `email`, `phone_number`, `
 (1, 'Galib Jaman', 'Co-founder & CEO', 'gj.emon35@gmail.com', '01766555213', 'https://www.facebook.com/gj.emon35', 'employee/iujWdbYjcnayd0a3cKw33EjG7LyzlVxTEXN7VkyX.jpg', 1, '2023-08-17 08:18:48', '2023-08-19 06:31:30', NULL),
 (2, 'Farhana Akter', 'Co-founder & Spouse', 'farhanaakter8@gmail.com', '01747371076', 'https://www.facebook.com/farhanaakter.richa', 'employee/Ca7RhLsETWQztUZQR1icoLBvbxTCBOGbKfsDN8Bp.png', 1, '2023-08-17 08:27:52', '2023-08-17 08:37:23', NULL),
 (3, 'Faatimah al Fihri', 'Thundercloud', 'fatimah.fihri@gmail.com', '01766555211', NULL, 'employee/CW4hpr0FnnLp2hkYLGSfbqOYhxKtRRRwes8gnMez.png', 1, '2023-08-17 08:34:48', '2023-08-21 05:31:29', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_cards`
+--
+
+CREATE TABLE `event_cards` (
+  `id` bigint(20) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `image` varchar(255) DEFAULT 'event-cards/default.png',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event_cards`
+--
+
+INSERT INTO `event_cards` (`id`, `title`, `description`, `status`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Wedding Reception', 'We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.', 1, 'event-cards/VCClTcb8ReR68YuVx22OBzdMe6Cn1m6zAXXZvqSr.jpg', '2024-01-01 09:44:14', '2024-01-01 10:23:53'),
+(2, 'Lifestyle Occasions', 'We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.', 1, 'event-cards/9YnGkcMYb76nqlnHO69BxDugDBaiF1HXVqnZqWdZ.jpg', '2024-01-01 09:44:14', '2024-01-01 10:24:13'),
+(3, 'Corporate Events', 'We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.', 1, 'event-cards/k6mTdpeRZ6XRwwrISkZzEh9VPVmkAX7PuVhJ4yjr.jpg', '2024-01-01 09:44:14', '2024-01-01 10:24:42');
 
 -- --------------------------------------------------------
 
@@ -1943,6 +1968,12 @@ ALTER TABLE `employees`
   ADD UNIQUE KEY `employee_email` (`email`);
 
 --
+-- Indexes for table `event_cards`
+--
+ALTER TABLE `event_cards`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2162,6 +2193,12 @@ ALTER TABLE `damaged_products`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `event_cards`
+--
+ALTER TABLE `event_cards`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --

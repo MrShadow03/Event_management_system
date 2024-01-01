@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EventCardController;
 use App\Http\Controllers\RentalReturnController;
 use App\Http\Controllers\RentalApprovalController;
 use App\Http\Controllers\RentalDispatchController;
@@ -189,6 +190,10 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::patch('/banner/update', [BannerController::class, 'update'])->name('banner.update');
     Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
     Route::patch('/banner/change-status/{id}', [BannerController::class, 'changeStatus'])->name('banner.change-status');
+
+    Route::get('/event-cards', [EventCardController::class, 'index'])->name('event_cards');
+    Route::patch('/event-card/update', [EventCardController::class, 'update'])->name('event_card.update');
+    Route::patch('/event-card/change-status/{id}', [EventCardController::class, 'changeStatus'])->name('event_card.change-status');
     
     // Route::get('/services', [ServiceController::class, 'index'])->name('services');
     // Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');

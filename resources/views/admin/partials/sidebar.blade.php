@@ -5,12 +5,12 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="#" class="d-flex mt-3">
+        <a href="#" class="d-flex mt-3 align-items-center">
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}"
-                class="h-25px app-sidebar-logo-default">
+                class="h-50px app-sidebar-logo-default">
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}"
                 class="h-20px app-sidebar-logo-minimize">
-            {{-- <p class="fs-4 fw-bold ms-2 ls-3 text-white">PEPPLO<span class="fw-light">BD</span></p> --}}
+            <p class="fs-4 fw-bold ms-2 ls-1 text-white">MAA<span class="fw-light">EVENT</span></p>
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
@@ -339,7 +339,7 @@
                 </div>
                 <!--end:Menu item-->
                 
-                @hasanyrole('admin|sales_manager|super_admin')
+                @hasanyrole('admin|super_admin')
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
@@ -365,7 +365,11 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" 
+                    class="menu-item menu-accordion {{ 
+                        Str::startsWith(request()->url(), route('admin.banners')) || 
+                        Str::startsWith(request()->url(), route('admin.event_cards'))
+                        ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -383,11 +387,33 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('admin.banners') }}">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.banners')) ? 'active' : '' }}" href="{{ route('admin.banners') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Banners</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.event_cards')) ? 'active' : '' }}" href="{{ route('admin.event_cards') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Event Cards</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="#">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Services</span>
                             </a>
                         </div>
                         <!--end:Menu item-->
