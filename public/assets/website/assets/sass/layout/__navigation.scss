@@ -57,11 +57,12 @@
         // transition: .30s;
         li{
             a{
-                padding: 2rem;
+                padding-inline: 2rem;
                 font-size: 1.4rem;
                 color: $white_light;
                 font-family: 'roboto', serif;
                 font-weight: 400;
+                white-space: nowrap;
                 &:hover{
                     color: $primary;
                 }
@@ -185,6 +186,13 @@
         }
     }
 }
+.nav--white{
+    .nav_bars{
+        span{
+            background-color: $black !important;
+        }
+    }
+}
 .page_nav{
     #mainNav_area{
         .navigation {
@@ -224,42 +232,18 @@
     }
 }
 
-@media only screen and (max-width:1430px){
+@media only screen and (max-width:1280px){
 
     .main_side_nav{
         display: block !important;
     }
+}
 
-    #mainNav_area{
-        .logo_top{
-            display: none;
-        }
-    }
-     .navigation{
+@media only screen and (max-width:768px) {
+    .navigation{
         .nav_area{
             display: none;
         }
-
-        .social_link {
-            justify-content: flex-end;
-            .search{
-                display: none;
-            }
-        }
-     }
-     .active_nav {
-        .navigation{
-            .nav_bars{
-                display: flex;
-            }
-            .nav_area{
-                display: none;
-            }
-         }
-     }
-}
-@media only screen and (max-width:600px) {
-    .navigation{
         .logo_nav{
             justify-content: space-between;
             a{

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2023 at 02:12 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jan 01, 2024 at 08:36 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,7 @@ INSERT INTO `banners` (`id`, `title`, `description`, `image`, `video`, `status`,
 (1, 'Turning Visions Into Bricks', 'Converting aspirations into tangible structures with precision and expertise.', 'banner/bH97FxGrCVllBHpjsxbqi2dw2i2apcqozFnTNGIe.jpg', 'https://youtu.be/UDvh63xHVa0', 1, '2023-08-13 06:15:22', '2023-08-17 18:22:49'),
 (2, 'Building Dreams, Creating Spaces', 'Transforming your vision into reality with our expert construction solutions.', 'banner/cbvEX1oAhfKTapwaOip5NfMdftpnbUyWvghaVzAk.jpg', 'https://youtu.be/khnr4-ehwKA', 1, '2023-08-13 11:24:13', '2023-08-13 12:50:03'),
 (3, 'Your Trusted Construction Partner', 'Reliable construction services tailored to meet your project\'s needs.', 'banner/4kDokZ1QFrRg5WNA7nxtl1euwCfsk5pbidd4AnZC.jpg', 'https://youtu.be/hGjeETM24rk', 1, '2023-08-13 11:26:05', '2023-08-13 14:37:50'),
-(4, 'Builders of Sustainable Futures', 'Focusing on eco-friendly construction practices for a greener tomorrow.', 'banner/qadhi3zRPLFXKO7h50pe0ja6DQRcpQgvGlPsS6xi.jpg', NULL, 1, '2023-08-13 14:18:30', '2023-08-15 12:51:09');
+(4, 'Builders of Sustainable Futures', 'Focusing on eco-friendly construction practices for a greener tomorrow.', 'banner/qadhi3zRPLFXKO7h50pe0ja6DQRcpQgvGlPsS6xi.jpg', NULL, 0, '2023-08-13 14:18:30', '2023-12-31 15:55:09');
 
 -- --------------------------------------------------------
 
@@ -602,15 +602,11 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `name`, `page_title`, `meta_title`, `meta_description`, `meta_keywords`, `meta_image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Home', 'Home - Pepplo Builder', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction company,Planning', 'page/7x8Z5Boye1hQyjLEAKPBwjsWI4S1v1BdOquoNOLq.jpg', 1, '2023-08-10 04:02:23', '2023-08-19 06:31:01'),
+(1, 'Home', 'Home - Pepplo Builder', 'Welcome to Maaevent.com - Your Ultimate Wedding Solution Provider in Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction company,Planning,Wedding,Reception', 'page/7x8Z5Boye1hQyjLEAKPBwjsWI4S1v1BdOquoNOLq.jpg', 1, '2023-08-10 04:02:23', '2023-12-31 07:26:42'),
 (2, 'About', 'About - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-19 06:30:33'),
-(3, 'Services', 'Services - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction,renovation,interior design,construction company,construction company in the Bangladesh,Consultation in Barishal', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-19 06:30:34'),
-(4, 'Service Single', 'Service Single - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-11 06:23:56'),
-(5, 'Projects', 'Projects - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-10 04:02:23'),
-(6, 'Project Single', 'Project Single - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-11 10:03:49'),
-(7, 'Contact', 'Contact - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-10 04:02:23'),
-(8, 'Quote', 'Quote - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-10 04:02:23'),
-(9, 'Team', 'Team - Pepplo Builders', 'Leading construction company in the Bangladesh.', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'Builders,construction,construction company', 'page/default.webp', 1, NULL, '2023-08-14 14:02:33');
+(3, 'Catering', 'Services - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction,renovation,interior design,construction company,construction company in the Bangladesh,Consultation in Barishal', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-19 06:30:34'),
+(4, 'Logistics', 'Service Single - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-11 06:23:56'),
+(5, 'Contact', 'Contact - Pepplo Builders', 'Leading Construction Company in the Bangladesh', 'Pepplo Builders is a leading construction company in the Bangladesh. We are specialized in construction, renovation, interior design, and more.', 'construction, renovation, interior design, construction company, construction company in the Bangladesh', 'page/default.webp', 1, '2023-08-10 04:02:23', '2023-08-10 04:02:23');
 
 -- --------------------------------------------------------
 
@@ -632,58 +628,14 @@ CREATE TABLE `page_section` (
 --
 
 INSERT INTO `page_section` (`id`, `page_id`, `section_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 0, NULL, '2023-08-18 17:43:08'),
-(2, 2, 1, 1, NULL, NULL),
-(3, 1, 2, 1, NULL, '2023-08-18 17:42:39'),
-(4, 2, 2, 1, NULL, NULL),
-(5, 3, 2, 1, NULL, NULL),
-(6, 4, 2, 1, NULL, NULL),
-(7, 5, 2, 1, NULL, NULL),
-(8, 6, 2, 1, NULL, NULL),
-(9, 7, 2, 1, NULL, NULL),
-(10, 8, 2, 1, NULL, NULL),
-(11, 9, 2, 1, NULL, NULL),
-(12, 2, 3, 1, NULL, NULL),
-(13, 1, 4, 1, NULL, '2023-08-15 02:17:54'),
-(14, 3, 4, 1, NULL, NULL),
-(15, 1, 5, 1, NULL, NULL),
-(16, 5, 5, 1, NULL, NULL),
-(17, 6, 5, 1, NULL, NULL),
-(18, 1, 6, 1, NULL, NULL),
-(19, 1, 7, 1, NULL, NULL),
-(20, 2, 7, 1, NULL, NULL),
-(21, 9, 7, 1, NULL, NULL),
-(22, 2, 8, 1, NULL, NULL),
-(23, 1, 9, 1, NULL, NULL),
-(24, 2, 9, 1, NULL, NULL),
-(25, 7, 10, 1, NULL, NULL),
-(26, 1, 11, 1, NULL, NULL),
-(27, 2, 11, 1, NULL, NULL),
-(28, 3, 11, 1, NULL, NULL),
-(29, 4, 11, 1, NULL, NULL),
-(30, 5, 11, 1, NULL, NULL),
-(31, 6, 11, 1, NULL, NULL),
-(32, 7, 11, 1, NULL, NULL),
-(33, 8, 11, 1, NULL, NULL),
-(34, 9, 11, 1, NULL, NULL),
-(35, 1, 12, 1, NULL, NULL),
-(36, 2, 12, 1, NULL, NULL),
-(37, 3, 12, 1, NULL, NULL),
-(38, 4, 12, 1, NULL, NULL),
-(39, 5, 12, 1, NULL, NULL),
-(40, 6, 12, 1, NULL, NULL),
-(41, 7, 12, 1, NULL, NULL),
-(42, 8, 12, 1, NULL, NULL),
-(43, 9, 12, 1, NULL, NULL),
-(44, 1, 13, 1, NULL, NULL),
-(45, 2, 13, 1, NULL, NULL),
-(46, 3, 13, 1, NULL, NULL),
-(47, 4, 13, 1, NULL, NULL),
-(48, 5, 13, 1, NULL, NULL),
-(49, 6, 13, 1, NULL, NULL),
-(50, 7, 13, 1, NULL, NULL),
-(51, 8, 13, 1, NULL, NULL),
-(52, 9, 13, 1, NULL, NULL);
+(53, 1, 16, 1, NULL, NULL),
+(54, 1, 17, 1, NULL, NULL),
+(55, 1, 18, 1, NULL, NULL),
+(56, 1, 19, 1, NULL, NULL),
+(57, 1, 20, 1, NULL, NULL),
+(58, 1, 21, 1, NULL, NULL),
+(59, 1, 22, 1, NULL, NULL),
+(60, 4, 23, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1678,20 +1630,14 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `name`, `title`, `heading`, `description`, `bullets`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'about-company', 'About Company', 'our skilled Team grow your business.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.', 'Performing market research.*Doing financial analysis.*Planning a budget.*Creating business plans.*Developing a marketing strategy.*Setting goals and objectives.*Managing client accounts.*Analyzing data.', 'section/default.webp', '2023-08-14 13:58:37', '2023-08-14 13:58:37'),
-(2, 'top-header', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:13:54', '2023-08-14 17:13:54'),
-(3, 'about-us', 'About Us', 'our skilled Team grow your business.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.', 'Performing market research.*Doing financial analysis.*Planning a budget.*Creating business plans.*Developing a marketing strategy.*Setting goals and objectives.*Managing client accounts.*Analyzing data.', 'section/default.webp', '2023-08-14 17:16:17', '2023-08-14 17:16:17'),
-(4, 'services', 'Services', 'Services section', 'The section', NULL, 'section/default.webp', '2023-08-14 17:18:11', '2023-08-18 08:31:19'),
-(5, 'projects', 'Projects', 'Projects Heading', 'Project Description', NULL, 'section/default.webp', '2023-08-14 17:20:09', '2023-08-18 08:32:01'),
-(6, 'review', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:21:10', '2023-08-14 17:21:10'),
-(7, 'team', 'Employees Title', 'Employees Heading', 'Employees Description', NULL, 'section/default.webp', '2023-08-14 17:21:50', '2023-08-18 08:33:49'),
-(8, 'company-history', 'Company history', 'This is the best history in time we can remember to the human knowledge!', 'This is the short description', NULL, 'section/default.webp', '2023-08-14 17:22:23', '2023-08-18 11:08:09'),
-(9, 'faq', 'FAQs', 'FAQs heading', 'FAQs Description', NULL, 'section/default.webp', '2023-08-14 17:23:34', '2023-08-18 08:34:37'),
-(10, 'map', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:24:02', '2023-08-14 17:24:02'),
-(11, 'quote-cta', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:25:23', '2023-08-14 17:25:23'),
-(12, 'consultation-cta', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:26:01', '2023-08-14 17:26:01'),
-(13, 'subscription-cta', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-08-14 17:26:52', '2023-08-14 17:26:52'),
-(15, 'feedbacks', 'Feedback Title', 'Feedback Heading', 'Feedback Description', NULL, 'section/default.webp', NULL, '2023-08-18 08:32:43');
+(16, 'about', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(17, 'event_cards', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(18, 'services', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(19, 'testimonials', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(20, 'video_gallery', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(21, 'general_CTA', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(22, 'review_CTA', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
+(23, 'logistic_page_info', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:36:42', '2023-12-31 15:36:42');
 
 -- --------------------------------------------------------
 
@@ -2264,7 +2210,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `page_section`
 --
 ALTER TABLE `page_section`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `payment_methods`
@@ -2318,7 +2264,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `services`

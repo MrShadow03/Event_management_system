@@ -229,6 +229,39 @@ window.onscroll = function()
     headerScroll()
 };
 
+function toggleFilterSidebar() {
+    const filterSidebar = document.getElementById("filterSidebar");
+    const overlay = document.getElementById("overlay");
+    if (filterSidebar.classList.contains("active")) {
+        filterSidebar.classList.remove("active");
+        overlay.classList.remove("active");
+    } else {
+        filterSidebar.classList.add("active");
+        overlay.classList.add("active");
+    }
+}
+
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
+    if (mobileMenu.classList.contains("side_nav_active")) {
+        mobileMenu.classList.remove("side_nav_active");
+        overlay.classList.remove("active");
+    } else {
+        mobileMenu.classList.add("side_nav_active");
+        overlay.classList.add("active");
+    }
+}
+
+function closeSidebars(){
+    const mobileMenu = document.getElementById("mobileMenu");
+    const filterSidebar = document.getElementById("filterSidebar");
+    const overlay = document.getElementById("overlay");
+    mobileMenu.classList.remove("side_nav_active");
+    filterSidebar && filterSidebar.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
 function headerScroll() {
     if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
         document.getElementById("mainNav_area").classList.add('active_nav');
@@ -238,21 +271,22 @@ function headerScroll() {
 }
 
 // Side NAVIGATION HERE
-const nav_bars = document.querySelector('.nav_bars')
-const bars = document.querySelector('.bars')
-const main_side_nav = document.querySelector('.main_side_nav')
-    if(nav_bars){
-        nav_bars.addEventListener('click', () => {
-            main_side_nav.style.transform = 'translateX(0%)'
-        })
-    }else {
-        main_side_nav.style.transform = 'translateX(-100%)'
-    }
-    if(bars){
-        bars.addEventListener('click', () => {
-            main_side_nav.style.transform = 'translateX(-100%)'
-        })
-    }
+// const nav_bars = document.querySelector('.nav_bars')
+// const bars = document.querySelector('.bars')
+// const main_side_nav = document.querySelector('.main_side_nav')
+//     if(nav_bars){
+//         nav_bars.addEventListener('click', () => {
+//             main_side_nav.style.transform = 'translateX(0%)'
+//             document.querySelector('#overlay').classList.add('active')
+//         })
+//     }else {
+//         main_side_nav.style.transform = 'translateX(-100%)'
+//     }
+//     if(bars){
+//         bars.addEventListener('click', () => {
+//             main_side_nav.style.transform = 'translateX(-100%)'
+//         })
+//     }
 
 
 // SEARCH BTN

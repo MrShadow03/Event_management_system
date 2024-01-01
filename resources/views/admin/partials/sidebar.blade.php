@@ -209,7 +209,7 @@
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
-                {{-- @can('view theme')
+                @can('view theme')
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
@@ -251,7 +251,8 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
-                @endcan --}}
+                @endcan
+
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
                     <!--begin:Menu content-->
@@ -337,6 +338,64 @@
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
+                
+                @hasanyrole('admin|sales_manager|super_admin')
+                <!--begin:Menu item-->
+                <div class="menu-item pt-5">
+                    <!--begin:Menu content-->
+                    <div class="menu-content">
+                        <span class="menu-heading fw-bold text-uppercase fs-7">Website Management</span>
+                    </div>
+                    <!--end:Menu content-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.pages')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.pages') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-switch fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Page Control</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-home-2 fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Home Page</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="{{ route('admin.banners') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Banners</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
+                    </div>
+                    <!--end:Menu sub-->
+                </div>
+                <!--end:Menu item-->
+                @endhasanyrole
             </div>
             <!--end::Menu-->
         </div>

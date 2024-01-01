@@ -4,7 +4,7 @@
     {{-- @yield('top-logo') --}}
     <nav class="navigation{{ $transparent ? '' : ' nav--white' }}">
         <div class="container">
-            <div class="nav_bars">
+            <div class="nav_bars" onclick="toggleMobileMenu()">
                 <div class="hamburger_icon">
                     <span></span>
                     <span></span>
@@ -18,11 +18,11 @@
             </div>
             <ul class="nav_area">
                 <li><a class="{{ request()->url() == route('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
-                <li><a class="{{ request()->url() == route('event') ? 'active' : '' }}" href="{{ route('event') }}">Event management</a></li>
+                {{-- <li><a class="{{ request()->url() == route('event') ? 'active' : '' }}" href="{{ route('event') }}">Event management</a></li> --}}
                 {{-- <li><a class="{{ request()->url() == route('event') ? 'active' : '' }}" href="{{ route('event') }}">Designs</a></li> --}}
                 <li><a class="{{ request()->url() == route('catering') ? 'active' : '' }}" href="{{ route('catering') }}">Catering</a></li>
                 <li><a class="{{ request()->url() == route('logistics') ? 'active' : '' }}" href="{{ route('logistics') }}">Logistic rentals</a></li>
-                <li><a class="{{ request()->url() == route('workshop') ? 'active' : '' }}" href="{{ route('workshop') }}">Workshop</a></li>
+                {{-- <li><a class="{{ request()->url() == route('workshop') ? 'active' : '' }}" href="{{ route('workshop') }}">Workshop</a></li> --}}
                 <li><a class="{{ request()->url() == route('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                 <li><a class="{{ request()->url() == route('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
             </ul>

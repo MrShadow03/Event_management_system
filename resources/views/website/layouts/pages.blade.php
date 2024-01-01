@@ -24,5 +24,6 @@
 		<!-- Main JS -->
 		@include('website.partials.scripts')
 		@yield('exclusive-scripts')
+		@include('website.partials.overlay')
 	</body>
 </html>

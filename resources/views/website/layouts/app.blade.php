@@ -11,7 +11,7 @@
 		</header>
 		<!-- Navbar End -->
 		<!-- Main Content Start -->
-		<div class="container_fluid">
+		<div class="container_fluid" style="padding-top: 0 !important;">
 		@yield('main-content')
         <!-- Footer Start -->
         @include('website.partials.footer')
@@ -25,5 +25,6 @@
 		<!-- Main JS -->
 		@include('website.partials.scripts')
 		@yield('exclusive-scripts')
+		@include('website.partials.overlay')
 	</body>
 </html>

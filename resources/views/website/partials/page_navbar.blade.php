@@ -41,16 +41,16 @@
                     </label>
                     <div class="tab_wrap_nav">
                         <ul class="tab_wrap_nav_box">
-                            <li class="tab_wrap_nav_items"><a href="#">HOME</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">EVENT MANAGMENT</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">CATERING</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">BOOK YOUR VENUE</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">LOGISTIC RENTAL</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">WORKSHOP</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">FASHION & FURNITURE</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">ABOUT</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">CONTACT</a></li>
-                            <li class="tab_wrap_nav_items"><a href="#">WISHLIST</a></li>
+                            <li class="tab_wrap_nav_items"><a href="#">Home</a></li>
+                            {{-- <li class="tab_wrap_nav_items"><a href="#">Event Managment</a></li> --}}
+                            <li class="tab_wrap_nav_items"><a href="#">Catering</a></li>
+                            {{-- <li class="tab_wrap_nav_items"><a href="#">Book Your Venue</a></li> --}}
+                            <li class="tab_wrap_nav_items"><a href="#">Logistic Rental</a></li>
+                            <li class="tab_wrap_nav_items"><a href="#">Workshop</a></li>
+                            {{-- <li class="tab_wrap_nav_items"><a href="#">FASHION & FURNITURE</a></li> --}}
+                            <li class="tab_wrap_nav_items"><a href="#">About</a></li>
+                            <li class="tab_wrap_nav_items"><a href="#">Contact</a></li>
+                            {{-- <li class="tab_wrap_nav_items"><a href="#">WISHLIST</a></li> --}}
                         </ul>
                     </div>
                 </li>

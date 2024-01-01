@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -10,7 +12,7 @@ use Spatie\Permission\Models\Permission;
 class RolePermissionController extends Controller
 {
     public function createRole(){
-
+        /*
         $superAdmin = User::find(1);
         $admin = User::find(2);
         $sales = User::find(3);
@@ -55,6 +57,20 @@ class RolePermissionController extends Controller
                 'roles' => $rolesOfUser4,
                 'permissions' => $permissionsOfUser4->pluck('name')
             ],
+        ]);
+        */
+
+        $page = Page::find(4);
+        $sections = ['logistic_page_info'];
+
+        foreach ($sections as $section) {
+            $section = Section::create(['name' => $section]);
+            $page->sections()->attach($section->id);
+        }
+
+        return response()->json([
+            'pages' => Page::with('sections')->get(),
+            'message' => 'success'
         ]);
     }
 }

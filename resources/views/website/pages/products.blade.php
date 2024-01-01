@@ -274,7 +274,9 @@
                             @forelse ($products as $product)
                             <div class="raw_items card_1">
                                 <div class="raw_items_image">
-                                    <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }} image" loading="lazy">
+                                    <a href="{{ route('customer.product', $product->id) }}">
+                                        <img src="{{ asset('storage').'/'.$product->image }}" alt="{{ $product->name }} image" loading="lazy">
+                                    </a>
                                     <div class="image_items_icon_box">
                                         <a title="Read More" class="image_items_icon" href="{{ route('customer.rentals') }}"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <a title="Quick View" class="image_items_icon" href="javascript:void(0);"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -367,7 +369,6 @@
             </div>
         </div>
     </div>
-    <div class="overlay" id="overlay" onclick="toggleFilterSidebar()"></div>
 @endsection
 
 <!-- Scripts  for this page only -->
@@ -476,17 +477,7 @@
         }
     }
 
-    function toggleFilterSidebar() {
-        const filterSidebar = document.getElementById("filterSidebar");
-        const overlay = document.getElementById("overlay");
-        if (filterSidebar.classList.contains("active")) {
-            filterSidebar.classList.remove("active");
-            overlay.classList.remove("active");
-        } else {
-            filterSidebar.classList.add("active");
-            overlay.classList.add("active");
-        }
-    }
+    
 
 </script>
 @endsection

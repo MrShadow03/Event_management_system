@@ -176,18 +176,19 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         Route::get('/invoices', [InvoiceReportController::class, 'index'])->name('invoices');
     });
 
-    // Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
-    // Route::get('/theme/create', [ThemeController::class, 'create'])->name('theme.create');
-    // Route::get('/pages', [PageController::class, 'index'])->name('pages');
-    // Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
-    // Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');
-    // Route::get('/page/section/change-status/{id}', [PageController::class, 'changeSectionStatus'])->name('page.section.change-status');
+    Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
+    Route::get('/theme/create', [ThemeController::class, 'create'])->name('theme.create');
 
-    // Route::get('/banners', [BannerController::class, 'index'])->name('banners');
-    // Route::post('/banner/store', [BannerController::class, 'store'])->name('banner.store');
-    // Route::patch('/banner/update', [BannerController::class, 'update'])->name('banner.update');
-    // Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
-    // Route::patch('/banner/change-status/{id}', [BannerController::class, 'changeStatus'])->name('banner.change-status');
+    Route::get('/pages', [PageController::class, 'index'])->name('pages');
+    Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
+    Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');
+    Route::get('/page/section/change-status/{id}', [PageController::class, 'changeSectionStatus'])->name('page.section.change-status');
+
+    Route::get('/banners', [BannerController::class, 'index'])->name('banners');
+    Route::post('/banner/store', [BannerController::class, 'store'])->name('banner.store');
+    Route::patch('/banner/update', [BannerController::class, 'update'])->name('banner.update');
+    Route::delete('/banner/delete/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
+    Route::patch('/banner/change-status/{id}', [BannerController::class, 'changeStatus'])->name('banner.change-status');
     
     // Route::get('/services', [ServiceController::class, 'index'])->name('services');
     // Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');

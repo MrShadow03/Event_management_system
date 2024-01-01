@@ -39,11 +39,11 @@ footer {
     margin: auto;
     padding: 4rem 0;
     display: flex;
+    justify-content: space-between;
 }
 
 .address{
     margin-top: 2rem;
-    width: 38rem;
     height: fit-content;
     img{
         height: 8rem;
@@ -76,8 +76,8 @@ footer {
 .import_link {
     display: flex;
     height: fit-content;
+    gap: 5vw;
     .item_area{
-        width: 25rem;
         ul{
             margin-top: 2rem;
             li {
@@ -118,7 +118,7 @@ footer {
 
 
 
-@media only screen and (max-width:1024px){
+@media only screen and (max-width:1280px){
     .footer_area{
         width: 90%;
         margin: auto;
