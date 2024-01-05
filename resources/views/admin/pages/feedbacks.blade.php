@@ -69,7 +69,7 @@
             <!--begin::Actions-->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
                 <!--begin::Primary button-->
-                <a href="#" class="btn btn-sm fw-bold btn-info" data-bs-toggle="modal" data-bs-target="#modal_new_feedback">Add Feedback</a>
+                <a href="#" class="btn btn-sm fw-bold btn-info" data-bs-toggle="modal" data-bs-target="#modal_new_feedback">New Feedback</a>
                 <a href="#" class="btn btn-sm btn-icon fw-bold btn-info" data-bs-toggle="modal" data-bs-target="#modal_settings">
                     <i class="ki-solid ki-gear fs-3 "></i>
                 </a>
@@ -159,7 +159,7 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <form class="d-inline me-1" action="{{ route('admin.banner.destroy', $feedback->id) }}" method="POST">
+                                    <form class="d-inline me-1" action="{{ route('admin.feedback.destroy', $feedback->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-icon btn-bg-light bg-hover-light-danger btn-active-color-danger btn-sm me-1" method="POST" title="Delete" onclick="return confirm('Do you want to delete this banner?')">
@@ -334,19 +334,6 @@
                             <!--end::Label-->
 
                             <input type="text" id="editFeedbackName" class="form-control form-control-solid" placeholder="Client's name" name="name" required>
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Client's Title</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <input type="text" id="editFeedbackTitle" class="form-control form-control-solid" name="title" required>
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Invoice;
 use App\Models\Category;
 
+use App\Models\Document;
 use App\Models\CompanyDetail;
 use function PHPSTORM_META\map;
 use Illuminate\Support\ServiceProvider;
@@ -48,6 +49,9 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             'whatsapp' => $formattedDetails['whatsapp'],
             'linkedin' => $formattedDetails['linkedin'],
             'youtube' => $formattedDetails['youtube'],
+            'instagram' => $formattedDetails['instagram'],
+            'tiktok' => $formattedDetails['tiktok'],
+            'pinterest' => $formattedDetails['pinterest'],
             'CEO_image' => $formattedDetails['CEO_image'],
         ];
 
@@ -86,6 +90,12 @@ class CompanyDetailsServiceProvider extends ServiceProvider
             $view->with('pending_count', $pending_count);
             $view->with('dispatch_count', $dispatch_count);
             $view->with('return_count', $return_count);
+        });
+
+        $documents = Document::where('status', 1)->get();
+
+        view()->composer('website.*', function ($view) use ($documents) {
+            $view->with('documents', $documents);
         });
     }
 }

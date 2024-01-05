@@ -383,7 +383,94 @@
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="fab fa-linkedin fs-1"></i>
                                         </span>
-                                        <input type="text" name="linkedin" class="form-control form-control-lg form-control-solid" value="{{ $details['linkedin'] }}" placeholder="https://instagram.com/profile"/>
+                                        <input type="text" name="linkedin" class="form-control form-control-lg form-control-solid" value="{{ $details['linkedin'] }}" placeholder="https://linkedin.com/profile"/>
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Row-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row mb-6" id="instagramInput">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-semibold fs-6">Instagram</label>
+                        <!--end::Label-->
+
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <!--begin::Row-->
+                            <!--begin::Row-->
+                            <div class="row">
+                                <!--begin::Col-->
+                                <div class="col-lg-6 fv-row">
+                                    <!--begin::Input group-->
+                                    <div class="input-group input-group-solid mb-5">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fab fa-instagram fs-1"></i>
+                                        </span>
+                                        <input type="text" name="instagram" class="form-control form-control-lg form-control-solid" value="{{ $details['instagram'] }}" placeholder="https://instagram.com/profile"/>
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Row-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row mb-6" id="pinterestInput">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-semibold fs-6">Pinterest</label>
+                        <!--end::Label-->
+
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <!--begin::Row-->
+                            <!--begin::Row-->
+                            <div class="row">
+                                <!--begin::Col-->
+                                <div class="col-lg-6 fv-row">
+                                    <!--begin::Input group-->
+                                    <div class="input-group input-group-solid mb-5">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fab fa-pinterest fs-1"></i>
+                                        </span>
+                                        <input type="text" name="pinterest" class="form-control form-control-lg form-control-solid" value="{{ $details['pinterest'] }}" placeholder="https://pinterest.com/profile"/>
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Row-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row mb-6" id="tiktokInput">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-semibold fs-6">Tiktok</label>
+                        <!--end::Label-->
+
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <!--begin::Row-->
+                            <!--begin::Row-->
+                            <div class="row">
+                                <!--begin::Col-->
+                                <div class="col-lg-6 fv-row">
+                                    <!--begin::Input group-->
+                                    <div class="input-group input-group-solid mb-5">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fab fa-tiktok fs-1"></i>
+                                        </span>
+                                        <input type="text" name="tiktok" class="form-control form-control-lg form-control-solid" value="{{ $details['tiktok'] }}" placeholder="https://tiktok.com/profile"/>
                                     </div>
                                     <!--end::Input group-->
                                 </div>
@@ -798,6 +885,80 @@
                         </div>
                     </div>
                     <!--end::Item-->
+                    
+                    <div class="separator separator-dashed my-5"></div>
+                    
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack">
+                        <div class="d-flex">
+                            <img src="{{ asset('assets/admin/assets/media/svg/brand-logos/instagram-2-1.svg') }}" class="w-40px me-6" alt="">
+                            
+                            <div class="d-flex flex-column">
+                                <a href="#" class="fs-5 text-dark text-hover-primary fw-bold">Instagram</a>
+                                <div class="fs-6 fw-semibold text-gray-400">{{ $details['instagram'] }}</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="form-check form-check-solid form-check-custom form-switch">
+                                @if ($details['instagram'] == null)
+                                    <a href="#instagramInput" class="btn btn-sm btn-light-primary fw-bolder">Connect</a>
+                                @else
+                                    <span class="badge badge-light-success">Connected</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Item-->
+                    
+                    <div class="separator separator-dashed my-5"></div>
+                    
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack">
+                        <div class="d-flex">
+                            <img src="{{ asset('assets/admin/assets/media/svg/brand-logos/pinterest-p.svg') }}" class="w-40px me-6" alt="">
+                            
+                            <div class="d-flex flex-column">
+                                <a href="#" class="fs-5 text-dark text-hover-primary fw-bold">Pinterest</a>
+                                <div class="fs-6 fw-semibold text-gray-400">{{ $details['pinterest'] }}</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="form-check form-check-solid form-check-custom form-switch">
+                                @if ($details['pinterest'] == null)
+                                    <a href="#pinterestInput" class="btn btn-sm btn-light-primary fw-bolder">Connect</a>
+                                @else
+                                    <span class="badge badge-light-success">Connected</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Item-->
+
+                    <div class="separator separator-dashed my-5"></div>
+                    
+                    <!--begin::Item-->
+                    <div class="d-flex flex-stack">
+                        <div class="d-flex">
+                            <img src="{{ asset('assets/admin/assets/media/svg/brand-logos/tiktok.svg') }}" class="w-40px me-6" alt="">
+                            
+                            <div class="d-flex flex-column">
+                                <a href="#" class="fs-5 text-dark text-hover-primary fw-bold">Tiktok</a>
+                                <div class="fs-6 fw-semibold text-gray-400">{{ $details['tiktok'] }}</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="form-check form-check-solid form-check-custom form-switch">
+                                @if ($details['tiktok'] == null)
+                                    <a href="#tiktokInput" class="btn btn-sm btn-light-primary fw-bolder">Connect</a>
+                                @else
+                                    <span class="badge badge-light-success">Connected</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Item-->
+
+                    
                 </div>
                 <!--end::Items-->
             </div>

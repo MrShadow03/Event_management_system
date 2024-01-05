@@ -14,4 +14,9 @@ class Service extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

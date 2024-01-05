@@ -9,8 +9,8 @@
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}"
                 class="h-50px app-sidebar-logo-default">
             <img alt="Logo" src="{{ asset('storage') . '/' . $commonDetails['logo'] }}"
-                class="h-20px app-sidebar-logo-minimize">
-            <p class="fs-4 fw-bold ms-2 ls-1 text-white">MAA<span class="fw-light">EVENT</span></p>
+                class="h-50px app-sidebar-logo-minimize">
+            {{-- <p class="fs-4 fw-bold ms-2 ls-1 text-white" style="margin-top: 1rem;">MAA<span class="fw-light">EVENT</span></p> --}}
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
@@ -367,8 +367,11 @@
                 <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click" 
                     class="menu-item menu-accordion {{ 
+                        Str::startsWith(request()->url(), route('admin.home_page.edit')) ||
                         Str::startsWith(request()->url(), route('admin.banners')) || 
-                        Str::startsWith(request()->url(), route('admin.event_cards'))
+                        Str::startsWith(request()->url(), route('admin.event_cards')) ||
+                        Str::startsWith(request()->url(), route('admin.services')) ||
+                        Str::startsWith(request()->url(), route('admin.home_page.review_cta.edit'))  
                         ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -384,6 +387,17 @@
                     <!--end:Menu link-->
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion">
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.home_page.edit')) ? 'active' : '' }}" href="{{ route('admin.home_page.edit') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">General Information</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
@@ -409,7 +423,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="#">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.services')) ? 'active' : '' }}" href="{{ route('admin.services') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -417,10 +431,78 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.feedbacks')) ? 'active' : '' }}" href="{{ route('admin.feedbacks') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Reviews</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.home_page.review_cta.edit')) ? 'active' : '' }}" href="{{ route('admin.home_page.review_cta.edit') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Review CTA</span>
+                            </a>
+                        </div>
+                        <!--end:Menu item-->
                     </div>
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.logistic_page.edit')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.logistic_page.edit') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-cube-2 fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Logistics Page</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.documents')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.documents') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-file fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Documents</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                {{-- <!--begin:Menu item-->
+                <div class="menu-item {{ Str::startsWith(request()->url(), route('admin.documents')) ? 'here' : '' }}">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.documents') }}">
+                        <span class="menu-icon">
+                            <i class="ki-duotone ki-element-9 fs-2 transform_rotate_180">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </span>
+                        <span class="menu-title">Footer Options</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item--> --}}
                 @endhasanyrole
             </div>
             <!--end::Menu-->
@@ -439,8 +521,10 @@
                 Logout
             </span>
 
-            <i class="ki-duotone ki-document btn-icon fs-2 m-0"><span class="path1"></span><span
-                    class="path2"></span></i>
+            <i class="ki-duotone ki-document btn-icon fs-2 m-0">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
         </form>
     </div>
     <!--end::Footer-->

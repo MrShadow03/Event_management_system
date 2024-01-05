@@ -86,9 +86,9 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section)
     {
+        // dd($request->all());
         $request->validate([
             'id' => 'required | exists:sections,id',
-            'title' => 'required | max:255',
             'heading' => 'required | max:255',
             'description' => 'nullable | string',
         ]);

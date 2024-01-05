@@ -7,6 +7,9 @@
 .print-display-show{
     display: none !important;
 }
+.transform_rotate_180{
+    transform: rotate(180deg);
+}
 @media print {
     .font-bn{
         font-family: 'Hind Siliguri', sans-serif;

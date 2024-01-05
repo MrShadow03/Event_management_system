@@ -10,13 +10,13 @@
                 <span class="footer-text"><i class="fa-solid fa-envelope"></i><a class="footer-link" href="#">maaeventmanagementbd@gmail.com</a></span>
                 <div class="footer_social_btn">
                     <a href="{{ $commonDetails['facebook'] ?? '#' }}"><i class="footer-icon icon--fb fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="footer-icon icon--ig fa-brands fa-instagram"></i></a>
+                    <a href="{{ $commonDetails['instagram'] ?? '#' }}"><i class="footer-icon icon--fb fa-brands fa-instagram"></i></a>
                     <a href="https://wa.me/{{ $commonDetails['whatsapp'] ?? '#' }}"><i class="footer-icon icon--wa fa-brands fa-whatsapp"></i></a>
-                    <a href="#"><i class="footer-icon icon--pt fa-brands fa-pinterest"></i></a>
+                    <a href="{{ $commonDetails['pinterest'] ?? '#' }}"><i class="footer-icon icon--yt fa-brands fa-pinterest"></i></a>
                     <a href="{{ $commonDetails['youtube'] ?? '#' }}"><i class="footer-icon icon--yt fa-brands fa-youtube"></i></a>
                     <a href="{{ $commonDetails['twitter'] ?? '#' }}"><i class="footer-icon icon--tw fa-brands fa-twitter"></i></a>
                     <a href="{{ $commonDetails['linkedin'] ?? '#' }}"><i class="footer-icon icon--ln fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="footer-icon icon--tk fa-brands fa-tiktok"></i></a>
+                    <a href="{{ $commonDetails['tiktok'] ?? '#' }}"><i class="footer-icon icon--ln fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="import_link">
@@ -33,12 +33,9 @@
                 <div class="item_area">
                     <h2 class="footer-title">Useful Links</h2>
                     <ul>
-                        <li class="footer-item"><a class="footer-link" href="#">Product Rental Policy</a></li>
-                        <li class="footer-item"><a class="footer-link" href="#">Delivery and Shipping</a></li>
-                        <li class="footer-item"><a class="footer-link" href="#">Terms and Conditions</a></li>
-                        <li class="footer-item"><a class="footer-link" href="#">Return and Refund</a></li>
-                        <li class="footer-item"><a class="footer-link" href="#">Privacy Policy</a></li>
-                        <li class="footer-item"><a class="footer-link" href="#">FAQ</a></li>
+                        @foreach ($documents as $doc)
+                        <li class="footer-item"><a class="footer-link" href="{{ asset('storage').'/'.$doc->path }}" download>{{ $doc->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

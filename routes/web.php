@@ -14,21 +14,28 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EventCardController;
+use App\Http\Controllers\CMS\DocumentController;
 use App\Http\Controllers\RentalReturnController;
+use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\RentalApprovalController;
 use App\Http\Controllers\RentalDispatchController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\CustomerDepositController;
 use App\Http\Controllers\PersonalProfileController;
+use App\Http\Controllers\Website\LogisticController;
 use App\Http\Controllers\Website\ProductCategoryController;
 use App\Http\Controllers\Reporting\DueController as DueReportController;
+use App\Http\Controllers\CMS\HomePageController as HomePageCMSController;
 use App\Http\Controllers\Reporting\OrderController as OrderReportController;
 use App\Http\Controllers\Reporting\DepositController as DepositReportController;
 use App\Http\Controllers\Reporting\InvoiceController as InvoiceReportController;
 use App\Http\Controllers\Reporting\ProductController as ProductReportController;
+use App\Http\Controllers\CMS\LogisticPageController as LogisticPageCMSController;
 use App\Http\Controllers\Reporting\TransactionController as TransactionReportController;
 
 Route::get('/createSymlink', function(){
@@ -38,9 +45,7 @@ Route::get('/createSymlink', function(){
 });
 Route::get('/createRole', [RolePermissionController::class, 'createRole']);
 
-Route::get('/', function () {
-    return view('website.pages.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('website.pages.about');
@@ -58,7 +63,7 @@ Route::get('/event', function () {
     return view('website.pages.event');
 })->name('event');
 
-Route::get('/logistics', [ProductCategoryController::class, 'index'])->name('logistics');
+Route::get('/logistics', [LogisticController::class, 'index'])->name('logistics');
 
 
 Route::get('/workshop', function () {
@@ -77,8 +82,6 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     })->name('dashboard');
 
     Route::get('/user/profile', [PersonalProfileController::class,'index'])->name('user.profile');
-    
-    Route::patch('/section/update', [SectionController::class, 'update'])->name('section.update');
     
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
@@ -180,10 +183,19 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
     Route::get('/theme/create', [ThemeController::class, 'create'])->name('theme.create');
 
+    Route::get('/home-page/general-info', [HomePageCMSController::class, 'edit'])->name('home_page.edit');
+    Route::post('/home-page/general-info', [PageController::class, 'update'])->name('page.update');
+    Route::get('/home-page/review-cta', [HomePageCMSController::class, 'editReviewCta'])->name('home_page.review_cta.edit');
+    
+    Route::get('/logistic-page/general-info', [LogisticPageCMSController::class, 'edit'])->name('logistic_page.edit');
+    Route::post('/logistic-page/general-info', [PageController::class, 'update'])->name('page.update');
+
     Route::get('/pages', [PageController::class, 'index'])->name('pages');
     Route::post('/page/update', [PageController::class, 'update'])->name('page.update');
     Route::patch('/page/change-status/{id}', [PageController::class, 'changeStatus'])->name('page.change-status');
     Route::get('/page/section/change-status/{id}', [PageController::class, 'changeSectionStatus'])->name('page.section.change-status');
+
+    Route::patch('/section', [SectionController::class, 'update'])->name('section.update');
 
     Route::get('/banners', [BannerController::class, 'index'])->name('banners');
     Route::post('/banner/store', [BannerController::class, 'store'])->name('banner.store');
@@ -195,18 +207,28 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
     Route::patch('/event-card/update', [EventCardController::class, 'update'])->name('event_card.update');
     Route::patch('/event-card/change-status/{id}', [EventCardController::class, 'changeStatus'])->name('event_card.change-status');
     
-    // Route::get('/services', [ServiceController::class, 'index'])->name('services');
-    // Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
-    // Route::patch('/service/update', [ServiceController::class, 'update'])->name('service.update');
-    // Route::patch('/service/update-section', [ServiceController::class, 'updateSection'])->name('service.update-section');
-    // Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
-    // Route::patch('/service/change-status/{id}', [ServiceController::class, 'changeStatus'])->name('service.change-status');
-    // Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks');
-    // Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
-    // Route::patch('/feedback/update', [FeedbackController::class, 'update'])->name('feedback.update');
-    // Route::patch('/feedback/update-section', [FeedbackController::class, 'updateSection'])->name('feedback.update-section');
-    // Route::delete('/feedback/delete/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
-    // Route::patch('/feedback/change-status/{id}', [FeedbackController::class, 'changeStatus'])->name('feedback.change-status');
+    Route::get('/services', [ServiceController::class, 'index'])->name('services');
+    Route::patch('/service/update', [ServiceController::class, 'update'])->name('service.update');
+    Route::patch('/service/add-image', [ServiceController::class, 'addImage'])->name('service.add-image');
+    Route::delete('/service/image/{id}', [ServiceController::class, 'deleteImage'])->name('service.delete-image');
+    Route::patch('/service/update-section', [ServiceController::class, 'updateSection'])->name('service.update-section');
+    Route::patch('/service/change-status/{id}', [ServiceController::class, 'changeStatus'])->name('service.change-status');
+    
+    Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
+    Route::delete('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+    
+    Route::get('/documents', [DocumentController::class, 'index'])->name('documents');
+    Route::post('/document', [DocumentController::class, 'store'])->name('document.store');
+    Route::patch('/document', [DocumentController::class, 'update'])->name('document.update');
+    Route::delete('/document/{id}', [DocumentController::class, 'destroy'])->name('document.destroy');
+    Route::patch('/document/change-status/{id}', [DocumentController::class, 'changeStatus'])->name('document.change-status');
+
+    Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks');
+    Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
+    Route::patch('/feedback/update', [FeedbackController::class, 'update'])->name('feedback.update');
+    Route::patch('/feedback/update-section', [FeedbackController::class, 'updateSection'])->name('feedback.update-section');
+    Route::delete('/feedback/delete/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
+    Route::patch('/feedback/change-status/{id}', [FeedbackController::class, 'changeStatus'])->name('feedback.change-status');
     
     // Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
     // Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');

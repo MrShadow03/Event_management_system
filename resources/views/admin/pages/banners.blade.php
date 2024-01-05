@@ -263,18 +263,6 @@
                         </div>
                         <!--end::Input group-->
 
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Heading</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <input type="text" class="form-control form-control-solid" placeholder="Our Banner Heading Text" name="heading" required>
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
 
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8">
@@ -436,19 +424,6 @@
                             <!--end::Label-->
 
                             <input type="text" id="editTitleInput" class="form-control form-control-solid" placeholder="Welcome" name="title" required>
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span>Heading</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <input type="text" id="editHeadingInput" class="form-control form-control-solid" placeholder="Our Banner Heading" name="heading" required>
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->

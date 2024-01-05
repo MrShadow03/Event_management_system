@@ -32,146 +32,119 @@
         <img src="{{ asset('assets/website/assets/img/logo.png') }}" alt="">
     </div>
     @endsection
+
     @section('banner')
         <!-- BENAR START HERE -->
         <div class="benar_box swiper">
             <div class="swiper-wrapper">
+                @foreach ($banners  as $banner)
                 <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img2.jpg') }}" alt="">
+                    <img src="{{ asset('storage').'/'.$banner->image }}" alt="banner_{{ $banner->title }}">
                 </div>
-                <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img3.jpg') }}" alt="">
-                </div>
-                <div class="benar_items swiper-slide">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img6.jpg') }}" alt="">
-                </div>
+                @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>
     @endsection
-    {{-- <div class="aro_img">
-        <!-- NEW IMG ADDD ************************************ **************************************************-->
-    </div> --}}
 
     <!-- EVENT -->
     <div class="event">
+        @if ($sections->where('name', 'about')->first()->pivot->status == 1)
         <div class="custom_title1" style="margin-top: 2rem;">
-            <h2 class="heading-xl">Maa Event Management<span class="border"></span></h2>
-            <p class="para-lg desc">We are thrilled to offer a variety of events and gatherings for you to enjoy. Our goal is to provide a welcoming and enjoyable atmosphere where you can connect with others and make lasting memories.</p>
+            <h2 class="heading-xl">{{ $sections->where('name', 'about')->first()->heading }}<span class="border"></span></h2>
+            <p class="para-lg desc">{{ $sections->where('name', 'about')->first()->description }}</p>
         </div>
-        <div class="event_card_area">
-            <div class="event_card">
-                <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
-                <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img1.jpg') }}" alt="">
-                </div>
-                <div class="card_text">
-                    <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
-                    <h2 class="heading-lg">Wedding Reception</h2>
-                    <p class="para-md">We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.</p>
-                    <a class="btn-grad-sm" href="#">View &nbsp;<i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="event_card">
-                <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
-                <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img4.jpg') }}" alt="">
-                </div>
-                <div class="card_text">
-                    <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
-                    <h2 class="heading-lg">Lifestyle Occasions</h2>
-                    <p class="para-md">We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.</p>
-                    <a class="btn-grad-sm" href="#">View &nbsp;<i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="event_card">
-                <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
-                <div class="card_img">
-                    <img src="{{ asset('./assets/website/assets/img/home_page_img5.jpg') }}" alt="">
-                </div>
-                <div class="card_text">
-                    <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
-                    <h2 class="heading-lg">Corporate Events</h2>
-                    <p class="para-md">We believe that life is meant to be celebrated, and every occasion is an opportunity to create lasting memories. Whether you’re planning a small gathering or a grand event, we’re here to make your special moments extraordinary.</p>
-                    <a class="btn-grad-sm" href="#">View &nbsp;<i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
+        @endif
 
+        <div class="event_card_area">
+            @if ($sections->where('name', 'event_cards')->first()->pivot->status == 1)
+            @foreach ($event_cards as $card)
+                <div class="event_card">
+                    <img class="card_body_img" src="{{ asset('./assets/website/assets/img/the-wedding-bg-1.png') }}" alt="">
+                    <div class="card_img">
+                        <img 
+                        src="{{ asset('storage').'/'.$card->image }}" 
+                        alt="">
+                    </div>
+                    <div class="card_text">
+                        <img src="{{ asset('./assets/website/assets/img/loveicon.png') }}" alt="" class="love_img">
+                        <h2 class="heading-lg">{{ $card->title }}</h2>
+                        <p class="para-md">{{ $card->description }}</p>
+                        <a class="btn-grad-sm" href="#">View &nbsp;<i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            @endforeach
+            @endif
         </div>
     </div>
 
+    @if ($sections->where('name', 'services')->first()->pivot->status == 1)
     <!-- CATERING -->
     <div class="catering">
+        @if ($services->where('name', 'slot-1')->first()->status == 1)
         <div class="catering_slider left_side">
             <div class="img_area img_left swiper">
                 <div class="swiper-wrapper">
+                    @foreach ($services->where('name', 'slot-1')->first()->images as $image)
                     <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/catering1.jpg') }}" alt="">
+                        <img 
+                        src="{{ asset('storage').'/'.$image->path }}"
+                        alt="service_{{ $image->id }}"
+                        >
                     </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/Bor-dish-02-maaevent.jpg') }}" alt="">
-                    </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/Bor-dish-01-maaevent.jpg') }}" alt="">
-                    </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/Platter-maaevent.jpg') }}" alt="">
-                    </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/Kacchi.jpg') }}" alt="">
-                    </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/catering3.jpg') }}" alt="">
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="custom_title2">
-                <h2 class="heading-lg">Catering</h2>
-                <p class="para-md">Welcome to our catering services, where we turn your special moments into culinary masterpieces. Our team of passionate chefs and experienced event planners is dedicated to creating a memorable dining experience for you and your guests.</p>
+                <h2 class="heading-lg">{{ $services->where('name', 'slot-1')->first()->title }}</h2>
+                <p class="para-md">{{ $services->where('name', 'slot-1')->first()->description }}</p>
                 <a class="btn-grad" href="#">VIEW</a>
             </div>
         </div>
+        @endif
+        @if ($services->where('name', 'slot-2')->first()->status == 1)
         <div class="catering_slider right_side">
             <div class="img_area img_right swiper">
                 <div class="swiper-wrapper">
-                <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/home_page_img3.jpg') }}" alt="">
-                    </div>
+                    @foreach ($services->where('name', 'slot-2')->first()->images as $image)
                     <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/home_page_img7.jpg') }}" alt="">
+                        <img 
+                        src="{{ asset('storage').'/'.$image->path }}"
+                        alt="service_{{ $image->id }}"
+                        >
                     </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/home_page_img8.jpg') }}" alt="">
-                    </div>
-                    <div class="img swiper-slide">
-                        <img src="{{ asset('./assets/website/assets/img/home_page_img9.jpg') }}" alt="">
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="custom_title2">
-                <h2 class="heading-lg">Book Your Venue</h2>
-                <p class="para-md">Looking for the perfect venue for your next event? Let our event management company take care of it! With our expertise &amp; extensive network of venues, we’ll help you find the ideal space to bring your event to life!</p>
+                <h2 class="heading-lg">{{ $services->where('name', 'slot-2')->first()->title }}</h2>
+                <p class="para-md">{{ $services->where('name', 'slot-2')->first()->description }}</p>
                 <a class="btn-grad" href="#">VIEW</a>
             </div>
         </div>
+        @endif
     </div>
+    @endif
 
+    @if ($sections->where('name', 'general_CTA')->first()->pivot->status == 1)
     <!-- NEW Dive ADD -->
     <div class="backGtitle">
         <h2>Counting down for the Special Day</h2>
     </div>
      <!-- NEW Dive END -->
+     @endif
 
     <!-- CLIENTS -->
+    @if ($sections->where('name', 'feedbacks')->first()->pivot->status == 1)
     <div class="clients">
-
         <div class="custom_title1">
-            <h2 class="heading-xl">Our Happy Clients!</h2>
+            <h2 class="heading-xl">{{ $sections->where('name', 'feedbacks')->first()->heading }}</h2>
         </div>
         <!--  -->
         <div id="client_slider" class="owl-carousel">
+            @foreach ($feedbacks as $feedback)
             <div class="clients_card">
                 <div class="ca_img">
                     <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
@@ -184,44 +157,17 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <h4>Tayba Jannat</h4>
-                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
+                <h4>{{ $feedback->name }}</h4>
+                <p class="font-bn">{{ $feedback->feedback }}</p>
             </div>
-            <div class="clients_card">
-                <div class="ca_img">
-                    <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
-                </div>
-
-                <div class="reting">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <h4>Tayba Jannat</h4>
-                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
-            </div>
-            <div class="clients_card">
-                <div class="ca_img">
-                    <img src="{{ asset('./assets/website/assets/img/client-default.png') }}" alt="">
-                </div>
-
-                <div class="reting">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <h4>Tayba Jannat</h4>
-                <p class="font-bn">আমার ছোট মেয়ের জন্মদিনে আপনাদের ডেকোরেশনের সার্ভিস নিয়েছি| সবাই খুব সুন্দর বলেছে| আসলেই খুব সুন্দর হয়েছে|</p>
-            </div>
+            @endforeach
         </div>
     </div>
+    @endif
 
+    @if ($sections->where('name', 'video_gallery')->first()->pivot->status == 1)
     <!-- VIDEOS  -->
-    {{-- <div class="video">
+    <div class="video">
         <div class="custom_title1">
             <h2 class="heading-xl">Video Gallery</h2>
             <p class="desc para-lg">Here you’ll find videos that highlight some of our most popular rental products, including tents, tables and chairs, audio and visual equipment, and more. You’ll see our equipment being set up and used at real events, giving you a better understanding of what to expect when you rent from us.</p>
@@ -249,20 +195,22 @@
         <div class="btn_area">
             <a class="btn-grad" href="#">VIEW</a>
         </div>
-    </div> --}}
+    </div>
+    @endif
 
-
+    @if ($sections->where('name', 'review_CTA')->first()->pivot->status == 1)
     <!-- FOLLOWUS -->
     <div class="followUs">
         <div class="custom_title2">
-            <h2 class="heading-lg">Follow &amp; Review Us</h2>
-            <p class="para-md">We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.</p>
+            <h2 class="heading-lg">{{ $sections->where('name', 'review_CTA')->first()->heading }}</h2>
+            <p class="para-md">{{ $sections->where('name', 'review_CTA')->first()->description }}</p>
         </div>
         <div class="social_btn_lg">
             <a class="Facebook" href="#" style="margin-right: 10px"><i class="fa-brands fa-facebook"></i>&nbsp; Review</a>
             <a class="btn-grad" href="#"><i class="fa-brands fa-google"></i>&nbsp; Review</a>
         </div>
     </div>
+    @endif
 @endsection
 
 <!-- Scripts  for this page only -->

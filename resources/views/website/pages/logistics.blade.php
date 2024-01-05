@@ -27,8 +27,8 @@
     <div class="container">
         <div class="rental_product">
             <div class="rental_product_text">
-                <h2 class="heading-xl">Rental Products</h2>
-                <p class="para-md">Welcome to our rental products page! We are thrilled to offer a wide range of rental products to meet your needs, whether you're planning a party, event, or a DIY project.</p>
+                <h2 class="heading-xl">{{ $section->heading }}</h2>
+                <p class="para-md">{{ $section->description }}</p>
             </div>
             <div class="rental_product_category">
                 <ul class="category_list">

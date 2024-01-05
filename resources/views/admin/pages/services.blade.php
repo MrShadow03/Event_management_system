@@ -67,7 +67,7 @@
             <!--begin::Actions-->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
                 <!--begin::Primary button-->
-                <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_banner"> New Service </a>
+                {{-- <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#modal_new_banner"> New Service </a> --}}
                 <a href="#" class="btn btn-sm btn-icon fw-bold btn-primary rotate-animation-90" data-bs-toggle="modal" data-bs-target="#modal_settings">
                     <i class="ki-solid ki-gear fs-3 "></i>
                 </a>
@@ -108,19 +108,17 @@
                         <!--begin::Table body-->
                         <tbody>
                             @if ($services->count())
+                            @php
+                                $i = 1;
+                            @endphp
                             @foreach ($services as $service)
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <!--begin::Avatar-->
-                                        <div class="symbol symbol-60px symbol-2by3 me-4">
-                                            <div class="symbol-label" style="background-image: url('{{ asset('storage') . '/' . $service->image }}')"></div>
-                                        </div>
-                                        <!--end::Avatar-->
-
                                         <!--begin::Name-->
                                         <div class="d-flex justify-content-start flex-column" data-toggle="toggle">
-                                            <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $service->title }}</a>
+                                            <span class="fw-bold text-primary mb-1 fs-6">[Slot-{{ $i }}]</span>
+                                            <a href="#" class="text-gray-800 fw-bold mb-1 fs-6">Title: {{ $service->title }}</a>
                                             <span class="text-muted fw-semibold text-muted d-block w-300px fs-7 text-truncate">{{ $service->description }}</span>
                                         </div>
                                         <!--end::Name-->
@@ -141,30 +139,90 @@
                                     </form>
                                 </td>
                                 <td class="text-end">
-                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                        title="Edit" data-bs-toggle="modal"
-                                        data-bs-target="#modal_update_banner" onclick="inputPageData({{ json_encode($service) }}, '{{ asset('storage') }}')">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
-                                    <form class="d-inline me-1" action="{{ route('admin.service.destroy', $service->id) }}" method="POST">
+                                    <span
+                                    data-bs-toggle="tooltip" 
+                                    data-bs-custom-class="fs-12" 
+                                    data-bs-placement="top"
+                                    data-bs-delay-show="500"
+                                    title="Update Details"
+                                    >
+                                        <a 
+                                        href="#" 
+                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                        onclick="inputPageData({{ json_encode($service) }}, '{{ asset('storage') }}')"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal_update_banner"
+                                        >
+                                            <i class="ki-duotone ki-pencil fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </a>
+                                    </span>
+                                    <form action="{{ route('admin.service.add-image') }}" class="d-inline" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-icon btn-bg-light bg-hover-light-danger btn-active-color-danger btn-sm me-1" method="POST" title="Delete" onclick="return confirm('Do you want to delete this banner?')">
-                                            @method('DELETE')
-                                            <i class="ki-duotone ki-trash fs-2">
+                                        @method('PATCH')
+                                        <input type="hidden" name="id" value="{{ $service->id }}">
+                                        <label 
+                                            for="add-images{{ $service->id }}" 
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                            title="Add Image"
+                                            data-bs-toggle="tooltip" 
+                                            data-bs-custom-class="tooltip-inverse" 
+                                            data-bs-placement="right"
+                                            data-bs-delay-show="500"
+                                            title="Add Images"
+                                        >
+                                            <i class="ki-duotone ki-add-files fs-2" for="add-images">
                                                 <span class="path1"></span>
                                                 <span class="path2"></span>
                                                 <span class="path3"></span>
-                                                <span class="path4"></span>
-                                                <span class="path5"></span>
                                             </i>
-                                        </button>
+    
+                                            <input
+                                                type="file"
+                                                name="images[]"
+                                                id="add-images{{ $service->id }}" 
+                                                onChange="this.form.submit()"
+                                                hidden
+                                                multiple
+                                                >
+                                        </label>
                                     </form>
                                 </td>
                             </tr>
+                            {{-- full row for showing all the images --}}
+                            <tr class="border-0 hide-child">
+                                <td colspan="4" class="border-0">
+                                    <div class="row row-gap-5">
+                                        @foreach ($service->images as $image)
+                                        <div class="col-md-2 col-sm-4 col-6">
+                                            <div class="card">
+                                                <img class="rounded object-fit-cover" height="100px" src="{{ asset('storage').'/'.$image->path }}" alt="service_image" class="img-fluid">
+                                                <form class="mt-3" action="{{ route('admin.service.delete-image', $image->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button 
+                                                    type="submit"
+                                                    onclick="return confirm('Are you sure you want to delete this image?')"
+                                                    class="btn btn-sm btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger d-block w-100"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-placement="bottom"
+                                                    data-bs-delay-show="1000"
+                                                    title="Delete image"
+                                                    >
+                                                        <i class="fs-3 ki-solid ki-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </td>
+                            </tr>
+                            @php
+                                $i++;
+                            @endphp
                             @endforeach
                             @else
                             <tbody>
@@ -190,294 +248,7 @@
 <!--end::Main Content-->
 
 @section('exclusive_modals')
-    <!--begin::Page new modal-->
-    <div class="modal fade" id="modal_new_banner" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content rounded">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
 
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                    <!--begin:Form-->
-                    <form id="modal_new_targ_banner" class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                        action="{{ route('admin.service.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('POST')
-                        <!--begin::Heading-->
-                        <div class="mb-13 text-center">
-                            <!--begin::Title-->
-                            <h1 class="mb-3">New Service</h1>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Heading-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Title</span>
-                            </label>
-                            <!--end::Label-->
-
-                            <input type="text" class="form-control form-control-solid" placeholder="Best Website Ever" name="title" required>
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-8">
-                            <label class="fs-6 fw-semibold mb-2">Description</label>
-                            <textarea class="form-control form-control-solid" rows="3" name="description" placeholder="Type Page Description"></textarea>
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Repeater-->
-                        <div id="create_service_bullets">
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <div data-repeater-list="bullets">
-                                    <div data-repeater-item>
-                                        <div class="form-group row">
-                                            <div class="col-sm-9">
-                                                <div class="input-group input-group-solid">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <i class="ki-duotone ki-text-number fs-1">
-                                                            <i class="path1"></i>
-                                                            <i class="path2"></i>
-                                                            <i class="path3"></i>
-                                                            <i class="path4"></i>
-                                                            <i class="path5"></i>
-                                                            <i class="path6"></i>
-                                                        </i>
-                                                    </span>
-                                                    <input type="text" name="" class="form-control form-control-solid" placeholder="Add a bullet point" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3 mb-6">
-                                                <a href="#" data-repeater-delete class="btn btn-sm btn-light-danger">
-                                                    <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
-                                                    Delete
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group mt-4 mb-8">
-                                <a href="javascript:;" data-repeater-create class="btn btn-sm btn-light-primary">
-                                    <i class="ki-duotone ki-plus fs-3"></i>
-                                    Add another
-                                </a>
-                            </div>
-                            <!--end::Form group-->
-                        </div>
-                        <!--end::Repeater-->
-
-                        <!--begin::Input group row-->
-                        <div class="row">
-                            <!--begin::Image input-->
-                            <div class="mb-10 fv-row">
-                                <label class="fs-6 fw-semibold mb-4 d-block">
-                                    <span>Service Image</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Image for the single service section.">
-                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                </label>
-                                <div class="image-input image-input-outline" data-kt-image-input="true">
-                                    <!--begin::Image preview wrapper-->
-                                    <div class="image-input-wrapper w-200px h-125px" style="background-image: url({{ asset('/assets/admin/assets/media/placeholder/banner.webp') }})"></div>
-                                    <!--end::Image preview wrapper-->
-    
-                                    <!--begin::Edit button-->
-                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Change service image">
-                                        <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-    
-                                        <!--begin::Inputs-->
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
-                                        <input type="hidden" name="avatar_remove" />
-                                        <!--end::Inputs-->
-                                    </label>
-                                    <!--end::Edit button-->
-    
-                                    <!--begin::Cancel button-->
-                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Cancel service image">
-                                        <i class="ki-outline ki-cross fs-3"></i>
-                                    </span>
-                                    <!--end::Cancel button-->
-    
-                                    <!--begin::Remove button-->
-                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Remove service image">
-                                        <i class="ki-outline ki-cross fs-3"></i>
-                                    </span>
-                                    <!--end::Remove button-->
-                                </div>
-                                <div class="form-text">Allowed file types: png, jpg, jpeg, webp.</div>
-                            </div>
-                            <!--end::Image input-->
-                        </div>
-                        <!--end::Input group row-->
-                        <!--begin::Row-->
-                        <div class="row mb-5" data-kt-buttons="true" data-kt-buttons-target=".form-check-image, .form-check-input">
-                            <label class="fs-6 fw-semibold mb-4">Service Icon</label>
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image active">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-1.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" checked value="service/service-1.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            1
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-2.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="service/service-2.png" name="icon" id="text_wow"/>
-                                        <div class="form-check-label">
-                                            2
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-3.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="service/service-3.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            3
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-4.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="service/service-4.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            4
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-5.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="service/service-5.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            5
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-6.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="service/service-6.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            6
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Row-->
-
-                        <!--begin::Actions-->
-                        <div class="text-center">
-                            <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">
-                                Cancel
-                            </button>
-
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">
-                                    Submit
-                                </span>
-                                <span class="indicator-progress">
-                                    Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end:Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Page new modal-->
     <!--begin::Page edit modal-->
     <div class="modal fade" id="modal_update_banner" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -526,222 +297,9 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8">
                             <label class="fs-6 fw-semibold mb-2">Description</label>
-                            <textarea class="form-control form-control-solid" rows="3" id="editServiceDescription" name="description" placeholder="Type Page Description"></textarea>
+                            <textarea class="form-control form-control-solid" rows="10" id="editServiceDescription" name="description" placeholder="Type Page Description"></textarea>
                         </div>
                         <!--end::Input group-->
-                        
-                        <!--begin::Repeater-->
-                        <div id="update_service_bullets">
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <div data-repeater-list="bullets">
-                                    <div data-repeater-item>
-                                        <div class="form-group row">
-                                            <div class="col-sm-9">
-                                                <div class="input-group input-group-solid">
-                                                    <span class="input-group-text" id="basic-addon1">
-                                                        <i class="ki-duotone ki-text-number fs-1">
-                                                            <i class="path1"></i>
-                                                            <i class="path2"></i>
-                                                            <i class="path3"></i>
-                                                            <i class="path4"></i>
-                                                            <i class="path5"></i>
-                                                            <i class="path6"></i>
-                                                        </i>
-                                                    </span>
-                                                    <input type="text" value="" name="" class="bulletInput form-control form-control-solid" placeholder="Add a bullet point" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3 mb-6">
-                                                <a href="#" data-repeater-delete class="btn btn-sm btn-light-danger">
-                                                    <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
-                                                    Delete
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group mt-4 mb-8">
-                                <a href="javascript:;" data-repeater-create class="btn btn-sm btn-light-primary">
-                                    <i class="ki-duotone ki-plus fs-3"></i>
-                                    Add another
-                                </a>
-                            </div>
-                            <!--end::Form group-->
-                        </div>
-                        <!--end::Repeater-->
-
-                        <!--begin::Input group row-->
-                        <div class="row">
-                            <!--begin::Image input-->
-                            <div class="mb-10 fv-row">
-                                <label class="fs-6 fw-semibold mb-4 d-block">
-                                    <span>Service Image</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Image for the single service section.">
-                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                </label>
-                                <div class="image-input image-input-outline" data-kt-image-input="true">
-                                    <!--begin::Image preview wrapper-->
-                                    <div class="image-input-wrapper w-200px h-125px" id="editServiceImage"></div>
-                                    <!--end::Image preview wrapper-->
-    
-                                    <!--begin::Edit button-->
-                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Change service image">
-                                        <i class="ki-duotone ki-pencil fs-6">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                        <!--begin::Inputs-->
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp" />
-                                        <input type="hidden" name="avatar_remove" />
-                                        <!--end::Inputs-->
-                                    </label>
-                                    <!--end::Edit button-->
-    
-                                    <!--begin::Cancel button-->
-                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Cancel service image">
-                                        <i class="ki-outline ki-cross fs-3"></i>
-                                    </span>
-                                    <!--end::Cancel button-->
-    
-                                    <!--begin::Remove button-->
-                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-dismiss="click"
-                                    title="Remove service image">
-                                        <i class="ki-outline ki-cross fs-3"></i>
-                                    </span>
-                                    <!--end::Remove button-->
-                                </div>
-                                <div class="form-text">Allowed file types: png, jpg, jpeg, webp.</div>
-                            </div>
-                            <!--end::Image input-->
-                        </div>
-                        <!--end::Input group row-->
-                        <!--begin::Row-->
-                        <div class="row mb-5" data-kt-buttons="true" data-kt-buttons-target=".form-check-image, .form-check-input">
-                            <label class="fs-6 fw-semibold mb-4">Service Icon</label>
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-1.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon1" checked value="service/service-1.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            1
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-2.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon2" value="service/service-2.png" name="icon" id="text_wow"/>
-                                        <div class="form-check-label">
-                                            2
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-3.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon3" value="service/service-3.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            3
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-4.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon4" value="service/service-4.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            4
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-5.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon5" value="service/service-5.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            5
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-2">
-                                <label class="form-check-image">
-                                    <div class="form-check-wrapper p-2">
-                                        <img src="{{ asset('storage/service/service-6.png') }}">
-                                    </div>
-
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" id="editServiceIcon6" value="service/service-6.png" name="icon"/>
-                                        <div class="form-check-label">
-                                            6
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Row-->
 
                         <!--begin::Actions-->
                         <div class="text-center">
@@ -855,7 +413,16 @@
                                 </span>
                             </label>
                             <!--end::Label-->
-                            <textarea id="editFaqAnswer" class="form-control form-control-solid" placeholder="We build your dream!" name="description" required>{{ $sectionData->description }}</textarea>
+                            <textarea 
+                                id="editFaqAnswer" 
+                                class="form-control form-control-solid" 
+                                placeholder="We build your dream!" 
+                                name="description"
+                                rows="10" 
+                                required
+                            >
+                                {{ $sectionData->description }}
+                            </textarea>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
@@ -887,8 +454,6 @@
 @endsection
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
-
-<script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
 <script>
 
     function inputPageData(data, storagePath){
@@ -897,76 +462,7 @@
         $('#editServiceId').val(data.id);
         $('#editServiceTitle').val(data.title);
         $('#editServiceDescription').val(data.description);
-
-        // remove active class from all labels
-        $('label').removeClass('active');
-
-        if(data.icon == 'service/service-1.png'){
-            $('#editServiceIcon1').prop('checked', true);
-            $('#editServiceIcon1').parent().parent().addClass('active');
-        }else if(data.icon == 'service/service-2.png'){
-            $('#editServiceIcon2').prop('checked', true);
-            $('#editServiceIcon2').parent().parent().addClass('active');
-        }else if(data.icon == 'service/service-3.png'){
-            $('#editServiceIcon3').prop('checked', true);
-            $('#editServiceIcon3').parent().parent().addClass('active');
-        }else if(data.icon == 'service/service-4.png'){
-            $('#editServiceIcon4').prop('checked', true);
-            $('#editServiceIcon4').parent().parent().addClass('active');
-        }else if(data.icon == 'service/service-5.png'){
-            $('#editServiceIcon5').prop('checked', true);
-            $('#editServiceIcon5').parent().parent().addClass('active');
-        }else if(data.icon == 'service/service-6.png'){
-            $('#editServiceIcon6').prop('checked', true);
-            $('#editServiceIcon6').parent().parent().addClass('active');
-        }
-        $('#editServiceImage').css('background-image', 'url('+ storagePath + '/' + data.image + ')');
-        $('#editVideoInput').val(data.video);
-
-        // remove all the bullet points
-        $('#update_service_bullets').find('[data-repeater-item]').remove();
-        // Loop through bullet points and add them dynamically
-        bullets.forEach(bullet => {
-            if(bullet){
-                // add the bullet to the form
-                $('#update_service_bullets').find('[data-repeater-create]').click();
-                $('#update_service_bullets').find('[data-repeater-item]:last-child').find('input').val(bullet);
-            }
-        });
     }
-
-    $('#create_service_bullets').repeater({
-        initEmpty: false,
-
-        defaultValues: {
-            'text-input': 'foo'
-        },
-
-        show: function () {
-            $(this).slideDown();
-        },
-
-        hide: function (deleteElement) {
-            $(this).slideUp(deleteElement);
-        }
-    });
-
-    $('#update_service_bullets').repeater({
-        initEmpty: false,
-
-        defaultValues: {
-            'text-input': 'foo'
-        },
-
-        show: function () {
-            $(this).slideDown();
-        },
-
-        hide: function (deleteElement) {
-            $(this).slideUp(deleteElement);
-        }
-    });
-    
 </script>
 @endsection
 <!--end::Page Vendors Javascript and custom JS-->
