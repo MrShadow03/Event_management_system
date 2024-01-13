@@ -263,7 +263,12 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ 
+                    Str::startsWith(request()->url(), route('admin.reporting.products')) ||
+                    Str::startsWith(request()->url(), route('admin.reporting.transactions')) ||
+                    Str::startsWith(request()->url(), route('admin.reporting.dues')) ||
+                    Str::startsWith(request()->url(), route('admin.reporting.orders'))
+                    ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -282,7 +287,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('admin.reporting.products') }}">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.reporting.products')) ? 'active' : '' }}" href="{{ route('admin.reporting.products') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -293,7 +298,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('admin.reporting.transactions') }}">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.reporting.transactions')) ? 'active' : '' }}" href="{{ route('admin.reporting.transactions') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -304,7 +309,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="#">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.reporting.dues')) ? 'active' : '' }}" href="{{ route('admin.reporting.dues') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -315,7 +320,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="#">
+                            <a class="menu-link {{ Str::startsWith(request()->url(), route('admin.reporting.orders')) ? 'active' : '' }}" href="{{ route('admin.reporting.orders') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -323,7 +328,7 @@
                             </a>
                         </div>
                         <!--end:Menu item-->
-                        <!--begin:Menu item-->
+                        {{-- <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link" href="#">
@@ -333,7 +338,7 @@
                                 <span class="menu-title">Invoice Report</span>
                             </a>
                         </div>
-                        <!--end:Menu item-->
+                        <!--end:Menu item--> --}}
                     </div>
                     <!--end:Menu sub-->
                 </div>

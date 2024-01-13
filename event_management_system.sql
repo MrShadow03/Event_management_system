@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 07:35 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jan 13, 2024 at 11:34 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -317,7 +317,7 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `addr
 (103, 'Opu Hasan', 'customer103@admin.com', '01832612519', 'Garden Event Management', 'Dhaka, Bangladesh', 'customers/FEbOiSWa26htWcUjK4otIqi9Wrks93HbbHFo5Ebd.jpg', 0, NULL, '$2y$10$3p8NA7r/wZhrspDphroOxeV1F1vuqcdQ70F3FQFFIDf8zV8EYj9eC', NULL, '2023-11-03 14:18:58', '2023-11-05 17:33:42'),
 (104, 'Imtiaz Ahmed', 'customer104@admin.com', '01941320214', 'Fuler Karigor', 'Notun Bazar, Bhatara, Dhaka', 'customers/zCg7CPjygodFXSoCxC5I3B3wFcwDtK68FXjsKEEq.png', 0, NULL, '$2y$10$TfhmoTT965b0YKlAq.eqR.HsgUGXCTTCmewmAtGOcz7xmU/pL/CH6', NULL, '2023-11-03 18:08:38', '2023-11-03 18:08:38'),
 (105, 'Jahid Hasan Manager', 'weddingbuzz2021@gmail.com', '01836281193', 'Wedding Buzz', '61/1, North Pirerbug, 60 feet, Mirpur 2,Dhaka., Dhaka, Bangladesh', 'customers/ICWoz0Rs7GxzdquLMsw9aqgeL3DNkwjtcMrJho2s.jpg', 0, NULL, '$2y$10$RqWw2v7qf.2tiOd03BYb/O4BbhCeFbxJG6IJVNi72uwDqju9jbzrO', NULL, '2023-11-05 19:03:04', '2023-11-05 19:05:06'),
-(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/W9xJYtxJn3izqJ1FZsM8GgE5MnsBHqLrnWlcY0Sq.jpg', 0, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2023-11-07 21:06:50'),
+(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/W9xJYtxJn3izqJ1FZsM8GgE5MnsBHqLrnWlcY0Sq.jpg', 0, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2024-01-13 09:40:53'),
 (107, 'Md. Liton', 'customer107@admin.com', '01821693303', 'Creative Corner BD', '327 Morolbari, Nayatola, Hatijheel, Modhubagh, Mogbazar, Dhaka', 'customers/default.png', 0, NULL, '$2y$10$EWv1FAL/gKKKhjLtBf1E5uN45Dg93G7NLPoLkfagFzlCp26xH0H.C', NULL, '2023-11-10 04:24:08', '2023-11-10 16:55:25'),
 (108, 'Shafin Khan', 'nafiulmomits@gmail.com', '01621737497', 'Eventson', 'Delpara, Narayangonj', 'customers/fLenZIxXsrMk1fio5YZZIqXyQXd2k27R1lBjAH6G.jpg', 0, NULL, '$2y$10$jSYIBMIMAhOgmAv6yCaWhudqvJPJhmyXcNb04jlen6JmZbcZK1dTC', NULL, '2023-11-17 23:17:58', '2023-11-17 23:20:19'),
 (109, 'Rashidul Islam', 'icon.events20@gmail.com', '01568608656', 'Icon Event Management & Wedding Planner', 'H#13, R#07, Sector#10, Uttara, Dhaka-1240', 'customers/2aDzi8rxILlmTqRJ8lcVoesuqszhTmUYNSzihM7L.png', 0, NULL, '$2y$10$b6t0lj0SjKZoQkoFOnY0Ye1JCBYHQ9NfnljY7G2E8UBTYd4TR3iUm', NULL, '2023-11-20 21:44:23', '2023-11-20 21:51:02'),
@@ -608,7 +608,8 @@ INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percent
 (1358, 12, 1, 58150, 0, 0, 0, 58150, 58150, NULL, 'approved', '2024-01-01 13:22:00', '2024-01-02 04:08:46'),
 (1359, 24, 1, 37000, 0, 0, 0, 37000, 37000, NULL, 'approved', '2024-01-01 14:17:20', '2024-01-02 04:08:58'),
 (1360, 3, 1, 800, 0, 0, 0, 800, 800, NULL, 'approved', '2024-01-01 14:19:55', '2024-01-02 04:09:09'),
-(1361, 30, 1, 14000, 0, 0, 0, 14000, 14000, NULL, 'approved', '2024-01-02 14:01:23', '2024-01-03 04:12:37');
+(1361, 30, 1, 14000, 0, 0, 0, 14000, 14000, NULL, 'rented', '2024-01-02 14:01:23', '2024-01-13 08:19:17'),
+(1362, 106, 1, 45000, 0, 35000, 0, 45000, 10000, 'Chowmatha, Barishal', 'approved', '2024-01-13 09:35:18', '2024-01-13 09:40:53');
 
 -- --------------------------------------------------------
 
@@ -876,8 +877,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangla`, `dimension`, `color`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (21, 10, 'CP-01', 'Golden Candle Centre Piece', 'গোল্ডেন ক্যান্ডেল সেন্টার পিস', 'W-1.25 x H-2.5', 'Golden', 4, 'pcs', 500, 'product/RP34EimTwA3lrOoTrh9KRzJiIV3aFwpKzLyWDvuH.jpg', 1, '2023-10-12 04:45:31', '2023-12-15 17:37:23', NULL),
 (22, 10, 'CP-02', 'Silver Candle Centre Piece', 'সিলভার ক্যান্ডেল সেন্টার পিস', 'W-1.25 x H-2.5', 'Silver', 5, 'pcs', 500, 'product/2HBorgVU2zIcx7VKESYaTHlfCIqiAfcknLMGlnHq.jpg', 1, '2023-10-12 04:54:15', '2023-12-18 18:01:22', NULL),
-(23, 10, 'CP-03', 'China Glass Centre Piece', 'চায়না গ্লাস সেন্টার পিস', 'W-1.25 x H-3', 'Glass', 8, 'pcs', 1500, 'product/v4Vpg0V0jnkvWgnnEp6gWRMfu4016GjUBkhQvKWp.jpg', 1, '2023-10-12 04:56:07', '2023-12-15 15:48:23', NULL),
-(24, 10, 'CP-04', 'Table Chandelier Centre Piece', 'টেবিল স্যান্ডেলিয়ার সেন্টার পিস', 'W-2 x H-2.5', 'Silver', 8, 'pcs', 1000, 'product/cStoNrdmvenkhbVkQvFHNuWKdmC4oxa2qYvSSq6V.jpg', 1, '2023-10-12 04:57:45', '2023-12-15 15:48:54', NULL),
+(23, 10, 'CP-03', 'China Glass Centre Piece', 'চায়না গ্লাস সেন্টার পিস', 'W-1.25 x H-3', 'Glass', 6, 'pcs', 1500, 'product/v4Vpg0V0jnkvWgnnEp6gWRMfu4016GjUBkhQvKWp.jpg', 1, '2023-10-12 04:56:07', '2024-01-13 09:40:53', NULL),
+(24, 10, 'CP-04', 'Table Chandelier Centre Piece', 'টেবিল স্যান্ডেলিয়ার সেন্টার পিস', 'W-2 x H-2.5', 'Silver', 7, 'pcs', 1000, 'product/cStoNrdmvenkhbVkQvFHNuWKdmC4oxa2qYvSSq6V.jpg', 1, '2023-10-12 04:57:45', '2024-01-13 09:40:53', NULL),
 (25, 10, 'CP-05', 'Wooden Centre Piece', 'কাঠের সেন্টার পিস', 'H-1.5 x W-1', 'Wooden', 40, 'pcs', 300, 'product/AMVQk7eNsrQCI3TQLMgS6uxSutmjSuw864Nuheor.jpg', 1, '2023-10-12 05:16:43', '2023-12-15 15:49:11', NULL),
 (26, 10, 'CP-06', 'Mini Cristal Centre Piece', 'ছোট ক্রিস্টাল সেন্টার পিস', 'H-1.5', 'Silver', 30, 'pcs', 200, 'product/Xm2EaSZyILsUG1tKUbFTJorSdLqP63VuhhlJ5224.jpg', 1, '2023-10-12 05:19:27', '2023-12-15 15:49:31', NULL),
 (27, 10, 'CP-07', 'Candle SS Centre Piece', 'ক্যান্ডেল এসএস সেন্টার পিস', 'H-1.5\'', 'SS', 19, 'pcs', 100, 'product/JGEZih7wwGtJ5ltOR48KcSxe2V7ElGeuaY96NC51.jpg', 1, '2023-10-12 05:20:13', '2023-12-15 15:49:55', NULL),
@@ -971,7 +972,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (115, 16, 'FV-2', 'Flower Vase with Base', NULL, 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/7e1d49Ea5XKd5UV0fbJfSWGPeY2HRFCgdv0o5BDU.jpg', 1, '2023-10-13 08:36:52', '2023-10-13 08:37:22', '2023-10-13 08:37:22'),
 (116, 16, 'FV-2', 'Flower Vase with Base', NULL, 'H-3 feet', 'Customize', 4, 'pcs', 600, 'product/YvHfGDmJDRrrb9xUn9y4HWrA9HhXsgmFSF8xCzcr.jpg', 1, '2023-10-13 08:36:53', '2023-10-13 08:38:04', '2023-10-13 08:38:04'),
 (117, 16, 'FV-01', 'Crystal Flower Vase', 'ক্রিস্টাল ফ্লাওয়ার ভাস', 'H-2 feet, 1 feet', 'Crystal Silver', 12, 'pcs', 1000, 'product/GcXVGQLIYLySM5YxJRXfqWBYAgNBdBzo8D3omzjW.jpg', 1, '2023-10-13 09:12:44', '2023-11-17 15:46:20', NULL),
-(118, 16, 'FV-03', 'Medium Flower Vase', 'মাঝারি ফ্লাওয়ার ভাস', 'H-3 feet', 'Customize', 6, 'pcs', 500, 'product/2PUSQj3btRBdodGH8eT6aRRcAlqrUVQPItOuich0.jpg', 1, '2023-10-13 09:18:03', '2023-11-17 15:53:42', NULL),
+(118, 16, 'FV-03', 'Medium Flower Vase', 'মাঝারি ফ্লাওয়ার ভাস', 'H-3 feet', 'Customize', 4, 'pcs', 500, 'product/2PUSQj3btRBdodGH8eT6aRRcAlqrUVQPItOuich0.jpg', 1, '2023-10-13 09:18:03', '2024-01-13 09:40:53', NULL),
 (119, 16, 'FV-04', 'Fiber Flower Vase', 'ফাইবার ফ্লাওয়ার ভাস', 'H-2.5 feet', NULL, 8, 'pcs', 500, 'product/3uzDDlSeGNtswaT1HL3Y7RC6KQwUXinBoIanwjgk.jpg', 1, '2023-10-13 09:29:36', '2024-01-02 04:08:46', NULL),
 (120, 16, 'FV-05', 'Plastic Flower Vase', 'প্লাস্টিক ফ্লাওয়ার ভাস', NULL, 'White', 6, 'pcs', 300, 'product/1iwDylrlh9K3sqap6LagyVKZllC2e6rc6iYCCaCk.jpg', 1, '2023-10-13 09:30:18', '2023-11-17 15:55:25', NULL),
 (121, 16, 'FV-06', 'Roman Flower Vase', 'রোমান ফ্লাওয়ার ভাস', NULL, 'White', 1, 'pcs', 500, 'product/CqTQQLOvP4M27MesAmZMxw69tkzsLFqMXSxVG5jD.jpg', 1, '2023-10-13 09:35:00', '2024-01-02 04:08:46', NULL),
@@ -1830,8 +1831,11 @@ INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantit
 (415, 3, 214, 1360, 200, 'approved', '2024-01-01 00:00:00', '2024-01-02 00:00:00', 1, '2024-01-01 14:19:55', '2024-01-02 04:09:09', NULL),
 (416, 9, 462, 1356, 6, 'approved', '2024-01-01 00:00:00', '2024-01-02 00:00:00', 1, '2024-01-01 17:23:02', '2024-01-02 04:08:19', NULL),
 (417, 9, 265, 1356, 120, 'approved', '2024-01-01 00:00:00', '2024-01-02 00:00:00', 1, '2024-01-01 17:29:35', '2024-01-02 04:08:19', NULL),
-(418, 30, 331, 1361, 1, 'approved', '2024-01-02 00:00:00', '2024-01-03 00:00:00', 1, '2024-01-02 14:01:23', '2024-01-03 04:12:37', NULL),
-(419, 30, 403, 1361, 4, 'approved', '2024-01-02 00:00:00', '2024-01-03 00:00:00', 1, '2024-01-02 14:01:23', '2024-01-03 04:12:37', NULL);
+(418, 30, 331, 1361, 1, 'rented', '2024-01-02 00:00:00', '2024-01-03 00:00:00', 1, '2024-01-02 14:01:23', '2024-01-13 08:19:13', NULL),
+(419, 30, 403, 1361, 4, 'rented', '2024-01-02 00:00:00', '2024-01-03 00:00:00', 1, '2024-01-02 14:01:23', '2024-01-13 08:19:17', NULL),
+(420, 106, 23, 1362, 2, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL),
+(421, 106, 24, 1362, 1, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL),
+(422, 106, 118, 1362, 2, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -2063,7 +2067,9 @@ INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `invoice_id`, `type`
 (47, 111, 1, NULL, 'deposit added', 1000, NULL, 1000, 'deposit added', '2023-11-22 19:16:00', '2023-11-22 19:16:00'),
 (48, 111, 1, 1346, 'rental cost', 1000, NULL, 0, 'rental cost', '2023-11-22 19:16:41', '2023-11-22 19:16:41'),
 (49, 49, 1, NULL, 'deposit added', 500, NULL, 500, 'deposit added', '2023-12-14 15:26:30', '2023-12-14 15:26:30'),
-(50, 49, 1, 1348, 'due collection', 500, NULL, 0, 'due collection', '2023-12-14 15:26:39', '2023-12-14 15:26:39');
+(50, 49, 1, 1348, 'due collection', 500, NULL, 0, 'due collection', '2023-12-14 15:26:39', '2023-12-14 15:26:39'),
+(51, 106, 1, NULL, 'deposit added', 35000, NULL, 35000, 'deposit added', '2024-01-13 09:40:19', '2024-01-13 09:40:19'),
+(52, 106, 1, 1362, 'rental cost', 35000, NULL, 0, 'rental cost', '2024-01-13 09:40:53', '2024-01-13 09:40:53');
 
 -- --------------------------------------------------------
 
@@ -2555,7 +2561,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1362;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1363;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -2609,7 +2615,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 
 --
 -- AUTO_INCREMENT for table `repairs`
@@ -2645,7 +2651,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Transaction Reporting | Admin</title>
+    <title>Due Report | Admin</title>
 @endsection
 <!--end::Page Title-->
 
@@ -49,7 +49,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
             <!--begin::Title-->
-            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Transactions</h1>
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Dues</h1>
             <!--end::Title-->
 
             <!--begin::Breadcrumb-->
@@ -66,7 +66,7 @@
                 <!--end::Item-->
 
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Transactions</li>
+                <li class="breadcrumb-item text-muted">Dues</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -97,7 +97,7 @@
                         <span class="path1"></span>
                         <span class="path2"></span>
                     </i>
-                    <input type="text" data-transaction-filter="search" class="form-control form-control-solid w-250px ps-12 print-display-none" placeholder="Search Product">
+                    <input type="text" data-transaction-filter="search" class="form-control form-control-solid w-250px ps-12 print-display-none" placeholder="Search">
                 </div>
                 <!--end::Search-->
             </div>
@@ -122,8 +122,8 @@
                     <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Type" data-transaction-filter="type">
                         <option></option>
                         <option value="all">All</option>
-                        @foreach ($transactions->unique('type') as $transaction)
-                            <option value="{{ $transaction->type }}">{{ ucwords($transaction->type) }}</option>
+                        @foreach ($dues->unique('status') as $due)
+                            <option value="{{ $due->status }}">{{ ucwords($due->status) }}</option>
                         @endforeach
                     </select>
                     <!--end::Select2-->
@@ -135,8 +135,8 @@
                     <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Customer" data-transaction-filter="customer">
                         <option></option>
                         <option value="all">All</option>
-                        @foreach ($transactions->unique('customer_id') as $transaction)
-                            <option value="{{ $transaction->customer->id.' '.$transaction->customer->name}}">#{{ $transaction->customer->id }} {{ $transaction->customer->name }}</option>
+                        @foreach ($dues->unique('customer_id') as $due)
+                            <option value="{{ $due->customer->id.' '.$due->customer->name}}">#{{ $due->customer->id }} {{ $due->customer->name }}</option>
                         @endforeach
                     </select>
                     <!--end::Select2-->
@@ -165,77 +165,63 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
             <!--begin::Table-->
-            <span class="text-dark fs-1 print-display-show p-10">Transaction Report - {{ date('d M, Y h:i A') }}</span>
-            <table class="table table-striped align-middle fs-6 gy-5 dt-table" id="products_table">
+            <span class="text-dark fs-1 print-display-show p-10">Due Report - {{ date('d M, Y h:i A') }}</span>
+            <table class="table table-striped align-middle table-row-dashed fs-6 gy-5 dt-table" id="products_table">
                 <thead>
                     <tr class="text-start text-gray-600 fw-bold fs-7 text-uppercase gs-0">
                         <th class=" px-2">#</th>
-                        <th class="">Customer</th>
-                        <th class="text-center">Type</th>
-                        <th class="">Amount</th>
-                        <th class="">Deposit Balance</th>
-                        <th class="">Processed By</th>
+                        <th>Customer</th>
+                        <th class="">Due (TK)</th>
+                        <th class="text-center">Status</th>
+                        <th>Phone</th>
                         <th class="">Invoice</th>
-                        <th class="text-end px-2">Time</th>
+                        <th class="text-end px-2">From</th>
                     </tr>
                 </thead>
                 <tbody class="fw-semibold text-gray-600">
                     @php
                         $index = 0;
                     @endphp
-                    @foreach ($transactions as $transaction)
+                    @foreach ($dues as $due)
                     <tr>
-                        <td class="text-gray-600 px-2 py-2">
+                        <td class="text-gray-500 px-2 py-2">
                             {{ $index = $index+1 }}
                         </td>
-                        <td class="text-gray-700 py-2" data-filter="{{ $transaction->customer->id.' '.$transaction->customer->name}}">
-                            <a href="{{ route('admin.customer.show', $transaction->customer->id) }}" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $transaction->customer->name }}</a>
-                        </td>
-                        <td class="text-center py-2" data-filter="{{ $transaction->type }}">
-                            @if ($transaction->type == 'deposit added')
-                                <span class="badge badge-primary cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
-                            @elseif($transaction->type == 'rental cost')
-                                <span class="badge badge-danger cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
-                            @elseif($transaction->type == 'due collection')
-                                <span class="badge badge-success cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
-                            @elseif($transaction->type == 'due added')
-                                <span class="badge badge-warning cursor-pointer" title="{{ ucfirst($transaction->description) }}">{{ ucwords($transaction->type) }}</span>
+                        <td class="text-gray-700 py-2" data-filter="{{ $due->customer->id.' '.$due->customer->name}}">
+                            <a href="{{ route('admin.customer.show', $due->customer->id) }}" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $due->customer->name }}</a>
+                            @if (Carbon\Carbon::parse($due->created_at)->isToday())
+                                <span class="badge badge-primary">new</span>
                             @endif
                         </td>
-                        <td class="text-gray-700 py-2" data-filter="{{ $transaction->amount }}">
-                            <span>{{ number_format($transaction->amount) }}</span>
+                        <td class="text-gray-700 py-2" data-filter="{{ $due->due }}">
+                            {{-- <span class="font-bn text-danger fw-semibold">&#2547;</span> --}}
+                            <span class="text-danger fw-semibold">{{ number_format($due->due) }}</span>
                         </td>
-                        <td class="text-gray-700 py-2">
-                            <span>{{ number_format($transaction->balance) }}</span>
+                        <td class="text-center py-2" data-filter="{{ $due->status }}">
+                            @if ($due->status == 'approved')
+                                <span class="badge badge-primary cursor-pointer" title="{{ ucfirst($due->status) }}">{{ ucwords($due->status) }}</span>
+                            @elseif($due->status == 'rented')
+                                <span class="badge badge-danger cursor-pointer" title="{{ ucfirst($due->status) }}">{{ ucwords($due->status) }}</span>
+                            @elseif($due->status == 'returned')
+                                <span class="badge badge-success cursor-pointer" title="{{ ucfirst($due->status) }}">{{ ucwords($due->status) }}</span>
+                            @endif
                         </td>
-                        <td class="text-gray-700 py-2">{{ $transaction->user->name }}</td>
-                        <td class="text-gray-700 py-2" data-filter="{{ $transaction->invoice_id ?? '' }}">
-                            @if ($transaction->invoice_id)
-                                <a href="{{ route('admin.invoice.show', $transaction->invoice_id) }}" class="text-gray-700 fw-semibold text-hover-primary fs-6">#{{ $transaction->invoice->id ?? 'Not Available' }}</a>
+                        <td class="text-gray-700 py-2" data-filter="{{ $due->customer->phone_number }}">
+                            <span>{{ $due->customer->phone_number }}</span>
+                        </td>
+                        <td class="text-gray-700 py-2" data-filter="{{ $due->id ?? '' }}">
+                            @if ($due->id)
+                                <a href="{{ route('admin.invoice.show', $due->id) }}" class="text-gray-700 fw-semibold text-hover-primary fs-6">#{{ $due->id ?? 'Not Available' }}</a>
                             @else
                                 <span class="badge badge-secondary">N/A</span>
                             @endif
                         </td>
-                        <td class="text-gray-700 text-end py-2 px-2" data-filter="<span>{{ Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($transaction->created_at)->format('Y-m-d') }}">
-                            {{ Carbon\Carbon::parse($transaction->created_at)->format('d M, Y h:i A') }}
+                        <td class="text-gray-700 text-end py-2 px-2" data-filter="<span>{{ Carbon\Carbon::parse($due->created_at)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($due->created_at)->format('Y-m-d') }}">
+                            {{ Carbon\Carbon::parse($due->created_at)->format('d M, Y') }}
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr class="border-top border-5">
-                        <th class="text-end py-1" colspan="7">Total Rental</th>
-                        <th class="text-end py-1" id="totalRentalRow"></th>
-                    </tr>
-                    <tr>
-                        <th class="text-end py-1" colspan="7">Total Deposit</th>
-                        <th class="text-end py-1" id="totalDepositRow"></th>
-                    </tr>
-                    <tr>
-                        <th class="text-end py-1" colspan="7">Total Due Collection</th>
-                        <th class="text-end py-1" id="totalDueCollectionRow"></th>
-                    </tr>
-                </tfoot>
             </table>
             <!--end::Table-->
         </div>
@@ -282,60 +268,60 @@
                 'copyHtml5',
                 'excelHtml5',
             ],
-            footerCallback: function (row, data, start, end, display) {
-                let totalRentalRow = document.querySelector('#totalRentalRow');
-                let totalDepositRow = document.querySelector('#totalDepositRow');
-                let totalDueCollectionRow = document.querySelector('#totalDueCollectionRow');
+            // footerCallback: function (row, data, start, end, display) {
+            //     let totalRentalRow = document.querySelector('#totalRentalRow');
+            //     let totalDepositRow = document.querySelector('#totalDepositRow');
+            //     let totalDueCollectionRow = document.querySelector('#totalDueCollectionRow');
 
-                let api = this.api();
+            //     let api = this.api();
 
-                //get current page data
-                data = api.rows({ page: 'current' }).data();
+            //     //get current page data
+            //     data = api.rows({ page: 'current' }).data();
 
-                // extract column 3 data
-                var extractedData = [];
-                data.each(function (dataRow) {
-                    extractedData.push(dataRow);
-                });
+            //     // extract column 3 data
+            //     var extractedData = [];
+            //     data.each(function (dataRow) {
+            //         extractedData.push(dataRow);
+            //     });
 
-                data = extractedData;
+            //     data = extractedData;
 
-                let depositRow = data.filter((item) => {
-                    return item[2]["@data-filter"] == 'deposit added';
-                });
+            //     let depositRow = data.filter((item) => {
+            //         return item[2]["@data-filter"] == 'deposit added';
+            //     });
 
-                let depositAmount = 0;
-                depositRow.forEach(item => {
-                    let amount = item[3]["@data-filter"];
-                    depositAmount += parseInt(amount);
-                });
+            //     let depositAmount = 0;
+            //     depositRow.forEach(item => {
+            //         let amount = item[3]["@data-filter"];
+            //         depositAmount += parseInt(amount);
+            //     });
 
-                //calculate rental
-                let rentalRow = data.filter((item) => {
-                    return item[2]["@data-filter"] == 'rental';
-                });
+            //     //calculate rental
+            //     let rentalRow = data.filter((item) => {
+            //         return item[2]["@data-filter"] == 'rental';
+            //     });
 
-                let rentalAmount = 0;
-                rentalRow.forEach(item => {
-                    let amount = item[3]["@data-filter"];
-                    rentalAmount += parseInt(amount);
-                });
+            //     let rentalAmount = 0;
+            //     rentalRow.forEach(item => {
+            //         let amount = item[3]["@data-filter"];
+            //         rentalAmount += parseInt(amount);
+            //     });
 
-                //calculate due collection
-                let dueCollectionRow = data.filter((item) => {
-                    return item[2]["@data-filter"] == 'due collection';
-                });
+            //     //calculate due collection
+            //     let dueCollectionRow = data.filter((item) => {
+            //         return item[2]["@data-filter"] == 'due collection';
+            //     });
 
-                let dueCollectionAmount = 0;
-                dueCollectionRow.forEach(item => {
-                    let amount = item[3]["@data-filter"];
-                    dueCollectionAmount += parseInt(amount);
-                });
+            //     let dueCollectionAmount = 0;
+            //     dueCollectionRow.forEach(item => {
+            //         let amount = item[3]["@data-filter"];
+            //         dueCollectionAmount += parseInt(amount);
+            //     });
 
-                totalRentalRow.innerText = rentalAmount;
-                totalDepositRow.innerText = depositAmount;
-                totalDueCollectionRow.innerText = dueCollectionAmount;
-            }
+            //     totalRentalRow.innerText = rentalAmount;
+            //     totalDepositRow.innerText = depositAmount;
+            //     totalDueCollectionRow.innerText = dueCollectionAmount;
+            // }
         });
 
         // Class definition
@@ -384,7 +370,7 @@
                     if(value === 'all'){
                         value = '';
                     }
-                    datatable.column(2).search(value ? '^' + value + '$' : '', true, false).draw();
+                    datatable.column(3).search(value ? '^' + value + '$' : '', true, false).draw();
                 });
             }
 
@@ -398,7 +384,7 @@
                     function (settings, data, dataIndex) {
                         var min = minDate;
                         var max = maxDate;
-                        var dateAdded = new Date(moment($(data[7]).text(), 'DD/MM/YYYY'));
+                        var dateAdded = new Date(moment($(data[5]).text(), 'DD/MM/YYYY'));
                         
                         if ((min === null && max === null) || (min <= dateAdded && max === null) || (min === null && max >= dateAdded) || (min <= dateAdded && max >= dateAdded)) {
                             return true;

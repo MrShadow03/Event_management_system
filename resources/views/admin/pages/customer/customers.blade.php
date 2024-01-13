@@ -34,7 +34,7 @@
     <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
 
         <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+        <div id="kt_app_toolbar_container" class="app-container d-flex flex-stack">
 
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
@@ -71,7 +71,7 @@
 
 <!--begin::Main Content-->
 @section('content')
-    <div id="kt_app_content_container" class="app-container container-xxl">
+    <div id="kt_app_content_container" class="app-container">
         <div class="card">
             <!--begin::Card header-->
             <div class="card-header border-0 pt-6">
@@ -146,9 +146,8 @@
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="min-w-125px">ID</th>
+                            <th>ID</th>
                             <th class="min-w-125px">Customer Name</th>
-                            <th class="min-w-125px">Email</th>
                             <th class="min-w-125px">Phone number</th>
                             <th class="min-w-125px">Status</th>
                             <th class="min-w-125px">Company</th>
@@ -162,11 +161,22 @@
                             <td>
                                 <a href="{{ route('admin.customer.show', $customer->id ) }}" class="text-gray-800 text-hover-primary mb-1">#{{ $customer->id }}</a>
                             </td>
-                            <td>
-                                <a href="{{ route('admin.customer.show', $customer->id ) }}" class="text-gray-800 text-hover-primary mb-1">{{ $customer->name }}</a>
-                            </td>
-                            <td>
-                                <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ $customer->email }}</a>
+                            <td class="d-flex align-items-center">
+                                <!--begin:: Avatar -->
+                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                    <a href="{{ route('admin.customer.show', $customer->id ) }}">
+                                        <div class="symbol-label">
+                                            <img src="{{ asset('storage').'/'.$customer->image }}" alt="Emma Smith" class="w-100">
+                                        </div>
+                                    </a>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::User details-->
+                                <div class="d-flex flex-column">
+                                    <a href="{{ route('admin.customer.show', $customer->id ) }}" class="text-gray-800 text-hover-primary mb-1">{{ $customer->name }}</a>
+                                    <span>{{ $customer->email }}</span>
+                                </div>
+                                <!--begin::User details-->
                             </td>
                             <td>
                                 <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ $customer->phone_number }}</a>

@@ -177,7 +177,6 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'auth'], f
         Route::get('/transactions', [TransactionReportController::class, 'index'])->name('transactions');
         Route::get('/dues', [DueReportController::class, 'index'])->name('dues');
         Route::get('/orders', [OrderReportController::class, 'index'])->name('orders');
-        Route::get('/invoices', [InvoiceReportController::class, 'index'])->name('invoices');
     });
 
     Route::get('/themes', [ThemeController::class, 'index'])->name('themes');
