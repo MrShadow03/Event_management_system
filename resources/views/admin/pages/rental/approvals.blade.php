@@ -137,7 +137,7 @@
                             <th class="text-end min-w-100px">Paid</th>
                             <th class="text-end min-w-100px">Discount</th>
                             <th class="text-end min-w-100px">Due</th>
-                            <th class="text-end">Total Orders</th>
+                            <th class="text-end">Total Items</th>
                             <th class="text-end">Placed On</th>
                             <th class="text-end">Actions</th>
                         </tr>
@@ -169,7 +169,7 @@
                                 <span class="text-danger font-bn fs-6">{{ number_format($invoice->due) }} ৳</span>
                             </td>
                             <td class="text-end pe-0">
-                                <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>
+                                <span class="text-gray-800">{{ $invoice->rentals->sum('quantity') }}</span>
                             </td>
                             <td class="text-end" data-order="{{ Carbon\Carbon::parse($invoice->created_at)->format('Y-m-d') }}">
                                 {{ Carbon\Carbon::parse($invoice->created_at)->format('d M, y') }}

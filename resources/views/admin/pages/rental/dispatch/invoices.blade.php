@@ -109,7 +109,7 @@
                             <th class="">Invoice ID</th>
                             <th class="">Customer</th>
                             <th class="">Status</th>
-                            <th class="text-center ">Total Orders</th>
+                            <th class="text-center ">Total Items</th>
                             <th class="">Placed For</th>
                             <th class="">Venue</th>
                             <th class="text-end">Actions</th>
@@ -133,7 +133,7 @@
                                 <!--end::Badges-->
                             </td>
                             <td class="text-center py-2">
-                                <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>
+                                <span class="text-gray-800">{{ $invoice->rentals->sum('quantity') }}</span>
                             </td>
                             <td class="" data-order="{{ Carbon\Carbon::parse($invoice->starting_date)->format('Y-m-d') }}">
                                 {{ Carbon\Carbon::parse($invoice->starting_date)->format('d M, y') }}

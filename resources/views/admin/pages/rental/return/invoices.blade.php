@@ -161,7 +161,6 @@
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    {{-- <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/sales/listing.js') }}"></script> --}}
     <script>
         // Class definition
         var KTAppEcommerceSalesListing = function () {
