@@ -39,7 +39,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Orders
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Rentals
                 </h1>
                 <!--end::Title-->
 
@@ -57,7 +57,7 @@
                     <!--end::Item-->
 
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Orders</li>
+                    <li class="breadcrumb-item text-muted">Rentals</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -77,51 +77,26 @@
             <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                 <!--begin::Card title-->
                 <div class="card-title">
-                    <!--begin::Search-->
-                    <div class="d-flex align-items-center position-relative my-1">
-                        <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span class="path1"></span><span
-                                class="path2"></span></i> <input type="text" data-kt-ecommerce-order-filter="search"
-                            class="form-control form-control-solid w-250px ps-12" placeholder="Search Order" />
-                    </div>
-                    <!--end::Search-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_rental">
+                        <i class="ki-duotone ki-cheque fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                            <span class="path3"></span>
+                            <span class="path4"></span>
+                            <span class="path5"></span>
+                            <span class="path6"></span>
+                            <span class="path7"></span>
+                        </i>
+                        New Rent
+                    </button>
                 </div>
                 <!--end::Card title-->
 
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                    <!--begin::Flatpickr-->
-                    <div class="input-group w-250px">
-                        <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range"
-                            id="kt_ecommerce_sales_flatpickr" />
-                        <button class="btn btn-icon btn-light" id="kt_ecommerce_sales_flatpickr_clear">
-                            <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i>
-                        </button>
-                    </div>
-                    <!--end::Flatpickr-->
-
-                    <div class="w-100 mw-150px">
-                        <!--begin::Select2-->
-                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                            data-placeholder="Status" data-kt-ecommerce-order-filter="status">
-                            <option></option>
-                            <option value="all">All</option>
-                            <option value="rented">Rented</option>
-                            <option value="pending approval">Pending Approval</option>
-                            <option value="Denied">Denied</option>
-                            <option value="Expired">Expired</option>
-                            <option value="Failed">Failed</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Refunded">Refunded</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Delivering">Delivering</option>
-                        </select>
-                        <!--end::Select2-->
-                    </div>
-
-                    <!--begin::Add customer-->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_rental">Add Order</button>
-                    <!--end::Add customer-->
+                    <span class="fs-4 text-gray-800 fw-semibold">
+                        Recent Rentals
+                    </span>
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -134,105 +109,59 @@
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                        data-kt-check-target="#kt_ecommerce_sales_table .form-check-input" value="1" />
-                                </div>
-                            </th>
-                            <th class="min-w-100px">Order ID</th>
+                            <th class="min-w-100px">Invoice ID</th>
                             <th class="min-w-175px">Customer</th>
                             <th class="text-end min-w-70px">Status</th>
                             <th class="text-end min-w-100px">Total</th>
                             <th class="text-end min-w-100px">From</th>
                             <th class="text-end min-w-100px">Return Date</th>
-                            <th class="text-end min-w-100px">Product</th>
-                            <th class="text-end min-w-100px">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="fw-semibold text-gray-600">
-                        @forelse ($rentals as $rental)
+                        @forelse ($invoices as $invoice)
                         <tr>
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
+                            <td class="py-2" data-kt-ecommerce-order-filter="order_id">
+                                <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-800 text-hover-primary fw-bold">{{ $invoice->id }}</a>
                             </td>
-                            <td data-kt-ecommerce-order-filter="order_id">
-                                <a href="#" class="text-gray-800 text-hover-primary fw-bold">{{ $rental->id }}</a>
-                            </td>
-                            <td>
+                            <td class="py-2">
                                 <div class="d-flex align-items-center">
                                     <!--begin:: Avatar -->
-                                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}">
-                                            <div class="symbol-label">
-                                                {{ $rental->customer->name[0] }}
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!--end::Avatar-->
+                                <div class="symbol symbol-circle symbol-30px overflow-hidden me-3">
+                                    <a href="{{ route('admin.customer.show', $invoice->customer->id ) }}">
+                                        <div class="symbol-label">
+                                            <img src="{{ asset('storage').'/'.$invoice->customer->image }}" alt="Emma Smith" class="w-100">
+                                        </div>
+                                    </a>
+                                </div>
+                                <!--end::Avatar-->
 
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{ route('admin.customer.show', $rental->customer->id) }}"
-                                            class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $rental->customer->name }}</a>
+                                        <a href="{{ route('admin.customer.show', $invoice->customer->id) }}"
+                                            class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $invoice->customer->name }}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-end pe-0" data-order="{{ $rental->status }}">
-                                <!--begin::Badges-->
-                                <div class="badge badge-light-warning">{{ strtoupper($rental->status) }}</div>
-                                <!--end::Badges-->
+                            <td class="text-end pe-0 py-2" data-order="{{ $invoice->status }}">
+                                @if ($invoice->status == 'approved')
+                                    <span class="badge badge-primary cursor-pointer" title="{{ ucfirst($invoice->status) }}">{{ ucwords($invoice->status) }}</span>
+                                @elseif($invoice->status == 'rented')
+                                    <span class="badge badge-danger cursor-pointer" title="{{ ucfirst($invoice->status) }}">{{ ucwords($invoice->status) }}</span>
+                                @elseif($invoice->status == 'returned')
+                                    <span class="badge badge-success cursor-pointer" title="{{ ucfirst($invoice->status) }}">{{ ucwords($invoice->status) }}</span>
+                                @elseif($invoice->status == 'pending approval')
+                                    <span class="badge badge-warning cursor-pointer" title="{{ ucfirst($invoice->status) }}">{{ ucwords($invoice->status) }}</span>
+                                @endif
                             </td>
-                            <td class="text-end pe-0">
-                                <span class="fw-bold">{{ $rental->product->rental_price * $rental->number_of_days }}</span>
+                            <td class="text-end pe-0 py-2">
+                                <span class="fw-bold">{{ $invoice->grand_total }}</span>
                             </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($rental->starting_date)->format('Y-m-d') }}">
-                                <span class="fw-bold">{{ Carbon\Carbon::parse($rental->starting_date)->format('d/m/Y') }}</span>
+                            <td class="text-end py-2" data-order="{{ Carbon\Carbon::parse($invoice->starting_date)->format('Y-m-d') }}">
+                                <span class="fw-bold">{{ Carbon\Carbon::parse($invoice->starting_date)->format('d/m/Y') }}</span>
                             </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($rental->ending_date)->format('Y-m-d') }}">
-                                <span class="fw-bold">{{ Carbon\Carbon::parse($rental->ending_date)->format('d/m/Y') }}</span>
-                            </td>
-                            <td class="text-end">
-                                <span class="fw-bold">{{ $rental->product->name }} {{ $rental->quantity }}</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#"
-                                    class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    Actions
-                                    <i class="ki-duotone ki-down fs-5 ms-1"></i> </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                    data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="{{ route('admin.invoice.show', $rental->invoice->id) }}" class="menu-link px-3">
-                                            View
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#edit" class="menu-link px-3">
-                                            Edit
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#decline" class="menu-link px-3"
-                                            data-kt-ecommerce-order-filter="delete_row">
-                                            Decline
-                                        </a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu-->
+                            <td class="text-end py-2" data-order="{{ Carbon\Carbon::parse($invoice->ending_date)->format('Y-m-d') }}">
+                                <span class="fw-bold">{{ Carbon\Carbon::parse($invoice->ending_date)->format('d/m/Y') }}</span>
                             </td>
                         </tr>
                         @empty
@@ -243,6 +172,17 @@
                 <!--end::Table-->
             </div>
             <!--end::Card body-->
+
+            <!--begin::Card footer-->
+            <div class="card-footer pt-0">
+                <a href="{{ route('admin.reporting.orders') }}" class="btn btn-secondary btn-sm">
+                    <i class="ki-duotone ki-exit-right-corner fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    View All
+                </a>
+            </div>
         </div>
     </div>
 @endsection
@@ -273,7 +213,7 @@
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
-                            <h1 class="mb-3">New Order</h1>
+                            <h1 class="mb-3">New Rent</h1>
                             <!--end::Title-->
                         </div>
                         <!--end::Heading-->
@@ -373,9 +313,6 @@
 
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
-    <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/admin/assets/js/custom/apps/ecommerce/sales/listing.js') }}"></script>
     <script>
         $("#dateRange").flatpickr({
             altInput: true,

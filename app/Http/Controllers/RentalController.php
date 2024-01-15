@@ -12,16 +12,18 @@ use Illuminate\Http\Request;
 class RentalController extends Controller
 {
     public function index(){
-        $rentals = Rental::with('customer', 'product', 'invoice')
-            ->whereHas('product', function ($query) {
-                $query->whereNotNull('product_id');
-            })
-            ->latest()
-            ->get();
+        //get all the invoices with at least one order with the customer and the first order
+        $invoices = Invoice::orderBy('created_at', 'desc')->whereHas('rentals')->with('customer')->limit(10)->get();
+
+        // get the starting date for each deu
+        foreach ($invoices as $invoice) {
+            $invoice->starting_date = Rental::where('invoice_id', $invoice->id)->orderBy('created_at', 'asc')->first()->starting_date;
+            $invoice->ending_date = Rental::where('invoice_id', $invoice->id)->orderBy('created_at', 'desc')->first()->ending_date;
+        }
 
         $customers = Customer::all();
         return view('admin.pages.rental.rentals', [
-            'rentals' => $rentals,
+            'invoices' => $invoices,
             'customers' => $customers,
         ]);
     }

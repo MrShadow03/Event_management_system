@@ -252,33 +252,11 @@
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script>
-        function inputProductData(data, storagePath) {
-            $('#editProductId').val(data.id);
-            $('#editProductName').val(data.name);
-            $('#editProductCategory').val(data.category_id);
-            $('#editProductCode').val(data.product_code);
-            $('#editProductRentalPrice').val(data.rental_price);
-            $('#editProductDimension').val(data.dimension);
-            $('#editProductStock').val(data.stock);
-            $('#editProductColor').val(data.color);
-            $('#editImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')');
-
-            // select the category in the select2
-            $('#editProductCategory').select2().trigger('change');
-        }
-
-        function inputCategoryData(data, storagePath) {
-            // change the form title
-            $('#editCategoryId').val(data.id);
-            $('#editCategoryName').val(data.name);
-            $('#editCategoryImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')' );
-        }
-
         const table = document.querySelector('#products_table');;
         const datatable = $(table).DataTable({
             "info": true,
             'pageLength': 20,
-            'lengthChange': true,
+            'lengthChange': false,
             'lengthMenu': [5, 10, 20, 50, 100],
             'dom': 'Bfrtip',
             'buttons': [

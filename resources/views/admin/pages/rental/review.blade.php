@@ -601,6 +601,27 @@
                 // Change the form's action to the "Approve" route
                 approvalForm.action = "{{ route('admin.rentals.review.update') }}";
 
+                // check if the form is valid
+                if(!approvalForm.checkValidity()){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Show notification
+                    // toastr.warning('Insufficient product quantity!');
+                    Swal.fire({
+                        text: "Insufficient product quantity!",
+                        icon: "warning",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-light-primary"
+                        }
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                    return;
+                }
+
                 // show sweet alert
                 Swal.fire({
                     title: "Are you sure?",

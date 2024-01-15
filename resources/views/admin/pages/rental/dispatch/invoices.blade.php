@@ -103,42 +103,47 @@
             <div class="card-body pt-0">
 
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+                <table class="table align-middle table-striped fs-6 gy-5" id="kt_ecommerce_sales_table">
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class="">Invoice ID</th>
                             <th class="">Customer</th>
-                            <th class="text-end">Status</th>
-                            <th class="text-end">Total Orders</th>
-                            <th class="text-end">Placed On</th>
-                            <th class="text-end">Venue</th>
+                            <th class="">Status</th>
+                            <th class="text-center ">Total Orders</th>
+                            <th class="">Placed For</th>
+                            <th class="">Venue</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="fw-semibold text-gray-600">
+                    <tbody class="">
                         @forelse ($invoices as $invoice)
                         <tr>
-                            <td data-kt-ecommerce-order-filter="order_id">
+                            <td class=" py-2" data-kt-ecommerce-order-filter="order_id">
                                 <a href="{{ route('admin.invoice.show', $invoice->id) }}" class="text-gray-800 text-hover-primary fw-bold">#{{ $invoice->id }}</a>
                             </td>
                             <td>
                                 <a href="{{ route('admin.customer.show', $invoice->customer->id) }}" class="text-gray-800 text-hover-primary fw-bold">{{ $invoice->customer->name }}</a>
+                                @if (Carbon\Carbon::parse($invoice->starting_date)->isToday())
+                                <span class="ms-2 badge badge-primary">new</span>
+                            @endif
                             </td>
-                            <td class="text-end pe-0">
+                            <td class="py-2">
                                 <!--begin::Badges-->
-                                <div class="badge badge-light-success">{{ strtoupper($invoice->status) }}</div>
+                                <div class="badge badge-success">{{ strtoupper($invoice->status) }}</div>
                                 <!--end::Badges-->
                             </td>
-                            <td class="text-end pe-0">
+                            <td class="text-center py-2">
                                 <span class="text-gray-800">{{ $invoice->rentals->count() }}</span>
                             </td>
-                            <td class="text-end" data-order="{{ Carbon\Carbon::parse($invoice->created_at)->format('Y-m-d') }}">
-                                {{ Carbon\Carbon::parse($invoice->created_at)->format('d M, y') }}
+                            <td class="" data-order="{{ Carbon\Carbon::parse($invoice->starting_date)->format('Y-m-d') }}">
+                                {{ Carbon\Carbon::parse($invoice->starting_date)->format('d M, y') }}
                             </td>
-                            <td class="text-end">
-                                {{ $invoice->venue ?? 'N/A' }}
+                            <td class="py-2">
+                                <span class="{{ $invoice->venue ? '' : 'text-gray-400' }}">
+                                    {{ $invoice->venue ?? 'N/A' }}
+                                </span>
                             </td>
-                            <td class="text-end">
+                            <td class="text-end py-2">
                                 <a href="{{ route('admin.rentals.dispatch.orders', $invoice->id) }}" class="btn btn-sm btn-primary">
                                     <i class="ki-duotone ki-delivery fs-2">
                                         <span class="path1"></span>

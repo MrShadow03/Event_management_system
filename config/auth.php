@@ -67,6 +67,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'expire' => 10080, // 7 days
         ],
 
         'customers' => [

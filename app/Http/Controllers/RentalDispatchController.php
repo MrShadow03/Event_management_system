@@ -9,10 +9,15 @@ use Illuminate\Http\Request;
 class RentalDispatchController extends Controller{
     public function index(){
         $date = request()->input("date") ?? date("Y-m-d");
+
         $invoices = Invoice::whereHas('rentals', function($query) use ($date){
             $query->where('status', 'approved')
-                ->whereDate('starting_date', $date);
-        })->with(['rentals', 'customer'])->get();
+            ->whereDate('starting_date', '<=', $date);
+        })->with(['rentals', 'customer'])->orderByRaw('(SELECT MIN(starting_date) FROM rentals WHERE rentals.invoice_id = invoices.id) DESC')->get();
+
+        foreach ($invoices as $invoice) {
+            $invoice->starting_date = Rental::where('invoice_id', $invoice->id)->orderBy('created_at', 'asc')->first()->starting_date;
+        }
 
         return view('admin.pages.rental.dispatch.invoices', [
             'invoices' => $invoices,

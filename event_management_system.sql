@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2024 at 11:34 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jan 15, 2024 at 09:47 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -317,7 +317,7 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `addr
 (103, 'Opu Hasan', 'customer103@admin.com', '01832612519', 'Garden Event Management', 'Dhaka, Bangladesh', 'customers/FEbOiSWa26htWcUjK4otIqi9Wrks93HbbHFo5Ebd.jpg', 0, NULL, '$2y$10$3p8NA7r/wZhrspDphroOxeV1F1vuqcdQ70F3FQFFIDf8zV8EYj9eC', NULL, '2023-11-03 14:18:58', '2023-11-05 17:33:42'),
 (104, 'Imtiaz Ahmed', 'customer104@admin.com', '01941320214', 'Fuler Karigor', 'Notun Bazar, Bhatara, Dhaka', 'customers/zCg7CPjygodFXSoCxC5I3B3wFcwDtK68FXjsKEEq.png', 0, NULL, '$2y$10$TfhmoTT965b0YKlAq.eqR.HsgUGXCTTCmewmAtGOcz7xmU/pL/CH6', NULL, '2023-11-03 18:08:38', '2023-11-03 18:08:38'),
 (105, 'Jahid Hasan Manager', 'weddingbuzz2021@gmail.com', '01836281193', 'Wedding Buzz', '61/1, North Pirerbug, 60 feet, Mirpur 2,Dhaka., Dhaka, Bangladesh', 'customers/ICWoz0Rs7GxzdquLMsw9aqgeL3DNkwjtcMrJho2s.jpg', 0, NULL, '$2y$10$RqWw2v7qf.2tiOd03BYb/O4BbhCeFbxJG6IJVNi72uwDqju9jbzrO', NULL, '2023-11-05 19:03:04', '2023-11-05 19:05:06'),
-(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/W9xJYtxJn3izqJ1FZsM8GgE5MnsBHqLrnWlcY0Sq.jpg', 0, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2024-01-13 09:40:53'),
+(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/V1e0aSohk5t7D87Jcs33EXPBZBokcjDpmnJHki63.png', 0, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2024-01-14 08:12:41'),
 (107, 'Md. Liton', 'customer107@admin.com', '01821693303', 'Creative Corner BD', '327 Morolbari, Nayatola, Hatijheel, Modhubagh, Mogbazar, Dhaka', 'customers/default.png', 0, NULL, '$2y$10$EWv1FAL/gKKKhjLtBf1E5uN45Dg93G7NLPoLkfagFzlCp26xH0H.C', NULL, '2023-11-10 04:24:08', '2023-11-10 16:55:25'),
 (108, 'Shafin Khan', 'nafiulmomits@gmail.com', '01621737497', 'Eventson', 'Delpara, Narayangonj', 'customers/fLenZIxXsrMk1fio5YZZIqXyQXd2k27R1lBjAH6G.jpg', 0, NULL, '$2y$10$jSYIBMIMAhOgmAv6yCaWhudqvJPJhmyXcNb04jlen6JmZbcZK1dTC', NULL, '2023-11-17 23:17:58', '2023-11-17 23:20:19'),
 (109, 'Rashidul Islam', 'icon.events20@gmail.com', '01568608656', 'Icon Event Management & Wedding Planner', 'H#13, R#07, Sector#10, Uttara, Dhaka-1240', 'customers/2aDzi8rxILlmTqRJ8lcVoesuqszhTmUYNSzihM7L.png', 0, NULL, '$2y$10$b6t0lj0SjKZoQkoFOnY0Ye1JCBYHQ9NfnljY7G2E8UBTYd4TR3iUm', NULL, '2023-11-20 21:44:23', '2023-11-20 21:51:02'),
@@ -349,7 +349,8 @@ CREATE TABLE `damaged_products` (
 
 INSERT INTO `damaged_products` (`id`, `product_id`, `rental_id`, `quantity`, `cost`, `created_at`, `updated_at`) VALUES
 (1, 477, 14, 1, 15000, '2023-11-04 16:21:22', '2023-11-04 16:21:22'),
-(2, 413, 44, 1, 1500, '2023-11-08 00:47:25', '2023-11-08 00:47:25');
+(2, 413, 44, 1, 1500, '2023-11-08 00:47:25', '2023-11-08 00:47:25'),
+(3, 21, 424, 4, 5000, '2024-01-14 12:25:32', '2024-01-14 12:25:32');
 
 -- --------------------------------------------------------
 
@@ -371,7 +372,7 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id`, `name`, `path`, `status`, `updated_at`, `created_at`) VALUES
-(11, 'Product Rental Policy', 'documents/Product Rental Policy.pdf', 1, '2024-01-04 09:50:54', '2024-01-04 09:49:51'),
+(11, 'Product Rental Policy', 'documents/Product Rental Policy.pdf', 1, '2024-01-14 06:43:54', '2024-01-04 09:49:51'),
 (12, 'Delivery and Shipping', 'documents/Delivery and Shipping.pdf', 0, '2024-01-04 09:50:32', '2024-01-04 09:50:32'),
 (13, 'Terms and Conditions', 'documents/Terms and Conditions.pdf', 1, '2024-01-04 09:50:57', '2024-01-04 09:50:49');
 
@@ -592,9 +593,9 @@ INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percent
 (1341, 24, 1, 5000, 0, 0, 0, 5000, 5000, NULL, 'approved', '2023-11-21 23:18:36', '2023-11-23 17:12:20'),
 (1343, 104, 1, 3980, 0, 0, 0, 3980, 3980, NULL, 'approved', '2023-11-22 15:59:37', '2023-11-23 17:10:48'),
 (1344, 4, 1, 8000, 0, 0, 0, 8000, 8000, NULL, 'approved', '2023-11-22 17:14:25', '2023-11-23 17:10:27'),
-(1345, 111, 1, 2200, 0, 2200, 0, 2200, 0, NULL, 'approved', '2023-11-22 19:03:12', '2023-11-22 19:09:58'),
+(1345, 111, 1, 2200, 0, 2200, 0, 2200, 0, NULL, 'returned', '2023-11-22 19:03:12', '2024-01-15 05:29:55'),
 (1346, 111, 1, 3000, 0, 1000, 0, 3000, 2000, NULL, 'approved', '2023-11-22 19:11:28', '2023-11-22 19:16:41'),
-(1347, 18, 1, 42700, 0, 0, 0, 42700, 42700, 'Shaheen Hall, Mohakhali', 'approved', '2023-12-13 23:54:41', '2023-12-14 15:03:57'),
+(1347, 18, 1, 42700, 0, 0, 0, 42700, 42700, 'Shaheen Hall, Mohakhali', 'rented', '2023-12-13 23:54:41', '2024-01-14 12:20:41'),
 (1348, 49, 1, 500, 0, 500, 0, 500, 0, 'Gulshan-02', 'returned', '2023-12-14 15:24:25', '2023-12-18 18:01:36'),
 (1349, 113, 1, 14200, 0, 0, 0, 14200, 14200, NULL, 'approved', '2023-12-15 17:26:13', '2023-12-18 18:01:22'),
 (1350, 21, 1, 26220, 0, 0, 0, 26220, 26220, NULL, 'approved', '2023-12-21 16:47:06', '2023-12-27 04:32:51'),
@@ -609,7 +610,11 @@ INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percent
 (1359, 24, 1, 37000, 0, 0, 0, 37000, 37000, NULL, 'approved', '2024-01-01 14:17:20', '2024-01-02 04:08:58'),
 (1360, 3, 1, 800, 0, 0, 0, 800, 800, NULL, 'approved', '2024-01-01 14:19:55', '2024-01-02 04:09:09'),
 (1361, 30, 1, 14000, 0, 0, 0, 14000, 14000, NULL, 'rented', '2024-01-02 14:01:23', '2024-01-13 08:19:17'),
-(1362, 106, 1, 45000, 0, 35000, 0, 45000, 10000, 'Chowmatha, Barishal', 'approved', '2024-01-13 09:35:18', '2024-01-13 09:40:53');
+(1362, 106, 1, 45000, 0, 35000, 0, 45000, 10000, 'Chowmatha, Barishal', 'approved', '2024-01-13 09:35:18', '2024-01-13 09:40:53'),
+(1363, 106, 1, 4000, 0, 0, 0, 4000, 4000, NULL, 'returned', '2024-01-14 12:22:51', '2024-01-14 12:25:16'),
+(1364, 106, 1, 4000, 0, 0, 0, 9000, 9000, NULL, 'returned', '2024-01-14 12:23:22', '2024-01-14 12:25:32'),
+(1365, 5, 1, 3000, 0, 0, 0, 3000, 3000, NULL, 'rented', '2024-01-15 05:32:01', '2024-01-15 06:02:23'),
+(1366, 5, 1, 1000, 0, 0, 0, 1000, 1000, NULL, 'rented', '2024-01-15 05:32:24', '2024-01-15 06:02:19');
 
 -- --------------------------------------------------------
 
@@ -875,7 +880,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangla`, `dimension`, `color`, `stock`, `measurement_unit`, `rental_price`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(21, 10, 'CP-01', 'Golden Candle Centre Piece', 'গোল্ডেন ক্যান্ডেল সেন্টার পিস', 'W-1.25 x H-2.5', 'Golden', 4, 'pcs', 500, 'product/RP34EimTwA3lrOoTrh9KRzJiIV3aFwpKzLyWDvuH.jpg', 1, '2023-10-12 04:45:31', '2023-12-15 17:37:23', NULL),
+(21, 10, 'CP-01', 'Golden Candle Centre Piece', 'গোল্ডেন ক্যান্ডেল সেন্টার পিস', 'W-1.25 x H-2.5', 'Golden', 0, 'pcs', 500, 'product/RP34EimTwA3lrOoTrh9KRzJiIV3aFwpKzLyWDvuH.jpg', 1, '2023-10-12 04:45:31', '2024-01-15 05:57:23', NULL),
 (22, 10, 'CP-02', 'Silver Candle Centre Piece', 'সিলভার ক্যান্ডেল সেন্টার পিস', 'W-1.25 x H-2.5', 'Silver', 5, 'pcs', 500, 'product/2HBorgVU2zIcx7VKESYaTHlfCIqiAfcknLMGlnHq.jpg', 1, '2023-10-12 04:54:15', '2023-12-18 18:01:22', NULL),
 (23, 10, 'CP-03', 'China Glass Centre Piece', 'চায়না গ্লাস সেন্টার পিস', 'W-1.25 x H-3', 'Glass', 6, 'pcs', 1500, 'product/v4Vpg0V0jnkvWgnnEp6gWRMfu4016GjUBkhQvKWp.jpg', 1, '2023-10-12 04:56:07', '2024-01-13 09:40:53', NULL),
 (24, 10, 'CP-04', 'Table Chandelier Centre Piece', 'টেবিল স্যান্ডেলিয়ার সেন্টার পিস', 'W-2 x H-2.5', 'Silver', 7, 'pcs', 1000, 'product/cStoNrdmvenkhbVkQvFHNuWKdmC4oxa2qYvSSq6V.jpg', 1, '2023-10-12 04:57:45', '2024-01-13 09:40:53', NULL),
@@ -937,8 +942,8 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (80, 9, 'AT-10', 'Ginger Leaf', 'আদা পাতা', '3 feet', 'Green', 10, 'pcs', 100, 'product/JJOJ1FtSLKB7ohx41WAvI6SUUQmAkOcE6lsxLVkq.jpg', 1, '2023-10-12 11:31:20', '2023-11-12 21:01:09', NULL),
 (81, 13, 'CND-01', 'Glass Chandelier Large 15 Stick', 'বড় কাচের স্যান্ডেলিয়ার', 'Large', NULL, 16, 'pcs', 2500, 'product/ooRh6ONQLXbls8BWkz8ATUyM4IqsipymxJ3AzNZR.jpg', 1, '2023-10-12 13:31:02', '2023-12-13 22:08:14', NULL),
 (82, 13, 'CND-1a', 'Glass Chandelier Small', NULL, 'Single Layer', NULL, 1, 'pcs', 2000, 'product/e0YIsBrwbt7n4G7mW8XER2cDRgtR2zuJJKbK4k8H.jpg', 1, '2023-10-12 13:32:24', '2023-10-12 13:32:24', NULL),
-(83, 13, 'CND-02', 'Glass Chandelier Small', 'ছোট কাচের স্যান্ডেলিয়ার', 'Large', NULL, 7, 'pcs', 700, 'product/HONZPFLmgrpSMLlh2764Hgl0hyZww6xa6SG9PNPZ.jpg', 1, '2023-10-12 13:34:50', '2023-12-14 15:03:57', NULL),
-(84, 13, 'CND-03', 'Silver Chandelier', 'এস এস স্যান্ডেলিয়ার', NULL, 'Silver', 41, 'pcs', 500, 'product/sZ7BCW1AYngwc6Gt7iNWZUIX2Qx6YK0JnckcgYUT.jpg', 1, '2023-10-13 04:37:52', '2024-01-02 04:08:58', NULL),
+(83, 13, 'CND-02', 'Glass Chandelier Small', 'ছোট কাচের স্যান্ডেলিয়ার', 'Large', NULL, 10, 'pcs', 700, 'product/HONZPFLmgrpSMLlh2764Hgl0hyZww6xa6SG9PNPZ.jpg', 1, '2023-10-12 13:34:50', '2024-01-14 12:21:39', NULL),
+(84, 13, 'CND-03', 'Silver Chandelier', 'এস এস স্যান্ডেলিয়ার', NULL, 'Silver', 43, 'pcs', 500, 'product/sZ7BCW1AYngwc6Gt7iNWZUIX2Qx6YK0JnckcgYUT.jpg', 1, '2023-10-13 04:37:52', '2024-01-14 12:21:45', NULL),
 (85, 13, 'CND-04', 'Golden Chandelier', 'গোল্ডেন স্যান্ডেলিয়ার', NULL, 'Golden', 12, 'pcs', 700, 'product/m9T6UZQCHIuPXKhVPWzNf0m5yTvnAbg2uh2l8Yd2.jpg', 1, '2023-10-13 04:38:46', '2023-11-13 19:03:30', NULL),
 (86, 13, 'CND-05', 'Ball Chandelier', 'বল স্যান্ডেলিয়ার', '2 feet Dia', 'Golden', 10, 'pcs', 1000, 'product/Fq6NArowwIIbAGo5RvpW4c3FROdC545YjrtEj6BM.jpg', 1, '2023-10-13 04:40:27', '2023-11-13 19:04:34', NULL),
 (87, 13, 'CND-06', 'Round Crystal Chandelier', 'রাউন্ড ক্রিস্টাল স্যান্ডেলিয়ার', 'Round', 'Silver Crystal', 61, 'pcs', 500, 'product/etVxERNRa1P3zbx976VdOhmOFlm5WbcwEBrTXq2p.jpg', 1, '2023-10-13 04:45:23', '2023-12-18 18:01:22', NULL),
@@ -956,7 +961,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (99, 13, 'CND-18', 'Hanging Chandelier', 'হ্যাংগিং স্যান্ডেলিয়ার', NULL, 'White', 6, 'pcs', 200, 'product/5R83ZgFzCl9itHvMZN6SzcPSp7gdt4UNvqHPpR9n.jpg', 1, '2023-10-13 05:00:32', '2023-11-13 19:10:42', NULL),
 (100, 13, 'CND-19', 'Bulb Chandelier', 'বাল্ব স্যান্ডেলিয়ার', 'Set', 'Golden', 2, 'pcs', 8000, 'product/TLssgVzPDp45dCLqs3PywSuZHbOXaWogY1SKtmmL.jpg', 1, '2023-10-13 05:01:44', '2023-11-13 19:11:08', NULL),
 (101, 13, 'CND-20', 'Large Crystal Chandelier', 'বড় ক্রিস্টাল স্যান্ডেলিয়ার', 'Large', 'Silver Crystal', 1, 'pcs', 2000, 'product/7bYBNNkDFuoxkXL34WUOaMqMB31lHUY3CjgIye1Z.jpg', 1, '2023-10-13 05:03:01', '2023-11-13 19:11:34', NULL),
-(102, 13, 'CND-21', 'Glass Crystal Chandelier', 'কাঁচের ক্রিস্টাল স্যান্ডেলিয়ার', '10 gang', 'Crystal', 10, 'pcs', 2000, 'product/1ApHQlvHaA849xPAbImL5LL0osJDJQLsK2yb9ZeK.jpg', 1, '2023-10-13 05:06:39', '2024-01-03 04:16:11', NULL),
+(102, 13, 'CND-21', 'Glass Crystal Chandelier', 'কাঁচের ক্রিস্টাল স্যান্ডেলিয়ার', '10 gang', 'Crystal', 11, 'pcs', 2000, 'product/1ApHQlvHaA849xPAbImL5LL0osJDJQLsK2yb9ZeK.jpg', 1, '2023-10-13 05:06:39', '2024-01-14 12:21:42', NULL),
 (103, 13, 'CND-22', 'Glass Crystal Chandelier', 'কাঁচের ক্রিস্টাল স্যান্ডেলিয়ার ১৫ গ্যাং', '15 Gang', 'Crystal', 15, 'pcs', 3000, 'product/jUmh6eZIvCIjanwNypZ3xftdEHFvvyR45zZdydH6.jpg', 1, '2023-10-13 05:07:25', '2023-11-13 19:13:06', NULL),
 (104, 13, 'CND-23', 'Modern Crystal Chandelier', 'আধুনিক ক্রিস্টাল স্যান্ডেলিয়ার', 'Round', 'Crystal Golden', 2, 'pcs', 1500, 'product/Lk23hJ9Th8Gnf8NQhGjKj0C3lJJBcTl8tWsyIR7s.jpg', 1, '2023-10-13 05:13:36', '2023-12-14 15:03:57', NULL),
 (105, 13, 'CND-24', 'Pineapple Chandelier', 'আনারস লাইট স্যান্ডেলিয়ার', NULL, 'Glass', 8, 'pcs', 300, 'product/o93Ih8U9hnWtiwbAhETVH9JM2jmdnQeAFGxWiSYo.jpg', 1, '2023-10-13 05:15:18', '2023-11-13 19:16:00', NULL),
@@ -990,7 +995,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (133, 16, 'FV-15c', 'Mirror Flower Vase', NULL, 'Small', NULL, 2, 'pcs', 200, 'product/f3MmSzjqexmVFAr64kqcCwcDKbc1Bj1xdFcyHhaK.jpg', 1, '2023-10-15 04:04:38', '2023-10-15 04:04:38', NULL),
 (134, 16, 'FV-16', 'Metal Flower Vase', 'মেটাল ফ্লাওয়ার ভাস', NULL, 'Customize', 4, 'pcs', 300, 'product/MfsJqYh2QG4uw9TH4afdR7Ubg7YpBFXbVFIwgdrW.jpg', 1, '2023-10-15 04:05:46', '2023-11-23 17:09:28', NULL),
 (135, 16, 'FV-17', 'Metal Flower Vase', 'মেটাল ফ্লাওয়ার ভাস', NULL, 'Customize', 19, 'pcs', 300, 'product/UePS6Zl8y62mKbe0986mLCuuRFmjtD1ttj1W40CM.jpg', 1, '2023-10-15 04:06:20', '2024-01-03 04:16:08', NULL),
-(136, 23, 'SP-39', 'Coper Flower Vase', 'পিতলের পাত্র', 'Large, Medium & Small', 'Coper', 10, 'pcs', 1000, 'product/gVnxcMViuXEonmKsyD02Zi6sGJdbwk5kjqtHa6P8.jpg', 1, '2023-10-15 04:07:21', '2023-12-14 15:03:57', NULL),
+(136, 23, 'SP-39', 'Coper Flower Vase', 'পিতলের পাত্র', 'Large, Medium & Small', 'Coper', 12, 'pcs', 1000, 'product/gVnxcMViuXEonmKsyD02Zi6sGJdbwk5kjqtHa6P8.jpg', 1, '2023-10-15 04:07:21', '2024-01-14 12:21:54', NULL),
 (137, 18, 'HI-01', 'Yarn Lace', 'সাদা সুতার লেস', NULL, 'Blue & Yellow', 1, 'pcs', 200, 'product/dqbMc0m8V5eEn3WaIk35z7588uLUgWAWCWxFe6oe.jpg', 1, '2023-10-15 04:26:50', '2023-12-18 18:01:22', NULL),
 (138, 18, 'HI-02', 'Golden Yarn Lace', 'গোল্ডেন সুতার লেস', 'Large, Medium & Small', 'Golden', 18, 'pcs', 200, 'product/VVxkqN7XmquLW8FzLbx9TRy2UG2Y61TFift0XPir.jpg', 1, '2023-10-15 04:27:42', '2023-11-12 19:10:52', NULL),
 (139, 18, 'HI-03', 'Red Yarn Lace', 'লাল সুতার লেস', NULL, 'Red', 5, 'pcs', 300, 'product/aDblZrtsGWsGKFR77ozp47kYrLliGUa8jguLFQVn.jpg', 1, '2023-10-15 04:29:52', '2023-12-15 17:19:38', NULL),
@@ -1170,7 +1175,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (312, 27, 'TTC-23b', 'White Cotton Table Top', NULL, 'Medium', 'White', 16, 'pcs', 300, 'product/2kTYtMWdpFhVvVEuXq52NP8iAZMja0SNH79PWK7p.jpg', 1, '2023-10-21 10:35:09', '2023-10-27 15:33:38', NULL),
 (313, 27, 'TTC-23c', 'White Cotton Table Top', NULL, 'Small', 'White', 9, 'pcs', 100, 'product/mI5bJlpLN0S99PJ2GkajUZ97jvDY0WpFOfLrqG7t.jpg', 1, '2023-10-21 10:35:30', '2023-10-27 15:33:18', NULL),
 (314, 27, 'TTC-24', 'Red Green Table Top', 'লাল সবুজ টেবিল টপ', NULL, 'Red & Green', 17, 'pcs', 100, 'product/ZLwCXU6oXFRTPwJkoKKbWgBqCYwTG8RpI9H3KqqH.jpg', 1, '2023-10-21 10:36:23', '2023-11-11 16:56:42', NULL),
-(315, 20, 'LT-01', 'Stick Light', '২১ স্টিক লাইট', NULL, 'Customize', 2, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2023-12-14 15:03:57', NULL),
+(315, 20, 'LT-01', 'Stick Light', '২১ স্টিক লাইট', NULL, 'Customize', 10, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2024-01-14 12:21:51', NULL),
 (316, 20, 'LT-02', 'Leaf Stick Light Walkway', 'পাতা স্টিক লাইট ওয়াকওয়ে', NULL, 'Customize', 20, 'pcs', 1500, 'product/P86Hja9Ofkv5X1zKSOIdTWOEfpsvSG6guxIUH56m.jpg', 1, '2023-10-22 03:30:27', '2023-11-12 17:50:27', NULL),
 (317, 20, 'LT-03', 'Patch Stick Light Walkway', 'প্যাঁচ স্টিক লাইট ওয়াকওয়ে', NULL, NULL, 12, 'pcs', 500, 'product/CSRzWdSFiD9JdEzkXwCgO5SppIbqkRyZI030c0rW.jpg', 1, '2023-10-22 03:31:46', '2023-11-12 17:51:01', NULL),
 (318, 20, 'LT-04', 'Bulb', 'বাল্ব', NULL, NULL, 700, 'pcs', 20, 'product/teY8eog0pmODGXL7sOnhlsX29nSsoKitR83tdCnj.jpg', 1, '2023-10-22 03:33:20', '2023-11-12 17:51:33', NULL),
@@ -1225,7 +1230,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (367, 24, 'S-36', 'Golden Laxman Sofa', 'লক্ষন সোফা', '5 Sitter', 'Golden', 6, 'pcs', 4000, 'product/8d5abj11gIomSnVKauudvGhEemiPNy9fGBiSIjMn.jpg', 1, '2023-10-22 06:41:04', '2023-11-10 16:05:49', NULL),
 (368, 24, 'S-37', 'Duco Sofa', 'স্কয়ার ডুকো সোফা', '5 Sitter', 'Golden', 2, 'pcs', 8000, 'product/TtUySV5QSHcENy5bn0tsQtLxihiZP9wqyXPyTAbV.jpg', 1, '2023-10-22 06:48:48', '2023-12-09 22:41:29', NULL),
 (369, 24, 'S-38', 'Duco Sofa', 'ডুকো সোফা', '5 Sitter', 'Golden & Off White', 2, 'pcs', 8000, 'product/Bif2LUCvYilJAME8wtyT3jTLMhffyi2IG4kciunq.jpg', 1, '2023-10-22 06:49:27', '2023-12-09 22:40:58', NULL),
-(370, 24, 'S-39', 'Wooden CNC Sofa', 'কাঠের সিএনসি সোফা', '3 Sitter', 'Customize', 1, 'pcs', 2000, 'product/UA89I8RbTbs8WWhGZT5ftRseL4BmvbKefAasmNVw.jpg', 1, '2023-10-22 06:50:11', '2023-11-23 17:10:27', NULL),
+(370, 24, 'S-39', 'Wooden CNC Sofa', 'কাঠের সিএনসি সোফা', '3 Sitter', 'Customize', 2, 'pcs', 2000, 'product/UA89I8RbTbs8WWhGZT5ftRseL4BmvbKefAasmNVw.jpg', 1, '2023-10-22 06:50:11', '2024-01-15 05:29:52', NULL),
 (371, 24, 'S-40', 'MS Sofa', 'মেটাল লাউঞ্চ সোফা', '3 Sitter', 'Customize', 4, 'pcs', 2000, 'product/Iv8NkCAFfjqDMAyFp8e1yciqFvx7nHPRYMtswy04.jpg', 1, '2023-10-22 06:51:10', '2023-12-31 06:27:41', NULL),
 (372, 24, 'S-41', 'Tufted Sofa', 'অফহোয়াইট বক্স টাফটেড সোফা', '5 Sitter', 'Off White', 0, 'pcs', 5000, 'product/9TMASFFQ4O4wVTsxPbW3FaCkSTNruiZmJ7dXxr4l.jpg', 1, '2023-10-22 06:54:49', '2023-11-10 16:00:50', NULL),
 (373, 24, 'S-42', 'Tufted Sofa', 'পিংক টাফটেড সোফা', '5 Sitter', 'Light Pink', 1, 'pcs', 5000, 'product/04FUuDnwdhPKcQJz7Qkoo84caFBqKv7qfw0PKyEr.jpg', 1, '2023-10-22 06:55:48', '2024-01-03 04:16:13', NULL),
@@ -1256,7 +1261,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (398, 29, 'WW-17b', 'S Metal Light Walkway', NULL, '8 feet', NULL, 8, 'pcs', 700, 'product/6jZQY5Zsgg5NzX6a8Aag3nWud2KN80YsLPvBWXn6.jpg', 1, '2023-10-22 10:50:25', '2023-10-22 10:50:25', NULL),
 (399, 29, 'WW-17c', 'S Metal Light Walkway', NULL, '10 feet', NULL, 10, 'pcs', 800, 'product/adXbfQ0qRft8i9C57AHPNwFLueuUpegBNsKq23MP.jpg', 1, '2023-10-22 10:50:51', '2023-10-22 10:50:51', NULL),
 (400, 29, 'WW-18', 'Iron Leaf', NULL, '6\' x 4\'', 'Customize', 2, 'pcs', 500, 'product/5QnuJ3x2qsP3b803pKG0gbwLn6FhVNPdVsrSNtZp.jpg', 1, '2023-10-22 10:53:12', '2023-11-05 19:54:37', NULL),
-(401, 29, 'WW-19', 'Golden Chandelier Walkway', 'গোল্ডেন ওয়াকওয়ে স্যান্ডেলিয়ার', 'Small, Medium, Large', 'Silver', 4, 'pcs', 1500, 'product/X9Z8wdoWZCutYwgKnVisaXnn3I9KqOOnrnqhXLtD.png', 1, '2023-10-22 10:55:03', '2023-12-14 15:03:57', NULL),
+(401, 29, 'WW-19', 'Golden Chandelier Walkway', 'গোল্ডেন ওয়াকওয়ে স্যান্ডেলিয়ার', 'Small, Medium, Large', 'Silver', 8, 'pcs', 1500, 'product/X9Z8wdoWZCutYwgKnVisaXnn3I9KqOOnrnqhXLtD.png', 1, '2023-10-22 10:55:03', '2024-01-14 12:21:47', NULL),
 (402, 29, 'WW-20', 'Lotus Flower Walkway', 'লোটাস ফুলের ওয়াকওয়ে', NULL, NULL, 10, 'pcs', 800, 'product/XVkA0gjXYBSsLGU4mmzhPhs3I8WxuiRTGyHoqKq5.jpg', 1, '2023-10-22 10:56:22', '2023-11-12 15:54:39', NULL),
 (403, 29, 'WW-21', 'Lily Flower Walkway', 'লিলি ফুলের ওয়াকওয়ে', NULL, NULL, 10, 'pcs', 1000, 'product/NNy4vW1txFH8MBhj3I71wP0d7VHuQPDNL8doxlKr.jpg', 1, '2023-10-22 10:58:51', '2024-01-03 04:12:37', NULL),
 (404, 21, 'MS-01', 'Bird Case Photobooth', 'পাখির খাঁচা ফটোবুথ', '8 feet 1 pc, 10 feet 1 pc', NULL, 2, 'pcs', 8000, 'product/EF29EyuktfjtpS6S2furn84eXYUT8yuAaXk9mpWe.jpg', 1, '2023-10-22 12:41:47', '2023-11-09 16:17:07', NULL),
@@ -1399,7 +1404,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (540, 25, 'TT-07', 'Gift Table', 'গিফট টেবিল', NULL, NULL, 1, 'pcs', 1000, 'product/OnvVRlYQ6XD7nAZubiUXP7lFlgjrPuEhhmOrDb2S.jpg', 1, '2023-10-27 16:21:05', '2023-11-16 15:58:01', NULL),
 (541, 25, 'TT-08', 'Wooden Design Box Tool', 'কাঠের ডিজাইন বক্স টুল', NULL, NULL, 12, 'pcs', 200, 'product/OAv9LGhIs7tQIBfEaTAjjfHJOpDX1xuSN6VUIuOe.jpg', 1, '2023-10-27 16:23:52', '2023-11-22 22:46:29', '2023-11-22 22:46:29'),
 (542, 25, 'TT-09', 'Wooden Design Box Tool', NULL, NULL, NULL, 2, 'pcs', 200, 'product/nH8pfvDjK7UOcUjsrEQHPrb6hYwcD2qFE93YRG2p.jpg', 1, '2023-10-27 16:24:20', '2023-11-22 22:45:52', '2023-11-22 22:45:52'),
-(543, 25, 'TT-10', 'Wooden Design Box Tool', 'কাঠের ডিজাইন বক্স টুল', NULL, NULL, 6, 'pcs', 500, 'product/ZJXGd8eeuocyIBeyuvEoEiOZltxPi6S9DoynwqRM.jpg', 1, '2023-10-27 16:24:40', '2023-11-22 23:21:30', NULL),
+(543, 25, 'TT-10', 'Wooden Design Box Tool', 'কাঠের ডিজাইন বক্স টুল', NULL, NULL, 7, 'pcs', 500, 'product/ZJXGd8eeuocyIBeyuvEoEiOZltxPi6S9DoynwqRM.jpg', 1, '2023-10-27 16:24:40', '2024-01-15 05:29:55', NULL),
 (544, 25, 'TT-11', 'Wooden Design Box Tool', 'কাঠের ডিজাইন বক্স টুল', 'W-16\", L-16\", H-16\"', NULL, 8, 'pcs', 300, 'product/xfaYUt6vPxLwrA86Bt1ncGgEngtB96VRmRVPosj6.jpg', 1, '2023-10-27 16:25:24', '2023-11-23 02:34:14', NULL),
 (545, 25, 'TT-12', 'Minar Wooden Box', 'কাঠের ডিজাইন বক্স টুল', NULL, NULL, 4, 'pcs', 500, 'product/5VTF5LIufe7ALqQELAoV36tKSV4et2vVZ8n69W7h.jpg', 1, '2023-10-27 16:26:16', '2023-11-23 02:35:57', NULL),
 (546, 25, 'TT-13', 'Minar Wooden Box', 'কাঠের ডিজাইন বক্স টুল', NULL, NULL, 4, 'pcs', 500, 'product/ryDlLmfs0f1a0Kwe5tk4QU1GhRf6wJyNdgl9uPgY.jpg', 1, '2023-10-27 16:26:40', '2023-11-23 02:36:35', NULL),
@@ -1728,26 +1733,26 @@ INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantit
 (178, 4, 136, 1344, 4, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 17:14:25', '2023-11-23 17:10:27', NULL),
 (179, 4, 370, 1344, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 17:40:26', '2023-11-23 17:10:27', NULL),
 (180, 4, 646, 1344, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 17:40:26', '2023-11-23 17:10:27', NULL),
-(181, 111, 370, 1345, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:03:12', '2023-11-22 19:05:02', NULL),
-(182, 111, 543, 1345, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:03:12', '2023-11-22 19:05:02', NULL),
+(181, 111, 370, 1345, 1, 'returned', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:03:12', '2024-01-15 05:29:52', NULL),
+(182, 111, 543, 1345, 1, 'returned', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:03:12', '2024-01-15 05:29:55', NULL),
 (183, 111, 370, 1346, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:11:28', '2023-11-22 19:16:41', NULL),
 (184, 111, 646, 1346, 1, 'approved', '2023-11-22 00:00:00', '2023-11-23 00:00:00', 1, '2023-11-22 19:11:28', '2023-11-22 19:16:41', NULL),
 (185, 21, 462, 1338, 20, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-11-22 21:59:08', '2023-12-09 21:37:30', NULL),
 (186, 21, 621, 1338, 10, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-11-22 21:59:08', '2023-12-09 21:37:30', NULL),
 (187, 21, 560, 1338, 520, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-11-24 17:19:09', '2023-12-09 21:37:30', NULL),
 (188, 21, 358, 1338, 1, 'approved', '2023-11-24 00:00:00', '2023-11-25 00:00:00', 1, '2023-11-25 19:18:53', '2023-12-09 21:37:30', NULL),
-(318, 18, 83, 1347, 3, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(319, 18, 102, 1347, 1, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(320, 18, 84, 1347, 2, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(321, 18, 401, 1347, 4, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(322, 18, 315, 1347, 8, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(323, 18, 136, 1347, 2, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(324, 18, 104, 1347, 4, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(325, 18, 114, 1347, 1, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(326, 18, 554, 1347, 2, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(327, 18, 632, 1347, 2, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(328, 18, 656, 1347, 4, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2023-12-14 15:03:57', NULL),
-(329, 18, 635, 1347, 2, 'approved', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-14 00:04:25', '2023-12-14 15:03:57', NULL),
+(318, 18, 83, 1347, 3, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:39', NULL),
+(319, 18, 102, 1347, 1, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:42', NULL),
+(320, 18, 84, 1347, 2, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:45', NULL),
+(321, 18, 401, 1347, 4, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:47', NULL),
+(322, 18, 315, 1347, 8, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:51', NULL),
+(323, 18, 136, 1347, 2, 'returned', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:21:54', NULL),
+(324, 18, 104, 1347, 4, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:19:52', NULL),
+(325, 18, 114, 1347, 1, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:19:54', NULL),
+(326, 18, 554, 1347, 2, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:19:56', NULL),
+(327, 18, 632, 1347, 2, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:20:37', NULL),
+(328, 18, 656, 1347, 4, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-13 23:54:41', '2024-01-14 12:20:39', NULL),
+(329, 18, 635, 1347, 2, 'rented', '2023-12-13 00:00:00', '2023-12-14 00:00:00', 1, '2023-12-14 00:04:25', '2024-01-14 12:20:41', NULL),
 (330, 49, 461, 1348, 2, 'returned', '2023-12-14 00:00:00', '2023-12-15 00:00:00', 1, '2023-12-14 15:24:25', '2023-12-18 18:01:29', NULL),
 (331, 49, 303, 1348, 1, 'returned', '2023-12-14 00:00:00', '2023-12-15 00:00:00', 1, '2023-12-14 15:24:25', '2023-12-18 18:01:33', NULL),
 (332, 49, 658, 1348, 100, 'returned', '2023-12-14 00:00:00', '2023-12-15 00:00:00', 1, '2023-12-14 15:24:25', '2023-12-18 18:01:36', NULL),
@@ -1835,7 +1840,11 @@ INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantit
 (419, 30, 403, 1361, 4, 'rented', '2024-01-02 00:00:00', '2024-01-03 00:00:00', 1, '2024-01-02 14:01:23', '2024-01-13 08:19:17', NULL),
 (420, 106, 23, 1362, 2, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL),
 (421, 106, 24, 1362, 1, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL),
-(422, 106, 118, 1362, 2, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL);
+(422, 106, 118, 1362, 2, 'approved', '2024-01-18 00:00:00', '2024-01-27 00:00:00', 9, '2024-01-13 09:35:18', '2024-01-13 09:40:53', NULL),
+(423, 106, 21, 1363, 4, 'returned', '2024-01-14 00:00:00', '2024-01-16 00:00:00', 2, '2024-01-14 12:22:51', '2024-01-14 12:25:16', NULL),
+(424, 106, 21, 1364, 4, 'returned', '2024-01-14 00:00:00', '2024-01-16 00:00:00', 2, '2024-01-14 12:23:22', '2024-01-14 12:25:32', NULL),
+(425, 5, 21, 1365, 3, 'rented', '2024-01-15 00:00:00', '2024-01-17 00:00:00', 2, '2024-01-15 05:32:01', '2024-01-15 06:02:23', NULL),
+(426, 5, 21, 1366, 1, 'rented', '2024-01-15 00:00:00', '2024-01-17 00:00:00', 2, '2024-01-15 05:32:24', '2024-01-15 06:02:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -1956,7 +1965,7 @@ INSERT INTO `sections` (`id`, `name`, `title`, `heading`, `description`, `bullet
 (20, 'video_gallery', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
 (21, 'general_CTA', NULL, NULL, NULL, NULL, 'section/default.webp', '2023-12-31 15:15:28', '2023-12-31 15:15:28'),
 (22, 'review_CTA', NULL, 'Follow & Review Us', 'We understand the significance of your special day and strive to make it truly unforgettable. Our elegant and versatile event spaces provide the perfect backdrop for your dream wedding reception.', NULL, 'section/default.webp', '2023-12-31 15:15:28', '2024-01-02 12:22:44'),
-(23, 'logistic_page_info', NULL, 'Rental Products', 'Welcome to our rental products page! We are thrilled to offer a wide range of rental products to meet your needs, whether you\'re planning a party, event, or a DIY project.', NULL, 'section/default.webp', '2023-12-31 15:36:42', '2024-01-03 15:49:51');
+(23, 'logistic_page_info', NULL, 'Rental Products', 'Welcome to our rental products page! We are thrilled to offer a wide range of rental products to meet your needs, whether you\'re planning a party, event, or a DIY project.', NULL, 'section/default.webp', '2023-12-31 15:36:42', '2024-01-14 06:44:16');
 
 -- --------------------------------------------------------
 
@@ -2069,7 +2078,8 @@ INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `invoice_id`, `type`
 (49, 49, 1, NULL, 'deposit added', 500, NULL, 500, 'deposit added', '2023-12-14 15:26:30', '2023-12-14 15:26:30'),
 (50, 49, 1, 1348, 'due collection', 500, NULL, 0, 'due collection', '2023-12-14 15:26:39', '2023-12-14 15:26:39'),
 (51, 106, 1, NULL, 'deposit added', 35000, NULL, 35000, 'deposit added', '2024-01-13 09:40:19', '2024-01-13 09:40:19'),
-(52, 106, 1, 1362, 'rental cost', 35000, NULL, 0, 'rental cost', '2024-01-13 09:40:53', '2024-01-13 09:40:53');
+(52, 106, 1, 1362, 'rental cost', 35000, NULL, 0, 'rental cost', '2024-01-13 09:40:53', '2024-01-13 09:40:53'),
+(53, 106, 1, 1364, 'due added', 5000, NULL, 9000, 'Repair and damage cost', '2024-01-14 12:25:32', '2024-01-14 12:25:32');
 
 -- --------------------------------------------------------
 
@@ -2513,7 +2523,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `damaged_products`
 --
 ALTER TABLE `damaged_products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `documents`
@@ -2561,7 +2571,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1363;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1367;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -2615,7 +2625,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
 
 --
 -- AUTO_INCREMENT for table `repairs`
@@ -2651,7 +2661,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `users`
