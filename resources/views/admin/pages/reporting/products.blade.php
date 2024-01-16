@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Products Reporting | Admin</title>
+    <title>Product Report | Admin</title>
 @endsection
 <!--end::Page Title-->
 
@@ -41,7 +41,7 @@
 
 <!--begin::toolbar-->
 @section('toolbar')
-<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 ">
+<div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 print-display-none">
 
     <!--begin::Toolbar container-->
     <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
@@ -49,8 +49,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
             <!--begin::Title-->
-            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Products
-            </h1>
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Products</h1>
             <!--end::Title-->
 
             <!--begin::Breadcrumb-->
@@ -89,34 +88,74 @@
 
     <div class="card card-flush">
         <!--begin::Card header-->
-        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+        <div class="card-header align-items-center py-5 gap-2 gap-md-5 print-display-none">
             <!--begin::Card title-->
             <div class="card-title">
                 <!--begin::Search-->
                 <div class="d-flex align-items-center position-relative my-1">
-                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4"><span class="path1"></span><span class="path2"></span></i><input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Product">
+                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <input type="text" data-transaction-filter="search" class="form-control form-control-solid w-250px ps-12 print-display-none" placeholder="Search">
                 </div>
                 <!--end::Search-->
             </div>
             <!--end::Card title-->
     
             <!--begin::Card toolbar-->
-            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                <!--end::Search products-->
-                <div class="w-100 mw-150px">
+            <div class="card-toolbar flex-row-fluid justify-content-end gap-5 print-display-none">
+                <!--begin::Flatpickr-->
+                <div class="input-group w-250px print-display-none">
+                    <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" id="transactions_flatpickr_input" />
+                    <button class="btn btn-icon btn-light" id="transactions_flatpickr_clear">
+                        <i class="ki-duotone ki-cross fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </button>
+                </div>
+                <!--end::Flatpickr-->
+                <!--begin::filter transaction-->
+                {{-- <div class="w-100 mw-150px print-display-none">
                     <!--begin::Select2-->
-                    <select class="form-select form-select-solid font-bn" data-control="select2" data-hide-search="true" data-placeholder="Category" data-product-filter="category">
+                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Type" data-transaction-filter="type">
                         <option></option>
                         <option value="all">All</option>
-                        @foreach ($products->unique('category_id') as $product)
-                            <option value="{{ $product->category->name }}">{{ $product->category->name }}</option>
+                        @foreach ($products->unique('status') as $product)
+                            <option value="{{ $product->status }}">{{ ucwords($product->status) }}</option>
+                        @endforeach
+                    </select>
+                    <!--end::Select2-->
+                </div> --}}
+                <!--end::filter transaction-->
+                <!--begin::filter customer-->
+                <div class="w-100 mw-200px print-display-none">
+                    <!--begin::Select2-->
+                    <select class="form-select form-select-solid" data-control="select2" data-placeholder="Filter Category" data-transaction-filter="customer">
+                        <option></option>
+                        <option value="all">All</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->name }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                     <!--end::Select2-->
                 </div>
+                <!--end::filter customer-->
                 <!--begin::Export-->
-                <button type="button" class="btn btn-light-primary" onclick="toggleDtButtons()">
-                    <i class="ki-duotone ki-exit-up fs-2"><span class="path1"></span><span class="path2"></span></i>Export Report
+                <button type="button" class="btn btn-light-primary print-display-none" onclick="toggleDtButtons()">
+                    <i class="ki-duotone ki-exit-up fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Export Report
+                </button>
+                <button type="button" class="btn btn-light-primary print-display-none" onclick="window.print()">
+                    <i class="ki-duotone ki-document fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    Print
                 </button>
             </div>
             <!--end::Card toolbar-->
@@ -126,62 +165,71 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
             <!--begin::Table-->
-            <table class="table align-middle table-row-dashed fs-6 gy-5" id="products_table">
+            <span class="text-dark fs-1 print-display-show p-10">Due Report - {{ date('d M, Y h:i A') }}</span>
+            <table class="table table-striped align-middle table-row-dashed fs-6 gy-5 dt-table" id="products_table">
                 <thead>
-                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                        <th class="min-w-100px">Product</th>
-                        <th class="text-end">Category</th>
-                        <th class="text-end">Code</th>
-                        <th class="text-end">Stock</th>
-                        <th class="text-end">Available</th>
-                        <th class="text-end">Rent Cost</th>
+                    <tr class="text-start text-gray-600 fw-bold fs-7 text-uppercase gs-0">
+                        <th class=" px-2">#</th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Price(TK)</th>
+                        <th>Category</th>
+                        <th>Total Q.</th>
+                        <th>Inventory Q.</th>
+                        <th>On Rent Q.</th>
+                        <th>Items Rented</th>
+                        <th>Total Revenue</th>
+                        <th>Avg. Duration</th>
+                        <th class="text-end px-2">Last Rent</th>
                     </tr>
                 </thead>
                 <tbody class="fw-semibold text-gray-600">
-                    @forelse ($products as $product)
+                    @php
+                        $index = 0;
+                    @endphp
+                    @foreach ($products as $product)
                     <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <!--begin::Thumbnail-->
-                                <a href="#" class="symbol symbol-50px">
-                                    <img src="{{ asset('storage'.'/'.$product->image) }}" alt="{{ $product->name }} image" loading="lazy" />
-                                </a>
-                                <!--end::Thumbnail-->
-        
-                                <div class="ms-5">
-                                    <!--begin::Title-->
-                                    <span class="text-gray-800 fs-6 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $product->name }}</span>
-                                    <p class="text-gray-500 fs-12">{{ $product->dimension }}</p>
-                                    <!--end::Title-->
-                                </div>
-                            </div>
+                        <td class="text-gray-500 px-2 py-2">
+                            {{ $index = $index+1 }}
                         </td>
-                        <td class="text-end pe-0">
-                            <span class="font-bn">{{ $product->category->name }}</span>
+                        <td class="text-gray-800 py-2" data-filter="{{ $product->name}}">
+                            <a href="#" class="text-gray-800 fw-semibold text-hover-primary fs-6">{{ $product->name }}</a>
+                            @if (Carbon\Carbon::parse($product->created_at)->isToday())
+                                <span class="ms-2 badge badge-primary">new</span>
+                            @endif
                         </td>
-                        <td class="text-end pe-0">
-                            <span>{{ $product->product_code }}</span>
+                        <td class="text-gray-800 py-2" data-filter="{{ $product->product_code }}">
+                            <span class="fw-semibold">{{ $product->product_code }}</span>
                         </td>
-                        <td class="text-end pe-0">
-                            <span>{{ $product->stock }}</span>
+                        <td class="text-gray-800 py-2" data-filter="{{ $product->rental_price }}">
+                            <span class="fw-semibold">{{ number_format($product->rental_price) }}</span>
                         </td>
-                        <td class="text-end pe-0">
-                            <span>{{ $product->available }}</span>
+                        <td class="text-gray-800 py-2" data-filter="{{ $product->category->name }}">
+                            <span class="fw-semibold">{{ $product->category->name }}</span>
                         </td>
-                        <td class="text-end pe-0">{{ $product->rental_price }}</td>
+                        <td class="py-2" data-filter="{{ $product->stock }}">
+                            <span class="fw-semibold text-primary">{{ $product->stock }}</span>
+                        </td>
+                        <td class="py-2" data-filter="{{ $product->available }}">
+                            <span class="fw-semibold text-success">{{ $product->available }}</span>
+                        </td>
+                        <td class="py-2" data-filter="{{ $product->in_rent }}">
+                            <span class="fw-semibold text-warning">{{ $product->in_rental }}</span>
+                        </td>
+                        <td class="text-gray-800 py-2" data-filter="{{ $product->total_rented_quantity }}">
+                            <span class="fw-semibold">{{ $product->total_rented_quantity }}</span>
+                        </td>
+                        <td class="text-gray-900 py-2" data-filter="{{ $product->total_revenue }}">
+                            <span class="fw-semibold">{{ number_format($product->total_revenue) }}</span>
+                        </td>
+                        <td class="text-gray-800 py-2" data-filter="{{ round($product->average_duration, 2) }}">
+                            <span>{{ round($product->average_duration, 2) }}</span>
+                        </td>
+                        <td class="text-gray-800 text-end py-2" data-filter="<span>{{ Carbon\Carbon::parse($product->latest_rental)->format('d/m/Y') }}</span>" data-order="{{ Carbon\Carbon::parse($product->latest_rental)->format('Y-m-d') }}">
+                            {{ Carbon\Carbon::parse($product->latest_rental)->format('d M, Y') }}
+                        </td>
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="8" class="text-center text-danger">No products found!</td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                    </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
             <!--end::Table-->
@@ -191,131 +239,102 @@
 </div>
 @endsection
 <!--end::Main Content-->
+
 <!--begin::Page Vendors Javascript and custom JS-->
 @section('exclusive_scripts')
-    <script src="{{ asset('/assets/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script>
-        function inputProductData(data, storagePath) {
-            $('#editProductId').val(data.id);
-            $('#editProductName').val(data.name);
-            $('#editProductCategory').val(data.category_id);
-            $('#editProductCode').val(data.product_code);
-            $('#editProductRentalPrice').val(data.rental_price);
-            $('#editProductDimension').val(data.dimension);
-            $('#editProductStock').val(data.stock);
-            $('#editProductColor').val(data.color);
-            $('#editImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')');
-
-            // select the category in the select2
-            $('#editProductCategory').select2().trigger('change');
-        }
-
-        function inputCategoryData(data, storagePath) {
-            // change the form title
-            $('#editCategoryId').val(data.id);
-            $('#editCategoryName').val(data.name);
-            $('#editCategoryImagePreview').css('background-image', 'url('+ storagePath + '/' + data.image + ')' );
-        }
-
         const table = document.querySelector('#products_table');;
         const datatable = $(table).DataTable({
-                    "info": true,
-                    'order': [],
-                    'pageLength': 10,
-                    'columnDefs': [
-                        { render: DataTable.render.number(',', '.', 2), targets: 5},
-                        { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                    ],
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copyHtml5',
-                        'excelHtml5',
-                        'pdfHtml5'
-                    ]
+            "info": true,
+            'pageLength': 20,
+            'lengthChange': false,
+            'lengthMenu': [5, 10, 20, 50, 100],
+            'dom': 'Bfrtip',
+            'buttons': [
+                'copyHtml5',
+                'excelHtml5',
+            ],
         });
+
         // Class definition
         var KTAppEcommerceProducts = function () {
+            var flatpickr;
+            var minDate, maxDate;
+
+            // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
+            var initFlatpickr = () => {
+                const element = document.querySelector('#transactions_flatpickr_input');
+                flatpickr = $(element).flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                    mode: "range",
+                    onChange: function (selectedDates, dateStr, instance) {
+                        handleFlatpickr(selectedDates, dateStr, instance);
+                    },
+                });
+            }
+
             var handleSearchDatatable = () => {
-                const filterSearch = document.querySelector('[data-kt-ecommerce-product-filter="search"]');
-                filterSearch.addEventListener('keyup', function (e) {
+                const filterSearch = document.querySelector('[data-transaction-filter="search"]');
+                filterSearch.addEventListener('input', function (e) {
                     datatable.search(e.target.value).draw();
                 });
             }
 
             // Handle status filter dropdown
-            var handleCategoryFilter = () => {
-                const filterStatus = document.querySelector('[data-product-filter="category"]');
+            var handleCustomerFilter = () => {
+                const filterStatus = document.querySelector('[data-transaction-filter="customer"]');
                 $(filterStatus).on('change', e => {
                     let value = e.target.value;
                     if(value === 'all'){
                         value = '';
                     }
-                    console.log(value);
-                    datatable.column(1).search(value ? '^' + value + '$' : '', true, false).draw();
+                    datatable.column(3).search(value ? '^' + value + '$' : '', true, false).draw();
+                });
+            }
+            
+            // Handle status filter dropdown
+            var handleTypeFilter = () => {
+                const filterStatus = document.querySelector('[data-transaction-filter="type"]');
+                $(filterStatus).on('change', e => {
+                    let value = e.target.value;
+                    if(value === 'all'){
+                        value = '';
+                    }
+                    datatable.column(3).search(value ? '^' + value + '$' : '', true, false).draw();
                 });
             }
 
-            // Delete category
-            var handleDeleteRows = () => {
-                // Select all delete buttons
-                const deleteButtons = table.querySelectorAll('[data-kt-ecommerce-product-filter="delete_row"]');
+            // Handle flatpickr --- more info: https://flatpickr.js.org/events/
+            var handleFlatpickr = (selectedDates, dateStr, instance) => {
+                minDate = selectedDates[0] ? new Date(selectedDates[0]) : null;
+                maxDate = selectedDates[1] ? new Date(selectedDates[1]) : null;
 
-                deleteButtons.forEach(d => {
-                    // Delete button on click
-                    d.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        // Select parent row
-                        const parent = e.target.closest('tr');
-
-                        // Get category name
-                        const productName = parent.querySelector('[data-kt-ecommerce-product-filter="product_name"]').innerText;
-
-                        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                        Swal.fire({
-                            text: "Are you sure you want to archive " + productName + "?",
-                            icon: "warning",
-                            showCancelButton: true,
-                            buttonsStyling: false,
-                            confirmButtonText: "Yes, archive!",
-                            cancelButtonText: "No, cancel",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-danger",
-                                cancelButton: "btn fw-bold btn-active-light-primary"
-                            }
-                        }).then(function (result) {
-                            if (result.value) {
-                                Swal.fire({
-                                    text: "You have archived " + productName + "!.",
-                                    icon: "success",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                }).then(function () {
-                                    // get the product id from data-product-id
-                                    const productId = parent.querySelector('[data-product-id]').getAttribute('data-product-id');
-                                    // send to the delete route
-                                    window.location.href = `/admin/product/archive/${productId}`;
-                                });
-                            } else if (result.dismiss === 'cancel') {
-                                Swal.fire({
-                                    text: productName + " was not archived.",
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn fw-bold btn-primary",
-                                    }
-                                });
-                            }
-                        });
-                    })
-                });
+                // Custom filtering function which will search data in column four between two values
+                $.fn.dataTable.ext.search.push(
+                    function (settings, data, dataIndex) {
+                        var min = minDate;
+                        var max = maxDate;
+                        var dateAdded = new Date(moment($(data[9]).text(), 'DD/MM/YYYY'));
+                        
+                        if ((min === null && max === null) || (min <= dateAdded && max === null) || (min === null && max >= dateAdded) || (min <= dateAdded && max >= dateAdded)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                );
+                datatable.draw();
             }
 
+            // Handle clear flatpickr
+            var handleClearFlatpickr = () => {
+                const clearButton = document.querySelector('#transactions_flatpickr_clear');
+                clearButton.addEventListener('click', e => {
+                    flatpickr.clear();
+                });
+            }
 
             // Public methods
             return {
@@ -324,10 +343,11 @@
                         return;
                     }
 
-                    // initDatatable();
+                    initFlatpickr();
+                    handleClearFlatpickr();
                     handleSearchDatatable();
-                    handleCategoryFilter();
-                    handleDeleteRows();
+                    handleTypeFilter();
+                    handleCustomerFilter();
                 }
             };
         }();
@@ -342,14 +362,11 @@
         dtButtons.classList.add('d-none');
 
         function toggleDtButtons(){
-
-            console.log(dtButtons)
             if(dtButtons.classList.contains('d-none')){
                 dtButtons.classList.remove('d-none');
             }else{
                 dtButtons.classList.add('d-none');
             }
-            
         }
 
     </script>

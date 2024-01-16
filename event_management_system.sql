@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2024 at 09:47 AM
+-- Generation Time: Jan 16, 2024 at 02:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -317,7 +317,7 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone_number`, `company`, `addr
 (103, 'Opu Hasan', 'customer103@admin.com', '01832612519', 'Garden Event Management', 'Dhaka, Bangladesh', 'customers/FEbOiSWa26htWcUjK4otIqi9Wrks93HbbHFo5Ebd.jpg', 0, NULL, '$2y$10$3p8NA7r/wZhrspDphroOxeV1F1vuqcdQ70F3FQFFIDf8zV8EYj9eC', NULL, '2023-11-03 14:18:58', '2023-11-05 17:33:42'),
 (104, 'Imtiaz Ahmed', 'customer104@admin.com', '01941320214', 'Fuler Karigor', 'Notun Bazar, Bhatara, Dhaka', 'customers/zCg7CPjygodFXSoCxC5I3B3wFcwDtK68FXjsKEEq.png', 0, NULL, '$2y$10$TfhmoTT965b0YKlAq.eqR.HsgUGXCTTCmewmAtGOcz7xmU/pL/CH6', NULL, '2023-11-03 18:08:38', '2023-11-03 18:08:38'),
 (105, 'Jahid Hasan Manager', 'weddingbuzz2021@gmail.com', '01836281193', 'Wedding Buzz', '61/1, North Pirerbug, 60 feet, Mirpur 2,Dhaka., Dhaka, Bangladesh', 'customers/ICWoz0Rs7GxzdquLMsw9aqgeL3DNkwjtcMrJho2s.jpg', 0, NULL, '$2y$10$RqWw2v7qf.2tiOd03BYb/O4BbhCeFbxJG6IJVNi72uwDqju9jbzrO', NULL, '2023-11-05 19:03:04', '2023-11-05 19:05:06'),
-(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/V1e0aSohk5t7D87Jcs33EXPBZBokcjDpmnJHki63.png', 0, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2024-01-14 08:12:41'),
+(106, 'Pepplo Test', 'pepplo@admin.com', '01766555213', 'Pepplo BD', 'Chowmatha, Barishal', 'customers/V1e0aSohk5t7D87Jcs33EXPBZBokcjDpmnJHki63.png', 47000, NULL, '$2y$10$m811Bu2eYaMWwXDXYF.eweaxVM14QFF5Xhk/DZ1u62pp7aE6D9XjW', NULL, '2023-11-07 21:04:18', '2024-01-16 11:40:54'),
 (107, 'Md. Liton', 'customer107@admin.com', '01821693303', 'Creative Corner BD', '327 Morolbari, Nayatola, Hatijheel, Modhubagh, Mogbazar, Dhaka', 'customers/default.png', 0, NULL, '$2y$10$EWv1FAL/gKKKhjLtBf1E5uN45Dg93G7NLPoLkfagFzlCp26xH0H.C', NULL, '2023-11-10 04:24:08', '2023-11-10 16:55:25'),
 (108, 'Shafin Khan', 'nafiulmomits@gmail.com', '01621737497', 'Eventson', 'Delpara, Narayangonj', 'customers/fLenZIxXsrMk1fio5YZZIqXyQXd2k27R1lBjAH6G.jpg', 0, NULL, '$2y$10$jSYIBMIMAhOgmAv6yCaWhudqvJPJhmyXcNb04jlen6JmZbcZK1dTC', NULL, '2023-11-17 23:17:58', '2023-11-17 23:20:19'),
 (109, 'Rashidul Islam', 'icon.events20@gmail.com', '01568608656', 'Icon Event Management & Wedding Planner', 'H#13, R#07, Sector#10, Uttara, Dhaka-1240', 'customers/2aDzi8rxILlmTqRJ8lcVoesuqszhTmUYNSzihM7L.png', 0, NULL, '$2y$10$b6t0lj0SjKZoQkoFOnY0Ye1JCBYHQ9NfnljY7G2E8UBTYd4TR3iUm', NULL, '2023-11-20 21:44:23', '2023-11-20 21:51:02'),
@@ -614,7 +614,8 @@ INSERT INTO `invoices` (`id`, `customer_id`, `user_id`, `subtotal`, `vat_percent
 (1363, 106, 1, 4000, 0, 0, 0, 4000, 4000, NULL, 'returned', '2024-01-14 12:22:51', '2024-01-14 12:25:16'),
 (1364, 106, 1, 4000, 0, 0, 0, 9000, 9000, NULL, 'returned', '2024-01-14 12:23:22', '2024-01-14 12:25:32'),
 (1365, 5, 1, 3000, 0, 0, 0, 3000, 3000, NULL, 'rented', '2024-01-15 05:32:01', '2024-01-15 06:02:23'),
-(1366, 5, 1, 1000, 0, 0, 0, 1000, 1000, NULL, 'rented', '2024-01-15 05:32:24', '2024-01-15 06:02:19');
+(1366, 5, 1, 1000, 0, 0, 0, 1000, 1000, NULL, 'rented', '2024-01-15 05:32:24', '2024-01-15 06:02:19'),
+(1367, 106, 1, 3000, 0, 3000, 0, 3000, 0, NULL, 'rented', '2024-01-16 11:12:53', '2024-01-16 11:41:50');
 
 -- --------------------------------------------------------
 
@@ -1175,7 +1176,7 @@ INSERT INTO `products` (`id`, `category_id`, `product_code`, `name`, `name_bangl
 (312, 27, 'TTC-23b', 'White Cotton Table Top', NULL, 'Medium', 'White', 16, 'pcs', 300, 'product/2kTYtMWdpFhVvVEuXq52NP8iAZMja0SNH79PWK7p.jpg', 1, '2023-10-21 10:35:09', '2023-10-27 15:33:38', NULL),
 (313, 27, 'TTC-23c', 'White Cotton Table Top', NULL, 'Small', 'White', 9, 'pcs', 100, 'product/mI5bJlpLN0S99PJ2GkajUZ97jvDY0WpFOfLrqG7t.jpg', 1, '2023-10-21 10:35:30', '2023-10-27 15:33:18', NULL),
 (314, 27, 'TTC-24', 'Red Green Table Top', 'লাল সবুজ টেবিল টপ', NULL, 'Red & Green', 17, 'pcs', 100, 'product/ZLwCXU6oXFRTPwJkoKKbWgBqCYwTG8RpI9H3KqqH.jpg', 1, '2023-10-21 10:36:23', '2023-11-11 16:56:42', NULL),
-(315, 20, 'LT-01', 'Stick Light', '২১ স্টিক লাইট', NULL, 'Customize', 10, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2024-01-14 12:21:51', NULL),
+(315, 20, 'LT-01', 'Stick Light', '২১ স্টিক লাইট', NULL, 'Customize', 9, 'pcs', 1500, 'product/DCUf8mXCp48pwzWI03OvjuiSH5syn1NTLXecskWJ.jpg', 1, '2023-10-22 03:28:15', '2024-01-16 11:13:22', NULL),
 (316, 20, 'LT-02', 'Leaf Stick Light Walkway', 'পাতা স্টিক লাইট ওয়াকওয়ে', NULL, 'Customize', 20, 'pcs', 1500, 'product/P86Hja9Ofkv5X1zKSOIdTWOEfpsvSG6guxIUH56m.jpg', 1, '2023-10-22 03:30:27', '2023-11-12 17:50:27', NULL),
 (317, 20, 'LT-03', 'Patch Stick Light Walkway', 'প্যাঁচ স্টিক লাইট ওয়াকওয়ে', NULL, NULL, 12, 'pcs', 500, 'product/CSRzWdSFiD9JdEzkXwCgO5SppIbqkRyZI030c0rW.jpg', 1, '2023-10-22 03:31:46', '2023-11-12 17:51:01', NULL),
 (318, 20, 'LT-04', 'Bulb', 'বাল্ব', NULL, NULL, 700, 'pcs', 20, 'product/teY8eog0pmODGXL7sOnhlsX29nSsoKitR83tdCnj.jpg', 1, '2023-10-22 03:33:20', '2023-11-12 17:51:33', NULL),
@@ -1844,7 +1845,8 @@ INSERT INTO `rentals` (`id`, `customer_id`, `product_id`, `invoice_id`, `quantit
 (423, 106, 21, 1363, 4, 'returned', '2024-01-14 00:00:00', '2024-01-16 00:00:00', 2, '2024-01-14 12:22:51', '2024-01-14 12:25:16', NULL),
 (424, 106, 21, 1364, 4, 'returned', '2024-01-14 00:00:00', '2024-01-16 00:00:00', 2, '2024-01-14 12:23:22', '2024-01-14 12:25:32', NULL),
 (425, 5, 21, 1365, 3, 'rented', '2024-01-15 00:00:00', '2024-01-17 00:00:00', 2, '2024-01-15 05:32:01', '2024-01-15 06:02:23', NULL),
-(426, 5, 21, 1366, 1, 'rented', '2024-01-15 00:00:00', '2024-01-17 00:00:00', 2, '2024-01-15 05:32:24', '2024-01-15 06:02:19', NULL);
+(426, 5, 21, 1366, 1, 'rented', '2024-01-15 00:00:00', '2024-01-17 00:00:00', 2, '2024-01-15 05:32:24', '2024-01-15 06:02:19', NULL),
+(427, 106, 315, 1367, 1, 'rented', '2024-01-16 00:00:00', '2024-01-18 00:00:00', 2, '2024-01-16 11:12:53', '2024-01-16 11:41:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -2079,7 +2081,9 @@ INSERT INTO `transactions` (`id`, `customer_id`, `user_id`, `invoice_id`, `type`
 (50, 49, 1, 1348, 'due collection', 500, NULL, 0, 'due collection', '2023-12-14 15:26:39', '2023-12-14 15:26:39'),
 (51, 106, 1, NULL, 'deposit added', 35000, NULL, 35000, 'deposit added', '2024-01-13 09:40:19', '2024-01-13 09:40:19'),
 (52, 106, 1, 1362, 'rental cost', 35000, NULL, 0, 'rental cost', '2024-01-13 09:40:53', '2024-01-13 09:40:53'),
-(53, 106, 1, 1364, 'due added', 5000, NULL, 9000, 'Repair and damage cost', '2024-01-14 12:25:32', '2024-01-14 12:25:32');
+(53, 106, 1, 1364, 'due added', 5000, NULL, 9000, 'Repair and damage cost', '2024-01-14 12:25:32', '2024-01-14 12:25:32'),
+(54, 106, 1, NULL, 'deposit added', 50000, NULL, 50000, 'deposit added', '2024-01-16 11:38:36', '2024-01-16 11:38:36'),
+(55, 106, 1, 1367, 'due collection', 3000, NULL, 47000, 'due collection', '2024-01-16 11:40:54', '2024-01-16 11:40:54');
 
 -- --------------------------------------------------------
 
@@ -2571,7 +2575,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1367;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1368;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -2625,7 +2629,7 @@ ALTER TABLE `quotes`
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
 
 --
 -- AUTO_INCREMENT for table `repairs`
@@ -2661,7 +2665,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -384,7 +384,7 @@
                     function (settings, data, dataIndex) {
                         var min = minDate;
                         var max = maxDate;
-                        var dateAdded = new Date(moment($(data[5]).text(), 'DD/MM/YYYY'));
+                        var dateAdded = new Date(moment($(data[6]).text(), 'DD/MM/YYYY'));
                         
                         if ((min === null && max === null) || (min <= dateAdded && max === null) || (min === null && max >= dateAdded) || (min <= dateAdded && max >= dateAdded)) {
                             return true;
