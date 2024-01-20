@@ -324,7 +324,7 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Order Report</span>
+                                <span class="menu-title">Invoice Report</span>
                             </a>
                         </div>
                         <!--end:Menu item-->

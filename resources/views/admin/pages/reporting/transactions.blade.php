@@ -276,8 +276,8 @@
             "info": true,
             'pageLength': 20,
             'lengthChange': true,
-            'lengthMenu': [5, 10, 20, 50, 100],
-            'dom': 'Bfrtip',
+            'lengthMenu': [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            "dom": 'Bfrt<"row mt-2"<"col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"li><"col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"p>>',
             'buttons': [
                 'copyHtml5',
                 'excelHtml5',

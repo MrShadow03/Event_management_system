@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 <!--begin::Page Title-->
 @section('title')
-    <title>Due Report | Admin</title>
+    <title>Invoice Report | Admin</title>
 @endsection
 <!--end::Page Title-->
 
@@ -256,9 +256,8 @@
         const datatable = $(table).DataTable({
             "info": true,
             'pageLength': 20,
-            'lengthChange': false,
-            'lengthMenu': [5, 10, 20, 50, 100],
-            'dom': 'Bfrtip',
+            'lengthMenu': [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            "dom": 'Bfrt<"row mt-2"<"col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"li><"col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"p>>',
             'buttons': [
                 'copyHtml5',
                 'excelHtml5',

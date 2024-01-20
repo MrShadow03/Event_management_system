@@ -244,23 +244,45 @@
 @section('exclusive_scripts')
     <script src="{{ asset('/assets/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script>
-        const table = document.querySelector('#products_table');;
-        const datatable = $(table).DataTable({
-            "info": true,
-            'pageLength': 20,
-            'lengthChange': false,
-            'lengthMenu': [5, 10, 20, 50, 100],
-            'dom': 'Bfrtip',
-            'buttons': [
-                'copyHtml5',
-                'excelHtml5',
-            ],
-        });
+        // const table = document.querySelector('#products_table');
+        // const datatable = $(table).DataTable({
+        //     "info": true,
+        //     "order": [],
+        //     'pageLength': 20,
+        //     'lengthMenu': [5, 10, 20, 50, 100],
+        //     'dom': 'Bfrtip',
+        //     'buttons': [
+        //         'copyHtml5',
+        //         'excelHtml5',
+        //     ],
+        // });
 
         // Class definition
         var KTAppEcommerceProducts = function () {
             var flatpickr;
             var minDate, maxDate;
+            var table;
+            var datatable;
+
+            var initDatatable = function () {
+                datatable = $(table).DataTable({
+                    "info": true,
+                    "order": [],
+                    'pageLength': 20,
+                    "lengthMenu": [ [20, 50, 75, 100, -1], [20, 50, 75, 100, "All"] ],
+                    "dom": 'Bfrt<"row mt-2"<"col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"li><"col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"p>>',
+                    'buttons': [
+                        'copyHtml5',
+                        'excelHtml5',
+                    ],
+                });
+
+                document.querySelector('.dt-buttons').classList.add('d-none');
+                // Re-init functions on datatable re-draws
+                datatable.on('draw', function () {
+                    handleDeleteRows();
+                });
+            }
 
             // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/
             var initFlatpickr = () => {
@@ -284,26 +306,14 @@
             }
 
             // Handle status filter dropdown
-            var handleCustomerFilter = () => {
+            var handleCategoryFilter = () => {
                 const filterStatus = document.querySelector('[data-transaction-filter="customer"]');
                 $(filterStatus).on('change', e => {
                     let value = e.target.value;
                     if(value === 'all'){
                         value = '';
                     }
-                    datatable.column(3).search(value ? '^' + value + '$' : '', true, false).draw();
-                });
-            }
-            
-            // Handle status filter dropdown
-            var handleTypeFilter = () => {
-                const filterStatus = document.querySelector('[data-transaction-filter="type"]');
-                $(filterStatus).on('change', e => {
-                    let value = e.target.value;
-                    if(value === 'all'){
-                        value = '';
-                    }
-                    datatable.column(3).search(value ? '^' + value + '$' : '', true, false).draw();
+                    datatable.column(4).search(value ? '^' + value + '$' : '', true, false).draw();
                 });
             }
 
@@ -339,15 +349,17 @@
             // Public methods
             return {
                 init: function () {
+                    table = document.querySelector('#products_table');
+
                     if (!table) {
                         return;
                     }
 
+                    initDatatable();
                     initFlatpickr();
                     handleClearFlatpickr();
                     handleSearchDatatable();
-                    handleTypeFilter();
-                    handleCustomerFilter();
+                    handleCategoryFilter();
                 }
             };
         }();
@@ -358,10 +370,9 @@
         });
 
 
-        const dtButtons = document.querySelector('.dt-buttons');
-        dtButtons.classList.add('d-none');
-
+        
         function toggleDtButtons(){
+            const dtButtons = document.querySelector('.dt-buttons');
             if(dtButtons.classList.contains('d-none')){
                 dtButtons.classList.remove('d-none');
             }else{
